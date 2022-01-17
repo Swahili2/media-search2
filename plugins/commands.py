@@ -1,7 +1,7 @@
 from pyrogram import Client
 import uuid
 from info import filters
-from program.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
+from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
     upload_photo,
