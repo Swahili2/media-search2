@@ -1,4 +1,5 @@
-@CodeXBotz.on_message(filters.command('add') & filters.admins)
+from pyrogram import Client, filters
+@Client.on_message(filters.command('add') & filters.admins)
 async def new_filter(client: CodeXBotz, message: Message):
 
     strid = str(uuid.uuid4())
@@ -203,7 +204,7 @@ async def new_filter(client: CodeXBotz, message: Message):
     )
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
-@CodeXBotz.on_message(filters.command(DELETE_COMMAND) & filters.admins)
+@Client.on_message(filters.command(DELETE_COMMAND) & filters.admins)
 async def del_filter(client: CodeXBotz, message: Message):
     try:
         cmd, text = message.text.split(" ", 1)
@@ -219,7 +220,7 @@ async def del_filter(client: CodeXBotz, message: Message):
     query = text.lower()
     await delete_filter(message, query)
     
-@CodeXBotz.on_message(filters.command('filters') & filters.admins)
+@Client.on_message(filters.command('filters') & filters.admins)
 async def get_all(client: CodeXBotz, message: Message):
     texts = await get_all_filters(message)
     count = await count_filters(message)
@@ -247,7 +248,7 @@ async def get_all(client: CodeXBotz, message: Message):
         quote=True
     )
     
-@CodeXBotz.on_message(filters.command('delall') & filters.owner)
+@Client.on_message(filters.command('delall') & filters.owner)
 async def delallconfirm(client, message):
     reply_markup = InlineKeyboardMarkup(
         [
@@ -263,11 +264,11 @@ async def delallconfirm(client, message):
         quote=True
     )
     
-@CodeXBotz.on_callback_query(filters.regex("^delall$") & filters.owner)
+@Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: CodeXBotz, query: CallbackQuery):
     await del_all(query.message)
 
-@CodeXBotz.on_callback_query(filters.regex("^delallclose$") & filters.owner)
+@Client.on_callback_query(filters.regex("^delallclose$") & filters.owner)
 async def delcancel(client: CodeXBotz, query: CallbackQuery):
     await query.edit_message_text(
         text = 'Process Cancelled',
