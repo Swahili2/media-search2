@@ -41,7 +41,11 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
             group_id = id2.user_id
     text = query.query.lower()
     chech_status = await get_status(group_id) 
-    documents = await get_filters(text,group_id)
+    offset = int(query.offset or 0)
+    documents, next_offset = await get_search_results(string,
+                                              group_id = group_id,
+                                              max_results=10,
+                                              offset=offset)
     results = []
     for document in documents:
         reply_text = document['reply']
@@ -120,6 +124,8 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
         is_personal = True,
         switch_pm_text = switch_pm_text,
         switch_pm_parameter = 'start'
+        catch_time = 300,
+        next_offset = next_offset
     )
         
         
