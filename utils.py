@@ -92,9 +92,9 @@ async def save_file(media):
             logger.info(media.file_name + " is saved in database")
             return 'file sent', file_id 
 
-async def get_search_results(query, file_type=None, max_results=10, offset=0):
+async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
-
+    COLLECTION_NAME=group_id
     query = query.strip()
     if not query:
         query = 'dd# x'
@@ -115,9 +115,6 @@ async def get_search_results(query, file_type=None, max_results=10, offset=0):
         filter = {'$or': [{'file_name': regex}, {'caption': regex}]}
     else:
         filter = {'file_name': regex}
-
-    if file_type:
-        filter['file_type'] = file_type
 
     total_results = await Media.count_documents(filter)
     next_offset = offset + max_results
