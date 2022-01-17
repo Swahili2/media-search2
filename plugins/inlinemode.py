@@ -1,4 +1,4 @@
-from pyrogram import Client, filters
+from pyrogram import Client
 import re
 import ast
 from pyrogram.types import (
@@ -12,7 +12,7 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from info import filters.inline
+from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await present_in_userbase(query.from_user.id)
