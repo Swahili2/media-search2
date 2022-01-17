@@ -25,41 +25,31 @@ imdb=Instance.from_db(DB2)
 
 @instance.register
 class Media(Document):
-    file_id = fields.StrField(attribute='_id')
-    file_ref = fields.StrField(allow_none=True)
-    file_name = fields.StrField(required=True)
-    file_size = fields.IntField(required=True)
-    file_type = fields.StrField(allow_none=True)
-    mime_type = fields.StrField(allow_none=True)
-    caption = fields.StrField(allow_none=True)
+    id = fields.IntField(attribute='_id')
+    text = fields.StrField(allow_none=True)
+    reply = fields.StrField(required=True)
+    btn = fields.StrField(required=True)
+    file = fields.StrField(allow_none=True)
+    alert = fields.StrField(allow_none=True)
+    type = fields.StrField(allow_none=True)
 
     class Meta:
         collection_name = COLLECTION_NAME
 
 @imdb.register
-class Group(Document):
+class User(Document):
     id = fields.IntField(attribute='_id')
-    user_id= fields.IntField(required=True)
-    title = fields.StrField(required=True)
-    link_inv = fields.StrField(required=True)
-    total_m = fields.IntField(required=True)
-    thumb = fields.StrField(allow_none=True)
-    amount = fields.IntField(allow_none=True)
-    phone_no = fields.StrField(allow_none=True)
+    group_id= fields.IntField(required=True)
+    status = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def save_group(id, usr,tit, link,tot , thu,amt,pn):
+async def save_group(id, usr,tit):
     try:
         data = Group(
             id = id,
-            user_id= usr,
-            title = tit,
-            link_inv = link,
-            total_m = tot ,
-            thumb =thu,
-            amount = amt,
-            phone_no = pn
+            group_id= usr,
+            status = tit,
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
