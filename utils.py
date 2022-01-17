@@ -162,11 +162,11 @@ async def get_file_details(query):
     return filedetails
 
 
-async def is_group_exist(query):
+async def is_user_exist(query):
     filter = {'id': query}
-    cursor = Group.find(filter)
-    groupdetails = await cursor.to_list(length=1)
-    return groupdetails
+    cursor = User.find(filter)
+    userdetails = await cursor.to_list(length=1)
+    return userdetails
 
 
 async def is_subscribed(bot, query):
@@ -181,7 +181,7 @@ async def is_subscribed(bot, query):
             return True
 
     return False
-async def get_group_filters(query , max_results=10, offset=0):
+async def get_user_filters(query , max_results=10, offset=0):
     """For given query return (results, next_offset)"""
 
     query = query.strip()
@@ -199,7 +199,7 @@ async def get_group_filters(query , max_results=10, offset=0):
 
     filter = {'title': regex}
 
-    total_results = await Group.count_documents(filter)
+    total_results = await User.count_documents(filter)
     next_offset = offset + max_results
 
     if next_offset > total_results:
