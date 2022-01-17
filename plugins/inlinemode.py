@@ -29,7 +29,7 @@ async def give_filter(client: Client, query):
             switch_pm_parameter = 'start'
         )
         return
-    for user in user details:
+    for user in userdetails:
         for id2 in await is_user_exist(user.user_id)
             group_id = id2.user_id
     text = query.query.lower()
