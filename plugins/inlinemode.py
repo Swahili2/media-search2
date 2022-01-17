@@ -15,7 +15,7 @@ from pyrogram.types import (
 from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
-    userdetails= await present_in_userbase(query.from_user.id)
+    userdetails= await is_user_exit(query.from_user.id)
     if not userdetails:
         result = InlineQueryResultArticle(
                     title='Tafadhali tuma ujumbe kwenye kundi ambazo nipo',
@@ -30,7 +30,8 @@ async def give_filter(client: Client, query):
         )
         return
     for user in userdetails:
-        for id2 in await is_user_exist(user.user_id)
+        group_details = await is_user_exit(user.id)
+        for id2 in group_details:
             group_id = id2.user_id
     text = query.query.lower()
     chech_status = await get_status(group_id) 
