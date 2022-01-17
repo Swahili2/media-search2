@@ -3,7 +3,6 @@ import re
 import base64
 import logging
 from struct import pack
-from plugins.database import db
 from telegraph import upload_file
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
@@ -14,7 +13,7 @@ import os
 import PTN
 import requests
 import json
-from info import DB2, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
+from info import DB2, COLLECTION_NAME
 
 COLLECTION_NAME_2="groups"
 logger = logging.getLogger(__name__)
@@ -108,11 +107,8 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
-
-    if USE_CAPTION_FILTER:
-        filter = {'$or': [{'file_name': regex}, {'caption': regex}]}
     else:
-        filter = {'file_name': regex}
+        filter = {'text': regex}
 
     total_results = await Media.count_documents(filter)
     next_offset = offset + max_results
@@ -143,7 +139,7 @@ async def get_filter_results(query):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
-    filter = {'file_name': regex}
+    filter = {'text': regex}
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
     cursor.sort('$natural', -1)
@@ -151,7 +147,7 @@ async def get_filter_results(query):
     return files
 
 async def get_file_details(query):
-    filter = {'file_id': query}
+    filter = {'id': query}
     cursor = Media.find(filter)
     filedetails = await cursor.to_list(length=1)
     return filedetails
@@ -163,19 +159,6 @@ async def is_user_exist(query):
     userdetails = await cursor.to_list(length=1)
     return userdetails
 
-
-async def is_subscribed(bot, query):
-    try:
-        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
-    except UserNotParticipant:
-        pass
-    except Exception as e:
-        logger.exception(e)
-    else:
-        if not user.status == 'kicked':
-            return True
-
-    return False
 async def get_user_filters(query , max_results=10, offset=0):
     """For given query return (results, next_offset)"""
 
@@ -192,7 +175,7 @@ async def get_user_filters(query , max_results=10, offset=0):
     except:
         return []
 
-    filter = {'title': regex}
+    filter = {'file': regex}
 
     total_results = await User.count_documents(filter)
     next_offset = offset + max_results
