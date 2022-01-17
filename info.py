@@ -1,19 +1,34 @@
 import os
+import re
+from os import environ
+from motor.motor_asyncio import AsyncIOMotorClient
 
-API_HASH = os.environ.get("API_HASH", "")
-APP_ID = int(os.environ.get("APP_ID", ""))
-DB_URI = os.environ.get("DATABASE_URL", "")
-BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+id_pattern = re.compile(r'^.\d+$')
+
+# Bot information
+SESSION = environ.get('SESSION', 'Media_search')
+API_ID = 10786281
+API_HASH = '5f42bc5562f6a1eb8bae8b77617186a0'
+BOT_TOKEN ='2138045217:AAEcyEaMnPiVUftD3y3-FQb-mk1ktc4t1Dw'
+
+# Bot settings
+CACHE_TIME = int(environ.get('CACHE_TIME', 300))
+USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
+
+# MongoDB information
+client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+DB2 = client['swahilihit']
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
+
 TG_BOT_WORKERS = int(os.environ.get("BOT_WORKERS", '4'))
-DB_NAME = os.environ.get("DATABASE_NAME", "InlineFilterBot")
 thumb = os.environ.get('THUMBNAIL_URL', 'https://telegra.ph/file/516ca261de9ebe7f4ffe1.jpg')
-OWNER_ID = int(os.environ.get('OWNER_ID'))
+OWNER_ID = 859704527
 CUSTOM_START_MESSAGE = os.environ.get('START_MESSAGE','')
 FILTER_COMMAND = os.environ.get('FILTER_COMMAND', 'add')
 DELETE_COMMAND = os.environ.get('DELETE_COMMAND', 'del')
 IS_PUBLIC = True if os.environ.get('IS_PUBLIC', 'True').lower() != 'false' else False
 try:
-    ADMINS=[OWNER_ID]
+    ADMINS=[859704527]
     for x in (os.environ.get("ADMINS", "").split()):
         ADMINS.append(int(x))
 except ValueError:
