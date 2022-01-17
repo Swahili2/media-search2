@@ -85,9 +85,9 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
         try:
             await file.commit()
         except DuplicateKeyError:
-            logger.warning(media.file_name + " is already saved in database")
+            logger.warning(text + " is already saved in database")
         else:
-            logger.info(media.file_name + " is saved in database")
+            logger.info(text + " is saved in database")
 
 async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
