@@ -1,6 +1,7 @@
 from pyrogram import Client
 import uuid
 from info import filters
+from utils import save_file
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -201,7 +202,7 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await add_filter(text, reply_text, btn, fileid, alert, msg_type, strid,user_id)
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id)
     reply_markup = InlineKeyboardMarkup(
         [
             [
