@@ -122,10 +122,8 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
     await query.answer(
         results = results,
         is_personal = True,
-        switch_pm_text = switch_pm_text,
-        switch_pm_parameter = 'start'
-        catch_time = 300,
-        next_offset = next_offset
+        cache_time = 300,
+        next_offset =str(next_offset)
     )
         
         
