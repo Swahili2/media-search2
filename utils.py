@@ -69,6 +69,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
     found = filter_collection.find_one(fdata)
     if found:
         filter_collection.delete_one(fdata)
+    COLLECTION_NAME = user_id
     try:
         file = Media(
             id=id,
