@@ -20,7 +20,7 @@ from InlineBot.database import (
 )
 
 @Client.on_inline_query(filters.inline)
-async def give_filter(client: Client, query: InlineQuery):
+async def give_filter(client: Client, query):
     userdetails= await present_in_userbase(query.from_user.id)
     if not userdetails:
         result = InlineQueryResultArticle(
@@ -127,7 +127,7 @@ async def give_filter(client: Client, query: InlineQuery):
         
         
 @Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
-async def alert_msg(client: Client, callback: CallbackQuery):
+async def alert_msg(client: Client, callback):
     regex = r"^(alertmessage):(\d):(.*)"
     matches = re.match(regex, callback.data)
     i = matches.group(2)
