@@ -3,8 +3,7 @@ import os
 import uuid
 from typing import List
 from telegraph import upload_file
-from . import InlineKeyboardButton
-from pyrogram.types InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton
 
 BTN_URL_REGEX = r"(?:\[(.*)\]\((buttonurl|buttonalert):([^)]*)\))"
 
