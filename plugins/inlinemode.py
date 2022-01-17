@@ -1,9 +1,7 @@
 from pyrogram import Client, filters
 import re
 import ast
-from InlineBot import (
-    thumb,
-    filters,
+from pyrogram.types import (
     InlineQuery,
     CallbackQuery,
     InlineKeyboardMarkup,
@@ -14,11 +12,7 @@ from InlineBot import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from InlineBot.database import (
-    get_alerts,
-    get_filters
-)
-
+from info.py import filters.inline
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await present_in_userbase(query.from_user.id)
