@@ -1,8 +1,7 @@
-
+from pyrogram import Client, filters
 import re
 import ast
 from InlineBot import (
-    CodeXBotz,
     thumb,
     filters,
     InlineQuery,
@@ -20,7 +19,7 @@ from InlineBot.database import (
     get_filters
 )
 
-@CodeXBotz.on_inline_query(filters.inline)
+@Client.on_inline_query(filters.inline)
 async def give_filter(client: CodeXBotz, query: InlineQuery):
     userdetails= await present_in_userbase(query.from_user.id)
     if not userdetails:
@@ -127,7 +126,7 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
     )
         
         
-@CodeXBotz.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
+@Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
 async def alert_msg(client: CodeXBotz, callback: CallbackQuery):
     regex = r"^(alertmessage):(\d):(.*)"
     matches = re.match(regex, callback.data)
