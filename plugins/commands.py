@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 @Client.on_message(filters.command('add') & filters.admins)
-async def new_filter(client: CodeXBotz, message: Message):
+async def new_filter(client: Client, message: Message):
 
     strid = str(uuid.uuid4())
     args = message.text.html.split(None, 1)
@@ -205,7 +205,7 @@ async def new_filter(client: CodeXBotz, message: Message):
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
 @Client.on_message(filters.command(DELETE_COMMAND) & filters.admins)
-async def del_filter(client: CodeXBotz, message: Message):
+async def del_filter(client: Client, message: Message):
     try:
         cmd, text = message.text.split(" ", 1)
     except:
@@ -221,7 +221,7 @@ async def del_filter(client: CodeXBotz, message: Message):
     await delete_filter(message, query)
     
 @Client.on_message(filters.command('filters') & filters.admins)
-async def get_all(client: CodeXBotz, message: Message):
+async def get_all(client: Client, message: Message):
     texts = await get_all_filters(message)
     count = await count_filters(message)
     if count:
@@ -249,7 +249,7 @@ async def get_all(client: CodeXBotz, message: Message):
     )
     
 @Client.on_message(filters.command('delall') & filters.owner)
-async def delallconfirm(client, message):
+async def delallconfirm(Client, message):
     reply_markup = InlineKeyboardMarkup(
         [
             [
@@ -265,11 +265,11 @@ async def delallconfirm(client, message):
     )
     
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
-async def delall(client: CodeXBotz, query: CallbackQuery):
+async def delall(client: Client, query: CallbackQuery):
     await del_all(query.message)
 
 @Client.on_callback_query(filters.regex("^delallclose$") & filters.owner)
-async def delcancel(client: CodeXBotz, query: CallbackQuery):
+async def delcancel(client: Client, query: CallbackQuery):
     await query.edit_message_text(
         text = 'Process Cancelled',
         reply_markup = None
