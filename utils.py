@@ -61,24 +61,24 @@ async def save_group(id, usr,tit):
         else:
             logger.info("group is saved in database")
 
-async def save_file(media):
+async def save_file(text,reply,btn,file,alert,type,id,user_id):
     """Save file in database"""
-
-    # TODO: Find better way to get same file_id for same media to avoid duplicates
-    file_ref= media.file_ref
-    file_id = media.file_id
-    if media.file_type != "photo":
-        file_id, file_ref = unpack_new_file_id(media.file_id)
-
+    fdata = {'text': str(text)}
+    filter_collection = database[str(user_id)]
+    button = str(btn)
+    button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
+    found = filter_collection.find_one(fdata)
+    if found:
+        filter_collection.delete_one(fdata)
     try:
         file = Media(
-            file_id=file_id,
-            file_ref=file_ref,
-            file_name=media.file_name,
-            file_size=media.file_size,
-            file_type=media.file_type,
-            mime_type=media.mime_type,
-            caption=media.caption,
+            id=id,
+            text=str(text),
+            reply=str(reply),
+            btn=str(btn),
+            file= str(file),
+            alert=str(alert),
+            type=str(type),
         )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')
@@ -87,10 +87,8 @@ async def save_file(media):
             await file.commit()
         except DuplicateKeyError:
             logger.warning(media.file_name + " is already saved in database")
-            return 'file exist', file_id
         else:
             logger.info(media.file_name + " is saved in database")
-            return 'file sent', file_id 
 
 async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
