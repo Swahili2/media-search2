@@ -204,7 +204,7 @@ async def new_filter(client: Client, message):
     )
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
-@Client.on_message(filters.command(DELETE_COMMAND) & filters.admins)
+@Client.on_message(filters.command('delete') & filters.admins)
 async def del_filter(client: Client, message):
     try:
         cmd, text = message.text.split(" ", 1)
