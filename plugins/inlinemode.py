@@ -12,7 +12,7 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from info.py import filters.inline
+from info import filters.inline
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await present_in_userbase(query.from_user.id)
