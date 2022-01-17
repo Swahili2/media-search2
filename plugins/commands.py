@@ -1,4 +1,12 @@
-from pyrogram import Client, filters
+from pyrogram import Client
+import uuid
+from info import filters
+from program.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
+from plugins.helper_funcs import (
+    generate_button,
+    upload_photo,
+    split_quotes
+)  
 @Client.on_message(filters.command('add') & filters.admins)
 async def new_filter(client: Client, message):
 
