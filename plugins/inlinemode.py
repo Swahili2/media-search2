@@ -22,10 +22,10 @@ from InlineBot.database import (
 
 @CodeXBotz.on_inline_query(filters.inline)
 async def give_filter(client: CodeXBotz, query: InlineQuery):
-    acess,group_id = await present_in_userbase(query.from_user.id)
-    if not access:
+    userdetails= await present_in_userbase(query.from_user.id)
+    if not userdetails:
         result = InlineQueryResultArticle(
-                    title=keyword.upper(),
+                    title='Tafadhali tuma ujumbe kwenye kundi ambazo nipo',
                     input_message_content=InputTextMessageContent(message_text = f'hellow'),
                     description='Text',
                 )
@@ -36,7 +36,11 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
             switch_pm_parameter = 'start'
         )
         return
+    for user in user details:
+        for id2 in await is_user_exist(user.user_id)
+            group_id = id2.user_id
     text = query.query.lower()
+    chech_status = await get_status(group_id) 
     documents = await get_filters(text,group_id)
     results = []
     for document in documents:
@@ -98,7 +102,19 @@ async def give_filter(client: CodeXBotz, query: InlineQuery):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-
+    if not check_status and Len(results) != 0:
+        resultz = InlineQueryResultArticle(
+                    title='Samahani siwez kukupa majibu',
+                    input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
+                    description='Text'
+                )
+        await query.answer(
+            results = resultz,
+            is_personal = True,
+            switch_pm_text = 'Admin bado hajalipia kifurushi',
+            switch_pm_parameter = 'start'
+        )
+        return
     await query.answer(
         results = results,
         is_personal = True,
