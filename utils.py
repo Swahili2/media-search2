@@ -25,10 +25,10 @@ imdb=Instance.from_db(DB2)
 @instance.register
 class Media(Document):
     id = fields.StrField(attribute='_id')
-    text = fields.StrField(allow_none=True)
+    text = fields.StrField(required=True)
     reply = fields.StrField(required=True)
     btn = fields.StrField(required=True)
-    file = fields.StrField(allow_none=True)
+    file = fields.StrField(required=True)
     alert = fields.StrField(required=True)
     type = fields.StrField(required=True)
     group_id = fields.IntField(required=True)
@@ -67,8 +67,6 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
     found = filter_collection.find_one(fdata)
     if found:
         filter_collection.delete_one(fdata)
-    COLLECTION_NAME = user_id
-    await Media.ensure_indexes()
     try:
         file = Media(
             id=id,
@@ -93,7 +91,6 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
 async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
     
-    await Media.ensure_indexes()
     query = query.strip()
     if not query:
         query = 'dd# x'
