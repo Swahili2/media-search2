@@ -12,6 +12,7 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
+from utils import is_user_exit
 from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
@@ -30,7 +31,7 @@ async def give_filter(client: Client, query):
         )
         return
     for user in userdetails:
-        group_details = await is_user_exit(user.id)
+        group_details = await is_user_exit(user.user_id)
         for id2 in group_details:
             group_id = id2.user_id
     text = query.query.lower()
