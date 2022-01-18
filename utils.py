@@ -24,7 +24,7 @@ imdb=Instance.from_db(DB2)
 
 @instance.register
 class Media(Document):
-    id = fields.IntField(attribute='_id')
+    id = fields.StrField(attribute='_id')
     text = fields.StrField(allow_none=True)
     reply = fields.StrField(required=True)
     btn = fields.StrField(required=True)
