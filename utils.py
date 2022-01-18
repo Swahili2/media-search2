@@ -29,9 +29,9 @@ class Media(Document):
     reply = fields.StrField(required=True)
     btn = fields.StrField(required=True)
     file = fields.StrField(allow_none=True)
-    alert = fields.StrField(allow_none=True)
-    type = fields.StrField(allow_none=True)
-
+    alert = fields.StrField(required=True)
+    type = fields.StrField(required=True)
+    group_id = fields.IntField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME
 
@@ -77,8 +77,9 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
             btn=str(btn),
             file= str(file),
             alert=str(alert),
-            type=str(type)
-        )
+            type=str(type),
+            group_id =user_id
+       )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')
     else:
@@ -91,7 +92,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
 
 async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
-    COLLECTION_NAME=group_id
+    
     await Media.ensure_indexes()
     query = query.strip()
     if not query:
@@ -110,7 +111,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
         return []
     else:
         filter = {'text': regex}
-
+    filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     next_offset = offset + max_results
 
