@@ -37,7 +37,7 @@ async def give_filter(client: Client, query):
         for id2 in group_details:
             group_id = id2.group_id
     text = query.query.lower()
-    chech_status = await get_status(group_id) 
+    # chech_status = await get_status(group_id) 
     offset = int(query.offset or 0)
     documents, next_offset = await get_search_results(string,
                                               group_id = group_id,
@@ -103,7 +103,7 @@ async def give_filter(client: Client, query):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if not check_status and Len(results) != 0:
+    if Len(results) == 0:
         resultz = InlineQueryResultArticle(
                     title='Samahani siwez kukupa majibu',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
