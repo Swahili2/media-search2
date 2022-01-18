@@ -12,11 +12,11 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exit
+from utils import is_user_exist
 from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
-    userdetails= await is_user_exit(query.from_user.id)
+    userdetails= await is_user_exist(query.from_user.id)
     if not userdetails:
         result = InlineQueryResultArticle(
                     title='Tafadhali tuma ujumbe kwenye kundi ambazo nipo',
@@ -31,7 +31,7 @@ async def give_filter(client: Client, query):
         )
         return
     for user in userdetails:
-        group_details = await is_user_exit(user.user_id)
+        group_details = await is_user_exist(user.user_id)
         for id2 in group_details:
             group_id = id2.user_id
     text = query.query.lower()
