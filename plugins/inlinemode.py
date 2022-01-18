@@ -39,7 +39,7 @@ async def give_filter(client: Client, query):
     text = query.query.lower()
     # chech_status = await get_status(group_id) 
     offset = int(query.offset or 0)
-    documents, next_offset = await get_search_results(string,
+    documents, next_offset = await get_search_results(text,
                                               group_id = group_id,
                                               max_results=10,
                                               offset=offset)
