@@ -1,7 +1,7 @@
 from pyrogram import Client
 import uuid
 from info import filters
-from utils import save_file
+from utils import save_file,add_user
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -272,7 +272,77 @@ async def delallconfirm(Client, message):
         reply_markup = reply_markup,
         quote=True
     )
-    
+@Client.on_message((filters.private | filters.group) & filters.command('niunge') & filters.adimins)
+async def addconnection(client,message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena\nAu kama unatak uendelee kuwa anonymous admin copy huu  ujumbe -> `/niunge {message.chat.id}` \nkisha kautume private")
+    chat_type = message.chat.type
+
+    if chat_type == "private":
+        try:
+            cmd, group_id = message.text.split(" ", 1)
+        except:
+            await message.reply_text(
+                "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
+                quote=True
+            )
+            return
+
+    elif chat_type in ["group", "supergroup"]:
+        group_id = message.chat.id
+
+    try:
+        st = await client.get_chat_member(group_id, userid)
+        if (
+            st.status != "administrator"
+            and st.status != "creator"
+            and str(userid) not in ADMINS
+        ):
+            await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
+            return
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text(
+            "Invalid Group ID!\n\nIf correct, Make sure I'm present in your group!!",
+            quote=True,
+        )
+
+        return
+    try:
+        st = await client.get_chat_member(group_id, "me")
+        if st.status == "administrator":
+            group_details= await is_user_exist(group_id)
+            for file in group_details:
+                user_id2=file.user_id
+            if not group_details :
+                await add_user(group_id,userid)
+                await message.reply_text(
+                    f"Sucessfully connected to **{title}**\n Sasa unaweza kuangalia maendeleo ya group lako kwa kutuma neno `group` ukiwa private!",
+                    quote=True,
+                    parse_mode="md"
+                )
+                if chat_type in ["group", "supergroup","private"]:
+                    await client.send_message(
+                        userid,
+                        f"Asante kwa kutuamini umefanikiwa kuunganisha group \n **__{title}__** \n\nTutakupatia ofa  ya kila mteja kila  atakapo lipia kifurush kupitia grup lako \n\nUtapata tsh 1000 kwa kila mteja. kuona maendeleo ya group lako tuma neno `group' **tutakuwa tunakutumia ujumbe endapo mteja akilipa na Jinsi ya kupata mshiko wako**!",
+                        parse_mode="md"
+                    )
+                    return
+           
+            else:
+                ttli = await client.get_users(userid)
+                await message.reply_text(
+                    f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Kama mnataka mabadiliko tafadhari mcheki msimiz wangu inbox @hrm45 ili awabadilishie!",
+                    quote=True
+                )
+        else:
+            await message.reply_text("Ni add admin kwenye group lako kisha jaribu tena", quote=True)
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
+        return
+
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
