@@ -61,7 +61,7 @@ async def add_user(id, usr):
 async def save_file(text,reply,btn,file,alert,type,id,user_id):
     """Save file in database"""
     fdata = {'text': str(text)}
-    filter_collection = DB2[str(user_id)]
+    filter_collection = DB2[COLLECTION_NAME]
     button = str(btn)
     button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
     found = filter_collection.find_one(fdata)
@@ -72,7 +72,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
             id=id,
             text=str(text),
             reply=str(reply),
-            btn=str(btn),
+            btn=str(button),
             file= str(file),
             alert=str(alert),
             type=str(type),
