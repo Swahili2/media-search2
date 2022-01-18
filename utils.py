@@ -45,7 +45,7 @@ class User(Document):
 
 async def add_user(id, usr):
     try:
-        data = Group(
+        data = User(
             id = id,
             group_id= usr
         )
