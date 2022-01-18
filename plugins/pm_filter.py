@@ -1,4 +1,4 @@
-from program import Client
+from pyrogram import Client
 from info import filters
 from status import handle_user_status
 @Client.on_message(filters.text & filters.group & filters.incoming)
