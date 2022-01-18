@@ -12,7 +12,7 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exist
+from utils import is_user_exist,get_search_results
 from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
