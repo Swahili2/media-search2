@@ -18,7 +18,7 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 
 # MongoDB information
 client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-DB2 = client['swahilihit']
+DB2 = client['swahilihits']
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 TG_BOT_WORKERS = int(os.environ.get("BOT_WORKERS", '4'))
