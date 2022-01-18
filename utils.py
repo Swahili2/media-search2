@@ -43,12 +43,11 @@ class User(Document):
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def save_group(id, usr,tit):
+async def add_user(id, usr):
     try:
         data = Group(
             id = id,
-            group_id= usr,
-            status = tit,
+            group_id= usr
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
