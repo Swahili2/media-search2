@@ -33,9 +33,9 @@ async def give_filter(client: Client, query):
         )
         return
     for user in userdetails:
-        group_details = await is_user_exist(user.user_id)
+        group_details = await is_user_exist(user.group_id)
         for id2 in group_details:
-            group_id = id2.user_id
+            group_id = id2.group_id
     text = query.query.lower()
     chech_status = await get_status(group_id) 
     offset = int(query.offset or 0)
