@@ -39,7 +39,6 @@ class Media(Document):
 class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
-    status = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
