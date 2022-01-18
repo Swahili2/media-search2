@@ -77,8 +77,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
             btn=str(btn),
             file= str(file),
             alert=str(alert),
-            type=str(type),
-            COLLECTION_NAME=user_id
+            type=str(type)
         )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')
