@@ -15,7 +15,7 @@ BOT_TOKEN ='2138045217:AAEcyEaMnPiVUftD3y3-FQb-mk1ktc4t1Dw'
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
-
+CHANNELS = -1001609087881
 # MongoDB information
 client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 DB2 = client['swahilihits']
