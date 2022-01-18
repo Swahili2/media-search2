@@ -68,6 +68,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
     if found:
         filter_collection.delete_one(fdata)
     COLLECTION_NAME = user_id
+    await Media.ensure_indexes()
     try:
         file = Media(
             id=id,
@@ -92,6 +93,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
 async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
     COLLECTION_NAME=group_id
+    await Media.ensure_indexes()
     query = query.strip()
     if not query:
         query = 'dd# x'
