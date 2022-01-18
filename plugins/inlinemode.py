@@ -103,7 +103,7 @@ async def give_filter(client: Client, query):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if Len(results) == 0:
+    if len(results) == 0:
         resultz = InlineQueryResultArticle(
                     title='Samahani siwez kukupa majibu',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
