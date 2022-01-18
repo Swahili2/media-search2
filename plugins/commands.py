@@ -272,7 +272,7 @@ async def delallconfirm(Client, message):
         reply_markup = reply_markup,
         quote=True
     )
-@Client.on_message((filters.private | filters.group) & filters.command('niunge') & filters.adimins)
+@Client.on_message((filters.private | filters.group) & filters.command('niunge') & filters.admins)
 async def addconnection(client,message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
