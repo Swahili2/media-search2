@@ -18,6 +18,7 @@ from info import filters
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     if not userdetails:
+        result=[]
         result = InlineQueryResultArticle(
                     title='Tafadhali tuma ujumbe kwenye kundi ambazo nipo',
                     input_message_content=InputTextMessageContent(message_text = f'hellow'),
