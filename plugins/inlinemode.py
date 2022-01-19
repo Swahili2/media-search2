@@ -36,8 +36,7 @@ async def give_filter(client: Client, query):
         group_details = await is_user_exist(user.group_id)
         for id2 in group_details:
             group_id = id2.group_id
-    if not query.query:
-        text = query.query.lower()
+    text = query.query
     # chech_status = await get_status(group_id) 
     offset = int(query.offset or 0)
     documents, next_offset = await get_search_results(text,
