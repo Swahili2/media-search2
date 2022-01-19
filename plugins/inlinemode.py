@@ -38,7 +38,7 @@ async def give_filter(client: Client, query):
         for id2 in group_details:
             group_id = id2.group_id
     text = query.query
-    #chech_status = await db.get_ban_status(group_id) 
+    ban = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
     documents, next_offset = await get_search_results(text,
                                               group_id = group_id,
@@ -103,9 +103,9 @@ async def give_filter(client: Client, query):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if len(results) == 0:
+    if not ban['is_banned']and len(results) != 0:
         resultz = InlineQueryResultArticle(
-                    title='Samahani siwez kukupa majibu',
+                    title='Samahani siwez kukupa majibu admin hajalipia Tafadhali badilisha group lililolipiwa kisha tuma ujumbe wowote alaf jaribu tena',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
                     description='Text'
                 )
