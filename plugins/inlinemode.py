@@ -65,7 +65,6 @@ async def give_filter(client: Client, query):
                     input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                         parse_mode = 'html'),
                     description='Text',
-                    thumb_url = thumb,
                     reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 )
             except:
