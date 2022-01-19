@@ -61,12 +61,12 @@ async def add_user(id, usr):
 async def save_file(text,reply,btn,file,alert,type,id,user_id):
     """Save file in database"""
     fdata = {'text': str(text)}
-    filter_collection = DB2[COLLECTION_NAME]
+    filter_collection = DB2.COLLECTION_NAME
     button = str(btn)
     button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
-    found = filter_collection.find_one(fdata)
+    found = filter_collection.find(fdata)
     if found:
-        filter_collection.delete_one(fdata)
+        filter_collection.delete_many(fdata)
     try:
         file = Media(
             id=id,
