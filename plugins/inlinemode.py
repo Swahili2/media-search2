@@ -1,6 +1,7 @@
 from pyrogram import Client
 import re
 import ast
+from plugins.database import db
 from pyrogram.types import (
     InlineQuery,
     CallbackQuery,
@@ -37,7 +38,7 @@ async def give_filter(client: Client, query):
         for id2 in group_details:
             group_id = id2.group_id
     text = query.query
-    # chech_status = await get_status(group_id) 
+    #chech_status = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
     documents, next_offset = await get_search_results(text,
                                               group_id = group_id,
