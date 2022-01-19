@@ -342,14 +342,14 @@ async def addconnection(client,message):
             if not group_details :
                 await add_user(group_id,userid)
                 await message.reply_text(
-                    f"Sucessfully connected to **{title}**\n Sasa unaweza kuangalia maendeleo ya group lako kwa kutuma neno `group` ukiwa private!",
+                    f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
                     quote=True,
                     parse_mode="md"
                 )
                 if chat_type in ["group", "supergroup","private"]:
                     await client.send_message(
                         userid,
-                        f"Asante kwa kutuamini umefanikiwa kuunganisha group \n **__{title}__** \n\nTutakupatia ofa  ya kila mteja kila  atakapo lipia kifurush kupitia grup lako \n\nUtapata tsh 1000 kwa kila mteja. kuona maendeleo ya group lako tuma neno `group' **tutakuwa tunakutumia ujumbe endapo mteja akilipa na Jinsi ya kupata mshiko wako**!",
+                        f"Asante kwa kutuamini umefanikiwa kuunganisha group lako tuma /help kupata muongozo!",
                         parse_mode="md"
                     )
                     return
@@ -357,7 +357,7 @@ async def addconnection(client,message):
             else:
                 ttli = await client.get_users(userid)
                 await message.reply_text(
-                    f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Kama mnataka mabadiliko tafadhari mcheki msimiz wangu inbox @hrm45 ili awabadilishie!",
+                    f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Msimaiz wangu kanikataza ku add wasimaz wawili kwenye group moja kama mnahitaj mabadiliko mcheki @hrm45!",
                     quote=True
                 )
         else:
