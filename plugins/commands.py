@@ -1,5 +1,6 @@
 from pyrogram import Client
 import uuid
+from plugins.database import db
 from info import filters
 from utils import save_file,add_user,Media,is_user_exist
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
@@ -366,7 +367,47 @@ async def addconnection(client,message):
         logger.exception(e)
         await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
         return
+@Client.on_message(filters.private & filters.command("add_admin") & filters.admins)
+async def ban(c,m):
+    if len(m.command) == 1:
+        await m.reply_text(
+            f"Use this command to add access to any user from the bot.\n\n"
+            f"Usage:\n\n"
+            f"`/add_admin admin_id duration_in days ofa_given`\n\n"
+            f"Eg: `/add_admin 1234567 28 Umepata ofa ya Siku 3 zaidi.`\n"
+            f"This will add user with id `1234567` for `28` days for the reason `ofa siku 3 zaidi`.",
+            quote=True
+        )
+        return
 
+    try:
+        user_id = int(m.command[1])
+        ban_duration = int(m.command[2])
+        ban_reason = ' '.join(m.command[3:])
+        ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason}."
+        try:
+            await c.send_message(
+                user_id,
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___siku{ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __{ban_reason}__**\n\n"
+                f"**Message from the admin**"
+            )
+            ban_log_text += '\n\nUser notified successfully!'
+        except:
+            traceback.print_exc()
+            ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
+
+        await db.ban_user(user_id, ban_duration, ban_reason)
+        print(ban_log_text)
+        await m.reply_text(
+            ban_log_text,
+            quote=True
+        )
+    except:
+        traceback.print_exc()
+        await m.reply_text(
+            f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
+            quote=True
+        )
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
