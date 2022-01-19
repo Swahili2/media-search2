@@ -6,7 +6,7 @@ async def handle_user_status(bot, cmd):
     if chat_id:
         ab=await is_user_exist(cmd.chat.id)
         if not (await is_user_exist(chat_id)):
-            if ab:
+            if not ab:
                 return
             await add_user(chat_id,cmd.chat.id)
             await bot.send_message(
