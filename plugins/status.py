@@ -9,3 +9,5 @@ async def handle_user_status(bot, cmd):
                 chat_id= CHANNELS,
                 text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started!!"
             )
+        else:
+            return
