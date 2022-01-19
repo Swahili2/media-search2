@@ -18,7 +18,7 @@ async def handle_user_status(bot, cmd):
         else:
             return
         status =(await is_user_exist(cmd.chat.id))[0].group_id
-        ban_status = await db.get_ban_status(status)
+        ban_status = await db.get_ban_status(859704527)
         if not ban_status["is_banned"]:
             return
     else:
