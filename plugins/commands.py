@@ -396,7 +396,7 @@ async def ban(c,m):
             traceback.print_exc()
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
-        if adminexist :
+        if not adminexist :
             await db.add_admin(user_id)
         await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
