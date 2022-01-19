@@ -1,6 +1,7 @@
 from pyrogram import Client
 from info import filters
 from plugins.status import handle_user_status
+from utils import get_filter_results
 @Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
     await handle_user_status(client,message)
