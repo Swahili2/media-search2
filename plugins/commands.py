@@ -338,7 +338,7 @@ async def addconnection(client,message):
         if st.status == "administrator":
             group_details= await is_user_exist(group_id)
             for file in group_details:
-                user_id2=file.user_id
+                user_id2=file.group_id
             if not group_details :
                 await add_user(group_id,userid)
                 await message.reply_text(
@@ -355,7 +355,7 @@ async def addconnection(client,message):
                     return
            
             else:
-                ttli = await client.get_users(userid)
+                ttli = await client.get_users(user_id2)
                 await message.reply_text(
                     f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Msimaiz wangu kanikataza ku add wasimaz wawili kwenye group moja kama mnahitaj mabadiliko mcheki @hrm45!",
                     quote=True
