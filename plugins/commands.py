@@ -1,13 +1,37 @@
 from pyrogram import Client
 import uuid
 from info import filters
-from utils import save_file,add_user
+from utils import save_file,add_user,Media
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
     upload_photo,
     split_quotes
 )  
+import os
+import logging
+logger = logging.getLogger(__name__)
+
+@Client.on_message(filters.command('total') & filters.admins)
+async def total(bot, message):
+    """Show total files in database"""
+    msg = await message.reply("Processing...⏳", quote=True)
+    try:
+        total = await Media.count_documents()
+        await msg.edit(f'📁 Saved files: {total}')
+    except Exception as e:
+        logger.exception('Failed to check total files')
+        await msg.edit(f'Error: {e}')
+
+
+@Client.on_message(filters.command('logger') & filters.admins)
+async def log_file(bot, message):
+    """Send log file"""
+    try:
+        await message.reply_document('TelegramBot.log')
+    except Exception as e:
+        await message.reply(str(e))
+
 @Client.on_message(filters.command('add') & filters.admins)
 async def new_filter(client: Client, message):
 
