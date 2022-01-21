@@ -3,7 +3,7 @@ import os
 import re
 from os import environ
 from motor.motor_asyncio import AsyncIOMotorClient
-
+from plugins.database import db
 id_pattern = re.compile(r'^.\d+$')
 
 # Bot information
@@ -28,10 +28,11 @@ CUSTOM_START_MESSAGE = os.environ.get('START_MESSAGE','')
 FILTER_COMMAND = os.environ.get('FILTER_COMMAND', 'add')
 DELETE_COMMAND = os.environ.get('DELETE_COMMAND', 'del')
 IS_PUBLIC = True if os.environ.get('IS_PUBLIC', 'True').lower() != 'false' else False
+all_user =await db.get_all_users()
 try:
     ADMINS=[859704527]
-    for x in (os.environ.get("ADMINS", "").split()):
-        ADMINS.append(int(x))
+    async for user in all_user:
+        ADMINS.append(user.id)
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
 
