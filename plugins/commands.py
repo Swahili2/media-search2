@@ -462,7 +462,7 @@ async def get_status(bot,message):
     
     stats_text = f"""<b>Statistics</b>
     
-Total groups: {no_users}
+Total groups: {user_collection}
 Total filters: {filters_no}
 Text filters: {text}
 Photo filters: {photo}
