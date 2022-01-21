@@ -1,5 +1,5 @@
 import datetime
-from infos import DB2
+from info import DB2
 
 class Database:
 
