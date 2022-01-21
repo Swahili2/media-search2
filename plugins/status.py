@@ -25,7 +25,7 @@ async def handle_user_status(bot, cmd):
         return
 async def handle_admin_status(bot, cmd):
         all_user =await db.get_all_users()
-        for user in all_user:
+        async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
             if ban_status["is_banned"]:
                 if (
