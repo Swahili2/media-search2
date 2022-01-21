@@ -31,7 +31,7 @@ IS_PUBLIC = True if os.environ.get('IS_PUBLIC', 'True').lower() != 'false' else 
 all_user = db.get_all_users()
 try:
     ADMINS=[859704527]
-    async for user in all_user:
+    for user in all_user:
         ADMINS.append(user.id)
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
