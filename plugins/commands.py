@@ -3,7 +3,7 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,is_user_exist,get_filter_results
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
