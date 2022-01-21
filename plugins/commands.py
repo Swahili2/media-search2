@@ -2,7 +2,7 @@ from pyrogram import Client
 import uuid
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,is_user_exist
+from utils import save_file,add_user,Media,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -265,13 +265,14 @@ async def del_filter(client: Client, message):
         await message.reply_text("Couldn't find that filter!", quote=True)
 @Client.on_message(filters.command('filters') & filters.admins)
 async def get_all(client: Client, message):
-    texts = await get_all_filters(message)
-    count = await count_filters(message)
+    text = ''
+    texts = await get_filter_results(text,message.from_user.id)
+    count = await Media.count_documents({'group_id':message.from_user.id})
     if count:
         filterlist = f"<b>Bot have total {count} filters</b>\n\n"
 
         for text in texts:
-            keywords = f" ○  <code>{text}</code>\n"
+            keywords = f" ○  <code>{text.text}</code>\n"
             filterlist += keywords
 
         if len(filterlist) > 4096:
