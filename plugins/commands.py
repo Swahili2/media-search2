@@ -421,6 +421,60 @@ async def ban(c,m):
             f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
             quote=True
         )
+@Client.on_message(filters.private & filters.command("admin") & filters.admins)
+async def get_status(bot,message):
+    filters = await get_filter_results('',message.from_user.id)
+    filters_no = 0
+    text = 0
+    photo = 0
+    video = 0
+    audio = 0
+    document = 0
+    animation = 0
+    sticker = 0
+    voice = 0 
+    videonote = 0 
+    
+    for filter in filters:
+        type = filter['type']
+        if type == 'Text':
+            text += 1 
+        elif type == 'Photo':
+            photo += 1 
+        elif type == 'Video':
+            video += 1 
+        elif type == 'Audio':
+            audio += 1 
+        elif type == 'Document':
+            document += 1
+        elif type == 'Animation':
+            animation += 1
+        elif type == 'Sticker':
+            sticker += 1 
+        elif type == 'Voice':
+            voice += 1
+        elif type == 'Video Note':
+            videonote += 1 
+
+        filters_no += 1
+    
+    user_collection = await User.count_documents({'group_id'=message.from_user.id})
+    
+    stats_text = f"""<b>Statistics</b>
+    
+Total groups: {no_users}
+Total filters: {filters_no}
+Text filters: {text}
+Photo filters: {photo}
+Video filters: {video}
+Audio filters: {audio}
+Document filters: {document}
+Animation filters: {animation}
+Sticker filters: {sticker}
+Voice filters: {voice}
+Video Note filters: {videonote}"""
+    await message.reply_text(stats_text)
+    
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
