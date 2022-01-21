@@ -246,7 +246,7 @@ async def del_filter(client: Client, message):
     except:
         await message.reply_text(
             "<i>Mention the filtername which you wanna delete!</i>\n\n"
-            f"<code>/{DELETE_COMMAND.lower()} filtername</code>\n\n"
+            f"<code>/delete filtername</code>\n\n"
             "Use /filters to view all available filters",
             quote=True
         )
