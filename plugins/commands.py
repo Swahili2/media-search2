@@ -3,7 +3,6 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
-from plugins.filterz import admins
 from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
@@ -35,9 +34,11 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('add') & admins)
+@Client.on_message(filters.command('add'))
 async def new_filter(client: Client, message):
-
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
     strid = str(uuid.uuid4())
     args = message.text.html.split(None, 1)
     user_id = message.from_user.id
@@ -240,8 +241,11 @@ async def new_filter(client: Client, message):
     )
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
-@Client.on_message(filters.command('delete') & filters.admins)
+@Client.on_message(filters.command('delete'))
 async def del_filter(client: Client, message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
     try:
         cmd, text = message.text.split(" ", 1)
     except:
@@ -265,8 +269,11 @@ async def del_filter(client: Client, message):
         )
     else:
         await message.reply_text("Couldn't find that filter!", quote=True)
-@Client.on_message(filters.command('filters') & filters.admins)
+@Client.on_message(filters.command('filters'))
 async def get_all(client: Client, message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
     text = ''
     texts = await get_filter_results(text,message.from_user.id)
     count = await Media.count_documents({'group_id':message.from_user.id})
@@ -309,8 +316,11 @@ async def delallconfirm(Client, message):
         reply_markup = reply_markup,
         quote=True
     )
-@Client.on_message((filters.private | filters.group) & filters.command('niunge') & filters.admins)
+@Client.on_message((filters.private | filters.group) & filters.command('niunge'))
 async def addconnection(client,message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena\nAu kama unatak uendelee kuwa anonymous admin copy huu  ujumbe -> `/niunge {message.chat.id}` \nkisha kautume private")
@@ -422,8 +432,11 @@ async def ban(c,m):
             f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
             quote=True
         )
-@Client.on_message(filters.private & filters.command("admin") & filters.admins)
+@Client.on_message(filters.private & filters.command("admin"))
 async def get_status(bot,message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
     filters = await get_filter_results('',message.from_user.id)
     filters_no = 0
     text = 0
