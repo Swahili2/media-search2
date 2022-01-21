@@ -13,7 +13,7 @@ import os
 import PTN
 import requests
 import json
-from info import DB2, COLLECTION_NAME
+from infos import DB2, COLLECTION_NAME
 
 COLLECTION_NAME_2="groups"
 logger = logging.getLogger(__name__)
