@@ -252,7 +252,9 @@ async def del_filter(client: Client, message):
         return
 
     query = text.lower()
-    await delete_filter(message, query)
+    filter={'text': query}
+    filter['group_id'] = message.from_user.id
+    await Media.collection.delete_one(filter)
     
 @Client.on_message(filters.command('filters') & filters.admins)
 async def get_all(client: Client, message):
