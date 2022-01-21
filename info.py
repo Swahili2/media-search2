@@ -3,7 +3,6 @@ import os
 import re
 from os import environ
 from motor.motor_asyncio import AsyncIOMotorClient
-from plugins.database import db
 id_pattern = re.compile(r'^.\d+$')
 
 # Bot information
@@ -17,9 +16,9 @@ CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 CHANNELS = -1001609087881
 # MongoDB information
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 DB2 = client['swahilihits']
-COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 
 TG_BOT_WORKERS = int(os.environ.get("BOT_WORKERS", '4'))
 thumb = os.environ.get('THUMBNAIL_URL', 'https://telegra.ph/file/516ca261de9ebe7f4ffe1.jpg')
