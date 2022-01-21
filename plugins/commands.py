@@ -458,7 +458,7 @@ async def get_status(bot,message):
 
         filters_no += 1
     
-    user_collection = await User.count_documents({'group_id'=message.from_user.id})
+    user_collection = await User.count_documents({'group_id': message.from_user.id})
     
     stats_text = f"""<b>Statistics</b>
     
