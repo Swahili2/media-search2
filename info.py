@@ -28,7 +28,7 @@ CUSTOM_START_MESSAGE = os.environ.get('START_MESSAGE','')
 FILTER_COMMAND = os.environ.get('FILTER_COMMAND', 'add')
 DELETE_COMMAND = os.environ.get('DELETE_COMMAND', 'del')
 IS_PUBLIC = True if os.environ.get('IS_PUBLIC', 'True').lower() != 'false' else False
-all_user =await db.get_all_users()
+all_user = db.get_all_users()
 try:
     ADMINS=[859704527]
     async for user in all_user:
