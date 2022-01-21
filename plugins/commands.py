@@ -3,6 +3,7 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
+from filters import admins
 from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
@@ -34,7 +35,7 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('add') & filters.admins)
+@Client.on_message(filters.command('add') & admins)
 async def new_filter(client: Client, message):
 
     strid = str(uuid.uuid4())
