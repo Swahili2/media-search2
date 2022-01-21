@@ -1,7 +1,7 @@
 from pyrogram import filters
-from plugins.database import get_all_users
+from plugins.database import db
 ADMINS = [859704527]
-all_user=get_all_users()
+all_user=db.get_all_users()
 
 def is_admin(_, __, update):
     try:
