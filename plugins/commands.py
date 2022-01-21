@@ -254,8 +254,15 @@ async def del_filter(client: Client, message):
     query = text.lower()
     filter={'text': query}
     filter['group_id'] = message.from_user.id
-    await Media.collection.delete_one(filter)
-    
+    found = Media.find(filter)
+     if found:
+        await Media.collection.delete_one(filter)
+        await message.reply_text(
+            f"<code>{text}</code>  deleted.",
+            quote=True
+        )
+    else:
+        await message.reply_text("Couldn't find that filter!", quote=True)
 @Client.on_message(filters.command('filters') & filters.admins)
 async def get_all(client: Client, message):
     texts = await get_all_filters(message)
