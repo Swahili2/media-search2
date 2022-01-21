@@ -13,7 +13,7 @@ import os
 import logging
 logger = logging.getLogger(__name__)
 
-@Client.on_message(filters.command('total') & filters.admins)
+@Client.on_message(filters.command('total') & filters.owner)
 async def total(bot, message):
     """Show total files in database"""
     msg = await message.reply("Processing...⏳", quote=True)
@@ -25,7 +25,7 @@ async def total(bot, message):
         await msg.edit(f'Error: {e}')
 
 
-@Client.on_message(filters.command('logger') & filters.admins)
+@Client.on_message(filters.command('logger') & filters.owner)
 async def log_file(bot, message):
     """Send log file"""
     try:
@@ -367,7 +367,7 @@ async def addconnection(client,message):
         logger.exception(e)
         await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
         return
-@Client.on_message(filters.private & filters.command("add_admin") & filters.admins)
+@Client.on_message(filters.private & filters.command("add_admin") & filters.owner)
 async def ban(c,m):
     if len(m.command) == 1:
         await m.reply_text(
