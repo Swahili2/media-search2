@@ -1,7 +1,6 @@
 from pyrogram import filters
 import os
 import re
-from plugins.database import get_all_users
 from os import environ
 from motor.motor_asyncio import AsyncIOMotorClient
 id_pattern = re.compile(r'^.\d+$')
@@ -28,12 +27,7 @@ CUSTOM_START_MESSAGE = os.environ.get('START_MESSAGE','')
 FILTER_COMMAND = os.environ.get('FILTER_COMMAND', 'add')
 DELETE_COMMAND = os.environ.get('DELETE_COMMAND', 'del')
 IS_PUBLIC = True if os.environ.get('IS_PUBLIC', 'True').lower() != 'false' else False
-ADMINS=[859704527]
-async def get_all_user():
-    async for user in await get_all_users():
-        ADMINS.append(user.id)
-    return ADMINS
-
+ADMINS = [859704527]
 
 def is_owner(_, __, update):
     try:
@@ -52,7 +46,7 @@ def is_admin(_, __, update):
     except:
         return False
 
-    if user_id in get_all_user():
+    if user_id in ADMINS:
         return True
     else:
         return False
@@ -64,7 +58,7 @@ def check_inline(_, __, update):
 
     if IS_PUBLIC:
         return True
-    elif user_id in get_all_user():
+    elif user_id in ADMINS:
         return True
     else:
         return False
