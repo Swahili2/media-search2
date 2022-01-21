@@ -64,6 +64,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
     fdata = {'text': text}
     button = str(btn)
     button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
+    fdata['group_id'] = user_id
     found = await Media.find_one(fdata)
     if found:
         await Media.collection.delete_one(fdata)
@@ -123,7 +124,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
     return files, next_offset
 
 
-async def get_filter_results(query):
+async def get_filter_results(query,group_id):
     query = query.strip()
     if not query:
         raw_pattern = '.'
@@ -136,6 +137,7 @@ async def get_filter_results(query):
     except:
         return []
     filter = {'text': regex}
+    filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
     cursor.sort('$natural', -1)
