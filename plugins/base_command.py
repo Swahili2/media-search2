@@ -56,7 +56,7 @@ markdown_keyboard = [
 
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
-    if await db.is_admin_exist(user_id):
+    if await db.is_admin_exist(message.from_user.id):
         reply_markup = InlineKeyboardMarkup(start_keyboard)
     else:
         reply_markup = InlineKeyboardMarkup(start_keyboard_c)
@@ -118,7 +118,7 @@ async def help_cbq(client, query):
 @Client.on_callback_query(filters.regex('^about$'))
 async def about_cbq(client, query):
     user_id = query.from_user.id
-    if user_id in ADMINS:
+    if await db.is_admin_exist(user_id):
         reply_markup = InlineKeyboardMarkup(about_keyboard)
     else:
         reply_markup = InlineKeyboardMarkup(about_keyboard_c)
