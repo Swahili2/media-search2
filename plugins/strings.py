@@ -30,14 +30,23 @@ HELP_MESSAGE = f"""<b><u>Main Commands</u></b>
 ○ <b>/admin</b>
     <i>kuangalua maendeleo yako kwenye huduma zetu</i>
    """ 
-ABOUT_MESSAGE = f"""<b><u>MWONGOZO MFUPI</u></b>
+ABOUT_MESSAGE = f"""💥💥💥💥💥💥💥💥💥💥💥
+         MWONGOZO MFUPI
+
+Bot hii imetngenezwa na
 <b>○ Imetengenezwa na: <a href='tg://user?id={OWNER_ID}'>HASSAN RANADHANI</a>
-OK ilikuweza kutumia huyu robot kwenye group lako bonyeza Hassan Ramadhan kisha tuma jina lako.
-    Gharama
-wiki ya kwanza n ofa  ili kujifubza jinsi ya kumtumia lakini baada ya haipo n sh 1000 kila wiki
-    Kumuunga
-Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya haipo utatuma command /niunge kwenye magrup yako iliaweze kufanya kazi kwa data utakazo MPA.
-○ msaada zaidi : <a href='https://t.me/+NlxxLyYIY1hiMWFk'>GROUP</a></b>
+
+Ilikuweza kutumia huyu robot kwenye group lako bonyeza maneno Hassan Ramadhan haipo juu kisha tuma jina lako.
+
+    🌸🌸Gharama🌸🌸
+wiki ya kwanza ni ofa  ili kujifunza jinsi ya kumtumia lakini baada ya hapo ni sh 1000 kila wiki.
+gharama hizi ni kwa ajili ya kulipia utumiaji Wa robot telegram
+
+    🤷‍♂🤷‍♂Jinsi ya kumuunga
+Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya hapo utatuma command /niunge kwenye magrup yako iliaweze kufanya kazi kwa data utakazo MPA.
+
+
+Kwa msaada zaidi : <a href='https://t.me/+NlxxLyYIY1hiMWFk'>BONYEZA HAPA </a></b>
 """
 
 MARKDOWN_HELP = """<b><u>Markdown Formatting</u></b>
