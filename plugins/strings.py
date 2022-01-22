@@ -30,7 +30,7 @@ HELP_MESSAGE = f"""<b><u>Main Available Commands</u></b>
     
 <b><u>Owner only Commands</u></b>
 ○ <b>/delall</b>
-    <i>Delete all of the filters</i>
+    <i>Delete all of the filters</i>"""
     
 
 ABOUT_MESSAGE = f"""<b><u>ABOUT ME</u></b>
