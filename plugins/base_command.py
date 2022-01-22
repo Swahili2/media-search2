@@ -75,7 +75,7 @@ async def start_msg_admins(client, message):
         disable_web_page_preview = True
     )
     
-@Client.on_message(filters.command('help') & filters.private & filters.admins)
+@Client.on_message(filters.command('help') & filters.private)
 async def help_msg(client, message):
     await message.reply(
         text = HELP_MESSAGE,
@@ -108,7 +108,7 @@ async def close_cbb(client: CodeXBotz, query: CallbackQuery):
     except:
         pass
 
-@Client.on_callback_query(filters.regex(r'^help$') & filters.admins)
+@Client.on_callback_query(filters.regex(r'^help$'))
 async def help_cbq(client, query):
     await query.edit_message_text(
         text = HELP_MESSAGE,
@@ -128,7 +128,7 @@ async def about_cbq(client, query):
         disable_web_page_preview = True
     )
     
-@Client.on_callback_query(filters.regex('^markdownhelper$') & filters.admins)
+@Client.on_callback_query(filters.regex('^markdownhelper$'))
 async def md_helper(client, query):
     await query.edit_message_text(
         text = MARKDOWN_HELP,
