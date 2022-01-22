@@ -39,14 +39,17 @@ class Media(Document):
 class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
+    title = fields.IntFieldstatus = fields.IntField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def add_user(id, usr):
+async def add_user(id, usr,tit,sts):
     try:
         data = User(
             id = id,
-            group_id= usr
+            group_id= usr,
+            status = sts,
+            title = tit
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
@@ -157,7 +160,7 @@ async def is_user_exist(query):
     userdetails = await cursor.to_list(length=1)
     return userdetails
 
-async def get_user_filters(query , max_results=10, offset=0):
+async def get_user_filters(query ,sts, max_results=10,offset=0):
     """For given query return (results, next_offset)"""
 
     query = query.strip()
@@ -167,21 +170,20 @@ async def get_user_filters(query , max_results=10, offset=0):
         raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
-
     try:
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
 
-    filter = {'file': regex}
-
+    filter = {'title': regex}
+    filter['status'] = sts
     total_results = await User.count_documents(filter)
     next_offset = offset + max_results
 
     if next_offset > total_results:
         next_offset = ''
 
-    cursor = Group.find(filter)
+    cursor = User.find(filter)
     # Sort by recent
     cursor.sort('$natural', -1)
     # Slice files according to offset and max results
