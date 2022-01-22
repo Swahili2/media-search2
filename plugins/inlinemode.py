@@ -19,13 +19,19 @@ from info import filters
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     if not userdetails:
-        result=[]
-        result.append(InlineQueryResultArticle(
-                    title=f'Samahani {query.from_user.first_name} haupo kwenye Database zetu',
-                    input_message_content=InputTextMessageContent(message_text = f'hellow'),
-                    description='Tafadhali chagua group lililo bora maana ukishachagua hii list hutoiona tena ',
-                )
-            )
+        all_user =await db.get_all_users()
+        async for user in all_user:
+            ban_status = await db.get_ban_status(user['id'])
+            if ban_status["is_banned"]:
+                result=[]
+                ttl =await client.get_users(user['id'])
+                title =ttl.first_name
+                result.append(InlineQueryResultArticle(
+                    title=f'Admin {title}',
+                    input_message_content=InputTextMessageContent(message_text = f'gshdhjdjdh),
+                    description='Tafadhali nchague mimi ntakuelekeza jinsi ya kupata muv,sizon na miendelezo n.k always nipo active ',
+                ))
+                
         await query.answer(
             results = result,
             is_personal = True,
@@ -104,10 +110,16 @@ async def give_filter(client: Client, query):
     else:
         switch_pm_text = "No matches"
     if not ban['is_banned']and len(results) != 0:
-        resultz = InlineQueryResultArticle(
-                    title=' ',
+        all_user =await db.get_all_users()
+        async for user in all_user:
+            ban_status = await db.get_ban_status(user['id'])
+            if ban_status["is_banned"]:
+                ttl =await client.get_users(user['id'])
+                resultz=[]
+                resultz = InlineQueryResultArticle(
+                    title=f'Admin {(ttl.first_name).upper()}',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
-                    description='Text'
+                    description='Tafadhal nchague Mimi nipo active mda wote'
                 )
         resultc = []
         resultc.append(resultz)
