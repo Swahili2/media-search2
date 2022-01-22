@@ -21,15 +21,15 @@ async def give_filter(client: Client, query):
     if not userdetails:
         result=[]
         result.append(InlineQueryResultArticle(
-                    title='Tafadhali tuma ujumbe kwenye kundi ambazo nipo',
+                    title=f'Samahani {query.from_user.first_name} haupo kwenye Database zetu',
                     input_message_content=InputTextMessageContent(message_text = f'hellow'),
-                    description='Text',
+                    description='Tafadhali chagua group lililo bora maana ukishachagua hii list hutoiona tena ',
                 )
             )
         await query.answer(
             results = result,
             is_personal = True,
-            switch_pm_text = 'hi',
+            switch_pm_text = f'Samahani {query.from_user.first_name} haupo kwenye Database zetu',
             switch_pm_parameter = 'start'
         )
         return
