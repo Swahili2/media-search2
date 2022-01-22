@@ -8,15 +8,20 @@ from info import (
 if CUSTOM_START_MESSAGE:
     START_MESSAGE = CUSTOM_START_MESSAGE
 else:
-    START_MESSAGE = """<b>Hello {mention},
-Mimi ni robot wa kuhifadhi media,text n.k, Ambazo unaweza kuzipata kwa kutuma neno kwenye group au ukiwa inline mode na nkuletea unachotaka hapo  hapo shaft kiwe kwenye database ya admin husika,bonyeza help kuweza kuongeza data(ni kwa admins waliopo kwenye database tu ndiyo wataiona hii help button)</b> 
+    START_MESSAGE = """<b>Hello {mention}</b>,
+Mimi ni robot wa kuhifadhi media,text n.k,
+unaweza kuvipata kwa kutuma neno kwenye group au ukiwa inline mode na nkuletea unachotaka hapo  hapo shart kiwe kwenye database ya admin husika,
+
+bonyeza help kuweza kujua jinsi ya kuongeza data<b>(ni kwa admins waliopo kwenye database yetu tu ndiyo wataiona hii help button)</b> 
+
+Jinsi ya kujiunga na maelezo zaidi bonyeza about batan
 """
 
-HELP_MESSAGE = f"""<b><u>Main Available Commands</u></b>
-○ <b>/add</b> <i>[neno la kutaftia kituna husika] [message or reply to message]</i>
+HELP_MESSAGE = f"""<b><u>Main Commands</u></b>
+○ <b>/add</b> <i>[neno la kutaftia data husika] [message or reply to message]</i>
     <i>ongeza data kwenye database Mfano /add soz</i>
     
-○ <b>/delete</b> <i>[neno la data ulilotaka kufuta]</i>
+○ <b>/delete</b> <i>[neno la data uliyotaka kufuta]</i>
     <i>kufuta data kutoka kwenye database Mfano /delete soz</i>
     
 ○ <b>/filters</b>
@@ -25,13 +30,14 @@ HELP_MESSAGE = f"""<b><u>Main Available Commands</u></b>
 ○ <b>/admin</b>
     <i>kuangalua maendeleo yako kwenye huduma zetu</i>
    """ 
-ABOUT_MESSAGE = f"""<b><u>ABOUT ME</u></b>
-<b>○ Maintained by : <a href='tg://user?id={OWNER_ID}'>This Person</a>
-○ Channel : <a href='https://t.me/CodeXBotz'>Code 𝕏 Botz</a>
-○ Support : <a href='https://t.me/CodeXBotzSupport'>Code 𝕏 Botz Support</a>
-○ Source Code : <a href='https://github.com/CodeXBotz/Inline-Filter-Bot'>Click here</a>
-○ Language : <a href='https://www.python.org/'>Python 3</a>
-○ Library : <a href='https://github.com/pyrogram/pyrogram'>Pyrogram Asyncio {__version__}</a></b>
+ABOUT_MESSAGE = f"""<b><u>MWONGOZO MFUPI</u></b>
+<b>○ Imetengenezwa na: <a href='tg://user?id={OWNER_ID}'>HASSAN RANADHANI</a>
+OK ilikuweza kutumia huyu robot kwenye group lako bonyeza Hassan Ramadhan kisha tuma jina lako.
+    Gharama
+wiki ya kwanza n ofa  ili kujifubza jinsi ya kumtumia lakini baada ya haipo n sh 1000 kila wiki
+    Kumuunga
+Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya haipo utatuma command /niunge kwenye magrup yako iliaweze kufanya kazi kwa data utakazo MPA.
+○ msaada zaidi : <a href='https://t.me/+NlxxLyYIY1hiMWFk'>GROUP</a></b>
 """
 
 MARKDOWN_HELP = """<b><u>Markdown Formatting</u></b>
