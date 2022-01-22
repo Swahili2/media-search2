@@ -9,30 +9,22 @@ if CUSTOM_START_MESSAGE:
     START_MESSAGE = CUSTOM_START_MESSAGE
 else:
     START_MESSAGE = """<b>Hello {mention},
-I am an Inline Saver Bot, you can save inline filters and It can be use in any of your chats easily, Click help for more details</b> 
+Mimi ni robot wa kuhifadhi media,text n.k, Ambazo unaweza kuzipata kwa kutuma neno kwenye group au ukiwa inline mode na nkuletea unachotaka hapo  hapo shaft kiwe kwenye database ya admin husika,bonyeza help kuweza kuongeza data(ni kwa admins waliopo kwenye database tu ndiyo wataiona hii help button)</b> 
 """
 
 HELP_MESSAGE = f"""<b><u>Main Available Commands</u></b>
-○ <b>/add</b> <i>[keyword] [message or reply to message]</i>
-    <i>Add an Inline filter, you can use MarkDown for formatting</i>
+○ <b>/add</b> <i>[neno la kutaftia kituna husika] [message or reply to message]</i>
+    <i>ongeza data kwenye database Mfano /add soz</i>
     
-○ <b>/delete</b> <i>[keyword]</i>
-    <i>Delete existing Filter</i>
+○ <b>/delete</b> <i>[neno la data ulilotaka kufuta]</i>
+    <i>kufuta data kutoka kwenye database Mfano /delete soz</i>
     
 ○ <b>/filters</b>
-    <i>To see the filters</i>
+    <i>kuangalia data zote ulizotuma kwenye database</i>
     
-○ <b>/stats</b>
-    <i>See the Bot's Statistics</i>
-    
-○ <b>/broadcast</b> <i>[reply to any message]</i>
-    <i>Broadcast any Messages to Bot users</i>
-    
-<b><u>Owner only Commands</u></b>
-○ <b>/delall</b>
-    <i>Delete all of the filters</i>"""
-    
-
+○ <b>/admin</b>
+    <i>kuangalua maendeleo yako kwenye huduma zetu</i>
+   """ 
 ABOUT_MESSAGE = f"""<b><u>ABOUT ME</u></b>
 <b>○ Maintained by : <a href='tg://user?id={OWNER_ID}'>This Person</a>
 ○ Channel : <a href='https://t.me/CodeXBotz'>Code 𝕏 Botz</a>
