@@ -98,7 +98,7 @@ async def about_msg(client, message):
     )
 
 @Client.on_callback_query(filters.regex(r'^close$'))
-async def close_cbb(client: CodeXBotz, query: CallbackQuery):
+async def close_cbb(client, query):
     try:
         await query.message.reply_to_message.delete()
     except:
