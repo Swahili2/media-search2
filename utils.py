@@ -39,17 +39,14 @@ class Media(Document):
 class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
-    title = fields.IntFieldstatus = fields.IntField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def add_user(id, usr,tit,sts):
+async def add_user(id, usr):
     try:
         data = User(
             id = id,
-            group_id= usr,
-            status = sts,
-            title = tit
+            group_id= usr
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
