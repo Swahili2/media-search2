@@ -132,8 +132,11 @@ async def alert_msg(client: Client, callback):
     matches = re.match(regex, callback.data)
     i = matches.group(2)
     id = matches.group(3)
-    alerts = await get_alerts(id)
-    
+    filter = {'id': id}
+    cursor = Media.find(filter)
+    filedetails = await cursor.to_list(length=1)
+    for alert in filedetails:
+        alerts = alert.alert
     if alerts:
         alerts = ast.literal_eval(alerts)
         alert = alerts[int(i)]
