@@ -105,7 +105,7 @@ async def give_filter(client: Client, query):
         switch_pm_text = "No matches"
     if not ban['is_banned']and len(results) != 0:
         resultz = InlineQueryResultArticle(
-                    title='Samahani siwez kukupa majibu admin hajalipia kifurush Tafadhali mtaarifu admin alipie muweze kuendelea kupata huduma zetu',
+                    title=' ',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
                     description='Text'
                 )
@@ -114,7 +114,7 @@ async def give_filter(client: Client, query):
         await query.answer(
             results = resultc,
             is_personal = True,
-            switch_pm_text = 'Admin bado hajalipia kifurushi',
+            switch_pm_text = 'Admin wako hajalipia kifurushi tafadhali  chagua active admin kwenye list',
             switch_pm_parameter = 'start'
         )
         return
