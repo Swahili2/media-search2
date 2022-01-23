@@ -125,7 +125,7 @@ async def give_filter(client: Client, query):
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
                     description='Tafadhal nchague Mimi nipo active mda wote',
                     thumb_url = user['title'],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={us_id]}')]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={us_id}')]])
                 ))
         await query.answer(
             results = resultz,
