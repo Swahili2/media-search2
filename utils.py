@@ -224,12 +224,14 @@ def unpack_new_file_id(new_file_id):
     )
     file_ref = encode_file_ref(decoded.file_reference)
     return file_id, file_ref
-async def upload_group(client, thumb,message):
+async def upload_admin(client, thumb,message):
+  msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
   if thumb:
     img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
   else:
     return None
+  await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
   try:
     tlink = upload_file(img_path)
   except:
@@ -239,23 +241,6 @@ async def upload_group(client, thumb,message):
     os.remove(img_path)
   link2= f"https://telegra.ph{tlink[0]}"
   return link2
-async def upload_photo(client, message):
-  msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
-  id3 = message.photo.file_id
-  userid = f'{id3}{message.photo.file_size}'
-  img_path = (f"./DOWNLOADS/{userid}.jpg")
-  img_path = await client.download_media(message=message, file_name=img_path)
-  await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
-  try:
-    tlink = upload_file(img_path)
-  except:
-    await msg.edit_text("`Something went wrong`") 
-  else:
-    await msg.edit_text(f"https://telegra.ph{tlink[0]}")     
-    os.remove(img_path)
-  link2= f"https://telegra.ph{tlink[0]}"
-  id2=(tlink[0].split("/")[-1]).split(".")[0]
-  return f'{id2}{message.photo.file_size}',id3,link2
 
 def get_size(size):
     """Get size in readable format"""
