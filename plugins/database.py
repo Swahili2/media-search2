@@ -6,6 +6,7 @@ class Database:
     def __init__(self, db1):
         self.db1 = db1
         self.col = self.db1.admins
+        self.grp = self.db1.groups
 
     def new_user(self, id,title):
         return dict(
@@ -39,6 +40,9 @@ class Database:
     
     async def delete_admin(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
+
+    async def update_user(self, id,chat):
+        await self.grp.update_one({'id': id}, {'$set': {'group_id': chat}})
 
     async def remove_ban(self, id):
         ban_status = dict(
