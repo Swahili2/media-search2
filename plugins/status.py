@@ -15,7 +15,7 @@ async def handle_user_status(bot, cmd):
                 text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started!!"
             )
         elif await is_user_exist(cmd.chat.id):
-            await User.collection.update_one({'id': chat_id}, {'$set': {'group_id': cmd.chat.id}})
+            await User.collection.update({'id': chat_id}, {'$set': {'group_id': cmd.chat.id}})
             await cmd.reply_text('updated successful')
         else:
             return
