@@ -419,8 +419,8 @@ async def ban(c,m):
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
-            ttl =await client.get_users(user_id)
-            photo=await upload_admin(client, ttl.photo,m)
+            ttl =await c.get_users(user_id)
+            photo=await upload_admin(c, ttl.photo,m)
             await db.add_admin(user_id,photo)
         await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
