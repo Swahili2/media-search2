@@ -26,12 +26,13 @@ async def give_filter(client: Client, query):
             if ban_status["is_banned"]:
                 ttl =await client.get_users(user['id'])
                 title =ttl.first_name
+                us_id=user['id']
                 result.append(InlineQueryResultArticle(
                     title=f'Admin {title}',
                     input_message_content=InputTextMessageContent(message_text = f'gshdhjdjdh'),
                     description='Tafadhali nchague mimi ntakuelekeza jinsi ya kupata muv,sizon na miendelezo n.k always nipo active ',
                     thumb_url = user['title'],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={user['id']}')]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={us_id}')]])
                 ))
                 
         await query.answer(
@@ -118,13 +119,13 @@ async def give_filter(client: Client, query):
             ban_status = await db.get_ban_status(user['id'])
             if ban_status["is_banned"]:
                 ttl =await client.get_users(user['id'])
-                
+                us_id=user['id']
                 resultz.append(InlineQueryResultArticle(
                     title=f'Admin {(ttl.first_name).upper()}',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
                     description='Tafadhal nchague Mimi nipo active mda wote',
                     thumb_url = user['title'],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={user['id']}')]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={us_id]}')]])
                 ))
         await query.answer(
             results = resultz,
