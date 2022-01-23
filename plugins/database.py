@@ -7,10 +7,11 @@ class Database:
         self.db1 = db1
         self.col = self.db1.admins
 
-    def new_user(self, id):
+    def new_user(self, id,title):
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
+            title =title,
             descp = True,
             ban_status=dict(
                 is_banned=False,
@@ -20,8 +21,8 @@ class Database:
             )
         )
 
-    async def add_admin(self, id):
-        user = self.new_user(id)
+    async def add_admin(self, id,title):
+        user = self.new_user(id,title)
         await self.col.insert_one(user)
 
     async def is_admin_exist(self, id):
