@@ -3,7 +3,7 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_admin
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -419,7 +419,9 @@ async def ban(c,m):
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
-            await db.add_admin(user_id)
+            ttl =await client.get_users(user_id)
+            photo=await upload_admin(client, ttl.photo,m)
+            await db.add_admin(user_id,photo)
         await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
         await m.reply_text(
