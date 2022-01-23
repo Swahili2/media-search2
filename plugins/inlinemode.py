@@ -30,6 +30,8 @@ async def give_filter(client: Client, query):
                     title=f'Admin {title}',
                     input_message_content=InputTextMessageContent(message_text = f'gshdhjdjdh'),
                     description='Tafadhali nchague mimi ntakuelekeza jinsi ya kupata muv,sizon na miendelezo n.k always nipo active ',
+                    thumb_url = user.title,
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={user.id}')]])
                 ))
                 
         await query.answer(
@@ -120,7 +122,9 @@ async def give_filter(client: Client, query):
                 resultz.append(InlineQueryResultArticle(
                     title=f'Admin {(ttl.first_name).upper()}',
                     input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
-                    description='Tafadhal nchague Mimi nipo active mda wote'
+                    description='Tafadhal nchague Mimi nipo active mda wote',
+                    thumb_url = user.title,
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={user.id}')]])
                 ))
         await query.answer(
             results = resultz,
