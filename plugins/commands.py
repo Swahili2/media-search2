@@ -330,7 +330,7 @@ async def addconnection(client,message):
                 "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
                 quote=True
             )
-            return
+        return
 
     elif chat_type in ["group", "supergroup"]:
         group_id = message.chat.id
