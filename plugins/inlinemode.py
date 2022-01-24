@@ -13,27 +13,27 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exist,get_search_results,Media
+from utils import is_user_exist,get_search_results,Media,is_group_exist
 from info import filters
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     if not userdetails:
-        all_user =await db.get_all_users()
+        all_user =await is_group_exist('group')
         result=[]
-        async for user in all_user:
-            ban_status = await db.get_ban_status(user['id'])
+        for file in all_user:
+            ban_status = await db.get_ban_status(file.group_id)
             if ban_status["is_banned"]:
-                ttl =await client.get_users(user['id'])
-                title =ttl.first_name
-                us_id=user['id']
+                ttl=await bot.get_users(file.group_id)
+                title = f"🎁🎁 {file.title} 🎁🎁"
+                text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
                 result.append(InlineQueryResultArticle(
-                    title=f'Admin {title}',
-                    input_message_content=InputTextMessageContent(message_text = f'gshdhjdjdh'),
-                    description='Tafadhali nchague mimi ntakuelekeza jinsi ya kupata muv,sizon na miendelezo n.k always nipo active ',
-                    thumb_url = user['title'],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={str(us_id)}')]])
-                ))
+                        title=title,
+                        input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
+                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
+                        thumb_url=file.link
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
+                    ))
                 
         await query.answer(
             results = result,
@@ -113,20 +113,20 @@ async def give_filter(client: Client, query):
     else:
         switch_pm_text = "No matches"
     if not ban['is_banned']and len(results) != 0:
-        all_user =await db.get_all_users()
-        resultz=[]
-        async for user in all_user:
-            ban_status = await db.get_ban_status(user['id'])
+        all_user =await is_group_exist('group')
+        result=[]
+        for file in all_user:
+            ban_status = await db.get_ban_status(file.group_id)
             if ban_status["is_banned"]:
-                ttl =await client.get_users(user['id'])
-                us_id=user['id']
-                resultz.append(InlineQueryResultArticle(
-                    title=f'Admin {(ttl.first_name).upper()}',
-                    input_message_content=InputTextMessageContent(message_text = 'hii ni kwa sababu admin hajalipia kifurush'),
-                    description='Tafadhal nchague Mimi nipo active mda wote',
-                    thumb_url = user['title'],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 jiunge nami', url=f'tg://user?id={str(us_id)}')]])
-                ))
+                title = f"🎁🎁 {file.title} 🎁🎁"
+                text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
+                result.append(InlineQueryResultArticle(
+                        title=title,
+                        input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
+                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
+                        thumb_url=file.link
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
+                    ))
         await query.answer(
             results = resultz,
             is_personal = True,
