@@ -19,19 +19,20 @@ async def handle_user_status(bot, cmd):
         else:
             return
         status =(await is_user_exist(cmd.chat.id))[0].group_id
-        ban_status = await db.get_ban_status(859704527)
+        ban_status = await db.get_ban_status(status)
         if not ban_status["is_banned"]:
             return
     else:
         return
 async def handle_admin_status(bot, cmd):
-        #await User.collection.update_one({'_id':cmd.from_user.id},{'$set':{'group_id':cmd.chat.id}})
+        aski = await bot.get_chat(cmd.chat.id)
+        await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'group_id':cmd.chat.id,'title':aski.title,'total_m':aski.members_count}})
         all_user =await db.get_all_users()
         async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
             if ban_status["is_banned"]:
                 if (
-                        datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
+                        datetime.date.today() - date,date.fromisoformat(ban_status["banned_on"])
                 ).days > ban_status["ban_duration"]:
                     await db.remove_ban(user['id'])
 
