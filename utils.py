@@ -189,14 +189,12 @@ async def get_group_filters(query ,sts, max_results=10,offset=0):
 
     return files, next_offset
 
-async def upload_admin(client, thumb,message):
-  msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
+async def upload_group(client, thumb,message):
   img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
   if thumb:
     img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
   else:
     return None
-  await msg.edit_text("`Tʀʏɪɴɢ Tᴏ Uᴘʟᴏᴀᴅ.....`")
   try:
     tlink = upload_file(img_path)
   except:
