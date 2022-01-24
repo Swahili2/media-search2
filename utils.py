@@ -41,10 +41,10 @@ class User(Document):
     group_id= fields.IntField(required=True)
     status = fields.StrField(required=True)
     title = fields.StrField(required=True)
-    link = fields.StrField(allow_none=True))
+    link = fields.StrField(allow_none=True)
     inv_link = fields.StrField(required=True)
     total_m = fields.StrField(required=True)
-    photo_id = fields.StrField(allow_none=True))
+    photo_id = fields.StrField(allow_none=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
