@@ -14,11 +14,12 @@ async def handle_user_status(bot, cmd):
                 chat_id= CHANNELS,
                 text=f"{cmd}#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
             )
-        elif await is_user_exist(cmd.chat.id):
+        elif ab:
             await User.collection.update_one({'_id':chat_id},{'$set':{'group_id':cmd.chat.id}})
         else:
             return
-        status =(await is_user_exist(cmd.chat.id))[0].group_id
+        for uza in ab:
+            status = uza.group_id
         ban_status = await db.get_ban_status(status)
         if not ban_status["is_banned"]:
             return
