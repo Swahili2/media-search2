@@ -359,7 +359,7 @@ async def addconnection(client,message):
             for file in group_details:
                 user_id2=file.group_id
             if not group_details :
-                await add_user(group_id,userid,group,message.chat.title)
+                await add_user(group_id,userid,'group',message.chat.title)
                 aski = await client.get_chat(group_id)
                 photo = await upload_group(client,aski.photo,message)
                 photo_id =aski.photo.big_file_id if photo else None
