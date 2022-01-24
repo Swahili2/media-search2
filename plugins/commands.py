@@ -3,7 +3,7 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_admin
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -323,14 +323,10 @@ async def addconnection(client,message):
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
-        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena\nAu kama unatak uendelee kuwa anonymous admin copy huu  ujumbe -> `/niunge {message.chat.id}` \nkisha kautume private")
+        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
     chat_type = message.chat.type
-
     if chat_type == "private":
-        try:
-            cmd, group_id = message.text.split(" ", 1)
-        except:
-            await message.reply_text(
+        await message.reply_text(
                 "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
                 quote=True
             )
@@ -363,7 +359,7 @@ async def addconnection(client,message):
             for file in group_details:
                 user_id2=file.group_id
             if not group_details :
-                await add_user(group_id,userid)
+                await add_user(group_id,userid,message.chat.title)
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
                     quote=True,
@@ -419,9 +415,7 @@ async def ban(c,m):
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
-            ttl =await c.get_users(user_id)
-            photo=await upload_admin(c, ttl.photo,m)
-            await db.add_admin(user_id,photo)
+            await db.add_admin(user_id)
         await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
         await m.reply_text(
