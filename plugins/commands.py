@@ -359,7 +359,7 @@ async def addconnection(client,message):
             for file in group_details:
                 user_id2=file.group_id
             if not group_details :
-                await add_user(group_id,userid,message.chat.title)
+                await add_user(group_id,userid,group,message.chat.title)
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
                     quote=True,
