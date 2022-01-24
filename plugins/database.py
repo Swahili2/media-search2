@@ -6,13 +6,11 @@ class Database:
     def __init__(self, db1):
         self.db1 = db1
         self.col = self.db1.admins
-        self.grp = self.db1.groups
 
-    def new_user(self, id,title):
+    def new_user(self, id):
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            title =title,
             descp = True,
             ban_status=dict(
                 is_banned=False,
@@ -22,7 +20,7 @@ class Database:
             )
         )
 
-    async def add_admin(self, id,title):
+    async def add_admin(self, id):
         user = self.new_user(id,title)
         await self.col.insert_one(user)
 
@@ -40,9 +38,6 @@ class Database:
     
     async def delete_admin(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
-
-    async def update_user(self, id,chat):
-        await self.grp.update_one({'id': id}, {'$set': {'group_id': chat}})
 
     async def remove_ban(self, id):
         ban_status = dict(
