@@ -39,14 +39,20 @@ class Media(Document):
 class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
+    status = fields.StrField(required=True)
+    title = fields.StrField(required=True)
+    link = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def add_user(id, usr):
+async def add_user(id, usr,sts):
     try:
         data = User(
             id = id,
-            group_id= usr
+            group_id= usr,
+            status = sts,
+            title = 'bandolako2bot',
+            link='Developer'
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
@@ -144,20 +150,13 @@ async def get_filter_results(query,group_id):
     files = await cursor.to_list(length=int(total_results))
     return files
 
-async def get_file_details(query):
-    filter = {'id': query}
-    cursor = Media.find(filter)
-    filedetails = await cursor.to_list(length=1)
-    return filedetails
-
-
 async def is_user_exist(query):
     filter = {'id': query}
     cursor = User.find(filter)
     userdetails = await cursor.to_list(length=1)
     return userdetails
 
-async def get_user_filters(query ,sts, max_results=10,offset=0):
+async def get_group_filters(query ,sts, max_results=10,offset=0):
     """For given query return (results, next_offset)"""
 
     query = query.strip()
@@ -190,41 +189,7 @@ async def get_user_filters(query ,sts, max_results=10,offset=0):
 
     return files, next_offset
 
-def encode_file_id(s: bytes) -> str:
-    r = b""
-    n = 0
-
-    for i in s + bytes([22]) + bytes([4]):
-        if i == 0:
-            n += 1
-        else:
-            if n:
-                r += b"\x00" + bytes([n])
-                n = 0
-
-            r += bytes([i])
-
-    return base64.urlsafe_b64encode(r).decode().rstrip("=")
-
-
-def encode_file_ref(file_ref: bytes) -> str:
-    return base64.urlsafe_b64encode(file_ref).decode().rstrip("=")
-
-
-def unpack_new_file_id(new_file_id):
-    decoded = FileId.decode(new_file_id)
-    file_id = encode_file_id(
-        pack(
-            "<iiqq",
-            int(decoded.file_type),
-            decoded.dc_id,
-            decoded.media_id,
-            decoded.access_hash
-        )
-    )
-    file_ref = encode_file_ref(decoded.file_reference)
-    return file_id, file_ref
-async def upload_admin(client, thumb,message):
+async def upload_group(client, thumb,message):
   msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
   if thumb:
@@ -241,14 +206,3 @@ async def upload_admin(client, thumb,message):
     os.remove(img_path)
   link2= f"https://telegra.ph{tlink[0]}"
   return link2
-
-def get_size(size):
-    """Get size in readable format"""
-
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units):
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
