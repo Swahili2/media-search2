@@ -31,7 +31,7 @@ async def handle_user_status(bot, cmd):
         return
 async def handle_admin_status(bot, cmd):
         aski = await bot.get_chat(cmd.chat.id)
-        await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'group_id':cmd.chat.id,'title':aski.title,'total_m':aski.members_count}})
+        await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'title':aski.title,'total_m':aski.members_count}})
         all_user =await db.get_all_users()
         async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
