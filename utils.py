@@ -189,7 +189,7 @@ async def get_group_filters(query ,sts, max_results=10,offset=0):
 
     return files, next_offset
 
-async def upload_group(client, thumb,message):
+async def upload_admin(client, thumb,message):
   msg = await message.reply_text("`Tʀʏɪɴɢ Tᴏ Dᴏᴡɴʟᴏᴀᴅ`")
   img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
   if thumb:
