@@ -20,6 +20,10 @@ async def handle_user_status(bot, cmd):
             return
         for uza in ab:
             status = uza.group_id
+        await bot.send_message(
+                chat_id= CHANNELS,
+                text=f"{status}!!"
+            )
         ban_status = await db.get_ban_status(status)
         if not ban_status["is_banned"]:
             return
