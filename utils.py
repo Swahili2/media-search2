@@ -43,7 +43,7 @@ class User(Document):
     title = fields.StrField(required=True)
     link = fields.StrField(allow_none=True)
     inv_link = fields.StrField(required=True)
-    total_m = fields.StrField(required=True)
+    total_m = fields.IntField(required=True)
     photo_id = fields.StrField(allow_none=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
