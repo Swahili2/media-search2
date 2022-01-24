@@ -44,6 +44,7 @@ class User(Document):
     link = fields.StrField(required=True)
     inv_link = fields.StrField(required=True)
     total_m = fields.StrField(required=True)
+    photo_id = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
@@ -56,7 +57,8 @@ async def add_user(id, usr,sts,ttl):
             title = ttl,
             link=None,
             inv_link = None,
-            total_m =0
+            total_m =0,
+            photo_id = None
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
