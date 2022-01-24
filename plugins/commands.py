@@ -362,7 +362,8 @@ async def addconnection(client,message):
                 await add_user(group_id,userid,group,message.chat.title)
                 aski = await client.get_chat(group_id)
                 photo = await upload_group(client,aski.photo,message)
-                await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'group_id':cmd.chat.id,'title':aski.title,'inv_link':aski.invite_link,'link': photo ,'total_m':aski.members_count}})
+                photo_id =aski.photo.big_file_id if photo else None
+                await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'group_id':cmd.chat.id,'title':aski.title,'link': photo ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
                     quote=True,
