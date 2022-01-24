@@ -21,7 +21,7 @@ class Database:
         )
 
     async def add_admin(self, id):
-        user = self.new_user(id,title)
+        user = self.new_user(id)
         await self.col.insert_one(user)
 
     async def is_admin_exist(self, id):
