@@ -437,6 +437,9 @@ async def get_status(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
         return
+    async for user in await db.get_user(message.from_user.id):
+        salio =user['ban_status']
+        salio = salio['ban_duration']
     filters = await get_filter_results('',message.from_user.id)
     filters_no = 0
     text = 0
@@ -486,7 +489,9 @@ Document filters: {document}
 Animation filters: {animation}
 Sticker filters: {sticker}
 Voice filters: {voice}
-Video Note filters: {videonote}"""
+Video Note filters: {videonote}
+
+Salio lako ni  Siku 0 kumtumia Swahili robot """
     await message.reply_text(stats_text)
     
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
