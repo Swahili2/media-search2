@@ -31,7 +31,7 @@ async def give_filter(client: Client, query):
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
                         description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
-                        thumb_url=file.link
+                        thumb_url=file.link,
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
                     ))
                 
@@ -124,7 +124,7 @@ async def give_filter(client: Client, query):
                         title=title,
                         input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
                         description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
-                        thumb_url=file.link
+                        thumb_url=file.link,
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
                     ))
         await query.answer(
