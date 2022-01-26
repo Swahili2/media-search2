@@ -410,7 +410,7 @@ async def ban(c,m):
         try:
             await c.send_message(
                 user_id,
-                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___siku{ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __{ban_reason}__**\n\n"
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
