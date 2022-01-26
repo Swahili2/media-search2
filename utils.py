@@ -159,7 +159,16 @@ async def get_filter_results(query,group_id):
 async def is_user_exist(query):
     filter = {'id': query}
     cursor = User.find(filter)
+    
     userdetails = await cursor.to_list(length=1)
+    return userdetails
+
+async def is_group_exist(query):
+    filter = {'status': query}
+    cursor = User.find(filter)
+    cursor.sort('$natural', -1)
+    count = await User.count_documents(filter)
+    userdetails = await cursor.to_list(length = int(count))
     return userdetails
 
 async def get_group_filters(query ,sts, max_results=10,offset=0):
