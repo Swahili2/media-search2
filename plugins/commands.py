@@ -491,7 +491,7 @@ Sticker filters: {sticker}
 Voice filters: {voice}
 Video Note filters: {videonote}
 
-Salio lako ni  Siku 0 kumtumia Swahili robot """
+Salio lako ni  Siku {salio} kumtumia Swahili robot """
     await message.reply_text(stats_text)
     
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
