@@ -19,7 +19,7 @@ from info import filters
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(message.from_user.id)
-    if not in [userdetails | status]:
+    if not in [userdetails,status]:
         all_user =await is_group_exist('group')
         result=[]
         for file in all_user:
