@@ -19,7 +19,12 @@ from info import filters
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(query.from_user.id)
-    if not (userdetails | status):
+    a='no'
+    if not userdetails:
+        a='yes'
+    elif not status:
+        a='yes'
+    if a=='yes':
         all_user =await is_group_exist('group')
         result=[]
         for file in all_user:
@@ -113,7 +118,7 @@ async def give_filter(client: Client, query):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if not ban['is_banned']and len(results) != 0:
+    if not ban['is_banned']and len(results) != 0 and group_id !=query.from_user.id:
         all_user =await is_group_exist('group')
         result=[]
         for file in all_user:
