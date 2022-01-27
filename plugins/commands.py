@@ -40,14 +40,14 @@ async def new_filter(client: Client, message):
     if not status:
         return
     strid = str(uuid.uuid4())
-    args = message.text.html.split(None, 1)
+    args = message.text.split(' ', 1)
     user_id = message.from_user.id
     if len(args) < 2:
         await message.reply_text("Use Correct format 😐", quote=True)
         return
     
     extracted = split_quotes(args[1])
-    text = extracted[0].lower()
+    text = args[1].lower()
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
