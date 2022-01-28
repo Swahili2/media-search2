@@ -20,12 +20,9 @@ async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(query.from_user.id)
     a='no'
-    userdata = True if userdetails else False
-    if userdata == False:
+    if not status:
         a='yes'
-    elif not status:
-        a='yes'
-    if a=='yes':
+    if not userdetails:
         all_user =await is_group_exist('group')
         result=[]
         for file in all_user:
@@ -41,7 +38,6 @@ async def give_filter(client: Client, query):
                         thumb_url=file.link,
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
                     ))
-                
         await query.answer(
             results = result,
             is_personal = True,
