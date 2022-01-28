@@ -20,7 +20,8 @@ async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(query.from_user.id)
     a='no'
-    if not userdetails:
+    userdata = True if userdetails else False
+    if userdata == False:
         a='yes'
     elif not status:
         a='yes'
