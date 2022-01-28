@@ -23,28 +23,29 @@ async def give_filter(client: Client, query):
     if not status:
         a='yes'
     if not userdetails:
-        all_user =await is_group_exist('group')
-        result=[]
-        for file in all_user:
-            ban_status = await db.get_ban_status(file.group_id)
-            if ban_status["is_banned"]:
-                ttl=await client.get_users(file.group_id)
-                title = f"🎁🎁 GROUP :{file.title} 🎁🎁"
-                text1= f"!!HAUPO KWENYE DATABASE!!\n(jiunge kuanza kupata huduma zetu)👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zilizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nUkisha join tuma neno `hi`\n\n°°Kumbuka admin kifurush chake kikiisha hii menyu ya groups utaiona tena ili kupata active groups ambapo swahili robot yupo active\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
-                result.append(InlineQueryResultArticle(
-                        title=title,
-                        input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika kupitia Swahili robot',
-                        thumb_url=file.link,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
-                    ))
-        await query.answer(
-            results = result,
-            is_personal = True,
-            switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
-            switch_pm_parameter = 'start'
-        )
-        return
+        if a =='no':
+            all_user =await is_group_exist('group')
+            result=[]
+            for file in all_user:
+                ban_status = await db.get_ban_status(file.group_id)
+                if ban_status["is_banned"]:
+                    ttl=await client.get_users(file.group_id)
+                    title = f"🎁🎁 GROUP :{file.title} 🎁🎁"
+                    text1= f"!!HAUPO KWENYE DATABASE!!\n(jiunge kuanza kupata huduma zetu)👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zilizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nUkisha join tuma neno `hi`\n\n°°Kumbuka admin kifurush chake kikiisha hii menyu ya groups utaiona tena ili kupata active groups ambapo swahili robot yupo active\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
+                    result.append(InlineQueryResultArticle(
+                            title=title,
+                            input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
+                            description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika kupitia Swahili robot',
+                            thumb_url=file.link,
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
+                        ))
+            await query.answer(
+                results = result,
+                is_personal = True,
+                switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
+                switch_pm_parameter = 'start'
+            )
+            return
     for user in userdetails:
         group_details = await is_user_exist(user.group_id)
         for id2 in group_details:
