@@ -157,7 +157,7 @@ async def get_filter_results(query,group_id):
     return files
 
 async def is_user_exist(query):
-    filter = {'id': query}
+    filter = {'_id': query}
     cursor = User.find(filter)
     
     userdetails = await cursor.to_list(length=1)
