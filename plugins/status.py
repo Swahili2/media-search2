@@ -12,7 +12,7 @@ async def handle_user_status(bot, cmd):
             await add_user(chat_id,cmd.chat.id,'user',cmd.from_user.first_name)
             await bot.send_message(
                 chat_id= CHANNELS,
-                text=f"{cmd}#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
+                text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
             )
         elif ab:
             await User.collection.update_one({'_id':chat_id},{'$set':{'group_id':cmd.chat.id}})
