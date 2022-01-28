@@ -395,7 +395,7 @@ async def addconnection(client,message):
         logger.exception(e)
         await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
         return
-@Client.on_message(filters.private & filters.command("ondoa"))
+@Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
 async def ban(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
