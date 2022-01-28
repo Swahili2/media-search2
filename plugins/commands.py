@@ -396,10 +396,10 @@ async def addconnection(client,message):
         await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
         return
 @Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
-async def ban(client,message):
-  #  status= await db.is_admin_exist(message.from_user.id)
-  #  if not status:
-   #     return
+async def removegroup(client,message):
+     status= await db.is_admin_exist(message.from_user.id)
+     if not status:
+        return
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
