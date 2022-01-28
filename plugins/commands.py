@@ -377,10 +377,82 @@ async def addconnection(client,message):
                     )
                     return
            
-            else:
+            elif userid !=user_id2:
                 ttli = await client.get_users(user_id2)
                 await message.reply_text(
                     f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Msimaiz wangu kanikataza ku add wasimaz wawili kwenye group moja kama mnahitaj mabadiliko mcheki @hrm45!",
+                    quote=True
+                )
+            else:
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani admin **{ttli.first_name}** hili group tayar umeshaliunga kulitoa  tuma command /ondoa !",
+                    quote=True
+                )
+        else:
+            await message.reply_text("Ni add admin kwenye group lako kisha jaribu tena", quote=True)
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
+        return
+@Client.on_message(filters.private & filters.command("ondoa"))
+async def ban(bot,message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
+    chat_type = message.chat.type
+    if chat_type == "private":
+        await message.reply_text(
+                "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
+                quote=True
+            )
+        return
+
+    elif chat_type in ["group", "supergroup"]:
+        group_id = message.chat.id
+
+    try:
+        st = await client.get_chat_member(group_id, userid)
+        if (
+            st.status != "administrator"
+            and st.status != "creator"
+            and str(userid) not in ADMINS
+        ):
+            await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
+            return
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text(
+            "Invalid Group ID!\n\nIf correct, Make sure I'm present in your group!!",
+            quote=True,
+        )
+
+        return
+    try:
+        st = await client.get_chat_member(group_id, "me")
+        if st.status == "administrator":
+            group_details= await is_user_exist(group_id)
+            for file in group_details:
+                user_id2=file.group_id
+            if group_details and userid==user_id2:
+                await User.collection.delete_one({'_id':group_id})
+                await message.reply_text(
+                    f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
+                    quote=True
+                )
+            elif not groupdetails:
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani admin **{ttli.first_name}** hili group halipo  kwenye database zetu tuma /niunge kuliunga!",
+                    quote=True
+                )
+            elif userid !=user_id2:
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani hili group limeungwa na admin   admin **{ttli.first_name}** hili group yeye mwenyewe ndio unaweza kulitoa!",
                     quote=True
                 )
         else:
