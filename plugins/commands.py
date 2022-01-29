@@ -263,8 +263,8 @@ async def del_filter(client: Client, message):
     query = text.lower()
     filter={'text': query}
     filter['group_id'] = message.from_user.id
-    found = Media.find(filter)
-    if found:
+    found =await Media.count_documents(filter)
+    if int(found) >=1:
         await Media.collection.delete_one(filter)
         await message.reply_text(
             f"<code>{text}</code>  deleted.",
