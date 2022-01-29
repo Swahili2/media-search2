@@ -65,6 +65,7 @@ async def give_filter(client: Client, query):
         fileid = document['file']
         keyword = document['text']
         msg_type = document['type']
+        descp = document['descp']
 
         if button == "[]":
             button = None
@@ -78,7 +79,7 @@ async def give_filter(client: Client, query):
                     title=keyword.upper(),
                     input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                         parse_mode = 'html'),
-                    description='Text',
+                    description=descp,
                     reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 )
             except:
@@ -88,7 +89,7 @@ async def give_filter(client: Client, query):
                 result = InlineQueryResultPhoto(
                     photo_url = fileid,
                     title = keyword.upper(),
-                    description = 'Photo',
+                    description = descp,
                     parse_mode = 'html',
                     caption = reply_text or '',
                     reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
@@ -102,7 +103,7 @@ async def give_filter(client: Client, query):
                     file_id = fileid,
                     caption = reply_text or "",
                     parse_mode = 'html',
-                    description = msg_type,
+                    description = descp,
                     reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
                 )
             except:
