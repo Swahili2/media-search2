@@ -75,7 +75,6 @@ async def give_filter(client: Client, query):
             
         if fileid == 'None':
             try:
-                await client.send_message(chat_id=query.from_user.id,text=f'{button}')
                 result = InlineQueryResultArticle(
                     title=keyword.upper(),
                     input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
