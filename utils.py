@@ -71,7 +71,7 @@ async def add_user(id, usr,sts,ttl):
         else:
             logger.info("group is saved in database")
 
-async def save_file(text,reply,btn,file,alert,type,id,user_id):
+async def save_file(text,reply,btn,file,alert,type,id,user_id,descp):
     """Save file in database"""
     text = str(text).lower()
     fdata = {'text': text}
@@ -90,7 +90,8 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
             file= str(file),
             alert=str(alert),
             type=str(type),
-            group_id =user_id
+            group_id =user_id,
+            descp=descp
        )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')
