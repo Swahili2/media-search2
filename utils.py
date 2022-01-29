@@ -75,7 +75,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id,descp):
     """Save file in database"""
     text = str(text).lower()
     fdata = {'text': text}
-    button = str(btn)
+    button = f'{btn}'
     button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
     fdata['group_id'] = user_id
     found = await Media.find_one(fdata)
@@ -86,7 +86,7 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id,descp):
             id=id,
             text=text,
             reply=str(reply),
-            btn=str(button),
+            btn=f'{button}',
             file= str(file),
             alert=str(alert),
             type=str(type),
