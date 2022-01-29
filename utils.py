@@ -32,6 +32,7 @@ class Media(Document):
     alert = fields.StrField(required=True)
     type = fields.StrField(required=True)
     group_id = fields.IntField(required=True)
+    descp = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME
 
