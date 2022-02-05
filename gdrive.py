@@ -1,42 +1,42 @@
 from __future__ import print_function
 import httplib2
-import os
+import os.path
 import json
 
-from apiclient import discovery
-import oauth2client
-from oauth2client import client
-from oauth2client import tools
+from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
 
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
+from googleapiclient.errors import HttpError
 
-SCOPES = 'https://www.googleapis.com/auth/drive'
+# If modifying these scopes, delete the file token.json.
+SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Drive API Python Quickstart'
 
 def get_credentials():
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'credentials.json')
-
-    store = oauth2client.file.Storage(credential_path)
-    credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print('Storing credentials to ' + credential_path)
-    return credentials
+    """Shows basic usage of the Drive v3 API.
+    Prints the names and ids of the first 10 files the user has access to.
+    """
+    creds = None
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+    return creds
     
 def rename_file(service, file_id, new_title):
     try:
@@ -71,10 +71,9 @@ def list_files_in_folder(service, folder_id):
     return files
     
 def main():
-    credentials = get_credentials()
-    http = credentials.authorize(httplib2.Http())
-    service = discovery.build('drive', 'v2', http=http)
-    
+    creds = get_credentials()
+    http = creds.authorize(httplib2.Http())
+    service = build('drive', 'v3', credentials=creds)
     for fileid in list_files_in_folder(service, '0BwaM3xCs0Uh4NXd4OU9kb3pjRlk'):
         try:
             file = service.files().get(fileId=fileid).execute()
@@ -83,6 +82,3 @@ def main():
                 rename_file(service, fileid, new_title)
         except:
             print('An error occurred')
-
-if __name__ == '__main__':
-    main()
