@@ -94,10 +94,6 @@ class GoogleDriveHelper:
                         rename_file(__service, file_id, new_title)
                 except:
                     typee = 'File'
-        
-        except:
-            print('An error occurred')
-                self.gDrive_file(**drive_file)
 
         except Exception as e:
             print('\n')
