@@ -75,14 +75,18 @@ class GoogleDriveHelper:
             name = drive_file['name']
             if drive_file['mimeType'] == self.__G_DRIVE_DIR_MIME_TYPE:
                 typee = 'Folder'
-                self.total_folders += 1
                 self.gDrive_directory(**drive_file)
             else:
                 try:
                     typee = drive_file['mimeType']
+                    if drive_file['name'].startswith('Copy of ')):
+                        new_title = file['name'].replace('Copy of ', '')
+                        rename_file(__service, file_id, new_title)
                 except:
                     typee = 'File'
-                self.total_files += 1
+        
+        except:
+            print('An error occurred')
                 self.gDrive_file(**drive_file)
 
         except Exception as e:
@@ -122,9 +126,11 @@ class GoogleDriveHelper:
     def gDrive_file(self, **kwargs):
         try:
             size = int(kwargs['size'])
+            if(kwargs['name'].startswith('Copy of ')):
+                        new_title = file['name'].replace('Copy of ', '')
+                        rename_file(__service, file_id, new_title)
         except:
-            size = 0
-        self.total_bytes += size
+            print('error')
 
     def gDrive_directory(self, **kwargs) -> None:
         files = self.list_drive_dir(kwargs['id'])
