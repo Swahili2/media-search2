@@ -67,7 +67,7 @@ class GoogleDriveSizeCalculate:
 
         try:
             drive_file = self.__service.files().get(fileId=file_id, fields="id, name, mimeType, size",
-                                                   supportsTeamDrives=True).execute()
+                                                   supportsTeamDrives=True,includeTeamDriveItems=True).execute()
             name = drive_file['name']
             if drive_file['mimeType'] == self.__G_DRIVE_DIR_MIME_TYPE:
                 typee = 'Folder'
