@@ -89,7 +89,7 @@ class GoogleDriveHelper:
             else:
                 try:
                     typee = drive_file['mimeType']
-                    if drive_file['name'].startswith('Copy of ')):
+                    if drive_file['name'].startswith('Copy of '):
                         new_title = file['name'].replace('Copy of ', '')
                         rename_file(__service, file_id, new_title)
                 except:
