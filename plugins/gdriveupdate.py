@@ -21,7 +21,17 @@ class GoogleDriveHelper:
         self.__OAUTH_SCOPE = ['https://www.googleapis.com/auth/drive']
         self.__service = self.authorize()
         self.path = []
-
+    def rename_file(service, file_id, new_title):
+        try:
+            file = {'name': new_title}
+            updated_file = service.files().patch(
+                    fileId=file_id,
+                    body=file,
+                    fields='name').execute()
+            return updated_file
+        except:
+            print('An error occurred')
+            return None
     def authorize(self):
         # Get credentials
         credentials = None
@@ -51,7 +61,7 @@ class GoogleDriveHelper:
         parsed = urlparse.urlparse(link)
         return parse_qs(parsed.query)['id'][0]
 
-    def drive_list(self, LINKorID):
+    async def drive_list(self, LINKorID):
         if self.__service is None:
             return
         if 'drive.google.com' in LINKorID:
