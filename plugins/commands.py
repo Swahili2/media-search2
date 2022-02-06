@@ -1,6 +1,7 @@
 from pyrogram import Client
 import uuid
 import io
+from plugins.gdriveupdate import drv
 from plugins.database import db
 from info import filters
 from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group
@@ -568,7 +569,12 @@ Video Note filters: {videonote}
 
 Salio lako ni  Siku {salio} kumtumia Swahili robot """
     await message.reply_text(stats_text)
-    
+            quote=True
+        )
+@Client.on_message(filters.private & filters.command("update_drive"))
+async def update drive(bot,message): 
+    link=await bot.ask(text='send link',chat_I'd=message.from_user.id)
+    await drv.renamefile(link.text)
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
@@ -580,3 +586,4 @@ async def delcancel(client: Client, query):
         reply_markup = None
     )
     return
+
