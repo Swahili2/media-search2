@@ -515,6 +515,8 @@ async def get_status(bot,message):
     async for user in await db.get_user(message.from_user.id):
         salio =user['ban_status']
         salio = salio['ban_duration']
+    if salio == 1:
+        salio = f'{salio} kumbuka umebakiza masaa machache tu Fanya muamala uweze kuendelea'
     filters = await get_filter_results('',message.from_user.id)
     filters_no = 0
     text = 0
