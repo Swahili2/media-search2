@@ -42,13 +42,21 @@ class Database:
     async def delete_admin(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
-    async def remove_ban(self, id):
-        ban_status = dict(
-            is_banned=False,
-            ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
-            ban_reason=''
-        )
+    async def remove_ban(self, id,tme):
+        if time != 0 :
+            ban_status = dict(
+                is_banned=True,
+                ban_duration= tme,
+                banned_on=datetime.date.max.isoformat(),
+                ban_reason=''
+            )
+        else:
+            ban_status = dict(
+                is_banned=False,
+                ban_duration= 0,
+                banned_on=datetime.date.max.isoformat(),
+                ban_reason=''
+            )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
 
     async def ban_user(self, user_id, ban_duration, ban_reason):
