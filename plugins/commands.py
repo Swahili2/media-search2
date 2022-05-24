@@ -63,24 +63,9 @@ async def new_filter(client: Client, message):
             rm = message.reply_to_message.reply_markup
             btn = rm.inline_keyboard
             replied = message.reply_to_message
-            msg = replied.document or replied.video or replied.audio or replied.animation or replied.sticker or replied.voice or replied.video_note or None
+            msg = replied.video
             if msg:
                 fileid = msg.file_id
-                if replied.document:
-                    msg_type = 'Document'
-                elif replied.video:
-                    msg_type = 'Video'
-                elif replied.audio:
-                    msg_type = 'Audio'
-                elif replied.animation:
-                    msg_type = 'Animation'
-                elif replied.sticker:
-                    msg_type = 'Sticker'
-                elif replied.voice:
-                    msg_type = 'Voice'
-                elif replied.video_note:
-                    msg_type = 'Video Note'
-
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
@@ -89,12 +74,7 @@ async def new_filter(client: Client, message):
                 if not fileid:
                     return
                 reply_text = message.reply_to_message.caption.html
-            
-                    
-            elif replied.text:
-                reply_text = message.reply_to_message.text.html
-                msg_type = 'Text'
-                fileid = None
+ 
             else:
                 await message.reply('Not Supported..!')
                 return
@@ -125,72 +105,6 @@ async def new_filter(client: Client, message):
             alert = None
         msg_type = 'Video'
 
-    elif message.reply_to_message and message.reply_to_message.audio:
-        try:
-            fileid = message.reply_to_message.audio.file_id
-            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Audio'
-   
-    elif message.reply_to_message and message.reply_to_message.document:
-        try:
-            fileid = message.reply_to_message.document.file_id
-            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Document'
-
-    elif message.reply_to_message and message.reply_to_message.animation:
-        try:
-            fileid = message.reply_to_message.animation.file_id
-            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Animation'
-
-    elif message.reply_to_message and message.reply_to_message.sticker:
-        try:
-            fileid = message.reply_to_message.sticker.file_id
-            reply_text, btn, alert =  generate_button(extracted[1], strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Sticker'
-
-    elif message.reply_to_message and message.reply_to_message.voice:
-        try:
-            fileid = message.reply_to_message.voice.file_id
-            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Voice'
-    elif message.reply_to_message and message.reply_to_message.video_note:
-        try:
-            fileid = message.reply_to_message.video_note.file_id
-            reply_text, btn, alert = generate_button(extracted[1], strid)
-        except Exception as a:
-            reply_text = ""
-            btn = []
-            alert = None
-        msg_type = 'Video Note'
-    elif message.reply_to_message and message.reply_to_message.text:
-        try:
-            fileid = None
-            reply_text, btn, alert = generate_button(message.reply_to_message.text.html, strid)
-        except:
-            reply_text = ""
-            btn = []
-            alert = None
     else:
         await message.reply('Not Supported..!')
         return
@@ -207,6 +121,7 @@ async def new_filter(client: Client, message):
             mkv1.text=msg_type
             dta='start'
             while dta!='stop':
+                stridm = str(uuid.uuid4())
                 mk=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
                 if mk.media and not (mk.photo):
                     for file_type in ("document", "video", "audio"):
@@ -219,7 +134,7 @@ async def new_filter(client: Client, message):
                     mkg = 'data.dd#.'
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
-                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, strid,user_id,descp,'vip')
+                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, stridm,user_id,descp,'vip')
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
                     await mk.reply(f'all file sent to database with id  {dta_id}')
