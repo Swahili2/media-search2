@@ -194,10 +194,18 @@ async def new_filter(client: Client, message):
     else:
         await message.reply('Not Supported..!')
         return
-    mkv = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
-    if not mkv.text:
-        mkv.text=msg_type
-    descp = mkv.text
+    mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
+    if mkv.text.lower()=='s':
+        mkv2 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa series',chat_id = message.from_user.id)
+        mkvl = await client.ask(text='naomba utume link ya kupakua series hii',chat_id = message.from_user.id)
+        if not mkvl.text:
+            mkvl.text=msg_type
+        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}'
+    elif mkv.text.lower()=='m':
+        mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+        if not mkv1.text:
+            mkv1.text=msg_type
+        descp = f'x.dd#.{mkv1.text}'
     try:
         if fileid:
             if msg_type == 'Photo':
@@ -225,7 +233,7 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp)
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'vip')
     reply_markup = InlineKeyboardMarkup(
         [
             [
@@ -415,7 +423,7 @@ async def new_filter(client: Client, message):
     mkv = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
     if not mkv.text:
         mkv.text=msg_type
-    descp = mkv.text
+    descp = f'x.dd#.{mkv.text}'
     try:
         if fileid:
             if msg_type == 'Photo':
@@ -443,7 +451,7 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp)
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'normal')
     reply_markup = InlineKeyboardMarkup(
         [
             [
