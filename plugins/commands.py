@@ -200,12 +200,33 @@ async def new_filter(client: Client, message):
         mkvl = await client.ask(text='naomba utume link ya kupakua series hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
-        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}'
+        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}hrm45s'
     elif mkv.text.lower()=='m':
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
         if not mkv1.text:
             mkv1.text=msg_type
-        descp = f'x.dd#.{mkv1.text}'
+            dta='start'
+            while dta!='stop':
+                mk=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                if mk.media and not (mk.photo):
+                    for file_type in ("document", "video", "audio"):
+                        media = getattr(mk, file_type, None)
+                        if media is not None:
+                            media.file_type = file_type
+                            media.caption = mk.caption
+                            break
+                    resv = f'{file_id}'
+                    mkg = 'data.dd#.'
+                    media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
+                    media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
+                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, strid,user_id,descp,'vip')
+                elif mk.text.lower()=='stop':
+                    dta = 'stop'
+                    await mk.reply(f'all file sent to database with id  {dta_id}')
+                    break
+                else:
+                    await mk.reply('tafadhali tuma ulichoambiwa')
+        descp = f'x.dd#.{mkv1.text}hrm45m'
     try:
         if fileid:
             if msg_type == 'Photo':
