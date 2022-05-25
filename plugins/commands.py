@@ -39,7 +39,7 @@ async def new_filtervip(client: Client, message):
         return
     
     extracted = split_quotes(args[1])
-    text = args[1].lower()
+    text = f'{args[1].lower()}.dd#.{user_id}'
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
@@ -119,6 +119,7 @@ async def new_filtervip(client: Client, message):
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
         if mkv1.text:
             dta='start'
+            icount = 0
             while dta!='stop':
                 stridm = str(uuid.uuid4())
                 mk=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
@@ -133,13 +134,14 @@ async def new_filtervip(client: Client, message):
                     mkg = 'data.dd#.'
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
-                    await save_file('hrm45', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
+                    await save_file(f'hrm45{icount}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
                     await mk.reply(f'all file sent to database with id  {fileid}')
                     break
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
+                icount+=1
         descp = f'x.dd#.{mkv1.text}hrm45m'
     try:
         if fileid:
