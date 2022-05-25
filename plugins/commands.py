@@ -114,7 +114,7 @@ async def new_filtervip(client: Client, message):
         mkvl = await client.ask(text='naomba utume link ya kupakua series hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
-        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}hrm45s'
+        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
     elif mkv.text.lower()=='m':
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
         if mkv1.text:
@@ -142,7 +142,7 @@ async def new_filtervip(client: Client, message):
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
                 icount+=1
-        descp = f'x.dd#.{mkv1.text}hrm45m'
+        descp = f'x.dd#.{mkv1.text}.dd#.data.dd#.m'
     try:
         if fileid:
             if msg_type == 'Photo':
