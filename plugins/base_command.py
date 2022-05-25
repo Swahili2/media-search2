@@ -67,13 +67,66 @@ async def start_msg_admins(client, message):
         user_id = message.from_user.id,
         username = '' if message.from_user.username == None else '@'+message.from_user.username
     )
-
-    await message.reply(
-        text = text,
-        quote = True,
-        reply_markup = reply_markup,
-        disable_web_page_preview = True
-    )
+    usr_cmdall1 = message.text
+    cmd=message
+    if usr_cmdall1.startswith("/start subinps"):
+        ban_status = await db.get_ban_status(cmd.from_user.id)  
+        try:
+            ident, file_id = cmd.text.split("_-_-_-_")
+            filedetails = await get_file_details(file_id)
+            for files in filedetails:
+                title = files.file_name.split('.dd#.')[1]
+                f_caption=files.caption
+            strg=files.file_name.split('.dd#.')[3].split('.')[0]
+            if filedetails:
+                if ban_status["is_banned"]:
+                    if strg.lower() == 'm':
+                        filez=await get_filter_results(file_id)
+                        for file in reversed(filez):
+                            filedetails = await get_file_details(file.file_id)
+                            for files in filedetails:
+                                title = files.file_name
+                                f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
+                                await bot.send_cached_media(
+                                    chat_id=cmd.from_user.id,
+                                    file_id=files.file_id,
+                                    caption=f_caption
+                                )
+                        return
+                    elif strg.lower() == 's':
+                        link = files.file_name.split('.dd#.')[4]
+                        f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n **💥Series  zetu zote zipo google drive, Kama huwezi kufungua link zetu tafadhali bonyeza 📪 ADD EMAIL kisha fuata maelekezo**'
+                        await bot.send_photo(
+                            chat_id=cmd.from_user.id,
+                            photo=files.mime_type,
+                            caption=f_caption,
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
+                        )
+                        return
+                     
+                else:
+                    await bot.send_message(
+                        chat_id=cmd.from_user.id,
+                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia kifurushi",
+                        reply_markup=InlineKeyboardMarkup(
+                            [
+                                [
+                                    InlineKeyboardButton("🇹🇿 TANZANIA", callback_data = "tanzania"),
+                                    InlineKeyboardButton("🇰🇪 KENYA",callback_data ="kenya" )
+                                ]
+                            ]
+                        )
+                    )
+                    return
+        except Exception as err:
+            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
+    else:
+        await message.reply(
+            text = text,
+            quote = True,
+            reply_markup = reply_markup,
+            disable_web_page_preview = True
+        )
     
 @Client.on_message(filters.command('help') & filters.private)
 async def help_msg(client, message):
