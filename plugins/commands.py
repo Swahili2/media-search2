@@ -27,7 +27,7 @@ async def total(bot, message):
 
 
 @Client.on_message(filters.command('adddata'))
-async def new_filter(client: Client, message):
+async def new_filtervip(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
         return
