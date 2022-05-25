@@ -117,8 +117,7 @@ async def new_filter(client: Client, message):
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}hrm45s'
     elif mkv.text.lower()=='m':
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
-        if not mkv1.text:
-            mkv1.text=msg_type
+        if mkv1.text:
             dta='start'
             while dta!='stop':
                 stridm = str(uuid.uuid4())
@@ -130,14 +129,14 @@ async def new_filter(client: Client, message):
                             media.file_type = file_type
                             media.caption = mk.caption
                             break
-                    resv = f'{file_id}'
+                    resv = f'{fileid}'
                     mkg = 'data.dd#.'
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
-                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, stridm,user_id,descp,'vip')
+                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
-                    await mk.reply(f'all file sent to database with id  {dta_id}')
+                    await mk.reply(f'all file sent to database with id  {fileid}')
                     break
                 else:
                     await mk.reply('tafadhali tuma ulichoambiwa')
