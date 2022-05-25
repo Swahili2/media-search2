@@ -171,6 +171,7 @@ async def new_filtervip(client: Client, message):
         return
 
     await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'vip')
+    text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
             [
@@ -202,7 +203,7 @@ async def new_filter(client: Client, message):
         return
     
     extracted = split_quotes(args[1])
-    text = args[1].lower()
+    text = f'{args[1].lower()}.dd#.{user_id}'
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
@@ -389,6 +390,7 @@ async def new_filter(client: Client, message):
         return
 
     await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'normal')
+    text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
             [
