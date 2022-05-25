@@ -63,9 +63,9 @@ async def give_filter(client: Client, query):
         button = document['btn']
         alert = document['alert']
         fileid = document['file']
-        keyword = document['text']
+        keyword = document['text'].split('.dd#.',1)[0]
         msg_type = document['type']
-        descp = document['descp']
+        descp = document['descp'].split('.dd#.')[1]
 
         if button == "[]":
             button = None
