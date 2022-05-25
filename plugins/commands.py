@@ -133,7 +133,7 @@ async def new_filter(client: Client, message):
                     mkg = 'data.dd#.'
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'{mkg}bnd2bot.dd#.{resv}'
-                    await save_file('hrm45', media.caption, None, media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
+                    await save_file('hrm45', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
                     await mk.reply(f'all file sent to database with id  {fileid}')
