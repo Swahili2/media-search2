@@ -75,9 +75,8 @@ async def start_msg_admins(client, message):
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                title = files.file_name.split('.dd#.')[1]
-                f_caption=files.caption
-            strg=files.file_name.split('.dd#.')[3].split('.')[0]
+                f_caption=files.reply_text
+            strg=files.descp.split('.dd#.')[3]
             if filedetails:
                 if ban_status["is_banned"]:
                     if strg.lower() == 'm':
@@ -85,8 +84,7 @@ async def start_msg_admins(client, message):
                         for file in reversed(filez):
                             filedetails = await get_file_details(file.file_id)
                             for files in filedetails:
-                                title = files.file_name
-                                f_caption=files.caption if files.caption else "🌟 @bandolako2bot"
+                                f_caption=files.reply_text if files.reply_text else "🌟 @bandolako2bot"
                                 await bot.send_cached_media(
                                     chat_id=cmd.from_user.id,
                                     file_id=files.file_id,
@@ -99,7 +97,7 @@ async def start_msg_admins(client, message):
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
                             photo=files.mime_type,
-                            caption=f_caption,
+                            caption=f_captio,
                             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
                         )
                         return
