@@ -75,7 +75,7 @@ async def start_msg_admins(client, message):
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                f_caption=files.reply_text
+                f_caption=files.reply
             strg=files.descp.split('.dd#.')[3]
             if filedetails:
                 if ban_status["is_banned"]:
@@ -84,20 +84,20 @@ async def start_msg_admins(client, message):
                         for file in reversed(filez):
                             filedetails = await get_file_details(file.file_id)
                             for files in filedetails:
-                                f_caption=files.reply_text if files.reply_text else "🌟 @bandolako2bot"
+                                f_caption=files.reply
                                 await bot.send_cached_media(
                                     chat_id=cmd.from_user.id,
-                                    file_id=files.file_id,
+                                    file_id=files.file,
                                     caption=f_caption
                                 )
                         return
                     elif strg.lower() == 's':
-                        link = files.file_name.split('.dd#.')[4]
-                        f_caption =f'🎬{title} \n🌟 @Bandolako2bot \n\n **💥Series  zetu zote zipo google drive, Kama huwezi kufungua link zetu tafadhali bonyeza 📪 ADD EMAIL kisha fuata maelekezo**'
+                        link = files.descp.split('.dd#.')[2]
+                        f_caption =f'\n🌟 @Bandolako2bot \n\n **💥Series  zetu zote zipo google drive, Kama huwezi kufungua link zetu tafadhali bonyeza 📪 ADD EMAIL kisha fuata maelekezo**'
                         await bot.send_photo(
                             chat_id=cmd.from_user.id,
-                            photo=files.mime_type,
-                            caption=f_captio,
+                            photo=files.file,
+                            caption=f_caption,
                             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
                         )
                         return
