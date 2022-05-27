@@ -23,7 +23,7 @@ async def give_filter(client: Client, query):
     a='no'
     nyva=BOT.get("username")
     if not nyva:
-        botusername=await bot.get_me()
+        botusername=await client.get_me()
         nyva=botusername.username
         BOT["username"]=nyva
     if not status:
