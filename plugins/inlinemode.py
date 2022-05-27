@@ -61,6 +61,7 @@ async def give_filter(client: Client, query):
         reply_text = document['reply']
         button = document['btn']
         alert = document['alert']
+        file_status = document['status']
         fileid = document['file']
         keyword = document['text'].split('.dd#.',1)[0]
         msg_type = document['type']
@@ -83,6 +84,18 @@ async def give_filter(client: Client, query):
                 )
             except:
                 continue
+        elif msg_type == 'Photo' and ban['status'] == 'vip' and file_status == 'vip':
+            try:
+                result = InlineQueryResultPhoto(
+                    photo_url = fileid,
+                    title = keyword.upper(),
+                    description = descp,
+                    parse_mode = 'html',
+                    caption = reply_text,
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 DOWNLOAD', url=file.inv_link)]])
+                )
+            except:
+                continue
         elif msg_type == 'Photo':
             try:
                 result = InlineQueryResultPhoto(
@@ -92,6 +105,18 @@ async def give_filter(client: Client, query):
                     parse_mode = 'html',
                     caption = reply_text or '',
                     reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
+                )
+            except:
+                continue
+        elif fileid and ban['status'] == 'vip' and file_status == 'vip':
+            try:
+                result = InlineQueryResultCachedDocument(
+                    title = keyword.upper(),
+                    file_id = fileid,
+                    caption = reply_text or "",
+                    parse_mode = 'html',
+                    description = descp,
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 DOWNLOAD', url=file.inv_link)]])
                 )
             except:
                 continue
