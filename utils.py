@@ -174,7 +174,11 @@ async def is_group_exist(query):
     count = await User.count_documents(filter)
     userdetails = await cursor.to_list(length = int(count))
     return userdetails
-
+async def get_file_details(query):
+    filter = {'id': query}
+    cursor = Media.find(filter)
+    filedetails = await cursor.to_list(length=1)
+    return filedetails
 async def get_group_filters(query ,sts, max_results=10,offset=0):
     """For given query return (results, next_offset)"""
 
