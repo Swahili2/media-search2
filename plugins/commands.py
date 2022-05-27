@@ -66,13 +66,11 @@ async def new_filtervip(client: Client, message):
             msg = replied.video
             if msg:
                 fileid = msg.file_id
-                fid =  fileid
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
                 fileid = await upload_photo(replied)
                 msg_type = 'Photo'
-                fid = (fileid.split('/',-1)).split('.')[0]
                 if not fileid:
                     return
                 reply_text = message.reply_to_message.caption.html
@@ -88,7 +86,6 @@ async def new_filtervip(client: Client, message):
     elif message.reply_to_message and message.reply_to_message.photo:
         try:
             fileid = await upload_photo(message.reply_to_message)
-            fid = (fileid.split('/',-1)).split('.')[0]
             if not fileid:
                 return
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
@@ -101,7 +98,6 @@ async def new_filtervip(client: Client, message):
     elif message.reply_to_message and message.reply_to_message.video:
         try:
             fileid = message.reply_to_message.video.file_id
-            fid =  fileid
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
         except:
             reply_text = ""
@@ -136,7 +132,7 @@ async def new_filtervip(client: Client, message):
                             break
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'hrm45'
-                    await save_file(f'+{icount}.{fid}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
+                    await save_file(f'+{icount}.{strid}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,'vip')
                 elif mk.text.lower()=='stop':
                     dta = 'stop'
                     await mk.reply(f'all file sent to database with id  {fileid}')
