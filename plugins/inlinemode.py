@@ -64,6 +64,7 @@ async def give_filter(client: Client, query):
                                               offset=offset)
     results = []
     for document in documents:
+        id3 = document['id']
         reply_text = document['reply']
         button = document['btn']
         alert = document['alert']
@@ -98,7 +99,7 @@ async def give_filter(client: Client, query):
                     description = descp,
                     parse_mode = 'html',
                     caption = reply_text,
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{fileid}")]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{id3}")]])
                 )
             except:
                 continue
@@ -122,7 +123,7 @@ async def give_filter(client: Client, query):
                     caption = reply_text or "",
                     parse_mode = 'html',
                     description = descp,
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{fileid}")]])
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{id3}")]])
                 )
             except:
                 continue
