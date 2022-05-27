@@ -78,7 +78,7 @@ async def start_msg_admins(client, message):
                 f_caption=files.reply
             strg=files.descp.split('.dd#.')[3]
             if filedetails:
-                if ban_status["is_banned"]:
+                if filedetails:
                     if strg.lower() == 'm':
                         filez=await get_filter_results(file_id)
                         for file in reversed(filez):
