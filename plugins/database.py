@@ -14,6 +14,7 @@ class Database:
             join_date=datetime.date.today().isoformat(),
             descp = True,
             ban_status=dict(
+                status = 'normal',
                 is_banned=False,
                 ban_duration=0,
                 banned_on=datetime.date.max.isoformat(),
@@ -58,6 +59,7 @@ class Database:
 
     async def remove_ban(self, id):
         ban_status = dict(
+            status = 'normal',
             is_banned=False,
             ban_duration= 0,
             banned_on=datetime.date.max.isoformat(),
@@ -65,8 +67,9 @@ class Database:
         )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
 
-    async def ban_user(self, user_id, ban_duration, ban_reason):
+    async def ban_user(self, user_id, ban_duration, ban_reason,sts):
         ban_status = dict(
+            status = sts,
             is_banned=True,
             ban_duration=ban_duration,
             banned_on=datetime.date.today().isoformat(),
@@ -76,6 +79,7 @@ class Database:
 
     async def get_ban_status(self, id):
         default = dict(
+            status = 'normal',
             is_banned=False,
             ban_duration=0,
             banned_on=datetime.date.max.isoformat(),
