@@ -6,6 +6,7 @@ class Database:
     def __init__(self, db1):
         self.db1 = db1
         self.col = self.db1.admins
+        self.fls = self.db1.acc
 
     def new_user(self, id):
         return dict(
@@ -19,7 +20,20 @@ class Database:
                 ban_reason=''
             )
         )
-
+    def new_acc(self, id,user_id,file_id,db_name,tme):
+        return dict(
+            id=id,
+            user_id=user_id,
+            file_id = file_id,
+            db_name = db_name,
+            ban_status=dict(
+                ban_duration=tme,
+                banned_on=datetime.date.today().isoformat(),
+            )
+        )
+    async def add_acc(self, id):
+        user = self.new_acc(id,user_id,file_id,db_name,tme)
+        await self.fls.insert_one(user)
     async def add_admin(self, id):
         user = self.new_user(id)
         await self.col.insert_one(user)
