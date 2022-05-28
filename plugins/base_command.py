@@ -87,7 +87,7 @@ async def start_msg_admins(client, message):
                             filedetails = await get_file_details(file.id)
                             for files in filedetails:
                                 f_caption=files.reply
-                                await bot.send_cached_media(
+                                await client.send_cached_media(
                                     chat_id=cmd.from_user.id,
                                     file_id=files.file,
                                     caption=f_caption
@@ -96,7 +96,7 @@ async def start_msg_admins(client, message):
                     elif strg.lower() == 's':
                         link = files.descp.split('.dd#.')[2]
                         f_caption =f'\n🌟 @Bandolako2bot \n\n **💥Series  zetu zote zipo google drive, Kama huwezi kufungua link zetu tafadhali bonyeza 📪 ADD EMAIL kisha fuata maelekezo**'
-                        await bot.send_photo(
+                        await client.send_photo(
                             chat_id=cmd.from_user.id,
                             photo=files.file,
                             caption=f_caption,
@@ -105,7 +105,7 @@ async def start_msg_admins(client, message):
                         return
                      
                 else:
-                    await bot.send_message(
+                    await client.send_message(
                         chat_id=cmd.from_user.id,
                         text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia kifurushi",
                         reply_markup=InlineKeyboardMarkup(
