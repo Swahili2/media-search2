@@ -77,13 +77,14 @@ async def start_msg_admins(client, message):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 f_caption=files.reply
+                group_id = files.group_id
             strg=files.descp.split('.dd#.')[3]
             if filedetails:
                 if filedetails:
                     if strg.lower() == 'm':
-                        filez=await get_filter_results(file_id)
+                        filez=await get_filter_results(file_id,group_id)
                         for file in reversed(filez):
-                            filedetails = await get_file_details(file.file_id)
+                            filedetails = await get_file_details(file.id)
                             for files in filedetails:
                                 f_caption=files.reply
                                 await bot.send_cached_media(
