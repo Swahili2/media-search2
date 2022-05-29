@@ -146,14 +146,15 @@ async def give_filter(client: Client, query):
         switch_pm_text = "No matches"
     if not ban['is_banned']and len(results) != 0 and group_id !=query.from_user.id:
         result=[]
-        ttl=await client.get_users(file.group_id)
+        ttl=await client.get_users(group_id)
+        ttl2 = await client.get_chat(group_details)
         title = f"🎁🎁 Mpendwa {query.from_user.first_name} 🎁🎁"
-        text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zilizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nUkisha join tuma neno `hi`\n\n°°Kumbuka admin kifurush chake kikiisha hii menyu ya groups utaiona tena ili kuapata active groups ambapo swahili robot yupo active\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
+        text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
         result.append(InlineQueryResultArticle(
                 title=title,
                 input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika kupitia Swahili robot',
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
+                description=f'total members : {file.total_m} \nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot',
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 MTAARIFU ADMIN', url=f'(tg://user?id={group_id})')]])
             ))
         await query.answer(
             results = result,
