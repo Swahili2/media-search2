@@ -148,8 +148,13 @@ async def give_filter(client: Client, query):
         result=[]
         ttl=await client.get_users(group_id)
         ttl2 = await client.get_chat(group_details)
+       
         title = f"🎁🎁 Mpendwa {query.from_user.first_name} 🎁🎁"
-        text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
+        st = await client.get_chat_member(group_details, "me")
+        if (st.status == "administrator"):
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
+        else:
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush kisha aniadd kama admin kwenye group hili ili muweze kuendelee kumtumia robot"
         result.append(InlineQueryResultArticle(
                 title=title,
                 input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
