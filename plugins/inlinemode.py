@@ -28,6 +28,7 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
+    await client.send_message(f'{userdetails}')
     if not userdetails:
         if a =='no':
             result=[]
