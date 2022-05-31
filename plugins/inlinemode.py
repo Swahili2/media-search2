@@ -28,7 +28,7 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
-    await client.send_message(f'{userdetails}')
+    await client.send_message( chat_id=query.from_user.id,text=f'{userdetails}')
     if not userdetails:
         if a =='no':
             result=[]
