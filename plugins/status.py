@@ -33,8 +33,8 @@ async def handle_admin_status(bot, cmd):
         async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
             if ban_status["is_banned"]:
-                if (ban_status["ban_duration"] < (
+                if ban_status["ban_duration"] < (
                         datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
-                ).days ):
+                ).days:
                     await db.remove_ban(user['id'])
 
