@@ -49,8 +49,10 @@ async def give_filter(client: Client, query):
             return
     for user in userdetails:
         group_details = await is_user_exist(user.group_id)
+        grp_id=user.group_id
         for id2 in group_details:
             group_id = id2.group_id
+
             
     text = query.query
     ban = await db.get_ban_status(group_id) 
@@ -148,7 +150,7 @@ async def give_filter(client: Client, query):
     if not ban['is_banned']and len(results) != 0 and group_id !=query.from_user.id:
         result=[]
         ttl=await client.get_users(group_id)
-        ttl2 = await client.get_chat(group_details)
+        ttl2 = await client.get_chat(grp_id)
        
         title = f"🎁🎁 Mpendwa {query.from_user.first_name} 🎁🎁"
         st = await client.get_chat_member(group_details, "me")
