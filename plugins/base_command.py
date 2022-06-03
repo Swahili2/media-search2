@@ -71,9 +71,12 @@ async def start_msg_admins(client, message):
     usr_cmdall1 = message.text
     cmd=message
     if usr_cmdall1.startswith("/start subinps"):
+        if await db.is_acc_exist():
         ban_status = await db.get_ban_status(cmd.from_user.id)  
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
+            if await db.is_acc_exist(cmd.from_user.id,file_id):
+            elif await db.is_acc_all_exist(cmd.from_user.id,db_name):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 f_caption=files.reply
