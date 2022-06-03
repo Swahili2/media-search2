@@ -21,19 +21,20 @@ class Database:
                 ban_reason=''
             )
         )
-    def new_acc(self, id,user_id,file_id,db_name,tme):
+    def new_acc(self, id,user_id,file_id,db_name,tme,sts):
         return dict(
             id=id,
             user_id=user_id,
             file_id = file_id,
             db_name = db_name,
+            status = sts,
             ban_status=dict(
                 ban_duration=tme,
                 banned_on=datetime.date.today().isoformat(),
             )
         )
     async def add_acc(self, id):
-        user = self.new_acc(id,user_id,file_id,db_name,tme)
+        user = self.new_acc(id,user_id,file_id,db_name,tme,sts)
         await self.fls.insert_one(user)
     async def add_admin(self, id):
         user = self.new_user(id)
@@ -42,7 +43,20 @@ class Database:
     async def is_admin_exist(self, id):
         user = await self.col.find_one({'id': int(id)})
         return True if user else False
-   
+
+    async def is_acc_all_exist(self, id,db_name):
+        filter={'user_id': int(id)}
+        filter["db_name"]= db_name
+        filter["status"] = "all"
+        user = await self.fls.find_one(filter)
+        return True if user else False
+
+    async def is_acc_exist(self, id,file_id):
+        filter={'user_id': int(id)}
+        filter["file_id"]= file_id
+        user = await self.fls.find_one(filter)
+        return True if user else False
+
     async def total_users_count(self):
         count = await self.col.count_documents({})
         return count
