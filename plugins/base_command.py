@@ -71,7 +71,6 @@ async def start_msg_admins(client, message):
     usr_cmdall1 = message.text
     cmd=message
     if usr_cmdall1.startswith("/start subinps"):
-        if await db.is_acc_exist():
         ban_status = await db.get_ban_status(cmd.from_user.id)  
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
@@ -80,18 +79,7 @@ async def start_msg_admins(client, message):
                 f_caption=files.reply
                 group_id = files.group_id
             if not await db.is_acc_all_exist(cmd.from_user.id,db_name):
-                await client.send_message(
-                        chat_id=cmd.from_user.id,
-                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia ili uweze kuitazama",
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("🇹🇿 TANZANIA", callback_data = "tanzania"),
-                                    InlineKeyboardButton("🇰🇪 KENYA",callback_data ="kenya" )
-                                ]
-                            ]
-                        )
-                    )
+                akg = await client.send_message(chat_id=cmd.from_user.id,text="Please wait")
             elif not await db.is_acc_exist(cmd.from_user.id,file_id):
                 await client.send_message(
                         chat_id=cmd.from_user.id,
