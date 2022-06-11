@@ -13,28 +13,31 @@ class Database:
             id=id,
             join_date=datetime.date.today().isoformat(),
             descp = True,
+            movie = "maelewano na admin",
+            week1 = "hrm45",
+            week2 = "hrm45",
+            week3 = "hrm45",
+            mwezi = "hrm45",
             ban_status=dict(
-                status = 'normal',
                 is_banned=False,
                 ban_duration=0,
                 banned_on=datetime.date.max.isoformat(),
                 ban_reason=''
             )
         )
-    def new_acc(self, id,user_id,file_id,db_name,tme,sts):
+    def new_acc(self, id,user_id,file_id,db_name,tme):
         return dict(
             id=id,
             user_id=user_id,
             file_id = file_id,
             db_name = db_name,
-            status = sts,
             ban_status=dict(
                 ban_duration=tme,
                 banned_on=datetime.date.today().isoformat(),
             )
         )
     async def add_acc(self, id):
-        user = self.new_acc(id,user_id,file_id,db_name,tme,sts)
+        user = self.new_acc(id,user_id,file_id,db_name,tme)
         await self.fls.insert_one(user)
     async def add_admin(self, id):
         user = self.new_user(id)
@@ -47,7 +50,7 @@ class Database:
     async def is_acc_all_exist(self, id,db_name):
         filter={'user_id': int(id)}
         filter["db_name"]= db_name
-        filter["status"] = "all"
+        filter["file_id"] = "all"
         user = await self.fls.find_one(filter)
         return True if user else False
 
@@ -73,7 +76,6 @@ class Database:
 
     async def remove_ban(self, id):
         ban_status = dict(
-            status = 'normal',
             is_banned=False,
             ban_duration= 0,
             banned_on=datetime.date.max.isoformat(),
@@ -81,9 +83,8 @@ class Database:
         )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
 
-    async def ban_user(self, user_id, ban_duration, ban_reason,sts):
+    async def ban_user(self, user_id, ban_duration, ban_reason):
         ban_status = dict(
-            status = sts,
             is_banned=True,
             ban_duration=ban_duration,
             banned_on=datetime.date.today().isoformat(),
@@ -93,7 +94,6 @@ class Database:
 
     async def get_ban_status(self, id):
         default = dict(
-            status = 'normal',
             is_banned=False,
             ban_duration=0,
             banned_on=datetime.date.max.isoformat(),
