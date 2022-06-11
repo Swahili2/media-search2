@@ -78,7 +78,7 @@ async def start_msg_admins(client, message):
             for files in filedetails:
                 f_caption=files.reply
                 group_id = files.group_id
-            if not await db.is_acc_all_exist(cmd.from_user.id,db_name):
+            if not await db.is_acc_all_exist(cmd.from_user.id,group_id):
                 akg = await client.send_message(chat_id=cmd.from_user.id,text="Please wait")
             elif not await db.is_acc_exist(cmd.from_user.id,file_id):
                 await client.send_message(
@@ -93,6 +93,7 @@ async def start_msg_admins(client, message):
                             ]
                         )
                     )
+                return
             strg=files.descp.split('.dd#.')[3]
             if filedetails:
                 if filedetails:
