@@ -206,8 +206,15 @@ async def md_helper(client, query):
         parse_mode = 'html'
     )
 @Client.on_callback_query()
-async def vifurush(client, query):
-        elif query.data == "kenya":
+async def cb_handler(client: Client, query: CallbackQuery):
+    clicked = query.from_user.id
+    try:
+        typed = query.message.reply_to_message.from_user.id
+    except:
+        typed = query.from_user.id
+        pass
+    if (clicked == typed):
+        if query.data == "kenya":
             await query.answer()
             mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
         
@@ -229,3 +236,156 @@ async def vifurush(client, query):
             else:
                 await mkv.delete()
                 await client.send_message(chat_id = query.from_user.id,text = " Nmelazimika kukurudisha hapa kwa sababu umetuma ujumbe sio sahihi\n🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo")]]))
+        elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="0"
+            else:
+                msg0+="0"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+     
+        elif query.data.startswith("1"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="1"
+            else:
+                msg0+="1"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("2"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="2"
+            else:
+                msg0+="2"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("3"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="3"
+            else:
+                msg0+="3"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("4"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="4"
+            else:
+                msg0+="4"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("5"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="5"
+            else:
+                msg0+="5"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("6"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="6"
+            else:
+                msg0+="6"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("7"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="7"
+            else:
+                msg0+="7"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("8"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="8"
+            else:
+                msg0+="8"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("9"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="9"
+            else:
+                msg0+="9"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("00"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="0"
+            else:
+                msg0+="00"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("000"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            msg0=query.data.split(" ")[2]
+            if msg0=="0":
+                msg0="0"
+            else:
+                msg0+="000"
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} {msg0}',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+        elif query.data.startswith("delete"):
+            elif query.data.startswith("0"):
+            msg1=query.data.split(" ")[1]
+            await query.edit_message_text(
+                    text = f'{query.message.text}\n{msg1} 0',
+                    reply_markup = InlineKeyboardMarkup([[]]),
+                )
+def replymkup(msg7,txt1):
+    reply1 = InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo")]]))
