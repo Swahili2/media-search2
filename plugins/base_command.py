@@ -280,10 +280,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 msg0="3"
             else:
                 msg0+="3"
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} {msg0}',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
+            msg2 = query.data.split(" ")[3]
+            if msg2=="c":
+                await query.edit_message_caption(
+                        text = f'{query.message.text.split('msg1')[0]}\n{msg1} {msg0}',
+                        reply_markup = InlineKeyboardMarkup([[]]),
+                    )
+            elif msg2=="t":
+                await query.edit_message_text(
+                        text = f'{query.message.text}\n{msg1} {msg0}',
+                        reply_markup = InlineKeyboardMarkup([[]]),
+                    )
         elif query.data.startswith("4"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
@@ -322,16 +329,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("7"):
             elif query.data.startswith("0"):
-            msg1=query.data.split(" ")[1]
-            msg0=query.data.split(" ")[2]
+            msg1= query.data.split(" ")[1]
+            msg0= query.data.split(" ")[2]
             if msg0=="0":
                 msg0="7"
             else:
                 msg0+="7"
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} {msg0}',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
+            msg2 = query.data.split(" ")[3]
+            if msg2=="c":
+                await query.edit_message_caption(
+                        text = f'{query.message.text}\n{msg1} {msg0}',
+                        reply_markup = InlineKeyboardMarkup([[]]),
+                    )
+            elif msg2=="t":
+                await query.edit_message_text(
+                        text = f'{query.message.text}\n{msg1} {msg0}',
+                        reply_markup = InlineKeyboardMarkup([[]]),
+                    )
+            
         elif query.data.startswith("8"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
