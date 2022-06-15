@@ -228,20 +228,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for files in filedetails:
                 f_caption=files.reply
                 group_id = files.group_id
-                fileid = files.fileid
-            await client.send_photo(chat_id = query.from_user.id
-            await client.send_photo(
+                fileid = files.file
+                type1 = files.type
+            if type1=="photo":
+                await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= fileid,
                             caption =f'text="🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 malipo ya movie", callback_data="malipo")]]))' )
-        elif query.data == "malipo":
+            else:
+                await client.send_cached_media(
+                                    chat_id=query.from_user.id,
+                                    file_id=fileid,
+                                    caption=f'text="🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 malipo ya movie", callback_data="malipo")]]))')
+                                )
+        elif query.data.startwith("malipo"):
             await query.answer()
+            msg1 = query.data.split(" ")[1]
+            msg2 = query.data.split(" ")[2]
             await query.message.delete()
             mkv = await client.ask(text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako',chat_id = query.from_user.id,reply_markup=ForceReply())
             if mkv.photo:
                 await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\ntumepokea screenshot ngoja tuihakiki tutakupa majibu tukimaliza')
                 await client.send_photo(
-                            chat_id=859704527,
+                            chat_id=msg1,
                             photo= mkv.photo.file_id,
                             caption =f'id = {query.from_user.id}\n Name :message.from_user.first_name}' )
             else:
