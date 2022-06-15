@@ -253,12 +253,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             chat_id=msg1,
                             photo= mkv.photo.file_id,
                             caption =f'id = {query.from_user.id}\n Name :message.from_user.first_name}' )
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data="yes"),InlineKeyboardButton("chat private", URL=f"{query.from_user.id}")]])
             else:
                 await mkv.delete()
                 await client.send_message(chat_id = query.from_user.id,text = " Nmelazimika kukurudisha hapa kwa sababu umetuma ujumbe sio sahihi\n🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo")]]))
         elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
-            msg0=query.data.split(" ")[2]
+            msg0=query.data.split(" ")[0]
             if msg0=="0":
                 msg0="0"
             else:
@@ -295,12 +296,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("3"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
-            msg0=query.data.split(" ")[2]
+            msg0=query.data.split(" ")[0]
             if msg0=="0":
                 msg0="3"
             else:
                 msg0+="3"
-            msg2 = query.data.split(" ")[3]
+            msg2 = query.data.split(" ")[2]
             if msg2=="c":
                 await query.edit_message_caption(
                         text = f'{query.message.text.split('msg1')[0]}\n{msg1} {msg0}',
@@ -423,4 +424,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
 def replymkup(msg7,txt1):
-    reply1 = InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo")]]))
+    reply1 = InlineKeyboardMarkup([
+            [
+                InlineKeyboardButton("1", callback_data="malipo"),
+                InlineKeyboardButton("2", callback_data="malipo"),
+                InlineKeyboardButton("3", callback_data="malipo"),
+                InlineKeyboardButton("4", callback_data="malipo"),
+                InlineKeyboardButton("5", callback_data="malipo")
+            ],
+            [
+                InlineKeyboardButton("6", callback_data="malipo"),
+                InlineKeyboardButton("7", callback_data="malipo"),
+                InlineKeyboardButton("8", callback_data="malipo"),
+                InlineKeyboardButton("9", callback_data="malipo"),
+                InlineKeyboardButton("x", callback_data="malipo")
+            ],
+            [
+                InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo"),
+                InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data="malipo")
+            ]
+        ]))
