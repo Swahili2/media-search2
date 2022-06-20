@@ -265,7 +265,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
                     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"malipo {query.from_user.id} {msg2}")]]),
                 )
-        elif query.data.startswith("0"):
+        elif query.data.startwith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[0]
             if msg0=="0":
@@ -277,7 +277,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
      
-        elif query.data.startswith("1"):
+        elif query.data.startwith("1"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -289,7 +289,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("2"):
+        elif query.data.startwith("2"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -301,7 +301,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("3"):
+        elif query.data.startwith("3"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[0]
@@ -320,7 +320,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         text = f'{query.message.text}\n{msg1} {msg0}',
                         reply_markup = InlineKeyboardMarkup([[]]),
                     )
-        elif query.data.startswith("4"):
+        elif query.data.startwith("4"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -332,7 +332,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("5"):
+        elif query.data.startwith("5"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -344,7 +344,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("6"):
+        elif query.data.startwith("6"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -356,7 +356,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("7"):
+        elif query.data.startwith("7"):
             elif query.data.startswith("0"):
             msg1= query.data.split(" ")[1]
             msg0= query.data.split(" ")[2]
@@ -376,7 +376,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup = InlineKeyboardMarkup([[]]),
                     )
             
-        elif query.data.startswith("8"):
+        elif query.data.startwith("8"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -388,7 +388,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("9"):
+        elif query.data.startwith("9"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -400,7 +400,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("00"):
+        elif query.data.startwith("00"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -412,7 +412,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("000"):
+        elif query.data.startwith("000"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[2]
@@ -424,7 +424,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-        elif query.data.startswith("delete"):
+        elif query.data.startswith("delete ghji"):
             elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             await query.edit_message_text(
