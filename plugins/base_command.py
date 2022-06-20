@@ -276,8 +276,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     text = f'{query.message.text}\n{msg1} {msg0}',
                     reply_markup = InlineKeyboardMarkup([[]]),
                 )
-     
- (" ")[2]
             if msg0=="0":
                 msg0="0"
             else:
