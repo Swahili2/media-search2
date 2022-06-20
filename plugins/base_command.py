@@ -261,10 +261,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg0 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
             await query.edit_message_photo(
-                   photo = query.message.photo.file_id,
-                   caption = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
-                   reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"malipo {query.from_user.id} {msg2}")]]),
-               )
+                    photo = query.message.photo.file_id,
+                    caption = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
+                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"malipo {query.from_user.id} {msg2}")]]),
+                )
         elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[0]
