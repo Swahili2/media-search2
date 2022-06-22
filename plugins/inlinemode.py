@@ -37,8 +37,7 @@ async def give_filter(client: Client, query):
             result.append(InlineQueryResultArticle(
                     title=title,
                     input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                    description=f'!!HAUPO KWENYE DATABASE YANGU!!\nKitu chochote utakacho niuliza ntashindwa kukujibu,Ili kupata movie,series,miziki n.k gusa hapa kupata maelekezo ya kujiunga',
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
+                    description=f'!!HAUPO KWENYE DATABASE YANGU!!\nKitu chochote utakacho niuliza ntashindwa kukujibu,Ili kupata movie,series,miziki n.k gusa hapa kupata maelekezo ya kujiunga'
                 ))
             await query.answer(
                 results = result,
@@ -162,7 +161,7 @@ async def give_filter(client: Client, query):
                 title=title,
                 input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
                 description=f'total members :\nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot',
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 MTAARIFU ADMIN', url=f'(tg://user?id={group_id})')]])
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 MTAARIFU ADMIN', url=f'tg://user?id={group_id}')]])
             ))
         await query.answer(
             results = result,
