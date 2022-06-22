@@ -261,7 +261,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await mkv.delete()
                 await client.send_message(chat_id = query.from_user.id,text = " Nmelazimika kukurudisha hapa kwa sababu umetuma ujumbe sio sahihi\n🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data=f"malipo {msg1} {msg2}")]]))
         elif query.data.startswith("yes"):
-            msg0 = query.data.split(" ")[1]
+            msg1 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
             await query.edit_message_caption(
                     caption = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
@@ -272,7 +272,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg2 = query.data.split(" ")[2]
             await query.edit_message.caption(
                             caption =f'id = {query.from_user.id}\n Name ' ,
-                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
             
         elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
