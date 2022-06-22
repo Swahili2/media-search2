@@ -263,11 +263,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("yes"):
             msg0 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
-            await query.edit_message_photo(
-                    photo = query.message.photo.file_id,
+            await query.edit_message_caption(
                     caption = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
-                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"malipo {query.from_user.id} {msg2}")]]),
+                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1} {msg2}")]]),
                 )
+        elif query.data.starts with("rudi"):
+            msg0 = query.data.split(" ")[1]
+            msg2 = query.data.split(" ")[2]
+            await query.edit_message.caption(
+                            caption =f'id = {query.from_user.id}\n Name ' ,
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+            
         elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[0]
