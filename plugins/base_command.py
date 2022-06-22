@@ -268,7 +268,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1} {msg2}")]]),
                 )
         elif query.data.startswith("rudi"):
-            msg0 = query.data.split(" ")[1]
+            msg1 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
             await query.edit_message_caption(
                             caption =f'id = {query.from_user.id}\n Name ' ,
