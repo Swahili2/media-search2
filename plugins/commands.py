@@ -636,7 +636,7 @@ async def ban(c,m):
         user_id = int(m.command[1])
         ban_duration = int(m.command[2])
         ban_reason = ' '.join(m.command[3:])
-        ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} haddhi {status}admin."
+        ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} ."
         try:
             await c.send_message(
                 user_id,
@@ -645,7 +645,7 @@ async def ban(c,m):
             )
             ban_log_text += '\n\nUser notified successfully!'
         except:
-            traceback.print_exc()
+            
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
@@ -657,9 +657,8 @@ async def ban(c,m):
             quote=True
         )
     except:
-        traceback.print_exc()
         await m.reply_text(
-            f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
+            f"Error occoured! Traceback given below\n\n",
             quote=True
         )
 @Client.on_message(filters.private & filters.command("admin"))
