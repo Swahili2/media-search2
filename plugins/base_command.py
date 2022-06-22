@@ -230,7 +230,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 fileid = files.file
                 type1 = files.type
-            if type1=="photo":
+            if type1=="Photo":
                 await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= fileid,
