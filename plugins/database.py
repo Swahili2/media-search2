@@ -40,7 +40,7 @@ class Database:
                 banned_on=datetime.date.today().isoformat(),
             )
         )
-    async def add_acc(self, id):
+    async def add_acc(self, id,user_id,file_id,db_name,tme):
         user = self.new_acc(id,user_id,file_id,db_name,tme)
         await self.fls.insert_one(user)
     async def add_admin(self, id):
