@@ -79,7 +79,7 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
             ban_status = await db.get_ban_status(group_id) 
             
-            if not await db.is_acc_all_exist(cmd.from_user.id,group_id):
+            if await db.is_acc_all_exist(cmd.from_user.id,group_id):
                 akg = await client.send_message(chat_id=cmd.from_user.id,text="Please wait")
             elif not await db.is_acc_exist(cmd.from_user.id,file_id):
                 await client.send_message(
