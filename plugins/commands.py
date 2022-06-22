@@ -625,8 +625,8 @@ async def ban(c,m):
         await m.reply_text(
             f"Use this command to add access to any user from the bot.\n\n"
             f"Usage:\n\n"
-            f"`/add_admin admin_id duration_in days status ya admin  ofa_given`\n\n"
-            f"Eg: `/add_admin 1234567 28 vip Umepata ofa ya Siku 3 zaidi.`\n"
+            f"`/add_admin admin_id duration_in days  ofa_given`\n\n"
+            f"Eg: `/add_admin 1234567 28 Umepata ofa ya Siku 3 zaidi.`\n"
             f"This will add user with id `1234567` for `28` days for the reason `ofa siku 3 zaidi`.",
             quote=True
         )
@@ -635,13 +635,12 @@ async def ban(c,m):
     try:
         user_id = int(m.command[1])
         ban_duration = int(m.command[2])
-        status = m.command[3]
-        ban_reason = ' '.join(m.command[4:])
+        ban_reason = ' '.join(m.command[3:])
         ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} haddhi {status}admin."
         try:
             await c.send_message(
                 user_id,
-                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n Umeungwa kifurush cha {status} Admin"
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
@@ -651,7 +650,7 @@ async def ban(c,m):
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
             await db.add_admin(user_id)
-        await db.ban_user(user_id, ban_duration, ban_reason,status)
+        await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
         await m.reply_text(
             ban_log_text,
