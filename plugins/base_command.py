@@ -270,7 +270,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("rudi"):
             msg0 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
-            await query.edit_message.caption(
+            await query.edit_message_caption(
                             caption =f'id = {query.from_user.id}\n Name ' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
             
