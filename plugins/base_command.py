@@ -253,7 +253,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if mkv.photo:
                 await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\ntumepokea screenshot ngoja tuihakiki tutakupa majibu tukimaliza')
                 await client.send_photo(
-                            chat_id=msg1,
+                            chat_id=int(msg1),
                             photo= mkv.photo.file_id,
                             caption =f'id = {query.from_user.id}\n Name ' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
