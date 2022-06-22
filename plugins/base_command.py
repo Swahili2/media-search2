@@ -2,7 +2,7 @@ from info import filters
 from utils import get_file_details,get_filter_results
 from pyrogram  import Client
 from plugins.database import db
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery,ForceReply
 from plugins.strings import START_MESSAGE, HELP_MESSAGE, ABOUT_MESSAGE, MARKDOWN_HELP
 
 start_keyboard = [
