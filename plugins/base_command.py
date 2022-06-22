@@ -71,14 +71,14 @@ async def start_msg_admins(client, message):
     usr_cmdall1 = message.text
     cmd=message
     if usr_cmdall1.startswith("/start subinps"):
-        ban_status = await db.get_ban_status(cmd.from_user.id)  
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 f_caption=files.reply
                 group_id = files.group_id
-                
+            ban_status = await db.get_ban_status(group_id) 
+            
             if not await db.is_acc_all_exist(cmd.from_user.id,group_id):
                 akg = await client.send_message(chat_id=cmd.from_user.id,text="Please wait")
             elif not await db.is_acc_exist(cmd.from_user.id,file_id):
@@ -234,7 +234,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= fileid,
-                            caption =f'text="🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardBa movie", callback_data=f"malipo {group_id} {fileid}")]])' )
+                            caption =f'text="🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("malipo movie", callback_data=f"malipo {group_id} {fileid}")]])' )
             else:
                 await client.send_cached_media(
                                     chat_id=query.from_user.id,
