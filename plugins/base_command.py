@@ -255,7 +255,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_photo(
                             chat_id=msg1,
                             photo= mkv.photo.file_id,
-                            caption =f'id = {query.from_user.id}\n Name :{message.from_user.first_name}' ,
+                            caption =f'id = {query.from_user.id}\n Name ' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {msg2}"),InlineKeyboardButton("chat private", URL=f"tg://user?id={query.from_user.id}")]]))
             else:
                 await mkv.delete()
