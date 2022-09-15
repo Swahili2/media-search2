@@ -315,24 +315,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
 def replymkup(msg7,txt1):
     reply1 = InlineKeyboardMarkup([
             [
-                InlineKeyboardButton("1", callback_data="malipo"),
-                InlineKeyboardButton("2", callback_data="malipo"),
-                InlineKeyboardButton("3", callback_data="malipo"),
-                InlineKeyboardButton("4", callback_data="malipo"),
-                InlineKeyboardButton("5", callback_data="malipo")
+                InlineKeyboardButton("1", callback_data="1 msg7 txt1"),
+                InlineKeyboardButton("2", callback_data="2 msg7 txt1"),
+                InlineKeyboardButton("3", callback_data="3 msg7 txt1"),
+                InlineKeyboardButton("4", callback_data="4 msg7 txt1"),
+                InlineKeyboardButton("5", callback_data="5 msg7 txt1")
             ],
             [
-                InlineKeyboardButton("6", callback_data="malipo"),
-                InlineKeyboardButton("7", callback_data="malipo"),
-                InlineKeyboardButton("8", callback_data="malipo"),
-                InlineKeyboardButton("9", callback_data="malipo"),
-                InlineKeyboardButton("0", callback_data="malipo")
+                InlineKeyboardButton("6", callback_data="6 msg7 txt1"),
+                InlineKeyboardButton("7", callback_data="7 msg7 txt1"),
+                InlineKeyboardButton("8", callback_data="8 msg7 txt1"),
+                InlineKeyboardButton("9", callback_data="9 msg7 txt1"),
+                InlineKeyboardButton("0", callback_data="0 msg7 txt1")
             ],
             [
-                InlineKeyboardButton("00", callback_data="malipo"),
-                InlineKeyboardButton("000", callback_data="malipo"),
-                InlineKeyboardButton("", callback_data="malipo")
-                InlineKeyboardButton("x", callback_data="malipo")
+                InlineKeyboardButton("00", callback_data="00 msg7 txt1"),
+                InlineKeyboardButton("000", callback_data="000 msg7 txt1"),
+                InlineKeyboardButton("✅", callback_data="upl msg7 txt1"),
+                InlineKeyboardButton("❎", callback_data="del msg7 txt1")
             ]
 
         ])
