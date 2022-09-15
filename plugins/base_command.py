@@ -331,6 +331,8 @@ def replymkup(msg7,txt1):
             [
                 InlineKeyboardButton("00", callback_data="malipo"),
                 InlineKeyboardButton("000", callback_data="malipo"),
+                InlineKeyboardButton("", callback_data="malipo")
                 InlineKeyboardButton("x", callback_data="malipo")
             ]
+
         ])
