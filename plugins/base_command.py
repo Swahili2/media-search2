@@ -270,8 +270,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("rudi"):
             msg1 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
+            
             await query.edit_message_caption(
                             caption =f'id = {query.from_user.id}\n Name ' ,
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
+        elif query.data.startswith("ndiyo"):
+            msg1 = query.data.split(" ")[1]
+            msg2 = query.data.split(" ")[2]
+            filedetails = await get_file_details(msg2)
+            await query.edit_message_caption(
+                            caption =f'id = {query.from_user.id}\n Name:  {query.from_user.first_name}' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
             
         elif query.data.startswith("0"):
