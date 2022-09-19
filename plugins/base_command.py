@@ -236,14 +236,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= fileid,
-                            caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**',
-                            reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6)]) )
+                            caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
+                            reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
             else:
                 await client.send_cached_media(
                                     chat_id=query.from_user.id,
                                     file_id=fileid,
-                                    caption=f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**',
-                                    reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6)]) )
+                                    caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
+                                    reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
             else:
         elif query.data.startswith("malipo"):
             await query.answer()
