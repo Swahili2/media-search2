@@ -12,13 +12,15 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            db_name = "maelewano na admin",
-            g_1= "maelewano na admin",
-            g_2 = "maelewano na admin",
-            g_3 = "hrm45",
-            g_4= "hrm45",
-            g_5 = "hrm45",
-            g_6 = "hrm45",
+            db_status=duct(
+                db_name = "swahiligroupmedia",
+                g_1= "maelewano na admin",
+                g_2 = "maelewano na admin",
+                g_3 = "hrm45",
+                g_4= "hrm45",
+                g_5 = "hrm45",
+                g_6 = "hrm45",
+            )
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
