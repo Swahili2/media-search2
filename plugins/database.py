@@ -12,10 +12,12 @@ class Database:
         return dict(
             id=id,
             join_date=datetime.date.today().isoformat(),
-            db_status=duct(
-                db_name = "swahiligroupmedia",
-                g_1= "maelewano na admin",
-                g_2 = "maelewano na admin",
+            db_status=dict(
+                db_name = "SWAHILI GROUP MEDIA",
+                descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei ",
+                phone_no = "0 hrm45 halopesa",
+                g_1= "hrm45",
+                g_2 = "hrm45",
                 g_3 = "hrm45",
                 g_4= "hrm45",
                 g_5 = "hrm45",
@@ -94,6 +96,20 @@ class Database:
             ban_reason=ban_reason
         )
         await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
+    async def get_db_status(self, id):
+        default =dict(
+                db_name = "SWAHILI GROUP MEDIA",
+                descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei chee",
+                phone_no = "0 hrm45 halopesa",
+                g_1= "hrm45",
+                g_2 = "hrm45",
+                g_3 = "hrm45",
+                g_4= "hrm45",
+                g_5 = "hrm45",
+                g_6 = "hrm45",
+            )
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('db_status', default)
 
     async def get_ban_status(self, id):
         default = dict(
