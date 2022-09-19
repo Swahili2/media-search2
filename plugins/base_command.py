@@ -231,19 +231,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 fileid = files.file
                 type1 = files.type
+            db_details = await db.get_db_status(group_id)
             if type1=="Photo":
                 await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= fileid,
                             caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**',
-                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("malipo movie", callback_data=f"malipo {group_id} {id3}")]]) )
+                            reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6)]) )
             else:
                 await client.send_cached_media(
                                     chat_id=query.from_user.id,
                                     file_id=fileid,
                                     caption=f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**',
-                                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 malipo ya movie", callback_data=f"malipo {group_id} {id3}")]])
-                                )
+                                    reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6)]) )
+            else:
         elif query.data.startswith("malipo"):
             await query.answer()
             msg1 = query.data.split(" ")[1]
@@ -346,3 +347,10 @@ def replymkup(msg7,txt1):
             ]
 
         ])
+
+def replymkup1(msg2):
+    if msg2=="hrm45":
+        return []
+    else:
+        msg2=msg2.split(" ")[0]
+        return [InlineKeyboardButton("msg2", callback_data="malipo")]
