@@ -251,7 +251,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg2 = query.data.split(" ")[2]
             details = await get_db_status(msg1)
             data1= details.msg2
-            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0].upper()}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini ")
+            data2= data1.split(" ")[1]
+            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0]}}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii"
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 /{data2.split(",")[0]}"),replymkup2(f"week 2 /{data2.split(",")[1]}"),replymkup2(f"week 3 /{data2.split(",")[2]}"),replymkup2(f"mwezi 1 /{data2.split(",")[3]}")])
+                )
         elif query.data.startswith("malipo"):
             await query.answer()
             msg1 = query.data.split(" ")[1]
@@ -354,6 +357,12 @@ def replymkup(msg7,txt1):
             ]
 
         ])
+def replymkup2(msg2):
+    msg1 = msg2.split('/')[1]
+    if msg1 == 0:
+        return []
+    else:
+        return [InlineKeyboardButton("msg2", callback_data="malipo")]
 
 def replymkup1(msg2):
     if msg2=="hrm45":
