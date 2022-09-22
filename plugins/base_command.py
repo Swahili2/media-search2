@@ -237,23 +237,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             chat_id=query.from_user.id,
                             photo= fileid,
                             caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
-                            reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
+                            reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1,fileid,g_1),replymkup1(db_details.g_2,fileid,g_2),replymkup1(db_details.g_3,fileid,g_3),replymkup1(db_details.g_4,fileid,g_4),replymkup1(db_details.g_5,fileid,g_5),replymkup1(db_details.g_6,fileid,g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
             else:
                 await client.send_cached_media(
                                     chat_id=query.from_user.id,
                                     file_id=fileid,
                                     caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
-                                    reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
-            else:
+                                    reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1,fileid,g_1),replymkup1(db_details.g_2,fileid,g_2),replymkup1(db_details.g_3,fileid,g_3),replymkup1(db_details.g_4,fileid,g_4),replymkup1(db_details.g_5,fileid,g_5),replymkup1(db_details.g_6,fileid,g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
+            
         elif query.data.startswith("wik"):
             await query.answer()
-            msg1 = query.data.split(" ")[1].split(".")[0]
-            msg2 = query.data.split(" ")[1].split(".")[1]
+            fileid,msg2 = query.split(" ")[1].split(".")
+            filedetails = await get_file_details(fileid)
+            for files in filedetails:
+                group_id = files.group_id
+            msg1 = group_id
             details = await get_db_status(msg1)
             data1= details.msg2
             data2= data1.split(" ")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0]}}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii"
-                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}"),replymkup2(f"week 2 tsh {data2.split(",")[1]}"),replymkup2(f"week 3 tsh {data2.split(",")[2]}"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}"),InlineKeyboardButton("back", callback_data=f"tanzania {query.data.split(" ")[2]}"]])
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}"),replymkup2(f"week 2 tsh {data2.split(",")[1]}"),replymkup2(f"week 3 tsh {data2.split(",")[2]}"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}"),InlineKeyboardButton("back", callback_data=f"tanzania {fileid)
                 )
         elif query.data.startswith("malipo"):
             await query.answer()
@@ -362,11 +365,11 @@ def replymkup2(msg2):
     if msg1 == 0:
         return []
     else:
-        return [InlineKeyboardButton("msg2", callback_data="malipo")]
+        return [InlineKeyboardButton(f"{msg2}", callback_data="malipo")]
 
-def replymkup1(msg2):
-    if msg2=="hrm45":
+def replymkup1(msg3,msg1,msg2):
+    if msg3=="hrm45":
         return []
     else:
-        msg2=msg2.split(" ")[0]
-        return [InlineKeyboardButton("msg2", callback_data="malipo")]
+        msg3=msg3.split(" ")[0]
+        return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}.{msg2}")]
