@@ -245,15 +245,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                     caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
                                     reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
             else:
-        elif query.data.startswith("wiki"):
+        elif query.data.startswith("wik"):
             await query.answer()
-            msg1 = query.data.split(" ")[1]
-            msg2 = query.data.split(" ")[2]
+            msg1 = query.data.split(" ")[1].split(".")[0]
+            msg2 = query.data.split(" ")[1].split(".")[1]
             details = await get_db_status(msg1)
             data1= details.msg2
             data2= data1.split(" ")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0]}}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii"
-                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}"),replymkup2(f"week 2 tsh {data2.split(",")[1]}"),replymkup2(f"week 3 tsh {data2.split(",")[2]}"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}")])
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}"),replymkup2(f"week 2 tsh {data2.split(",")[1]}"),replymkup2(f"week 3 tsh {data2.split(",")[2]}"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}"),InlineKeyboardButton("back", callback_data=f"tanzania {query.data.split(" ")[2]}"]])
                 )
         elif query.data.startswith("malipo"):
             await query.answer()
