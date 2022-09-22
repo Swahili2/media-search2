@@ -245,6 +245,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                     caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details.db_name.upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details.db_name.upper()} __**',
                                     reply_markup=InlineKeyboardMarkup([replymkup1(db_details.g_1),replymkup1(db_details.g_2),replymkup1(db_details.g_3),replymkup1(db_details.g_4),replymkup1(db_details.g_5),replymkup1(db_details.g_6),[InlineKeyboardButton("Lipia hii __ tu", callback_data="malipo")]]) )
             else:
+        elif query.data.startswith("wiki"):
+            await query.answer()
+            msg1 = query.data.split(" ")[1]
+            msg2 = query.data.split(" ")[2]
+            details = await get_db_status(msg1)
+            data1= details.msg2
+            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0].upper()}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini ")
         elif query.data.startswith("malipo"):
             await query.answer()
             msg1 = query.data.split(" ")[1]
