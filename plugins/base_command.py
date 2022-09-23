@@ -261,16 +261,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("wik2"):
             await query.answer()
-            fileid,msg2,prc1 = query. split(" ")[1].split(".")
+            fileid,msg2,prc1,tme = query. split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
                 group_id = files.group_id
             msg1 = group_id
             details = await get_db_status(msg1)
             data1 = details.msg2
-            data2 = data1.split(" ")[1]
+            if tme=="wk1":
+                tme1= "wiki 1"
+            elif tme=="wk1":
+                tme1= "wiki 2"
+            elif tme=="wk1":
+                tme1= "wiki 3"
+            else:
+                tme1= "mwezi mmoja"
+            data2 = data1.split(" ")[0]
             await query.edit_message_text(
-                    text = f'je unauhakika tumruhusu {query.from_user.first_name} bonyeza ndiyo kukubali au bonyeza rudi kurudi kwenye screenshot ya muamala',
+                    text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details.dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {details.phoneno}\nKampuni : {details.kampuni}\nJina : {details.jina} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
                     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {msg1} {msg2}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                 )
         elif query.data.startswith("malipo"):
