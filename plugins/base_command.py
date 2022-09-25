@@ -296,17 +296,32 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("malipo"):
             await query.answer()
-            msg1 = query.data.split(" ")[1]
-            msg2 = query.data.split(" ")[2]
+            fileid,msg2,prc1,tme = query.split(" ")[1].split(".")
+            filedetails = await get_file_details(fileid)
+            for files in filedetails:
+                group_id = files.group_id
+                prc2 = files.price
+                name = files.file_name
+                grp = files.grp
+            
+         
             await query.message.delete()
             mkv = await client.ask(text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako',chat_id = query.from_user.id,reply_markup=ForceReply())
             if mkv.photo:
                 await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\ntumepokea screenshot ngoja tuihakiki tutakupa majibu tukimaliza')
-                await client.send_photo(
-                            chat_id=int(msg1),
+                if time=='m':
+                    await client.send_photo(
+                            chat_id=int(groupid),
                             photo= mkv.photo.file_id,
                             caption =f'id = {query.from_user.id}\n Name ' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+                else:
+                    await client.send_photo(
+                            chat_id=int(groupid),
+                            photo= mkv.photo.file_id,
+                            caption =f'id = {query.from_user.id}\n Name ' ,
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+                
             else:
                 await mkv.delete()
                 await client.send_message(chat_id = query.from_user.id,text = " Nmelazimika kukurudisha hapa kwa sababu umetuma ujumbe sio sahihi\n🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA SWAHILI GROUP** \n🔴 wiki 1(07 days) ➡️ 2000/= \n\n🟠 wiki 2(14 days) ➡️ 3000/= \n\n🟡 wiki 3(21 days) ➡️ 4000/= \n\n🟢 mwezi (30 days) ➡️ 5000/= \n\n↘️Lipa kwenda **0624667219** halopesa:Ukishafanya malipo bonyeza button nmeshafanya malipo\n **__KARIBUN SANA SWAHILI GROUP__**",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔴 Nmeshafanya malipo", callback_data=f"malipo {msg1} {msg2}")]]))
