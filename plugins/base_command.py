@@ -326,13 +326,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             chat_id=int(groupid),
                             photo= mkv.photo.file_id,
                             caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada' ,
-                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query.split(" ")[1]}@#{query.from_user.first_name}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
                 else:
                     await client.send_photo(
                             chat_id=int(groupid),
                             photo= mkv.photo.file_id,
                             caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada' ,
-                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query.split(" ")[1]}@#{query.from_user.first_name}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
                 
             else:
                 await mkv.delete()
@@ -348,10 +348,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                        )
         elif query.data.startswith("yes"):
             msg1 = query.data.split(" ")[1]
-            msg2 = query.data.split(" ")[2]
+            msg2 = query.data.split(" ")[2].split("@#')[1]
             await query.edit_message_caption(
-                    caption = f'je unauhakika tumruhusu [{msg1}] bonyeza ndiyo kukubali au bonyeza rudi kurudi kupata maelezo ya muamala',
-                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {msg2}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1}{msg2)]]),
+                    caption = f'je unauhakika tumruhusu [{msg2}](tg://user?id={int(msg1)}) bonyeza ndiyo kukubali au bonyeza rudi kurudi kupata maelezo ya muamala',
+                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {query.data.split(" ")[2]}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1}{msg2)]]),
                 )
         elif query.data.startswith("ndiyo"):
             msg1 = query.data.split(" ")[1]
