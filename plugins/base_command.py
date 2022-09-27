@@ -268,8 +268,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 prc2 = files.price
                 name = files.file_name
                 grp = files.grp
-            msg1 = group_id
-            details = await get_db_status(msg1)
+            details = await get_db_status(group_id)
             data1 = details.msg2
             if tme=="wk1":
                 tme1= "wiki 1"
@@ -313,7 +312,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= "mwezi mmoja"
             else:
                 tme1=tme
-            details = await get_db_status(msg1)
+            details = await get_db_status(group_id)
             data1 = details.msg2
             p1,p2,p3 =details.phone_no.split(" ")
             mda = details.muda
@@ -323,15 +322,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\ntumepokea screenshot ngoja tuihakiki tutakupa majibu tukimaliza')
                 if tme=='m':
                     await client.send_photo(
-                            chat_id=int(groupid),
+                            chat_id=int(group_id),
                             photo= mkv.photo.file_id,
-                            caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada' ,
+                            caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query.split(" ")[1]}@#{query.from_user.first_name}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
                 else:
                     await client.send_photo(
-                            chat_id=int(groupid),
+                            chat_id=int(group_id),
                             photo= mkv.photo.file_id,
-                            caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada' ,
+                            caption = f'Mteja [{query.from_user.first_name}](tg://user?id={query.from_user.id})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {query.from_user.id} {query.split(" ")[1]}@#{query.from_user.first_name}"),InlineKeyboardButton("chat private", url=f"tg://user?id={query.from_user.id}")]]))
                 
             else:
@@ -351,8 +350,40 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg2 = query.data.split(" ")[2].split("@#')[1]
             await query.edit_message_caption(
                     caption = f'je unauhakika tumruhusu [{msg2}](tg://user?id={int(msg1)}) bonyeza ndiyo kukubali au bonyeza rudi kurudi kupata maelezo ya muamala',
-                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {query.data.split(" ")[2]}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1}{msg2)]]),
+                    reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {query.data.split(" ")[2]}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1} {query.data.split(" ")[2]})]]),
                 )
+        elif query.data.startswith("rudi"):
+            msg#,msg1,data3 = query.split(" ")         
+            msg3 = data3.split("@#")[1]
+            fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
+            filedetails = await get_file_details(fileid)
+            for files in filedetails:
+                group_id = files.group_id
+                prc2 = files.price
+                name = files.file_name
+                grp = files.grp
+            if tme=="wk1":
+                tme1= "wiki 1"
+            elif tme=="wk2":
+                tme1= "wiki 2"
+            elif tme=="wk3":
+                tme1= "wiki 3"
+            elif tme== "mwz1":
+                tme1= "mwezi mmoja"
+            else:
+                tme1=tme
+            details = await get_db_status(group_id)
+            data1 = details.msg2
+            if tme1=="m":
+                await query.edit_message_caption(
+                        caption = f'Mteja [{msg3}](tg://user?id={int(msg1)})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
+                        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
+                    )
+            else:
+                await query.edit_message_caption(
+                        caption = f'Mteja [{msg3}](tg://user?id={int(msg1)})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
+                        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
+                    )
         elif query.data.startswith("ndiyo"):
             msg1 = query.data.split(" ")[1]
             msg2 = query.data.split(" ")[2]
