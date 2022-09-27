@@ -394,14 +394,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 prc2 = files.price
                 name = files.file_name
                 grp = files.grp
-            
-            filedetails = await get_file_details(fileid)
+            if tme=="wk1":
+                tme1= 7
+            elif tme=="wk2":
+                tme1= 14
+            elif tme=="wk3":
+                tme1= 21
+            elif tme== "mwz1":
+                tme1= 30
             if tme == "m":
-                await db.add_acc(id,msg1,msg2,query.from_user.id,tme)
-            await query.send_message(
-                            caption =f'id = {query.from_user.id}\n Name:  {query.from_user.first_name}' ,
-                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
-            
+                await db.add_acc(id,msg1,fileid,query.from_user.id,999)
+            else:
+                await db.add_acc(id,msg1,msg2,query.from_user.id,tme1)
+            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {msg3} amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
+                    )
+            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
+                    )
         elif query.data.startswith("0"):
             msg1=query.data.split(" ")[1]
             msg0=query.data.split(" ")[0]
