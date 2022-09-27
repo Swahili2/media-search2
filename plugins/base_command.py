@@ -385,10 +385,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
                     )
         elif query.data.startswith("ndiyo"):
-            msg1 = query.data.split(" ")[1]
-            msg2 = query.data.split(" ")[2]
-            filedetails = await get_file_details(msg2)
-            await db.add_acc(id,msg1,msg2,query.from_user.id,tme)
+            msg#,msg1,data3 = query.split(" ")         
+            msg3 = data3.split("@#")[1]
+            fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
+            filedetails = await get_file_details(fileid)
+            for files in filedetails:
+                group_id = files.group_id
+                prc2 = files.price
+                name = files.file_name
+                grp = files.grp
+            
+            filedetails = await get_file_details(fileid)
+            if tme == "m":
+                await db.add_acc(id,msg1,msg2,query.from_user.id,tme)
             await query.send_message(
                             caption =f'id = {query.from_user.id}\n Name:  {query.from_user.first_name}' ,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {msg2}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
