@@ -109,9 +109,16 @@ async def new_filtervip(client: Client, message):
         await message.reply('Not Supported..!')
         return
     mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
-    if mkv.text.lower()=='s':
-        mkv2 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa series',chat_id = message.from_user.id)
-        mkvl = await client.ask(text='naomba utume link ya kupakua series hii',chat_id = message.from_user.id)
+    if mkv.text.lower()=='m':
+        mkva = await client.ask(text='naomba neno l kama utatuma muv kwa link au neno h kama n vipande vya muv ',chat_id = message.from_user.id)
+    
+    if mkv.text.lower()=='s' or mkva.text.lower()=='l' :
+        if mkv.text.lower()=='s':
+            b="series"
+        else:
+            b="movie"
+        mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo mfano imetafsiriwa {b}',chat_id = message.from_user.id)
+        mkvl = await client.ask(text=f'naomba utume link ya kupakua {b} hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
