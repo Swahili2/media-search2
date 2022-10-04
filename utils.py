@@ -1,4 +1,3 @@
-
 import re
 import base64
 import logging
@@ -74,7 +73,7 @@ async def add_user(id, usr,sts,ttl):
         else:
             logger.info("group is saved in database")
 
-async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,sts,prc,,grp):
+async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,sts,prc,grp):
     """Save file in database"""
     text = str(text).lower()
     fdata = {'text': text}
