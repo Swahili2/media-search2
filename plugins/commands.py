@@ -109,20 +109,27 @@ async def new_filtervip(client: Client, message):
         await message.reply('Not Supported..!')
         return
     mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
-    if mkv.text.lower()=='m':
-        mkva = await client.ask(text='naomba neno l kama utatuma muv kwa link au neno h kama n vipande vya muv ',chat_id = message.from_user.id)
+    usr = await db.get_db_status(message.from_user.id)
+    i=0
+    usr1
+    for usrl in usr.aina.split(','):
+        i+=1
+        usr1=f'{usr1}\n{i}:{usrl}'
+    mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
+    try:
+        ab=int(mkv.text)
+    except:
+        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa')
     
-    if mkv.text.lower()=='s' or mkva.text.lower()=='l' :
-        if mkv.text.lower()=='s':
-            b="series"
-        else:
-            b="movie"
-        mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo mfano imetafsiriwa {b}',chat_id = message.from_user.id)
-        mkvl = await client.ask(text=f'naomba utume link ya kupakua {b} hii',chat_id = message.from_user.id)
+    mkva = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya muv ',chat_id = message.from_user.id)
+    
+    if mkva.text.lower()=='l' :
+        mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
+        mkvl = await client.ask(text=f'naomba utume link ya kupakua {usr[ab-1]} hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
-    elif mkv.text.lower()=='m':
+    elif mkva.text.lower()=='h':
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
         if mkv1.text:
             dta='start'
