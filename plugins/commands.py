@@ -108,21 +108,27 @@ async def new_filtervip(client: Client, message):
     else:
         await message.reply('Not Supported..!')
         return
-    mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
     usr = await db.get_db_status(message.from_user.id)
     i=0
-    usr1
     for usrl in usr.aina.split(','):
         i+=1
-        usr1=f'{usr1}\n{i}:{usrl}'
-    mkv = await client.ask(text='naomba utume kama in muv tuna neno m na kwa series tuma neno s',chat_id = message.from_user.id)
+        usr1=f'\n{i}:{usrl}'
+    mkv = await client.ask(text='CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
         ab=int(mkv.text)
     except:
         await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa')
-    
-    mkva = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya muv ',chat_id = message.from_user.id)
-    
+        return
+    mkvb = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {usr[ab-1]} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    try:
+        ab1=int(mkvb.text)
+        if ab1==0:
+            await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa, tafadhali anza upya kwa usahihi')
+            return
+    except:
+        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
+        return
+    mkva = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya {usr[ab-1]} ',chat_id = message.from_user.id)
     if mkva.text.lower()=='l' :
         mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
         mkvl = await client.ask(text=f'naomba utume link ya kupakua {usr[ab-1]} hii',chat_id = message.from_user.id)
