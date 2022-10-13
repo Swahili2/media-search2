@@ -257,7 +257,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data1= details.msg2
             data2= data1.split(" ")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(" ")[0]}}\n {data1.split(" ")[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii"
-                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}",f"{fileid}.{msg2}.{data2.split(",")[0]}.wk1"),replymkup2(f"week 2 tsh {data2.split(",")[1]}",f"{fileid}.{msg2}.{data2.split(",")[1]}.wk2"),replymkup2(f"week 3 tsh {data2.split(",")[2]}",f"{fileid}.{msg2}.{data2.split(",")[2]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}",f"{fileid}.{msg2}.{data2.split(",")[3]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")])
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(",")[0]}",f"{fileid}.{msg2}.{data2.split(",")[0]}.wk1"),replymkup2(f"week 2 tsh {data2.split(",")[1]}",f"{fileid}.{msg2}.{data2.split(",")[1]}.wk2"),replymkup2(f"week 3 tsh {data2.split(",")[2]}",f"{fileid}.{msg2}.{data2.split(",")[2]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(",")[3]}",f"{fileid}.{msg2}.{data2.split(",")[3]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
                 )
         elif query.data.startswith("wik2"):
             await query.answer()
