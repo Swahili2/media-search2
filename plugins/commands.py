@@ -113,29 +113,42 @@ async def new_filtervip(client: Client, message):
     for usrl in usr.aina.split(','):
         i+=1
         usr1=f'\n{i}:{usrl}'
+    x = 0
+    for ii in range(0,6):
+        ii+=1
+        gs=f'g_{ii}'
+        if use.gs != 'hrm45':
+            x+=1
+            usrr=f'\n{x}:{usr.gs.split(' ')[0]}'
     mkv = await client.ask(text='CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
         ab=int(mkv.text)
     except:
-        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa')
+        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa upya')
         return
-    mkvb = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {usr[ab-1]} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    mkv = await client.ask(text='CHAGUA KUNDI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
-        ab1=int(mkvb.text)
+        ab2=int(mkv.text)
+    except:
+        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
+        return
+    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {usr[ab-1]} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    try:
+        ab1=int(mkv.text)
         if ab1==0:
             await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa, tafadhali anza upya kwa usahihi')
             return
     except:
         await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
         return
-    mkva = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya {usr[ab-1]} ',chat_id = message.from_user.id)
-    if mkva.text.lower()=='l' :
+    mkv = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya {usr[ab-1]} ',chat_id = message.from_user.id)
+    if mkv.text.lower()=='l' :
         mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
         mkvl = await client.ask(text=f'naomba utume link ya kupakua {usr[ab-1]} hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
-    elif mkva.text.lower()=='h':
+    elif mkv.text.lower()=='h':
         mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
         if mkv1.text:
             dta='start'
