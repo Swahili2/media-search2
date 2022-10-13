@@ -113,22 +113,26 @@ async def new_filtervip(client: Client, message):
     for usrl in usr.aina.split(','):
         i+=1
         usr1=f'\n{i}:{usrl}'
-    x = 0
-    for ii in range(0,6):
-        ii+=1
-        gs=f'g_{ii}'
-        if use.gs != 'hrm45':
-            x+=1
-            usrr=f'\n{x}:{usr.gs.split(' ')[0]}'
     mkv = await client.ask(text='CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
         ab=int(mkv.text)
+        ab = usr.aina.split(',')[ab-1]
     except:
-        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa upya')
+        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
+    x = 0
+    p=[]
+    for i in range(0,6):
+        i+=1
+        gs=f'g_{i}'
+        if use.gs != 'hrm45':
+            x+=1
+            p.append({usr.gs.split(' ')[0]})
+            usrr=f'\n{x}:{usr.gs.split(' ')[0]}'
     mkv = await client.ask(text='CHAGUA KUNDI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
         ab2=int(mkv.text)
+        ab2 = p[ab2-1]
     except:
         await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
@@ -201,7 +205,7 @@ async def new_filtervip(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'vip')
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,ab,ab1,ab2)
     text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
