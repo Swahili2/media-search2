@@ -346,14 +346,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {query.split(" ")[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                        )
         elif query.data.startswith("yes"):
-            msg1 = query.data.split(" ")[1]
-            msg2 = query.data.split(" ")[2].split("@#')[1]
+            msg1 = query.split(" ")[1]
+            msg2 = query.split(" ")[2].split("@#')[1]
             await query.edit_message_caption(
                     caption = f'je unauhakika tumruhusu [{msg2}](tg://user?id={int(msg1)}) bonyeza ndiyo kukubali au bonyeza rudi kurudi kupata maelezo ya muamala',
                     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data="ndiyo {msg1} {query.data.split(" ")[2]}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1} {query.data.split(" ")[2]})]]),
                 )
         elif query.data.startswith("rudi"):
-            msg#,msg1,data3 = query.split(" ")         
+            msg,msg1,data3 = query.split(" ")         
             msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
@@ -385,7 +385,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]]))
                     )
         elif query.data.startswith("ndiyo"):
-            msg#,msg1,data3 = query.split(" ")         
+            msg,msg1,data3 = query.split(" ")         
             msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
@@ -411,8 +411,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
                     )
         elif query.data.startswith("0"):
-            msg1=query.data.split(" ")[1]
-            msg0=query.data.split(" ")[0]
+            msg1=query.split(" ")[1]
+            msg0=query.split(" ")[0]
             if msg0=="0":
                 msg0="0"
             else:
@@ -431,8 +431,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("000"):
             
-            msg1=query.data.split(" ")[1]
-            msg0=query.data.split(" ")[2]
+            msg1=query.split(" ")[1]
+            msg0=query.split(" ")[2]
             if msg0=="0":
                 msg0="0"
             else:
@@ -443,7 +443,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("delete"):
             
-            msg1=query.data.split(" ")[1]
+            msg1=query.split(" ")[1]
             await query.edit_message_text(
                     text = f'{query.message.text}\n{msg1} 0',
                     reply_markup = InlineKeyboardMarkup([[]]),
