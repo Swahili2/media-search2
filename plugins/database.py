@@ -25,7 +25,7 @@ class Database:
                 g_4= "hrm45",
                 g_5 = "hrm45",
                 g_6 = "hrm45",
-            )
+            ),
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
