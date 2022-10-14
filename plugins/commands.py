@@ -128,7 +128,7 @@ async def new_filtervip(client: Client, message):
         if use.gs != 'hrm45':
             x+=1
             p.append({usr.gs.split(' ')[0]})
-            usrr=f'\n{x}:{usr.gs.split(' ')[0]}'
+            usrr=f'\n{x}:{usr.gs.split(" ")[0]}'
     mkv = await client.ask(text='CHAGUA KUNDI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
         ab2=int(mkv.text)
