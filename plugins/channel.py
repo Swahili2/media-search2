@@ -9,6 +9,6 @@ async def group(client, message):
     if not status:
         return
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho"
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton()],[InlineKeyboardButton()],[InlineKeyboardButton()],[InlineKeyboardButton()]])
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('No', callback_data = 'delallclose')],[InlineKeyboardButton('No', callback_data = 'delallclose')],[InlineKeyboardButton('No', callback_data = 'delallclose')],[InlineKeyboardButton('No', callback_data = 'delallclose')]])
         )
     
