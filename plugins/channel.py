@@ -8,5 +8,7 @@ async def group(client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
         return
-    await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho")
+    await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho"
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton()],[InlineKeyboardButton()],[InlineKeyboardButton()],[InlineKeyboardButton()]])
+        )
     
