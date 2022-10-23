@@ -12,7 +12,7 @@ async def group(client, message):
             reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundi")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha mawasiliano', callback_data = "namba")]])
         )
     
-@Client.on_callback_query()
+@Client.on_callback_query(filters.regex(r'^kundi$'))
 async def cbhandler2(client: Client, query: CallbackQuery):
     if query.data == "kundi":
         await query.answer('hellow')
