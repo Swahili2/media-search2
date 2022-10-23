@@ -9,12 +9,12 @@ async def group(client, message):
     if not status:
         return
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundi")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha mawasiliano', callback_data = "namba")]])
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha mawasiliano', callback_data = "namba")]])
         )
     
-@Client.on_callback_query(filters.regex(r'^kundi$'))
+@Client.on_callback_query()
 async def cbhandler2(client: Client, query: CallbackQuery):
-    if query.data == "kundi":
+    if query.data == "kundii":
         mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
         await query.answer('hellow')
     elif query.data == "aina":
