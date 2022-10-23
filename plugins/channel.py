@@ -15,8 +15,8 @@ async def group(client, message):
 @Client.on_callback_query(filters.regex(r'^kundi$'))
 async def cbhandler2(client: Client, query: CallbackQuery):
     if query.data == "kundi":
-        await query.answer('hellow')
         mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
+        await query.answer('hellow')
     elif query.data == "aina":
         await query.answer()
     elif query.data == "startup":
