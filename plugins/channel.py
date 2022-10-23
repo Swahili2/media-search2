@@ -13,7 +13,7 @@ async def group(client, message):
         )
     
 @Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery):
+async def cbhandler(client: Client, query: CallbackQuery):
     if query.data == "kundi":
         await query.answer()
         mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
