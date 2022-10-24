@@ -27,17 +27,7 @@ async def group(client, message):
             return
         if not btn:
             return
-@Client.on_callback_query()
-async def cbhandler21(client,query):
-    if query.data == "kundii":
-        mkv = await client.ask(text = "jkSamahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
-        await query.answer('hellow')
-    elif query.data == "aina":
-        await query.answer()
-    elif query.data == "startup":
-        await query.answer()
-    elif query.data == "namba":
-        await query.answer()
+
 def get_reply_makup(query,totol):
     buttons = [
         [
