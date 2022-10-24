@@ -38,9 +38,9 @@ async def group(client, message):
         if not btn:
             return
 @Client.on_callback_query()
-async def cbhandler2(client, query):
+async def cbhandler2(client,query):
     if query.data == "kundii":
-        mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
+        mkv = await client.ask(text = "jkSamahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
         await query.answer('hellow')
     elif query.data == "aina":
         await query.answer()
