@@ -4,16 +4,6 @@ from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 from info import filters
 from plugins.status import handle_user_status,handle_admin_status
 from utils import get_filter_results,is_user_exist
-from plugins.database import db
-    
-@Client.on_message( filters.command('edit_admin'))
-async def group2(client, message):
-    status= await db.is_admin_exist(message.from_user.id)
-    if not status:
-        return
-    await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")]])
-        )
     
 @Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
