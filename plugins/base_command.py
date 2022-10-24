@@ -224,7 +224,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
         typed = query.from_user.id
         pass
     if (clicked == typed):
-        if query.data == "kenya":
+        if query.data == "kundii":
+            mkv = await client.ask(text = "jkSamahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
+            await query.answer('hellow')
+
+        elif query.data == "aina":
+            await query.answer()
+
+        elif query.data == "startup":
+            await query.answer()
+
+        elif query.data == "namba":
+            await query.answer()
+
+        elif query.data == "kenya":
             await query.answer()
             mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
         
