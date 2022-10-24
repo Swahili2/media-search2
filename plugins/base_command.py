@@ -61,7 +61,7 @@ async def group2(client, message):
     if not status:
         return
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")]])
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
         )
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
@@ -229,13 +229,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('hellow')
 
         elif query.data == "aina":
-            await query.answer()
+            await query.answer('hi')
 
         elif query.data == "startup":
-            await query.answer()
+            await query.answer('mambo')
 
         elif query.data == "namba":
-            await query.answer()
+            await query.answer('vp')
 
         elif query.data == "kenya":
             await query.answer()
