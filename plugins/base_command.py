@@ -55,6 +55,14 @@ markdown_keyboard = [
     ]
 ]
 
+@Client.on_message( filters.command('edit_admin') & filters.private )
+async def group2(client, message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        return
+    await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")]])
+        )
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
     if await db.is_admin_exist(message.from_user.id):
