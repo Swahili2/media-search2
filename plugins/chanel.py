@@ -4,7 +4,7 @@ from info import filters
 from plugins.database import db
     
 @Client.on_message( filters.command('edit_admin') & filters.private)
-async def group(client, message):
+async def group2(client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
         return
