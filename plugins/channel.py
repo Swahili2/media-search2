@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton,CallbackQue
 from info import filters
 from plugins.database import db
     
-@Client.on_message( filters.command('edit_admin') & filters.private)
+@Client.on_message( filters.command('edit_admin'))
 async def group2(client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
