@@ -225,7 +225,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         pass
     if (clicked == typed):
         if query.data == "kundii":
-            mkv = await client.ask(text = "jkSamahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
+            await query.edit_message_text(text = "Tafaddali chagua kundi la kusahihisha", 
+                    reply_markup=reply_markup=InlineKeyboardMarkup())
+            
             await query.answer('hellow')
 
         elif query.data == "aina":
