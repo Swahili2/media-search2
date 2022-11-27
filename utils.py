@@ -9,7 +9,6 @@ from pymongo.errors import DuplicateKeyError
 from umongo import Instance, Document, fields
 from marshmallow.exceptions import ValidationError
 import os
-import PTN
 import requests
 import json
 from info import DB2, COLLECTION_NAME
