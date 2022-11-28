@@ -225,15 +225,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         pass
     if (clicked == typed):
         if query.data == "kundii":
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza add group kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD GROUP kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=InlineKeyboardMarkup([[
-                        InlineKeyboardButton(text = 'Add group ', callback_data = 'adgrp')
+                        InlineKeyboardButton(text = '🦋 ADD GROUP ', callback_data = 'adgrp')
                     ]]))
             await query.answer('hellow')
         elif query.data == "adgrp":
             await query.answer('Subiri kidogo')
             await query.message.delete()
-            mkv = await client.ask(text='hllowe',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina kisha bei ya wiki wiki2 wiki3 au mwezi zikitenganushwa na @\n\n💫Mfano1 kifurushi cha vyote@5000@6000@7000@8000\n\n💫Mfano2 kifurushi cha singo @2000@0@0@5000\n\n💫Mfano3 Kifurushi cha tamthilia@3500@6000@0@8000\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
         elif query.data == "aina":
             await query.answer('hi')
 
