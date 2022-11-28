@@ -227,10 +227,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if query.data == "kundii":
             await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza add group kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=InlineKeyboardMarkup([[
-                        InlineKeyboardButton(text = 'Close 🔒', callback_data = 'close')
+                        InlineKeyboardButton(text = 'Add group ', callback_data = 'adgrp')
                     ]]))
             await query.answer('hellow')
-
+        elif query.data == "adgrp":
+            await query.answer('Subiri kidogo')
+            await query.message.delete()
+            mkv = await client.ask(text='hllowe',chat_id = query.from_user.id,reply_markup=ForceReply())
         elif query.data == "aina":
             await query.answer('hi')
 
