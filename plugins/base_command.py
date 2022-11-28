@@ -226,7 +226,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if (clicked == typed):
         if query.data == "kundii":
             await query.edit_message_text(text = "Tafaddali chagua kundi la kusahihisha", 
-                reply_markup=InlineKeyboardMarkup([]))
+                reply_markup=InlineKeyboardMarkup([])
             await query.answer('hellow')
 
         elif query.data == "aina":
