@@ -225,7 +225,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         pass
     if (clicked == typed):
         if query.data == "kundii":
-            await query.edit_message_text(text = "Tafaddali chagua kundi la kusahihisha au bonyeza add group kuongeza kundi lingine\n\nkisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako au kuongeza lingine\nKumbuka makundi mwisho ni sita tu , pangilia vizuri", 
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza add group kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=InlineKeyboardMarkup([[
                         InlineKeyboardButton(text = 'Close 🔒', callback_data = 'close')
                     ]]))
