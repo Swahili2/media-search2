@@ -226,11 +226,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if (clicked == typed):
         if query.data == "kundii":
             ab = await db.get_db_status(query.from_user.id)
-            if ab.g_1="hrm45":
+            if ab.g_1=="hrm45":
                 reply_markup=InlineKeyboardMarkup([[
                         InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
                     ]])
-            elif ab.g_2="hrm45":
+            elif ab.g_2=="hrm45":
                 ab1=ab.g_1.split("#@")[0]
                 reply_markup=InlineKeyboardMarkup([
                         [
@@ -241,7 +241,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         ]
                     ])
            
-            elif ab.g_3="hrm45":
+            elif ab.g_3=="hrm45":
                 ab1 = ab.g_1.split("#@")[0]
                 ab2 = ab.g_2.split("#@")[0]
                 reply_markup=InlineKeyboardMarkup([
@@ -255,7 +255,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
                         ]
                     ])
-            elif ab.g_4="hrm45":
+            elif ab.g_4=="hrm45":
                 ab1 = ab.g_1.split("#@")[0]
                 ab2 = ab.g_2.split("#@")[0]
                 ab3 = ab.g_3.split("#@")[0]
@@ -273,7 +273,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
                         ]
                     ])
-            elif ab.g_5="hrm45":
+            elif ab.g_5=="hrm45":
                 ab1=ab.g_1.split("#@")[0]
                 ab2=ab.g_2.split("#@")[0]
                 ab3=ab.g_3.split("#@")[0]
@@ -296,7 +296,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
                         ]
                     ])
-            elif ab.g_6="hrm45":
+            elif ab.g_6=="hrm45":
                 ab1=ab.g_1.split("#@")[0]
                 ab2=ab.g_2.split("#@")[0]
                 ab3=ab.g_3.split("#@")[0]
