@@ -104,6 +104,9 @@ class Database:
                 db_name = "SWAHILI GROUP MEDIA",
                 descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei chee",
                 phone_no = "0 hrm45 halopesa",
+                ms_link= "link",
+                aina = "movie,series,album,tamthilia",
+                muda = "kuipakua mda wowote bila kikomo...",
                 g_1= "hrm45",
                 g_2 = "hrm45",
                 g_3 = "hrm45",
@@ -113,7 +116,24 @@ class Database:
             )
         user = await self.col.find_one({'id': int(id)})
         return user.get('db_status', default)
-
+    async def update_admin(self, user_id,db_name,dsp,phn,lnk,ain,tm1,g1,g2,g3,g4,g5,g6):
+        ab = await get_db_status(user_id)
+        update_admin =dict(
+                db_name = ab.db_name,
+                descp = ab.descp,
+                phone_no = ab.phone_no,
+                ms_link = ab.ms_link,
+                aina = ab.aina,
+                muda = ab.muda,
+                g_1 = ab.g_1,
+                g_2 = ab.g_2,
+                g_3 = ab.g_3,
+                g_4 = ab.g_4,
+                g_5 = ab.g_5,
+                g_6 = ab.g_6,
+            )
+        await self.col.update_one({'id': user_id}, {'$set': {'db_status': update_admin}})
+    
     async def get_ban_status(self, id):
         default = dict(
             is_banned=False,
