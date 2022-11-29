@@ -225,15 +225,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         pass
     if (clicked == typed):
         if query.data == "kundii":
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD GROUP kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=InlineKeyboardMarkup([[
-                        InlineKeyboardButton(text = '🦋 ADD GROUP ', callback_data = 'adgrp')
+                        InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
                     ]]))
             await query.answer('hellow')
         elif query.data == "adgrp":
             await query.answer('Subiri kidogo')
             await query.message.delete()
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina kisha bei ya wiki wiki2 wiki3 au mwezi zikitenganushwa na @\n\n💫Mfano1 kifurushi cha vyote@5000@6000@7000@8000\n\n💫Mfano2 kifurushi cha singo @2000@0@0@5000\n\n💫Mfano3 Kifurushi cha tamthilia@3500@6000@0@8000\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano2 kifurushi cha singo #@2000#@0#@0#@5000#@hapa utajipatia singo zilizotafsiriwa na ambazo hazijatafsiriwa tu \n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
         elif query.data == "aina":
             await query.answer('hi')
 
@@ -282,8 +282,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg1 = group_id
             details = await get_db_status(msg1)
             data1= details.msg2
-            data2= data1.split(" ")[1]
-            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split(' ')[0]}\n {data1.split(' ')[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii",
+            data2= data1.split("#@")[1]
+            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split('#@')[0]}\n {data1.split('#@')[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii",
                     reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(',')[0]}",f"{fileid}.{msg2}.{data2.split(',')[0]}.wk1"),replymkup2(f"week 2 tsh {data2.split(',')[1]}",f"{fileid}.{msg2}.{data2.split(',')[1]}.wk2"),replymkup2(f"week 3 tsh {data2.split(',')[2]}",f"{fileid}.{msg2}.{data2.split(',')[2]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(',')[3]}",f"{fileid}.{msg2}.{data2.split(',')[3]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
                 )
         elif query.data.startswith("wik2"):
@@ -307,7 +307,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= "mwezi mmoja"
             else:
                 tme1=tme
-            data2 = data1.split(" ")[0]
+            data2 = data1.split("#@")[0]
             p1,p2,p3 =details.phone_no.split(" ")
             mda = details.muda
             if tme == "m":
@@ -317,7 +317,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
             else:
                 await query.edit_message_text(
-                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details.dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p3}\nJina : {p3} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
+                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details.dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p3}\nJina : {p3} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa siku {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {query.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                     )
         elif query.data.startswith("malipo"):
