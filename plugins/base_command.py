@@ -225,15 +225,139 @@ async def cb_handler(client: Client, query: CallbackQuery):
         pass
     if (clicked == typed):
         if query.data == "kundii":
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+            ab = await db.get_db_status(query.from_user.id)
+            if ab.g_1="hrm45":
                 reply_markup=InlineKeyboardMarkup([[
                         InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                    ]]))
+                    ]])
+            elif ab.g_2="hrm45":
+                ab1=ab.g_1.split("#@")[0]
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ]
+                    ])
+           
+            elif ab.g_3="hrm45":
+                ab1 = ab.g_1.split("#@")[0]
+                ab2 = ab.g_2.split("#@")[0]
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ]
+                    ])
+            elif ab.g_4="hrm45":
+                ab1 = ab.g_1.split("#@")[0]
+                ab2 = ab.g_2.split("#@")[0]
+                ab3 = ab.g_3.split("#@")[0]
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ]
+                    ])
+            elif ab.g_5="hrm45":
+                ab1=ab.g_1.split("#@")[0]
+                ab2=ab.g_2.split("#@")[0]
+                ab3=ab.g_3.split("#@")[0]
+                ab4=ab.g_4.split("#@")[0]
+                
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ]
+                    ])
+            elif ab.g_6="hrm45":
+                ab1=ab.g_1.split("#@")[0]
+                ab2=ab.g_2.split("#@")[0]
+                ab3=ab.g_3.split("#@")[0]
+                ab4=ab.g_4.split("#@")[0]
+                ab5=ab.g_5.split("#@")[0]
+                
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab5}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
+                        ]
+                    ])
+            else:
+                ab1=ab.g_1.split("#@")[0]
+                ab2=ab.g_2.split("#@")[0]
+                ab3=ab.g_3.split("#@")[0]
+                ab4=ab.g_4.split("#@")[0]
+                ab5=ab.g_5.split("#@")[0]
+                ab6=ab.g_6.split("#@")[0]
+                reply_markup=InlineKeyboardMarkup([
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab5}', callback_data = 'adgrp')
+                        ],
+                        [
+                            InlineKeyboardButton(text = f'🦋 {ab6}', callback_data = 'adgrp')
+                        ]
+                    ])
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+                reply_markup=reply_markup)
             await query.answer('hellow')
         elif query.data == "adgrp":
             await query.answer('Subiri kidogo')
             await query.message.delete()
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano2 kifurushi cha singo #@2000#@0#@0#@5000#@hapa utajipatia singo zilizotafsiriwa na ambazo hazijatafsiriwa tu \n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
+            
         elif query.data == "aina":
             await query.answer('hi')
 
