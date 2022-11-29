@@ -116,8 +116,10 @@ class Database:
             )
         user = await self.col.find_one({'id': int(id)})
         return user.get('db_status', default)
-    async def update_admin(self, user_id,db_name,dsp,phn,lnk,ain,tm1,g1,g2,g3,g4,g5,g6):
+    async def update_db(self, user_id,ghi):
         ab = await get_db_status(user_id)
+        ab1,ab2=ghi.split(" ",1)
+        ab.ab1 = ab2
         update_admin =dict(
                 db_name = ab.db_name,
                 descp = ab.descp,
