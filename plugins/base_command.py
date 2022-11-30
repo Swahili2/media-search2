@@ -639,7 +639,7 @@ def replymkup1(msg3,msg1,msg2):
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}.{msg2}")]
 def replymkup3(id,typ,nmb):
     ab = await db.get_db_status(id)
-    ab3=
+    ab3=[]
     for i in range(0,nmb):
         if typ=="grp":
             if i == 6:
