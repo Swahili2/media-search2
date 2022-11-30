@@ -656,5 +656,5 @@ def replymkup3(id,typ,nmb):
             if i == 10:
                 ab1=ab.split(",")[9]
                 
-            elif i == (nmb-1) :
-            else:
+           # elif i == (nmb-1) :
+           # else:
