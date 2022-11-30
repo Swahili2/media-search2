@@ -623,6 +623,7 @@ def replymkup(msg7,txt1):
             ]
 
         ])
+
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
     if msg1 == 0:
@@ -636,3 +637,24 @@ def replymkup1(msg3,msg1,msg2):
     else:
         msg3=msg3.split(" ")[0]
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}.{msg2}")]
+def replymkup3(id,typ,nmb):
+    ab = await db.get_db_status(id)
+    ab3=
+    for i in range(0,nmb):
+        if typ=="grp":
+            if i == 6:
+                ab1=ab.g_6.split("#@")[0]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')]
+            elif i == (nmb-1)  :
+               ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')]
+                        
+            else:
+                abh=f'g_{i+=1}'
+                ab1=ab.abh.split("#@")[0]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')]
+        elif typ=="ain":
+            if i == 10:
+                ab1=ab.split(",")[9]
+                
+            elif i == (nmb-1) :
+            else:
