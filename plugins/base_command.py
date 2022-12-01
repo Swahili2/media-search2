@@ -573,7 +573,7 @@ def replymkup3(id,typ,nmb):
     for i in range(0,nmb):
         if typ=="grp":
             if i == (nmb-1) and i !=6 :
-               ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')]
+                ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')]
                         
             elif i != 6:
                 abh=f'g_{i+=1}'
