@@ -258,27 +258,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ab = await db.get_db_status(query.from_user.id)
             ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab.aina.split(",")
             if ab1=="hrm45":
-                reply_markup=replymkup3(ab,aina,1)
+                reply_markup=replymkup3(ab,ain,1)
             elif ab2=="hrm45":
-                reply_markup=replymkup3(ab,aina,2)
+                reply_markup=replymkup3(ab,ain,2)
             elif ab3=="hrm45":
-                reply_markup=replymkup3(ab,aina,3)
+                reply_markup=replymkup3(ab,ain,3)
             elif ab4=="hrm45":
-                reply_markup=replymkup3(ab,aina,4)
+                reply_markup=replymkup3(ab,ain,4)
             elif ab5=="hrm45":
-                reply_markup=replymkup3(ab,aina,5)
+                reply_markup=replymkup3(ab,ain,5)
             elif ab6=="hrm45":
-                reply_markup=replymkup3(ab,aina,6)
+                reply_markup=replymkup3(ab,ain,6)
             elif ab7=="hrm45":
-                reply_markup=replymkup3(ab,aina,7)
+                reply_markup=replymkup3(ab,ain,7)
             elif ab8=="hrm45":
-                reply_markup=replymkup3(ab,aina,8)
+                reply_markup=replymkup3(ab,ain,8)
             elif ab9=="hrm45":
-                reply_markup=replymkup3(ab,aina,9)
+                reply_markup=replymkup3(ab,ain,9)
             elif ab10=="hrm45":
-                reply_markup=replymkup3(ab,aina,10)
+                reply_markup=replymkup3(ab,ain,10)
             else:
-                reply_markup=replymkup3(ab,aina,11)
+                reply_markup=replymkup3(ab,ain,11)
         elif query.data == "adain":
             await query.answer('Subiri kidogo')
             await query.message.delete()
