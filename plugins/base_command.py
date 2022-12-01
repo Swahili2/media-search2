@@ -227,20 +227,20 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if query.data == "kundii":
             ab = await db.get_db_status(query.from_user.id)
             if ab.g_1=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,1)
+                reply_markup=replymkup3(ab,grp,1)
             elif ab.g_2=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,2)
+                reply_markup=replymkup3(ab,grp,2)
            
             elif ab.g_3=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,3)
+                reply_markup=replymkup3(ab,grp,3)
             elif ab.g_4=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,4)
+                reply_markup=replymkup3(ab,grp,4)
             elif ab.g_5=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,5)
+                reply_markup=replymkup3(ab,grp,5)
             elif ab.g_6=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,grp,6)
+                reply_markup=replymkup3(ab,grp,6)
             else:
-                reply_markup=replymkup3(query.from_user.id,grp,7)
+                reply_markup=replymkup3(ab,grp,7)
             await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kifurushi kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=reply_markup)
             await query.answer('Tafadhali subiri')
@@ -258,27 +258,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ab = await db.get_db_status(query.from_user.id)
             ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab.aina.split(",")
             if ab1=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,1)
+                reply_markup=replymkup3(ab,aina,1)
             elif ab2=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,2)
+                reply_markup=replymkup3(ab,aina,2)
             elif ab3=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,3)
+                reply_markup=replymkup3(ab,aina,3)
             elif ab4=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,4)
+                reply_markup=replymkup3(ab,aina,4)
             elif ab5=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,5)
+                reply_markup=replymkup3(ab,aina,5)
             elif ab6=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,6)
+                reply_markup=replymkup3(ab,aina,6)
             elif ab7=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,7)
+                reply_markup=replymkup3(ab,aina,7)
             elif ab8=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,8)
+                reply_markup=replymkup3(ab,aina,8)
             elif ab9=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,9)
+                reply_markup=replymkup3(ab,aina,9)
             elif ab10=="hrm45":
-                reply_markup=replymkup3(query.from_user.id,aina,10)
+                reply_markup=replymkup3(ab,aina,10)
             else:
-                reply_markup=replymkup3(query.from_user.id,aina,11)
+                reply_markup=replymkup3(ab,aina,11)
         elif query.data == "adain":
             await query.answer('Subiri kidogo')
             await query.message.delete()
@@ -567,8 +567,7 @@ def replymkup1(msg3,msg1,msg2):
     else:
         msg3=msg3.split("#@")[0]
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}.{msg2}")]
-def replymkup3(id,typ,nmb):
-    ab = await db.get_db_status(id)
+def replymkup3(ab,typ,nmb):
     ab3=[]
     for i in range(0,nmb):
         if typ=="grp":
