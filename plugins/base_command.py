@@ -642,19 +642,17 @@ def replymkup3(id,typ,nmb):
     ab3=[]
     for i in range(0,nmb):
         if typ=="grp":
-            if i == 6:
-                ab1=ab.g_6.split("#@")[0]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')]
-            elif i == (nmb-1)  :
+            if i == (nmb-1) and i !=6 :
                ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')]
                         
-            else:
+            elif i != 6:
                 abh=f'g_{i+=1}'
                 ab1=ab.abh.split("#@")[0]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')]
         elif typ=="ain":
-            if i == 10:
-                ab1=ab.split(",")[9]
-                
-            # elif i == (nmb-1) :
-            # else:
+            if i == (nmb-1) and i != 10 :
+                ab1=ab2.aina.split(',')[i]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
+            elif i != 10:
+                ab1=ab2.aina.split(',')[i]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
