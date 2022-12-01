@@ -576,7 +576,8 @@ def replymkup3(id,typ,nmb):
                 ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')]
                         
             elif i != 6:
-                abh=f'g_{i+=1}'
+                a=i+1
+                abh=f'g_{a}'
                 ab1=ab.abh.split("#@")[0]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp2')]
         elif typ=="ain":
