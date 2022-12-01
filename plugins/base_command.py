@@ -61,7 +61,7 @@ async def group2(client, message):
     if not status:
         return
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
         )
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
@@ -227,146 +227,76 @@ async def cb_handler(client: Client, query: CallbackQuery):
         if query.data == "kundii":
             ab = await db.get_db_status(query.from_user.id)
             if ab.g_1=="hrm45":
-                reply_markup=InlineKeyboardMarkup([[
-                        InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                    ]])
-            elif ab.g_2=="hrm45":
-                ab1=ab.g_1.split("#@")[0]
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ]
-                    ])
+                reply_markup=replymkup3(query.from_user.id,grp,1)
+           elif ab.g_2=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,grp,2)
            
             elif ab.g_3=="hrm45":
-                ab1 = ab.g_1.split("#@")[0]
-                ab2 = ab.g_2.split("#@")[0]
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ]
-                    ])
+                reply_markup=replymkup3(query.from_user.id,grp,3)
             elif ab.g_4=="hrm45":
-                ab1 = ab.g_1.split("#@")[0]
-                ab2 = ab.g_2.split("#@")[0]
-                ab3 = ab.g_3.split("#@")[0]
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ]
-                    ])
+                reply_markup=replymkup3(query.from_user.id,grp,4)
             elif ab.g_5=="hrm45":
-                ab1=ab.g_1.split("#@")[0]
-                ab2=ab.g_2.split("#@")[0]
-                ab3=ab.g_3.split("#@")[0]
-                ab4=ab.g_4.split("#@")[0]
-                
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ]
-                    ])
+                reply_markup=replymkup3(query.from_user.id,grp,5)
             elif ab.g_6=="hrm45":
-                ab1=ab.g_1.split("#@")[0]
-                ab2=ab.g_2.split("#@")[0]
-                ab3=ab.g_3.split("#@")[0]
-                ab4=ab.g_4.split("#@")[0]
-                ab5=ab.g_5.split("#@")[0]
-                
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab5}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = 'adgrp')
-                        ]
-                    ])
+                reply_markup=replymkup3(query.from_user.id,grp,6)
             else:
-                ab1=ab.g_1.split("#@")[0]
-                ab2=ab.g_2.split("#@")[0]
-                ab3=ab.g_3.split("#@")[0]
-                ab4=ab.g_4.split("#@")[0]
-                ab5=ab.g_5.split("#@")[0]
-                ab6=ab.g_6.split("#@")[0]
-                reply_markup=InlineKeyboardMarkup([
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab1}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab2}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab3}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab4}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab5}', callback_data = 'adgrp')
-                        ],
-                        [
-                            InlineKeyboardButton(text = f'🦋 {ab6}', callback_data = 'adgrp')
-                        ]
-                    ])
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kundi jengine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+                reply_markup=replymkup3(query.from_user.id,grp,7)
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kifurushi kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=reply_markup)
-            await query.answer('hellow')
+            await query.answer('Tafadhali subiri')
         elif query.data == "adgrp":
             await query.answer('Subiri kidogo')
             await query.message.delete()
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano2 kifurushi cha singo #@2000#@0#@0#@5000#@hapa utajipatia singo zilizotafsiriwa na ambazo hazijatafsiriwa tu \n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
-            
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kifurushi kipya bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano2 kifurushi cha singo #@2000#@0#@0#@5000#@hapa utajipatia singo zilizotafsiriwa na ambazo hazijatafsiriwa tu \n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha',chat_id = query.from_user.id,reply_markup=ForceReply())
+        elif query.data == "adgrp2":
+            await query.answer('Subiri kidogo')
+            await query.message.delete()
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye orodha kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha\n\nNote aina zote za media za mwanzo zilizotumia kifurushi hiki unachotaka kubadilisha,zitabadilika kutumia jina hili jipya utakalotupa',chat_id = query.from_user.id,reply_markup=ForceReply())
+
         elif query.data == "aina":
-            await query.answer('hi')
+            await query.answer('Tafadhali subiri kidogo')
+            ab = await db.get_db_status(query.from_user.id)
+            ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab.aina.split(",")
+            if ab1=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,1)
+            elif ab2=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,2)
+            elif ab3=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,3)
+            elif ab4=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,4)
+            elif ab5=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,5)
+            elif ab6=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,6)
+            elif ab7=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,7)
+            elif ab8=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,8)
+            elif ab9=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,9)
+            elif ab10=="hrm45":
+                reply_markup=replymkup3(query.from_user.id,aina,10)
+            else:
+                reply_markup=replymkup3(query.from_user.id,aina,11)
+        elif query.data == "adain":
+            await query.answer('Subiri kidogo')
+            await query.message.delete()
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina jipya la aina mojawapo ya media zako mfano1 movies Mfano2 series Mfano3 Singo Mfano4 tamthilia Mfano Audio n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
+        elif query.data == "adain2":
+            await query.answer('Subiri kidogo')
+            await query.message.delete()
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
 
         elif query.data == "startup":
             await query.answer('mambo')
-
+            
         elif query.data == "namba":
-            await query.answer('vp')
-
+            await query.answer('bellow tz')
+             
+        elif query.data == "dbname":
+            await query.answer('mambo tz')
+            
         elif query.data == "kenya":
             await query.answer()
             mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
@@ -635,7 +565,7 @@ def replymkup1(msg3,msg1,msg2):
     if msg3=="hrm45":
         return []
     else:
-        msg3=msg3.split(" ")[0]
+        msg3=msg3.split("#@")[0]
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}.{msg2}")]
 def replymkup3(id,typ,nmb):
     ab = await db.get_db_status(id)
@@ -648,11 +578,11 @@ def replymkup3(id,typ,nmb):
             elif i != 6:
                 abh=f'g_{i+=1}'
                 ab1=ab.abh.split("#@")[0]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adgrp2')]
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab2.aina.split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
             elif i != 10:
                 ab1=ab2.aina.split(',')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain2')]
