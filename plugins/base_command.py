@@ -228,7 +228,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ab = await db.get_db_status(query.from_user.id)
             if ab.g_1=="hrm45":
                 reply_markup=replymkup3(query.from_user.id,grp,1)
-           elif ab.g_2=="hrm45":
+            elif ab.g_2=="hrm45":
                 reply_markup=replymkup3(query.from_user.id,grp,2)
            
             elif ab.g_3=="hrm45":
