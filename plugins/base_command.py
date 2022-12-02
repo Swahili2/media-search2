@@ -290,17 +290,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         elif query.data == "startup":
             await query.answer('mambo')
-            
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+
         elif query.data == "namba":
-            await query.answer('bellow tz')
-             
+            await query.answer('hellow tz')
+             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+
         elif query.data == "dbname":
             await query.answer('mambo tz')
-            
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+
         elif query.data == "kenya":
             await query.answer()
-            mkv = await client.ask(text = " Samahani sana wateja wetu wa Kenya bado hatuja weka utaratibu mzuri.\n  hivi karibun tutaweka mfumo mzuri ili muweze kupata huduma zetu", chat_id = query.from_user.id)
-        
+            
         elif query.data.startswith("tanzania"):
             await query.answer()
             fileid = query.data.split(" ",1)[1]
