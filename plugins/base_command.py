@@ -294,7 +294,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         elif query.data == "namba":
             await query.answer('hellow tz')
-             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
 
         elif query.data == "dbname":
             await query.answer('mambo tz')
