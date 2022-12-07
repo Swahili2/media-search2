@@ -242,7 +242,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=replymkup3(ab,grp,6)
             else:
                 reply_markup=replymkup3(ab,grp,7)
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafaddali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kifurushi kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafadhali chagua kundi la kusahihisha au bonyeza 🦋 ADD KIFURUSHI kuongeza kifurushi kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka makundi mwisho ni sita tu , pangilia vizuri makundi yako", 
                 reply_markup=reply_markup)
             await query.answer('Tafadhali subiri')
         elif query.data == "adgrp":
@@ -609,3 +609,5 @@ def replymkup3(ab,typ,nmb):
             elif i != 10:
                 ab1=ab2.aina.split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain2')]
+        ab3.append(ab2)
+    return InlineKeyboardMarkup(ab3)
