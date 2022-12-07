@@ -226,18 +226,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if (clicked == typed):
         if query.data == "kundii":
             ab = await db.get_db_status(query.from_user.id)
-            if ab.g_1=="hrm45":
+            if ab[g_1]=="hrm45":
                 reply_markup=replymkup3(ab,grp,1)
-            elif ab.g_2=="hrm45":
+            elif ab[g_2]=="hrm45":
                 reply_markup=replymkup3(ab,grp,2)
            
-            elif ab.g_3=="hrm45":
+            elif ab[g_3]=="hrm45":
                 reply_markup=replymkup3(ab,grp,3)
-            elif ab.g_4=="hrm45":
+            elif ab[g_4]=="hrm45":
                 reply_markup=replymkup3(ab,grp,4)
-            elif ab.g_5=="hrm45":
+            elif ab[g_5]=="hrm45":
                 reply_markup=replymkup3(ab,grp,5)
-            elif ab.g_6=="hrm45":
+            elif ab[g_6]=="hrm45":
                 reply_markup=replymkup3(ab,grp,6)
             else:
                 reply_markup=replymkup3(ab,grp,7)
