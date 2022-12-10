@@ -118,20 +118,20 @@ class Database:
         return user.get('db_status', default)
     async def update_db(self, user_id,ghi,ab):
         ab1,ab2=ghi.split(" ",1)
-        ab.ab1 = ab2
+        ab["ab1"] = ab2
         update_admin =dict(
-                db_name = ab.db_name,
-                descp = ab.descp,
-                phone_no = ab.phone_no,
-                ms_link = ab.ms_link,
-                aina = ab.aina,
-                muda = ab.muda,
-                g_1 = ab.g_1,
-                g_2 = ab.g_2,
-                g_3 = ab.g_3,
-                g_4 = ab.g_4,
-                g_5 = ab.g_5,
-                g_6 = ab.g_6,
+                db_name = ab["db_name"],
+                descp = ab["descp"],
+                phone_no = ab["phone_no"],
+                ms_link = ab["ms_link"],
+                aina = ab["aina"],
+                muda = ab["muda"],
+                g_1 = ab["g_1"],
+                g_2 = ab["g_2"],
+                g_3 = ab["g_3],
+                g_4 = ab["g_4"],
+                g_5 = ab["g_5"],
+                g_6 = ab["g_6"],
             )
         await self.col.update_one({'id': user_id}, {'$set': {'db_status': update_admin}})
     
