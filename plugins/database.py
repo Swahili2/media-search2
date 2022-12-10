@@ -128,7 +128,7 @@ class Database:
                 muda = ab["muda"],
                 g_1 = ab["g_1"],
                 g_2 = ab["g_2"],
-                g_3 = ab["g_3],
+                g_3 = ab["g_3"],
                 g_4 = ab["g_4"],
                 g_5 = ab["g_5"],
                 g_6 = ab["g_6"],
