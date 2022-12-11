@@ -612,7 +612,7 @@ def replymkup3(ab,typ,nmb):
                 a=i+1
                 abh=f'g_{a}'
                 ab1=ab[abh].split("#@")[0]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ad2grp {ab1}')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ad2grp {abh}')]
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab2["aina"].split(',')[i]
