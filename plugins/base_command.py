@@ -263,7 +263,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi1=query.data.split(" ")[1]
             ghi=f"{ghi1} {mkv1}#@{mkv2},{mkv3},{mkv4},{mkv5}#@{mkv6}"
             await db.update_db(query.from_user.id,ghi,ab)
-        elif query.data.startswith("adgrp2"):
+        elif query.data.startswith("ad2grp"):
             await query.answer('Subiri kidogo')
             await query.message.delete()
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye orodha kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha\n\nNote aina zote za media za mwanzo zilizotumia kifurushi hiki unachotaka kubadilisha,zitabadilika kutumia jina hili jipya utakalotupa',chat_id = query.from_user.id,reply_markup=ForceReply())
@@ -313,7 +313,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('Subiri kidogo')
             await query.message.delete()
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina jipya la aina mojawapo ya media zako mfano1 movies Mfano2 series Mfano3 Singo Mfano4 tamthilia Mfano Audio n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
-        elif query.data == "adain2":
+        elif query.data == "ada2in":
             await query.answer('Subiri kidogo')
             await query.message.delete()
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
@@ -611,13 +611,13 @@ def replymkup3(ab,typ,nmb):
                 a=i+1
                 abh=f'g_{a}'
                 ab1=ab[abh].split("#@")[0]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'adgrp2 {ab1}')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ad2grp {ab1}')]
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab2["aina"].split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
             elif i != 10:
                 ab1=ab2["aina"].split(',')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain2')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in')]
         ab3.append(ab2)
     return InlineKeyboardMarkup(ab3)
