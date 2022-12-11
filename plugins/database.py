@@ -118,7 +118,7 @@ class Database:
         return user.get('db_status', default)
     async def update_db(self, user_id,ghi,ab):
         ab1,ab2=ghi.split(" ",1)
-        ab["ab1"] = ab2
+        ab[ab1] = ab2
         update_admin =dict(
                 db_name = ab["db_name"],
                 descp = ab["descp"],
