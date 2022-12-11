@@ -610,14 +610,14 @@ def replymkup3(ab,typ,nmb):
             elif i != 6:
                 a=i+1
                 abh=f'g_{a}'
-                ab1=ab.abh.split("#@")[0]
+                ab1=ab[abh].split("#@")[0]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'adgrp2 {ab1}')]
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
-                ab1=ab2.aina.split(',')[i]
+                ab1=ab2["aina"].split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
             elif i != 10:
-                ab1=ab2.aina.split(',')[i]
+                ab1=ab2["aina"].split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain2')]
         ab3.append(ab2)
     return InlineKeyboardMarkup(ab3)
