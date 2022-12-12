@@ -643,9 +643,9 @@ def replymkup3(ab,typ,nmb):
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab["aina"].split('#@#')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 ONGEZA AINA' , callback_data = 'adain')]
+                ab2=[InlineKeyboardButton(text = f'🦋 ONGEZA AINA' , callback_data = f'adain {i}')]
             elif i != 10:
                 ab1=ab["aina"].split('#@#')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in {i}')]
         ab3.append(ab2)
     return InlineKeyboardMarkup(ab3)
