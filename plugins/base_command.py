@@ -315,11 +315,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             ab = await db.get_db_status(query.from_user.id)
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ ',chat_id = query.from_user.id,reply_markup=ForceReply())
-            try:
-                if mkv.text==None:
-                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                    return
-           
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                return
             ghi1=ab["aina"].split("#@#")
             ghi2 = int(query.data.split(" ")[])
             ghi = 'aina '
@@ -328,7 +326,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if i == ghi2:
                     ghi3 = mkv.text
                 ghi=ghi+gh3
-            
             await db.update_db(query.from_user.id,ghi,ab)
         
         elif query.data == "ada2in":
@@ -336,11 +333,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             ab = await db.get_db_status(query.from_user.id)
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ wakilish',chat_id = query.from_user.id,reply_markup=ForceReply())
-            try:
-                if mkv.text==None:
-                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                    return
-           
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                return
             ghi1=ab["aina"].split("#@#")
             ghi2 = int(query.data.split(" ")[])
             ghi = 'aina '
@@ -349,7 +344,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if i == ghi2:
                     ghi3 = mkv.text
                 ghi=ghi+gh3
-            
             await db.update_db(query.from_user.id,ghi,ab)
         
         elif query.data == "startup":
