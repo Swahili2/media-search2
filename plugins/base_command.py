@@ -286,7 +286,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "aina":
             await query.answer('Tafadhali subiri kidogo')
             ab = await db.get_db_status(query.from_user.id)
-            ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab.aina.split(",")
+            ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab["aina"].split("#@#")
             ain="ain"
             if ab1=="hrm45":
                 reply_markup=replymkup3(ab,ain,1)
