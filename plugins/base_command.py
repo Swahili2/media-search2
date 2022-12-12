@@ -267,7 +267,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('Subiri kidogo')
             await query.message.delete()
             ghi1=query.data.split(" ")[1]
-            mkv = await client.ask(text=f'{ghi1}⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye orodha kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha\n\nNote aina zote za media za mwanzo zilizotumia kifurushi hiki unachotaka kubadilisha,zitabadilika kutumia jina hili jipya utakalotupa',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text=f'⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina wakilisikisha bei ya wiki wiki2 wiki3 au mwezi kisha maelezo kidogo ya huduma hii zikitenganishwa na #@\n\n💫Mfano1 kifurushi cha vyote#@5000@6000#@7000#@8000#@Unaeza ukapata huduma zote ikiwemo series movies n.k\n\n💫Mfano3 Kifurushi cha tamthilia#@3500#@6000#@0#@8000#@hapa utajipatia tamthilia Kali ikiwemo huba\n\n⚡️Kumbuka ukiweka bei ni 0 hicho kipengele hakitakuepo kwenye orodha kuonyesha bei za wiki za vifurush Vyako kwa wateja :💫mfano3 utaonyesha bei za wiki1,wik2,mwez. Ila wiki3 haitaonyesha\n\nNote aina zote za media za mwanzo zilizotumia kifurushi hiki unachotaka kubadilisha,zitabadilika kutumia jina hili jipya utakalotupa',chat_id = query.from_user.id,reply_markup=ForceReply())
             ab = await db.get_db_status(query.from_user.id)
             try:
                 mkv1,mkv2,mkv3,mkv4,mkv5,mkv6=mkv.text.split("#@")
@@ -313,12 +313,45 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "adain":
             await query.answer('Subiri kidogo')
             await query.message.delete()
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina jipya la aina mojawapo ya media zako mfano1 movies Mfano2 series Mfano3 Singo Mfano4 tamthilia Mfano Audio n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
+            ab = await db.get_db_status(query.from_user.id)
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ ',chat_id = query.from_user.id,reply_markup=ForceReply())
+            try:
+                if mkv.text==None:
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                    return
+           
+            ghi1=ab[aina].split("#@#")
+            ghi2 = int(query.data.split(" ")[])
+            ghi = 'aina '
+            for i in range(0,10):
+                ghi3=gh1[i]
+                if i == ghi2:
+                    ghi3 = mkv.text
+                ghi=ghi+gh3
+            
+            await db.update_db(query.from_user.id,ghi,ab)
+        
         elif query.data == "ada2in":
             await query.answer('Subiri kidogo')
             await query.message.delete()
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
-
+            ab = await db.get_db_status(query.from_user.id)
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ wakilish',chat_id = query.from_user.id,reply_markup=ForceReply())
+            try:
+                if mkv.text==None:
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                    return
+           
+            ghi1=ab[aina].split("#@#")
+            ghi2 = int(query.data.split(" ")[])
+            ghi = 'aina '
+            for i in range(0,10):
+                ghi3=gh1[i]
+                if i == ghi2:
+                    ghi3 = mkv.text
+                ghi=ghi+gh3
+            
+            await db.update_db(query.from_user.id,ghi,ab)
+        
         elif query.data == "startup":
             await query.answer('mambo')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
@@ -616,7 +649,7 @@ def replymkup3(ab,typ,nmb):
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab2["aina"].split(',')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'adain')]
+                ab2=[InlineKeyboardButton(text = f'🦋 ONGEZA AINA' , callback_data = 'adain')]
             elif i != 10:
                 ab1=ab2["aina"].split(',')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in')]
