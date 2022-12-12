@@ -17,7 +17,7 @@ class Database:
                 descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei ",
                 phone_no = "0 hrm45 halopesa",
                 ms_link= "link",
-                aina = "empty#@#empty#@#empty#@#empty#@#empty#@#empty#@#empty#@#empty#@#empty#@#empty",
+                aina = "hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45#@#hrm45",
                 muda = "kuipakua mda wowote bila kikomo...",
                 g_1= "hrm45",
                 g_2 = "hrm45",
