@@ -319,7 +319,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
                 return
             ghi1=ab["aina"].split("#@#")
-            ghi2 = int(query.data.split(" ")[])
+            ghi2 = int(query.data.split(" ")[1])
             ghi = 'aina '
             for i in range(0,10):
                 ghi3=gh1[i]
@@ -337,7 +337,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
                 return
             ghi1=ab["aina"].split("#@#")
-            ghi2 = int(query.data.split(" ")[])
+            ghi2 = int(query.data.split(" ")[1])
             ghi = 'aina '
             for i in range(0,10):
                 ghi3=gh1[i]
