@@ -342,8 +342,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
                 return
             ghi1=ab["aina"].split("#@#")
-            ghi5 = query.data.split(" ")[1]
-            ghi2 = int(ghi5)
+            ghi2 = int(query.data.split(" ")[1])
             ghi = 'aina '
             for i in range(0,10):
                 ghi3=ghi1[i]
@@ -657,7 +656,7 @@ def replymkup3(ab,typ,nmb):
                 ab3.append(ab2)
             elif i != 10:
                 ab1=ab["aina"].split('#@#')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in {i}')]
+                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ada2in {i}')]
                 ab3.append(ab2)
         
     return InlineKeyboardMarkup(ab3)
