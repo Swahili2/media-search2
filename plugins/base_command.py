@@ -312,7 +312,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=replymkup3(ab,ain,11)
             await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafadhali chagua aina ya media zako kusahihisha au bonyeza 🦋 ONGEZA AINA kuongeza aina kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka aina mwisho ni kumi tu , pangilia vizuri aina zako", 
                 reply_markup=reply_markup)
-        elif query.data == "adain":
+        elif query.data.startswith("adain"):
             await query.answer('Subiri kidogo')
             await query.message.delete()
             ab = await db.get_db_status(query.from_user.id)
@@ -330,7 +330,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ghi=ghi+gh3
             await db.update_db(query.from_user.id,ghi,ab)
         
-        elif query.data == "ada2in":
+        elif query.data.startswith("ada2in"):
             await query.answer('Subiri kidogo')
             await query.message.delete()
             ab = await db.get_db_status(query.from_user.id)
