@@ -310,6 +310,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=replymkup3(ab,ain,10)
             else:
                 reply_markup=replymkup3(ab,ain,11)
+            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafadhali chagua aina ya media zako kusahihisha au bonyeza 🦋 ONGEZA AINA kuongeza aina kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka aina mwisho ni kumi tu , pangilia vizuri aina zako", 
+                reply_markup=reply_markup)
         elif query.data == "adain":
             await query.answer('Subiri kidogo')
             await query.message.delete()
