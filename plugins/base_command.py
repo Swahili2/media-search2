@@ -324,7 +324,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi2 = int(query.data.split(" ")[1])
             ghi = 'aina '
             for i in range(0,10):
-                ghi3=gh1[i]
+                ghi3=ghi1[i]
                 if i == ghi2:
                     ghi3 = mkv.text
                 ghi=ghi+gh3
@@ -342,7 +342,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi2 = int(query.data.split(" ")[1])
             ghi = 'aina '
             for i in range(0,10):
-                ghi3=gh1[i]
+                ghi3=ghi1[i]
                 if i == ghi2:
                     ghi3 = mkv.text
                 ghi=ghi+gh3
