@@ -327,7 +327,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ghi3=ghi1[i]
                 if i == ghi2:
                     ghi3 = mkv.text
-                ghi=ghi+gh3
+                ghi=ghi+ghi3
             await db.update_db(query.from_user.id,ghi,ab)
         
         elif query.data.startswith("ada2in"):
@@ -345,7 +345,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ghi3=ghi1[i]
                 if i == ghi2:
                     ghi3 = mkv.text
-                ghi=ghi+gh3
+                ghi=ghi+ghi3
             await db.update_db(query.from_user.id,ghi,ab)
         
         elif query.data == "startup":
