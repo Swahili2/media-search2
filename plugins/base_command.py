@@ -343,7 +343,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             ghi1=ab["aina"].split("#@#")
             ghi5 = query.data.split(" ")[1]
-            ghi2 = int(gh5)
+            ghi2 = int(ghi5)
             ghi = 'aina '
             for i in range(0,10):
                 ghi3=ghi1[i]
