@@ -642,18 +642,21 @@ def replymkup3(ab,typ,nmb):
             if i == (nmb-1) and i !=6 :
                 b=i+1
                 ab2 = [InlineKeyboardButton(text = '🦋 ADD KIFURUSHI ', callback_data = f'adgrp g_{b}')]
-                        
+                ab3.append(ab2)    
             elif i != 6:
                 a=i+1
                 abh=f'g_{a}'
                 ab1=ab[abh].split("#@")[0]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ad2grp {abh}')]
+                ab3.append(ab2)
         elif typ=="ain":
             if i == (nmb-1) and i != 10 :
                 ab1=ab["aina"].split('#@#')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 ONGEZA AINA' , callback_data = f'adain {i}')]
+                ab3.append(ab2)
             elif i != 10:
                 ab1=ab["aina"].split('#@#')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = 'ada2in {i}')]
-        ab3.append(ab2)
+                ab3.append(ab2)
+        
     return InlineKeyboardMarkup(ab3)
