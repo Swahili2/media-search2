@@ -362,13 +362,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "startup":
             await query.answer('uzuri wa kitu ni muonekano')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi',chat_id = query.from_user.id,reply_markup=ForceReply())
-            ghi=f'startup {mkv.text}'
+            ghi=f'descp {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
         elif query.data == "namba":
             await query.answer('Chagua Mtandao bora')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
-            ghi=f'namba {mkv.text}'
+            ghi=f'phone_no {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
         
