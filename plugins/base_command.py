@@ -263,6 +263,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi1=query.data.split(" ")[1]
             ghi=f"{ghi1} {mkv1}#@{mkv2},{mkv3},{mkv4},{mkv5}#@{mkv6}"
             await db.update_db(query.from_user.id,ghi,ab)
+            await mkv.reply_text(text=f"data added successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                
         elif query.data.startswith("ad2grp"):
             await query.answer('Subiri kidogo')
             await query.message.delete()
@@ -282,7 +284,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
             ghi=f"{ghi1} {mkv1}#@{mkv2},{mkv3},{mkv4},{mkv5}#@{mkv6}"
             await db.update_db(query.from_user.id,ghi,ab)
-        
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                
         elif query.data == "aina":
             await query.answer('Tafadhali subiri kidogo')
             ab = await db.get_db_status(query.from_user.id)
@@ -332,7 +335,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 else:
                     ghi=f'{ghi}#@#{ghi3}'
             await db.update_db(query.from_user.id,ghi,ab)
-        
+            await mkv.reply_text(text=f"data added successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                
         elif query.data.startswith("ada2in"):
             await query.answer('Subiri kidogo')
             await query.message.delete()
@@ -353,7 +357,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 else:
                     ghi=f'{ghi}#@#{ghi3}'
             await db.update_db(query.from_user.id,ghi,ab)
-        
+            await mkv.reply_text(text=f"data updated successful l",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
+                
         elif query.data == "startup":
             await query.answer('mambo')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
@@ -559,68 +564,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
             await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
                     )
-        elif query.data.startswith("0"):
-            msg1=query.split(" ")[1]
-            msg0=query.split(" ")[0]
-            if msg0=="0":
-                msg0="0"
-            else:
-                msg0+="0"
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} {msg0}',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
-            if msg0=="0":
-                msg0="0"
-            else:
-                msg0+="00"
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} {msg0}',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
-        elif query.data.startswith("000"):
-            
-            msg1=query.split(" ")[1]
-            msg0=query.split(" ")[2]
-            if msg0=="0":
-                msg0="0"
-            else:
-                msg0+="000"
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} {msg0}',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
-        elif query.data.startswith("delete"):
-            
-            msg1=query.split(" ")[1]
-            await query.edit_message_text(
-                    text = f'{query.message.text}\n{msg1} 0',
-                    reply_markup = InlineKeyboardMarkup([[]]),
-                )
-def replymkup(msg7,txt1):
-    reply1 = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton("1", callback_data="1 msg7 txt1"),
-                InlineKeyboardButton("2", callback_data="2 msg7 txt1"),
-                InlineKeyboardButton("3", callback_data="3 msg7 txt1"),
-                InlineKeyboardButton("4", callback_data="4 msg7 txt1"),
-                InlineKeyboardButton("5", callback_data="5 msg7 txt1")
-            ],
-            [
-                InlineKeyboardButton("6", callback_data="6 msg7 txt1"),
-                InlineKeyboardButton("7", callback_data="7 msg7 txt1"),
-                InlineKeyboardButton("8", callback_data="8 msg7 txt1"),
-                InlineKeyboardButton("9", callback_data="9 msg7 txt1"),
-                InlineKeyboardButton("0", callback_data="0 msg7 txt1")
-            ],
-            [
-                InlineKeyboardButton("00", callback_data="00 msg7 txt1"),
-                InlineKeyboardButton("000", callback_data="000 msg7 txt1"),
-                InlineKeyboardButton("✅", callback_data="upl msg7 txt1"),
-                InlineKeyboardButton("❎", callback_data="del msg7 txt1")
-            ]
-
-        ])
+        
+        elif query.data.startswith("rkb"):
+            await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
+                reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
+            )
 
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
@@ -658,5 +606,6 @@ def replymkup3(ab,typ,nmb):
                 ab1=ab["aina"].split('#@#')[i]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'ada2in {i}')]
                 ab3.append(ab2)
-        
+    ab2=[InlineKeyboardButton(text = f'🦋 RUDI NYUMA' , callback_data = f'rkb')]
+    ab3.append(ab2)
     return InlineKeyboardMarkup(ab3)
