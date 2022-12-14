@@ -566,7 +566,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         
         elif query.data.startswith("rkb"):
-            await client.send_message(chat_id=query.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
+            await query.edit_message_text(text="chagua huduma unayotaka kufanya marekebisho",
                 reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
             )
 
