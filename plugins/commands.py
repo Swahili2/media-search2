@@ -114,7 +114,7 @@ async def new_filtervip(client: Client, message):
     for usrl in usr["aina"].split('#@#'):
         i+=1
         if usrl!="hrm45":
-            usr1=f'\n{i} : {usr1}'
+            usr1=f'{usr1}\n{i} : {usrl}'
         
     mkv = await client.ask(text=f'CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
@@ -125,14 +125,14 @@ async def new_filtervip(client: Client, message):
         return
     x = 0
     p=[]
-    user=' '
+    usrr=' '
     for i in range(0,6):
         i+=1
         gs=f'g_{i}'
         if usr[gs] != 'hrm45':
             x+=1
             p.append({usr[gs].split(' ')[0]})
-            usrr=f'\n{x}:{usr[gs].split(" ")[0]}'
+            usrr=f'{usrr}\n{x}:{usr[gs].split(" ")[0]}'
     mkv = await client.ask(text='CHAGUA KUNDI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
         ab2=int(mkv.text)
