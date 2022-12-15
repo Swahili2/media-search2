@@ -113,7 +113,7 @@ async def give_filter(client: Client, query):
                     )
                 except:
                     continue
-            elif fileid and file_status == 'vip':
+            elif fileid and file_status != 'normal':
                 try:
                     result = InlineQueryResultCachedDocument(
                         title = keyword.upper(),
