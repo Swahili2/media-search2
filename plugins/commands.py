@@ -110,7 +110,7 @@ async def new_filtervip(client: Client, message):
         return
     usr = await db.get_db_status(message.from_user.id)
     i=0
-    for usrl in usr[aina].split(','):
+    for usrl in usr["aina"].split('#@#'):
         i+=1
         if usrl!="hrm45":
             usr1=f'\n{i}:{usrl}'
@@ -118,7 +118,7 @@ async def new_filtervip(client: Client, message):
     mkv = await client.ask(text='CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
         ab=int(mkv.text)
-        ab = usr.aina.split(',')[ab-1]
+        ab = usr["aina"].split('#@#')[ab-1]
     except:
         await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
@@ -127,7 +127,7 @@ async def new_filtervip(client: Client, message):
     for i in range(0,6):
         i+=1
         gs=f'g_{i}'
-        if use.gs != 'hrm45':
+        if usr[gs] != 'hrm45':
             x+=1
             p.append({usr.gs.split(' ')[0]})
             usrr=f'\n{x}:{usr.gs.split(" ")[0]}'
