@@ -89,7 +89,7 @@ async def start_msg_admins(client, message):
             
             if await db.is_acc_all_exist(cmd.from_user.id,group_id):
                 akg = await client.send_message(chat_id=cmd.from_user.id,text="Please wait")
-            elif not await db.is_acc_exist(cmd.from_user.id,file_id):
+            elif not await db.is_acc_exist(cmd.from_user.id,file_id,group_id):
                 await client.send_message(
                         chat_id=cmd.from_user.id,
                         text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia uweze kuitazama",
