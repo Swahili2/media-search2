@@ -371,7 +371,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('Mandao pendwa ndio bora')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni mfano 062466xxxx halopesa/nkumbuka namba ianze na 0 sio +255',chat_id = query.from_user.id,reply_markup=ForceReply())
             try:
-                 int(mkv.text.split(" ")[0]
+                 int(mkv.text.split(" ")[0])
             except:
                 await mkv.delete()
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza namba ya miamala yako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'rkb')]]))
