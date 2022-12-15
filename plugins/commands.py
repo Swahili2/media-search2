@@ -131,7 +131,7 @@ async def new_filtervip(client: Client, message):
         gs=f'g_{i}'
         if usr[gs] != 'hrm45':
             x+=1
-            p.append({usr[gs].split('#@')[0]})
+            p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
     mkv = await client.ask(text=f'CHAGUA KIFURUSHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
@@ -140,7 +140,7 @@ async def new_filtervip(client: Client, message):
     except:
         await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
-    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {ab2} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {ab} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
     try:
         ab1=int(mkv.text)
         if ab1==0:
@@ -149,10 +149,10 @@ async def new_filtervip(client: Client, message):
     except:
         await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
         return
-    mkv = await client.ask(text=f'naomba utume neno l kama utatuma {usr[ab-1]} kwa link au neno h kama n vipande vya {usr[ab-1]} ',chat_id = message.from_user.id)
+    mkv = await client.ask(text=f'naomba utume neno l kama utatuma {ab} kwa link au neno h kama n vipande vya {ab} ',chat_id = message.from_user.id)
     if mkv.text.lower()=='l' :
         mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
-        mkvl = await client.ask(text=f'naomba utume link ya kupakua {usr[ab-1]} hii',chat_id = message.from_user.id)
+        mkvl = await client.ask(text=f'naomba utume link ya kupakua {ab} hii',chat_id = message.from_user.id)
         if not mkvl.text:
             mkvl.text=msg_type
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
