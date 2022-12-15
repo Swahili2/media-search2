@@ -365,20 +365,30 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi=f'descp {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'rkb')]]))
+                
         elif query.data == "namba":
-            await query.answer('Chagua Mtandao bora')
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+            await query.answer('Mandao pendwa ndio bora')
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni mfano 062466xxxx halopesa/nkumbuka namba ianze na 0 sio +255',chat_id = query.from_user.id,reply_markup=ForceReply())
+            try:
+                 int(mkv.text.split(" ")[0]
+            except:
+                await mkv.delete()
+                await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza namba ya miamala yako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'rkb')]]))
+                return
             ghi=f'phone_no {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
-        
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'rkb')]]))
+            
         elif query.data == "dbname":
             await query.answer('jina zuri huonesha uzuri')
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma jina wakilishi la aina hii ya media unayotaka kubadilisha au kusahihihisha/n/n',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
             ghi=f'dbname {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
-        
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'rkb')]]))
+                
         elif query.data == "kenya":
             await query.answer()
             
