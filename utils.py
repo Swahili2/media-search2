@@ -32,7 +32,7 @@ class Media(Document):
     group_id = fields.IntField(required=True)
     descp = fields.StrField(required=True)
     status =  fields.StrField(required=True)
-    price = fields.StrField(required=True)
+    price = fields.IntField(required=True)
     grp = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME
