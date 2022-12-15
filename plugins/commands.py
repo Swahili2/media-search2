@@ -110,9 +110,11 @@ async def new_filtervip(client: Client, message):
         return
     usr = await db.get_db_status(message.from_user.id)
     i=0
-    for usrl in usr.aina.split(','):
+    for usrl in usr[aina].split(','):
         i+=1
-        usr1=f'\n{i}:{usrl}'
+        if usrl!="hrm45":
+            usr1=f'\n{i}:{usrl}'
+        
     mkv = await client.ask(text='CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
     try:
         ab=int(mkv.text)
