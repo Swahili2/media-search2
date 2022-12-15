@@ -62,9 +62,10 @@ class Database:
         user = await self.fls.find_one(filter)
         return True if user else False
 
-    async def is_acc_exist(self, id,file_id):
+    async def is_acc_exist(self, id,file_id,db_name):
         filter={'user_id': int(id)}
         filter["file_id"]= file_id
+        filter["db_name"]= db_name
         user = await self.fls.find_one(filter)
         return True if user else False
 
