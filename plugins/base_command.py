@@ -419,7 +419,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
            
         elif query.data.startswith("wik"):
             await query.answer()
-            fileid,msg2 = query.split(" ")[1].split(".")
+            fileid,msg2 = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
             await query.message.delete()
             for files in filedetails:
@@ -433,7 +433,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("wik2"):
             await query.answer()
-            fileid,msg2,prc1,tme = query.split(" ")[1].split(".")
+            fileid,msg2,prc1,tme = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
                 group_id = files.group_id
@@ -467,7 +467,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("malipo"):
             await query.answer()
-            fileid,msg2,prc1,tme = query.split(" ")[1].split(".")
+            fileid,msg2,prc1,tme = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
                 group_id = files.group_id
@@ -518,14 +518,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {query.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                        )
         elif query.data.startswith("yes"):
-            msg1 = query.split(" ")[1]
-            msg2 = query.split(" ")[2].split("@#")[1]
+            msg1 = query.data.split(" ")[1]
+            msg2 = query.data.split(" ")[2].split("@#")[1]
             await query.edit_message_caption(
                     caption = f'je unauhakika tumruhusu [{msg2}](tg://user?id={int(msg1)}) bonyeza ndiyo kukubali au bonyeza rudi kurudi kupata maelezo ya muamala',
                     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("ndiyo", callback_data=f"ndiyo {msg1} {query.data.split(' ')[2]}"),InlineKeyboardButton("rudi ", callback_data=f"rudi {msg1} {query.data.split(' ')[2]}")]])
                 )
         elif query.data.startswith("rudi"):
-            msg,msg1,data3 = query.split(" ")         
+            msg,msg1,data3 = query.data.split(" ")         
             msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
@@ -557,7 +557,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"yes {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]])
                     )
         elif query.data.startswith("ndiyo"):
-            msg,msg1,data3 = query.split(" ")         
+            msg,msg1,data3 = query.data.split(" ")         
             msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
