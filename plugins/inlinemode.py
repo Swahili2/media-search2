@@ -97,7 +97,7 @@ async def give_filter(client: Client, query):
                         description = descp,
                         parse_mode = 'html',
                         caption = reply_text,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{id3}")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])
                     )
                 except:
                     continue
@@ -121,7 +121,7 @@ async def give_filter(client: Client, query):
                         caption = reply_text or "",
                         parse_mode = 'html',
                         description = descp,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{id3}")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])
                     )
                 except:
                     continue
