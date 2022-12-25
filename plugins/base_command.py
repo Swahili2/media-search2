@@ -423,6 +423,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             fileid,msg2 = msgg.split(".",1)
             filedetails = await get_file_details(fileid)
             await query.message.delete()
+            if not filedetails :
+                return
             for files in filedetails:
                 group_id = files.group_id
             msg1 = group_id
