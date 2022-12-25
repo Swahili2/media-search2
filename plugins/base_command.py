@@ -588,7 +588,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.edit_message_text(text="chagua huduma unayotaka kufanya marekebisho",
                 reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "namba")]])
             )
-
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
     if msg1 == 0:
