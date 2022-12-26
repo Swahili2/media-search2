@@ -467,6 +467,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("malipo"):
             await query.answer()
+            await query.edit_message_text(
+                        text = f'{query.data.split(" ")[1]}')
             fileid,msg2,prc1,tme = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
