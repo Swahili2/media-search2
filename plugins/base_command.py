@@ -432,8 +432,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("wiik2"):
             await query.answer()
-            await query.edit_message_text(
-                        text = f'{query.data}')
             fileid,msg2,prc1,tme = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
 
@@ -594,7 +592,7 @@ def replymkup2(msg2,msg4):
     if msg1 == 0:
         return []
     else:
-        return [InlineKeyboardButton(f"{msg2}", callback_data="wiik2 msg4")]
+        return [InlineKeyboardButton(f"{msg2}", callback_data=f"wiik2 {msg4}")]
 
 def replymkup1(msg3,msg1,msg2):
     if msg3=="hrm45":
