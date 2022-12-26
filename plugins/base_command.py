@@ -432,8 +432,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("wiik2"):
             await query.answer()
+            await query.edit_message_text(
+                        text = f'{query.data}')
             fileid,msg2,prc1,tme = query.data.split(" ")[1].split(".")
             filedetails = await get_file_details(fileid)
+
             for files in filedetails:
                 group_id = files.group_id
                 prc2 = files.price
