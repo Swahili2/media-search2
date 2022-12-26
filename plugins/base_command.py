@@ -427,7 +427,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for files in filedetails:
                 group_id = files.group_id
             msg1 = group_id
-            details = await get_db_status(msg1)
+            details = await db.get_db_status(msg1)
             data1= details[msg2]
             data2= data1.split("#@")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split('#@')[0]}\n {data1.split('#@')[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii",
@@ -442,7 +442,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 prc2 = files.price
                 name = files.file_name
                 grp = files.grp
-            details = await get_db_status(group_id)
+            details = await db.get_db_status(group_id)
             data1 = details[msg2]
             if tme=="wk1":
                 tme1= "wiki 1"
@@ -486,7 +486,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= "mwezi mmoja"
             else:
                 tme1=tme
-            details = await get_db_status(group_id)
+            details = await db.get_db_status(group_id)
             data1 = details["msg2"]
             p1,p2,p3 =details.phone_no.split(" ")
             mda = details.muda
@@ -546,7 +546,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= "mwezi mmoja"
             else:
                 tme1=tme
-            details = await get_db_status(group_id)
+            details = await db.get_db_status(group_id)
             data1 = details.msg2
             if tme1=="m":
                 await query.edit_message_caption(
