@@ -427,7 +427,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for files in filedetails:
                 group_id = files.group_id
             msg1 = group_id
-            await client.send_message(chat_id = query.from_user.id,text=f"{msgg}",
+            await client.send_message(chat_id = query.from_user.id,text=f"{msgg}")
                     
             details = await db.get_db_status(msg1)
             data1= details[msg2]
