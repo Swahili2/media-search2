@@ -424,7 +424,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             filedetails = await get_file_details(fileid)
             await query.message.delete()
             await client.send_message(chat_id = query.from_user.id,text=f"{msgg1}")
-            return        
+                   
             if not filedetails :
                 return
             for files in filedetails:
