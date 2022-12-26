@@ -418,9 +418,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
            
         elif query.data.startswith("wik"):
             await query.answer()
-            msgg1=query.data.split(" ")          
-            #filedetails = await get_file_details(fileid)
-            #await query.message.delete()
+            msgg1=query.data.split(" ") 
+            fileid = msgg1[1]
+            msg2 = msgg1[2]       
+            filedetails = await get_file_details(fileid)
+            await query.message.delete()
             await client.send_message(chat_id = query.from_user.id,text=f"{msgg1}")
             return        
             if not filedetails :
