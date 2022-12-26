@@ -485,7 +485,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 tme1=tme
             details = await db.get_db_status(group_id)
-            data1 = details["msg2"]
+            data1 = details[msg2]
             p1,p2,p3 =details.phone_no.split(" ")
             mda = details.muda
             mkv = await client.ask(text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako',chat_id = query.from_user.id,reply_markup=ForceReply())
