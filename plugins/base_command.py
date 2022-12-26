@@ -438,7 +438,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for files in filedetails:
                 group_id = files.group_id
                 prc2 = files.price
-                name = files.file_name
+                name = files.text.split('.dd#.',1)[0]
                 grp = files.grp
             details = await db.get_db_status(group_id)
             data1 = details[msg2]
