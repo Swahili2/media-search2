@@ -419,8 +419,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("wik"):
             await query.answer()
             msgg=query.data.split(" ",1)[1]
-            fileid= msgg.split("#@@")[0]
-            msg2 = msgg.split("#@@")[1]
+            fileid= msgg.split("#d")[0]
+            msg2 = msgg.split("#d")[1]
             filedetails = await get_file_details(fileid)
             await query.message.delete()
             if not filedetails :
@@ -604,7 +604,7 @@ def replymkup1(msg3,msg1,msg2):
         return []
     else:
         msg3=msg3.split("#@")[0]
-        return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}#@@{msg2}")]
+        return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1}#d{msg2}")]
 def replymkup3(ab,typ,nmb):
     ab3=[]
     for i in range(0,nmb):
