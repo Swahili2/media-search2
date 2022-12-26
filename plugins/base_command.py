@@ -419,6 +419,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("wik"):
             await query.answer()
             msgg=query.data.split(" ",1)[1]
+            msgg = f"{msgg}"
             fileid= msgg.split("#d")[1]
             msg2 = msgg.split("#d")[0]
             filedetails = await get_file_details(fileid)
