@@ -562,7 +562,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for files in filedetails:
                 group_id = files.group_id
                 prc2 = files.price
-                name = files.file_name
+                name = files.text.split('.dd#.',1)[0]
                 grp = files.grp
             if tme=="wk1":
                 tme1= 7
