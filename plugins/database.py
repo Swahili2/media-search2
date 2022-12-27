@@ -45,7 +45,7 @@ class Database:
             )
         )
     async def add_acc(self, id,user_id,file_id,db_name,tme):
-        user = self.new_acc(id,user_id,file_id,db_name,tme)
+        user = self.new_acc(id,int(user_id),file_id,db_name,tme)
         await self.fls.insert_one(user)
     async def add_admin(self, id):
         user = self.new_user(id)
@@ -58,7 +58,7 @@ class Database:
     async def is_acc_exist(self, id,file_id,db_name):
         filter={'user_id': int(id)}
         filter["file_id"]= file_id
-        filter["db_name"]= db_name
+        filter["db_name"]= int(db_name)
         user = await self.fls.find_one(filter)
         return True if user else False
 
