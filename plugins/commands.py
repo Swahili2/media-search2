@@ -136,7 +136,7 @@ async def new_filtervip(client: Client, message):
     mkv = await client.ask(text=f'CHAGUA KIFURUSHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
     try:
         ab2=int(mkv.text)
-        ab2 = p[ab2-1]
+        ab2 = f'g_{ab2}'
     except:
         await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
