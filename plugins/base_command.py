@@ -1,4 +1,5 @@
 from info import filters
+import uuid
 from utils import get_file_details,get_filter_results
 from pyrogram  import Client
 from plugins.database import db
@@ -572,10 +573,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= 21
             elif tme== "mwz1":
                 tme1= 30
+            strid = str(uuid.uuid4())
             if tme == "m":
-                await db.add_acc(id,msg1,fileid,query.from_user.id,999)
+                await db.add_acc(strid,msg1,fileid,query.from_user.id,999)
             else:
-                await db.add_acc(id,msg1,msg2,query.from_user.id,tme1)
+                await db.add_acc(strid,msg1,msg2,query.from_user.id,tme1)
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)}) amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
                     )
             await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
