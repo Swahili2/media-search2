@@ -517,7 +517,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {query.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                        )
             await query.edit_message_text(
-                        text = f' {query.from_user.id} {query.data.split(' ')[1]}')
+                        text = f'{query.from_user.id} {query.data.split(" ")[1]}')
             
         elif query.data.startswith("yes"):
             msg1 = query.data.split(" ")[1]
