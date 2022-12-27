@@ -526,7 +526,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
         elif query.data.startswith("r"):
             msg,msg1,data3 = query.data.split(" ")         
-            msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
@@ -548,17 +547,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data1 = details.msg2
             if tme1=="m":
                 await query.edit_message_caption(
-                        caption = f'Mteja [{msg3}](tg://user?id={int(msg1)})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
+                        caption = f'Mteja [{msg1}](tg://user?id={int(msg1)})Amechagua \n Jina :{name}\nAina : {grp}\nBei yake : Tsh {prc2} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {grp} hii,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"y {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]])
                     )
             else:
                 await query.edit_message_caption(
-                        caption = f'Mteja [{msg3}](tg://user?id={int(msg1)})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
+                        caption = f'Mteja [{msg1}](tg://user?id={int(msg1)})Amechagua \n {data1.split(" ")[1].upper()}\n kifurushi : {tme1}\nBei yake : Tsh {prc1} \nTafadhal hakiki huu muamala wake,Kama amekosea tafadhal bonyeza chat private au maneno ya blue yaani jina lake kisha muelekeze aanze upya kuchagua kifurush sahihi au kutuma screenshot ya muamala sahihi.\n Bonyeza activate kumruhusu aweze kupata huduma ya {data1.split(" ")[1].upper()} ,Kama muamala wake upo sahihi \n\nNote:Kama utamshauri aanze upya tafadhali futa huu ujumbe ili usichanganye mada(ushauri tu)' ,
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("Activate", callback_data=f"y {msg1} {data3}"),InlineKeyboardButton("chat private", url=f"tg://user?id={int(msg1)}")]])
                     )
         elif query.data.startswith("n"):
             msg,msg1,data3 = query.data.split(" ")         
-            msg3 = data3.split("@#")[1]
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
             for files in filedetails:
@@ -578,7 +576,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await db.add_acc(id,msg1,fileid,query.from_user.id,999)
             else:
                 await db.add_acc(id,msg1,msg2,query.from_user.id,tme1)
-            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {msg3} amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
+            await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)}) amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
                     )
             await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
                     )
