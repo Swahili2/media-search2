@@ -55,13 +55,6 @@ class Database:
         user = await self.col.find_one({'id': int(id)})
         return True if user else False
 
-    async def is_acc_all_exist(self, id,db_name):
-        filter={'user_id': int(id)}
-        filter["db_name"]= db_name
-        filter["file_id"] = "all"
-        user = await self.fls.find_one(filter)
-        return True if user else False
-
     async def is_acc_exist(self, id,file_id,db_name):
         filter={'user_id': int(id)}
         filter["file_id"]= file_id
