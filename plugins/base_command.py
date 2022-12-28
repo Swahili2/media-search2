@@ -87,10 +87,7 @@ async def start_msg_admins(client, message):
                 f_caption=files.reply
                 group_id = files.group_id
                 grp = files.grp
-            ban_status = await db.get_ban_status(group_id)   
-            await client.send_message(
-                        chat_id=cmd.from_user.id,
-                        text=f"{grp}")  
+            ban_status = await db.get_ban_status(group_id)     
             if not await db.is_acc_exist(cmd.from_user.id,grp,group_id):
                 await client.send_message(
                         chat_id=cmd.from_user.id,
@@ -105,7 +102,6 @@ async def start_msg_admins(client, message):
                         )
                     )
                 return
-            await akg.delete()
             strg=files.descp.split('.dd#.')[3]
             if filedetails:
                 if filedetails:
