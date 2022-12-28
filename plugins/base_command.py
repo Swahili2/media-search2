@@ -85,10 +85,11 @@ async def start_msg_admins(client, message):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 f_caption=files.reply
+                id2 = files.id
                 group_id = files.group_id
                 grp = files.grp
             ban_status = await db.get_ban_status(group_id)     
-            if not await db.is_acc_exist(cmd.from_user.id,grp,group_id):
+            if not (await db.is_acc_exist(cmd.from_user.id,grp,group_id) or await db.is_acc_exist(cmd.from_user.id,id2,group_id)) :
                 await client.send_message(
                         chat_id=cmd.from_user.id,
                         text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia uweze kuitazama",
