@@ -89,7 +89,10 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 grp = files.grp
             ban_status = await db.get_ban_status(group_id)    
-            if ban_status[" "] == "':
+            if ban_status["is_banned"] == False:
+                await client.send_message(
+                        chat_id=cmd.from_user.id,
+                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu Kifurushi admin alicho lipia kimeisha mtaarifu alipie bonyeza maneno ya blue \n[ADMIN](tg://user?id={group_id})\n\nIli muweze kuendelea kumutumia robot huyu",
             if not (await db.is_acc_exist(cmd.from_user.id,grp,group_id) or await db.is_acc_exist(cmd.from_user.id,id2,group_id) or group_id == cmd.from_user.id) :
                 await client.send_message(
                         chat_id=cmd.from_user.id,
