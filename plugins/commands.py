@@ -26,10 +26,11 @@ async def total(bot, message):
         await msg.edit(f'Error: {e}')
 
 
-@Client.on_message(filters.command('adddata'))
+@Client.on_message(filters.private & filters.command('adddata'))
 async def new_filtervip(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     strid = str(uuid.uuid4())
     args = message.text.split(' ', 1)
@@ -229,10 +230,11 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('add'))
+@Client.on_message(filters.private & filters.command('add'))
 async def new_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     strid = str(uuid.uuid4())
     args = message.text.split(' ', 1)
@@ -440,10 +442,11 @@ async def new_filter(client: Client, message):
     )
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
-@Client.on_message(filters.command('delete'))
+@Client.on_message(filters.private & filters.command('delete'))
 async def del_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     try:
         cmd, text = message.text.split(" ", 1)
@@ -468,10 +471,11 @@ async def del_filter(client: Client, message):
         )
     else:
         await message.reply_text("Couldn't find that filter!", quote=True)
-@Client.on_message(filters.command('filters'))
+@Client.on_message(filters.private & filters.command('filters'))
 async def get_all(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     text = ''
     texts = await get_filter_results(text,message.from_user.id)
@@ -519,6 +523,7 @@ async def delallconfirm(Client, message):
 async def addconnection(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
