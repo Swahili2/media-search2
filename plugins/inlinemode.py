@@ -28,7 +28,6 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
-    await client.send_message( chat_id=query.from_user.id,text=f'{userdetails}')
     if not userdetails:
         if a =='no':
             result=[]
@@ -176,6 +175,7 @@ async def give_filter(client: Client, query):
         cache_time = 300,
         next_offset =str(next_offset)
     )
+    return
         
         
 @Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
@@ -197,3 +197,4 @@ async def alert_msg(client: Client, callback):
             await callback.answer(alert,show_alert=True)
         except:
             pass
+    return
