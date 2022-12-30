@@ -569,7 +569,7 @@ async def addconnection(client,message):
                 photo_id =aski.photo.big_file_id if photo else None
                 await User.collection.update_one({'_id':group_id},{'$set':{'title':aski.title,'link': photo ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
                 await message.reply_text(
-                    f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
+                    f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
                     quote=True,
                     parse_mode="md"
                 )
