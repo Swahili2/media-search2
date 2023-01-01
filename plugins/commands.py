@@ -430,7 +430,7 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'normal')
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'normal',599,'normal')
     text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
