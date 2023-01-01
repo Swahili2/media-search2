@@ -275,7 +275,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
                 mkv55 = int(mkv5.text)
                 mkv6 = await client.ask(text=f'',chat_id = query.from_user.id,reply_markup=ForceReply())   
-                await mkv1.delete()
+                
                 await mkv2.delete()
                 await mkv3.delete()
                 await mkv4.delete()
@@ -287,7 +287,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi1=query.data.split(" ")[1]
             ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
-            await mkv.reply_text(text=f"data added successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+            await mkv1.reply_text(text=f"data added successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 
         elif query.data.startswith("ad2grp"):
             await query.answer('Subiri kidogo')
@@ -305,7 +305,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
                 mkv55 = int(mkv5.text)
                 mkv6 = await client.ask(text=f'dgghfcfdd',chat_id = query.from_user.id,reply_markup=ForceReply())   
-                await mkv1.delete()
+                
                 await mkv2.delete()
                 await mkv3.delete()
                 await mkv4.delete()
@@ -316,7 +316,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
-            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+            await mkv1.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 
         elif query.data == "aina":
             await query.answer('Tafadhali subiri kidogo')
