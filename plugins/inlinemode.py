@@ -88,7 +88,7 @@ async def give_filter(client: Client, query):
                     )
                 except:
                     continue
-            elif msg_type == 'Photo' and file_status != 'vip':
+            elif msg_type == 'Photo' and file_status != 'normal':
                 try:
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
@@ -112,7 +112,7 @@ async def give_filter(client: Client, query):
                     )
                 except:
                     continue
-            elif fileid :
+            elif fileid and file_status != 'normal':
                 try:
                     result = InlineQueryResultCachedDocument(
                         title = keyword.upper(),
