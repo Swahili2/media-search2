@@ -87,6 +87,7 @@ async def start_msg_admins(client, message):
                 f_caption=files.reply
                 id2 = files.id
                 group_id = files.group_id
+                msg_type =files.type
                 grp = files.grp
             ban_status = await db.get_ban_status(group_id)    
             if ban_status["is_banned"] == False:
@@ -125,13 +126,23 @@ async def start_msg_admins(client, message):
                         return
                     elif strg.lower() == 's':
                         link = files.descp.split('.dd#.')[2]
-                        f_caption =f'\n🌟 @Bandolako2bot \n\n **💥Series  zetu zote zipo google drive, Kama huwezi kufungua link zetu tafadhali bonyeza 📪 ADD EMAIL kisha fuata maelekezo**'
-                        await client.send_photo(
-                            chat_id=cmd.from_user.id,
-                            photo=files.file,
-                            caption=f_caption,
-                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("📪 ADD EMAIL",callback_data = "addemail")],[InlineKeyboardButton("🔗 GOOGLE LINK",url= link)]])
-                        )
+                        f_caption =f'{f_caption}\n**💥Kama huwezi kufungua link zetu tafadhali nicheki [INBOX](tg://user?id={int(group_id)})**\n🌟 @Bandolako2bot'
+                        if msg_type =="photo":
+                            await client.send_photo(
+                                chat_id=cmd.from_user.id,
+                                photo=files.file,
+                                caption=f_caption,
+                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                            )
+                        
+                        else:
+                            await client.send_cached_media(
+                                    chat_id=cmd.from_user.id,
+                                    file_id=files.file,
+                                    caption=f_caption,
+                                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                            )
+                                
                         return
                      
                 else:
