@@ -485,7 +485,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 tme1=tme
             data2 = data1.split("#@")[0]
-            p1,p2,p3 =details["phone_no"].split(" ",3)
+            p1,p2,p3 =details["phone_no"].split(" ",2)
             mda = details["muda"]
             if tme == "m":
                 await query.edit_message_text(
