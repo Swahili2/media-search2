@@ -127,7 +127,7 @@ async def start_msg_admins(client, message):
                     elif strg.lower() == 's':
                         link = files.descp.split('.dd#.')[2]
                         f_caption =f'{f_caption}\n**💥Kama huwezi kufungua link zetu tafadhali nicheki [INBOX](tg://user?id={int(group_id)})**\n🌟 @Bandolako2bot'
-                        if msg_type =="photo":
+                        if msg_type =="Photo":
                             await client.send_photo(
                                 chat_id=cmd.from_user.id,
                                 photo=files.file,
