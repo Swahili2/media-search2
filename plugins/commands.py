@@ -399,10 +399,10 @@ async def new_filter(client: Client, message):
     else:
         await message.reply('Not Supported..!')
         return
-    mkv = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
-    if not mkv.text:
-        mkv.text=msg_type
-    descp = f'x.dd#.{mkv.text}'
+    mkvg = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+    if not mkvg.text:
+        mkvg.text=msg_type
+    descp = f'x.dd#.{mkvg.text}'
     try:
         if fileid:
             if msg_type == 'Photo':
