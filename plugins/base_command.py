@@ -401,7 +401,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
         elif query.data == "xba":
             await query.answer('Mandao pendwa ndio bora')
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni mfano 062466xxxx halopesa/nkumbuka namba ianze na 0 sio +255',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255',chat_id = query.from_user.id,reply_markup=ForceReply())
             try:
                  int(mkv.text.split(" ")[0])
             except:
