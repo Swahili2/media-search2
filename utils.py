@@ -31,7 +31,6 @@ class Media(Document):
     type = fields.StrField(required=True)
     group_id = fields.IntField(required=True)
     descp = fields.StrField(required=True)
-    status =  fields.StrField(required=True)
     price = fields.IntField(required=True)
     grp = fields.StrField(required=True)
     class Meta:
@@ -72,7 +71,7 @@ async def add_user(id, usr,sts,ttl):
         else:
             logger.info("group is saved in database")
 
-async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,sts,prc,grp):
+async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,prc,grp):
     """Save file in database"""
     text = str(text).lower()
     fdata = {'text': text}
@@ -93,7 +92,6 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,sts,prc,grp)
             type=str(type),
             group_id =user_id,
             descp=descp,
-            status = sts,
             price = prc,
             grp = grp
        )
