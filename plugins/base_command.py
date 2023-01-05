@@ -62,7 +62,7 @@ async def group2(client, message):
     if not status:
         return
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
-            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "xba")]])
+            reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "xba")]])
         )
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
@@ -317,80 +317,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
             await mkv1.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
-                
-        elif query.data == "aina":
-            await query.answer('Tafadhali subiri kidogo')
-            ab = await db.get_db_status(query.from_user.id)
-            ab1,ab2,ab3,ab4,ab5,ab6,ab7,ab8,ab9,ab10=ab["aina"].split("#@#")
-            ain="ain"
-            if ab1=="hrm45":
-                reply_markup=replymkup3(ab,ain,1)
-            elif ab2=="hrm45":
-                reply_markup=replymkup3(ab,ain,2)
-            elif ab3=="hrm45":
-                reply_markup=replymkup3(ab,ain,3)
-            elif ab4=="hrm45":
-                reply_markup=replymkup3(ab,ain,4)
-            elif ab5=="hrm45":
-                reply_markup=replymkup3(ab,ain,5)
-            elif ab6=="hrm45":
-                reply_markup=replymkup3(ab,ain,6)
-            elif ab7=="hrm45":
-                reply_markup=replymkup3(ab,ain,7)
-            elif ab8=="hrm45":
-                reply_markup=replymkup3(ab,ain,8)
-            elif ab9=="hrm45":
-                reply_markup=replymkup3(ab,ain,9)
-            elif ab10=="hrm45":
-                reply_markup=replymkup3(ab,ain,10)
-            else:
-                reply_markup=replymkup3(ab,ain,11)
-            await query.edit_message_text(text = "🌺🌺🌺🌺🌺🌺🌺🌺🌺\nTafadhali chagua aina ya media zako kusahihisha au bonyeza 🦋 ONGEZA AINA kuongeza aina kingine\n\n🌸kisha subiri utapewa maelekezo jinsi ya kusahihisha kundi lako\n\n💥Kumbuka aina mwisho ni kumi tu , pangilia vizuri aina zako", 
-                reply_markup=reply_markup)
-        elif query.data.startswith("aadain"):
-            await query.answer('Subiri kidogo')
-            await query.message.delete()
-            ab = await db.get_db_status(query.from_user.id)
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ ',chat_id = query.from_user.id,reply_markup=ForceReply())
-            if mkv.text==None:
-                await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                return
-            ghi1=ab["aina"].split("#@#")
-            ghi2 = int(query.data.split(" ")[1])
-            ghi = 'aina '
-            for i in range(0,10):
-                ghi3=ghi1[i]
-                if i == ghi2:
-                    ghi3 = mkv.text
-                if i == 0:
-                    ghi=f'{ghi}{ghi3}'
-                else:
-                    ghi=f'{ghi}#@#{ghi3}'
-            await db.update_db(query.from_user.id,ghi,ab)
-            await mkv.reply_text(text=f"data added successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                
-        elif query.data.startswith("aada2in"):
-            await query.answer('Subiri kidogo')
-            await query.message.delete()
-            ab = await db.get_db_status(query.from_user.id)
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ wakilish',chat_id = query.from_user.id,reply_markup=ForceReply())
-            if mkv.text==None:
-                await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza aina za media zako",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                return
-            ghi1=ab["aina"].split("#@#")
-            ghi2 = int(query.data.split(" ")[1])
-            ghi = 'aina '
-            for i in range(0,10):
-                ghi3=ghi1[i]
-                if i == ghi2:
-                    ghi3 = mkv.text
-                if i == 0:
-                    ghi=f'{ghi}{ghi3}'
-                else:
-                    ghi=f'{ghi}#@#{ghi3}'
-            await db.update_db(query.from_user.id,ghi,ab)
-            await mkv.reply_text(text=f"data updated successful l",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'aina')]]))
-                
+        
         elif query.data == "startup":
             await query.answer('uzuri wa kitu ni muonekano')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi',chat_id = query.from_user.id,reply_markup=ForceReply())
@@ -617,7 +544,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         elif query.data.startswith("zkb"):
             await query.edit_message_text(text="chagua huduma unayotaka kufanya marekebisho",
-                reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Aina', callback_data = "aina")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "xba")]])
+                reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "xba")]])
             )
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
@@ -645,15 +572,6 @@ def replymkup3(ab,typ,nmb):
                 abh=f'g_{a}'
                 ab1=ab[abh].split("#@")[0]
                 ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'kad2grp {abh}')]
-                ab3.append(ab2)
-        elif typ=="ain":
-            if i == (nmb-1) and i != 10 :
-                ab1=ab["aina"].split('#@#')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 ONGEZA AINA' , callback_data = f'aadain {i}')]
-                ab3.append(ab2)
-            elif i != 10:
-                ab1=ab["aina"].split('#@#')[i]
-                ab2=[InlineKeyboardButton(text = f'🦋 {ab1}' , callback_data = f'aada2in {i}')]
                 ab3.append(ab2)
     ab2=[InlineKeyboardButton(text = f'🦋 RUDI NYUMA' , callback_data = f'zkb')]
     ab3.append(ab2)
