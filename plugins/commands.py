@@ -110,20 +110,6 @@ async def new_filtervip(client: Client, message):
         await message.reply('Not Supported..!')
         return
     usr = await db.get_db_status(message.from_user.id)
-    i=0
-    usr1=" "
-    for usrl in usr["aina"].split('#@#'):
-        i+=1
-        if usrl!="hrm45":
-            usr1=f'{usr1}\n{i} : {usrl}'
-        
-    mkv = await client.ask(text=f'CHAGUA AINA YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya aina husika)\n\n{usr1}',chat_id = message.from_user.id)
-    try:
-        ab=int(mkv.text)
-        ab = usr["aina"].split('#@#')[ab-1]
-    except:
-        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
-        return
     x = 0
     p=[]
     usrr=' '
@@ -210,7 +196,7 @@ async def new_filtervip(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,ab,ab1,ab2)
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,ab1,ab2)
     text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
@@ -430,7 +416,7 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,'normal',599,'normal')
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,599,'normal')
     text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
