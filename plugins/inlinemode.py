@@ -65,7 +65,7 @@ async def give_filter(client: Client, query):
         reply_text = document['reply']
         button = document['btn']
         alert = document['alert']
-        file_status = document['status']
+        file_status = document['grp']
         fileid = document['file']
         keyword = document['text'].split('.dd#.',1)[0]
         msg_type = document['type']
