@@ -274,7 +274,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv44 = int(mkv4.text)
                 mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
                 mkv55 = int(mkv5.text)
-                mkv6 = await client.ask(text=f'',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv6 = await client.ask(text=f'Namba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
                 
                 await mkv2.delete()
                 await mkv3.delete()
@@ -304,7 +304,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv44 = int(mkv4.text)
                 mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
                 mkv55 = int(mkv5.text)
-                mkv6 = await client.ask(text=f'dgghfcfdd',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv6 = await client.ask(text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
                 
                 await mkv2.delete()
                 await mkv3.delete()
