@@ -112,7 +112,7 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
-            grp1,grp2=grp.split(" ")
+            grp1,grp2=grp.split(" ") 
             ban_status = await db.get_ban_status(group_id)    
             if ban_status["is_banned"] == False and group_id != cmd.from_user.id :
                 await client.send_message(
