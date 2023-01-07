@@ -126,7 +126,7 @@ async def new_filtervip(client: Client, message):
             ab5,ab6=mkv.text.spilt(" ",1)
             ab5= int(ab5)
             ab6 = int(ab6)
-            if ab6>i<ab5 orab5==ab6 or ab5==0 or ab6==0:
+            if ab6>i<ab5 or ab5==ab6 or ab5==0 or ab6==0:
                 await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
                 return
             ab2 = f'g_{ab5} g_{ab6}'
