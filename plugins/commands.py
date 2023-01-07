@@ -121,14 +121,7 @@ async def new_filtervip(client: Client, message):
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
     mkv = await client.ask(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
-    ab5,ab6=mkv.text.split(" ",1)
-    ab5= int(ab5)
-    ab6 = int(ab6)
-    if ab6>i<ab5 or ab5==ab6 or ab5==0 or ab6==0:
-        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
-        return
-    ab2 = f'g_{ab5} g_{ab6}'
-    return
+    
     try:
         try:
             ab5,ab6=mkv.text.split(" ",1)
