@@ -70,13 +70,16 @@ async def start_msg_admins(client, message):
         reply_markup = InlineKeyboardMarkup(start_keyboard)
     else:
         reply_markup = InlineKeyboardMarkup(start_keyboard_c)
-    text = START_MESSAGE.format(
-        mention = message.from_user.mention,
-        first_name = message.from_user.first_name,
-        last_name = message.from_user.last_name,
-        user_id = message.from_user.id,
-        username = '' if message.from_user.username == None else '@'+message.from_user.username
-    )
+    try:
+    
+    except:
+        text = START_MESSAGE.format(
+            mention = message.from_user.mention,
+            first_name = message.from_user.first_name,
+            last_name = message.from_user.last_name,
+            user_id = message.from_user.id,
+            username = '' if message.from_user.username == None else '@'+message.from_user.username
+        )
     usr_cmdall1 = message.text
     cmd=message
     if usr_cmdall1.startswith("/start subinps"):
