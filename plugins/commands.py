@@ -120,12 +120,24 @@ async def new_filtervip(client: Client, message):
             x+=1
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
-    mkv = await client.ask(text=f'CHAGUA KIFURUSHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kundi husika)\n\n{usrr}',chat_id = message.from_user.id)
+    mkv = await client.ask(text=f'CHAGUA KIFURUSHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3)\n\n{usrr}',chat_id = message.from_user.id)
     try:
-        ab2=int(mkv.text)
-        ab2 = f'g_{ab2}'
+        try:
+            ab5,ab6=mkv.text.spilt(" ",1)
+            ab5= int(ab5)
+            ab6 = int(ab6)
+            if i<ab5 or i<ab6:
+                await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
+                return
+            ab2 = f'g_{ab5} g_{ab6}'
+        except:
+            ab2 = int(mkv.text)
+            ab2 = f'g_{ab2}'
+            if i<ab2:
+                await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
+                return
     except:
-        await mkv.reply(text='tuna ujumbe sahihi kama ulivyo elekezwa anza upya')
+        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
         return
     mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {ab} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
     try:
