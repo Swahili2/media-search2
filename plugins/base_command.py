@@ -112,13 +112,14 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+            grp1,grp2=grp.split(" ")
             ban_status = await db.get_ban_status(group_id)    
             if ban_status["is_banned"] == False and group_id != cmd.from_user.id :
                 await client.send_message(
                         chat_id=cmd.from_user.id,
                         text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu Kifurushi admin alicho lipia kimeisha mtaarifu alipie bonyeza maneno ya blue \n\n[ADMIN](tg://user?id={group_id})\n\nIli muweze kuendelea kumutumia robot huyu")
                 return
-            if not (await db.is_acc_exist(cmd.from_user.id,grp,group_id) or await db.is_acc_exist(cmd.from_user.id,id2,group_id)) and group_id != cmd.from_user.id :
+            if not (await db.is_acc_exist(cmd.from_user.id,grp1,group_id) or await db.is_acc_exist(cmd.from_user.id,id2,group_id) or await db.is_acc_exist(cmd.from_user.id,grp2,group_id)) and group_id != cmd.from_user.id :
                 await client.send_message(
                         chat_id=cmd.from_user.id,
                         text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia uweze kuitazama",
