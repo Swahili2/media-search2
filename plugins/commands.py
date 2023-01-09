@@ -134,7 +134,23 @@ async def new_filtervip(client: Client, message):
         ab2 = f'g_{ab5} g_{ab6}'
     except:
         pass
-    
+    with 1 addition and 10 deletions.
+  11  
+plugins/commands.py
+@@ -134,16 +134,7 @@ async def new_filtervip(client: Client, message):
+        ab2 = f'g_{ab5} g_{ab6}'
+    except:
+        pass
+    if ab7!='y':
+        try:
+            ab00 = int(mkv.text)
+            ab2 = f'g_{ab00} hrm44'
+            if i<ab00 and ab00!=0:
+                await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
+                return
+        except:
+            await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
+            return
     mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya {ab}kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
     try:
         ab1=int(mkv.text)
@@ -460,7 +476,7 @@ async def del_filter(client: Client, message):
     if int(found) >=1:
         await Media.collection.delete_one(filter)
         await message.reply_text(
-            f"<code>{text}</code>  deleted.",
+            f"<code>{text.split('.dd#.')[0]}</code>  deleted successful.",
             quote=True
         )
     else:
