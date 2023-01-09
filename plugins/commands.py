@@ -41,6 +41,7 @@ async def new_filtervip(client: Client, message):
     
     extracted = split_quotes(args[1])
     text = f'{args[1].lower()}.dd#.{user_id}'
+    ab = f'{args[1].lower()}'
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
@@ -121,13 +122,6 @@ async def new_filtervip(client: Client, message):
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
     mkv = await client.ask(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
-    ab5,ab6=mkv.text.split(" ",1)
-    ab5= int(ab5)
-    ab6 = int(ab6)
-    if ab6>i<ab5 or ab5==ab6 or ab5==0 or ab6==0:
-        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
-        return
-    ab2 = f'g_{ab5} g_{ab6}'
     try:
         ab5,ab6=mkv.text.split(" ",1)
         ab5= int(ab5)
@@ -146,7 +140,7 @@ async def new_filtervip(client: Client, message):
         except:
             await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
             return
-    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu)kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya {ab}kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
     try:
         ab1=int(mkv.text)
         if ab1==0:
@@ -463,7 +457,7 @@ async def del_filter(client: Client, message):
             quote=True
         )
         return
-
+    text=f'{text}.dd#.{message.from_user.id}'
     query = text.lower()
     filter={'text': query}
     filter['group_id'] = message.from_user.id
@@ -489,7 +483,7 @@ async def get_all(client: Client, message):
         filterlist = f"<b>Bot have total {count} filters</b>\n\n"
 
         for text in texts:
-            keywords = f" ○  <code>{text.text}</code>\n"
+            keywords = f" ○  <code>{text.text.split('.dd#')[0]}</code>\n"
             filterlist += keywords
 
         if len(filterlist) > 4096:
