@@ -575,7 +575,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except:
                 await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)})\n Group unapotumia kuomba movie/series siruhusiw kutuma ujumbe tafadhali mwambie [ADMIN](tg://user?id={query.from_user.id}) Aniadd kama admin au akuelekeze group jipya kisha mwambie aniadd admin kisha endelea kuomba movie kupitia group hilo"
                     )
-            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Mpendwa [{msg1}](tg://user?id={int(msg1)}\nSamahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
+            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Mpendwa [{msg1}](tg://user?id={int(msg1)})\nSamahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
                     )
         
         elif query.data.startswith("zkb"):
