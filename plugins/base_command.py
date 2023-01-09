@@ -470,6 +470,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1=tme
             details = await db.get_db_status(group_id)
             data1 = details[msg2]
+            data2 = data1.split("#@")[0]
             p1,p2,p3 =details['phone_no'].split(" ",2)
             mda = details['muda']
             dbname = details['db_name']
