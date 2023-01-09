@@ -134,13 +134,6 @@ async def new_filtervip(client: Client, message):
         ab2 = f'g_{ab5} g_{ab6}'
     except:
         pass
-    with 1 addition and 10 deletions.
-  11  
-plugins/commands.py
-@@ -134,16 +134,7 @@ async def new_filtervip(client: Client, message):
-        ab2 = f'g_{ab5} g_{ab6}'
-    except:
-        pass
     if ab7!='y':
         try:
             ab00 = int(mkv.text)
