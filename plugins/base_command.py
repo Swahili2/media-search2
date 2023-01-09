@@ -457,7 +457,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
-             
+         
             if tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
