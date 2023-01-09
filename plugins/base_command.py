@@ -545,6 +545,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             msg,msg1,data3 = query.data.split(" ")         
             fileid,msg2,prc1,tme = data3.split("@#")[0].split(".")
             filedetails = await get_file_details(fileid)
+            dtails = await is_user_exist(int(msg1))
+            for fls in dtails:
+                group_id2 = fls.group_id
             for files in filedetails:
                 group_id = files.group_id
                 prc2 = files.price
@@ -566,7 +569,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)}) amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
                     )
-            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Samahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
+            try:
+                await client.send_message(chat_id = int(group_id2),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)}) Tumepokea muamala wako,Endelea kufurahia huduma zetu"
+                    )
+            except:
+                await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja [{msg1}](tg://user?id={int(msg1)})\n Group unapotumia kuomba movie/series siruhusiw kutuma ujumbe tafadhali mwambie [ADMIN](tg://user?id={query.from_user.id}) Aniadd kama admin au akuelekeze group jipya kisha mwambie aniadd admin kisha endelea kuomba movie kupitia group hilo"
+                    )
+            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Mpendwa [{msg1}](tg://user?id={int(msg1)}\nSamahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno salio ukiwa private yaani kwenye bot."
                     )
         
         elif query.data.startswith("zkb"):
