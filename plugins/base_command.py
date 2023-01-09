@@ -368,7 +368,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "dbname":
             await query.answer('jina zuri huonesha uzuri')
             mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
-            ghi=f'dbname {mkv.text}'
+            ghi=f'db_name {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
@@ -472,7 +472,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data1 = details[msg2]
             p1,p2,p3 =details['phone_no'].split(" ",2)
             mda = details['muda']
-            dbname = details['dbname']
+            dbname = details['db_name']
             mkv = await client.ask(text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako',chat_id = query.from_user.id,reply_markup=ForceReply())
             if mkv.photo:
                 await query.message.delete()
