@@ -146,7 +146,7 @@ async def new_filtervip(client: Client, message):
         except:
             await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
             return
-    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya  {ab} hii kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu)kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
     try:
         ab1=int(mkv.text)
         if ab1==0:
