@@ -775,11 +775,14 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
     users=await db.get_acc(message.from_user.id)
     salio='Vifurushi Vyako ulivyojiunga: \n'
     async for user in users:
-        if user.fileid.startwith('g_'):
-            
+        if user['file_id'].startwith('g_'):
+            sd= await db.get_db_status(user['db_name'])
+            g2 = user['file_id']
+            sd = sd[g2].split('#@')[0]
+            salio+=f'{sd}:Kinaisha tarehe{user['ban_status.banned_on']}'
         else:
-            
-        salio+= 
+            salio+=f'{}:{Kinaisha tarehe{user['ban_status.banned_on']}}'
+         
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
