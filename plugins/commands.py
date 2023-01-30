@@ -772,7 +772,14 @@ Video Note filters: {videonote}
 
 Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako wafurahie huduma za Swahili robot """
         await message.reply_text(stats_text)
-    
+    users=await db.get_acc(message.from_user.id)
+    salio='Vifurushi Vyako ulivyojiunga: \n'
+    async for user in users:
+        if user.fileid.startwith('g_'):
+            
+        else:
+            
+        salio+= 
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
