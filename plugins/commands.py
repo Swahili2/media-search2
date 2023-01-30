@@ -3,7 +3,7 @@ import uuid
 import io
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group,get_file_details
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -781,7 +781,9 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
             sd = sd[g2].split('#@')[0]
             salio+=f'{sd}:Kinaisha tarehe{user['ban_status.banned_on']}'
         else:
-            salio+=f'{}:{Kinaisha tarehe{user['ban_status.banned_on']}}'
+            sd = await get_file_details(user['file_id'])
+            for sd1 in sd:
+                salio+=f'{sd1.text}:{Kinaisha tarehe{user['ban_status.banned_on']}}'
          
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
