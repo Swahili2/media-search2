@@ -715,51 +715,48 @@ async def ban(c,m):
 @Client.on_message(filters.private & filters.text("vifurushi"))
 async def get_status(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
-    if not status:
+    if status:
         return
-    async for user in await db.get_user(message.from_user.id):
-        salio =user['ban_status']
-        salio = salio['ban_duration']
-    if salio == 1:
-        salio = f'{salio} kumbuka umebakiza masaa machache tu Fanya muamala uweze kuendelea'
-    filters = await get_filter_results('',message.from_user.id)
-    filters_no = 0
-    text = 0
-    photo = 0
-    video = 0
-    audio = 0
-    document = 0
-    animation = 0
-    sticker = 0
-    voice = 0 
-    videonote = 0 
-    
-    for filter in filters:
-        type = filter['type']
-        if type == 'Text':
-            text += 1 
-        elif type == 'Photo':
-            photo += 1 
-        elif type == 'Video':
-            video += 1 
-        elif type == 'Audio':
-            audio += 1 
-        elif type == 'Document':
-            document += 1
-        elif type == 'Animation':
-            animation += 1
-        elif type == 'Sticker':
-            sticker += 1 
-        elif type == 'Voice':
-            voice += 1
-        elif type == 'Video Note':
-            videonote += 1 
+        async for user in await db.get_user(message.from_user.id):
+            salio =user['ban_status']
+            salio = salio['ban_duration']
+        filters = await get_filter_results('',message.from_user.id)
+        filters_no = 0
+        text = 0
+        photo = 0
+        video = 0
+        audio = 0
+        document = 0
+        animation = 0
+        sticker = 0
+        voice = 0 
+        videonote = 0 
+        for filter in filters:
+            type = filter['type']
+            if type == 'Text':
+                text += 1 
+            elif type == 'Photo':
+                photo += 1 
+            elif type == 'Video':
+                video += 1 
+            elif type == 'Audio':
+                audio += 1 
+            elif type == 'Document':
+                document += 1
+            elif type == 'Animation':
+                animation += 1
+            elif type == 'Sticker':
+                sticker += 1 
+            elif type == 'Voice':
+                voice += 1
+            elif type == 'Video Note':
+                videonote += 1 
 
-        filters_no += 1
+            filters_no += 1
     
-    user_collection = await User.count_documents({'group_id': message.from_user.id})
+        user_collection = await User.count_documents({'group_id': message.from_user.id})
     
-    stats_text = f"""<b>Statistics</b>
+        stats_text = f"""<b>Statistics</b>
     
 Total groups: {user_collection}
 Total filters: {filters_no}
@@ -773,8 +770,9 @@ Sticker filters: {sticker}
 Voice filters: {voice}
 Video Note filters: {videonote}
 
-Salio lako ni zimebaki Siku {salio} kumtumia Swahili robot """
-    await message.reply_text(stats_text)
+Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako wafurahie huduma za Swahili robot """
+        await message.reply_text(stats_text)
+    
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
