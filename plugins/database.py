@@ -38,7 +38,8 @@ class Database:
             user_id=user_id,
             file_id = file_id,
             db_name = db_name,
-            ban_status=dict(
+            ban_status=users
+
                 ban_duration=tme,
                 banned_on=datetime.date.today().isoformat(),
             )
@@ -46,6 +47,7 @@ class Database:
     async def add_acc(self, id,user_id,file_id,db_name,tme):
         user = self.new_acc(id,int(user_id),file_id,db_name,tme)
         await self.fls.insert_one(user)
+
     async def add_admin(self, id):
         user = self.new_user(id)
         await self.col.insert_one(user)
@@ -68,16 +70,22 @@ class Database:
     async def get_all_users(self):
         all_users = self.col.find({})
         return all_users
+
     async def get_all_acc(self):
         all_users = self.fls.find({})
         return all_users
+
     async def delete_acc(self, id):
         await self.fls.delete_many({'id': id})
 
     async def get_user(self,id):
         all_users = self.col.find({'id': id})
         return all_users
-    
+
+    async def get_acc(self,id):
+        all_users = self.fls.find({'user_id': int(id)})
+        return all_users
+
     async def delete_admin(self, user_id):
         await self.col.delete_many({'id': int(user_id)})
 
