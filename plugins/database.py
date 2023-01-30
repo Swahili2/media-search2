@@ -68,6 +68,12 @@ class Database:
     async def get_all_users(self):
         all_users = self.col.find({})
         return all_users
+    async def get_all_acc(self):
+        all_users = self.fls.find({})
+        return all_users
+    async def delete_acc(self, id):
+        await self.fls.delete_many({'id': id})
+
     async def get_user(self,id):
         all_users = self.col.find({'id': id})
         return all_users
