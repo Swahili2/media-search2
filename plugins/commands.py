@@ -773,18 +773,36 @@ Video Note filters: {videonote}
 Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako wafurahie huduma za Swahili robot """
         await message.reply_text(stats_text)
     users=await db.get_acc(message.from_user.id)
-    salio='Vifurushi Vyako ulivyojiunga: \n'
+    salio='Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\n'
+    a=1
     async for user in users:
+        a=2
         if user['file_id'].startwith('g_'):
             sd= await db.get_db_status(user['db_name'])
             g2 = user['file_id']
             sd = sd[g2].split('#@')[0]
-            salio+=f'{sd}:Kinaisha tarehe{user['ban_status.banned_on']}'
+            salio+=f'{sd}:Kinaisha tarehe{user['ban_status.banned_on']}\n\n'
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
-                salio+=f'{sd1.text}:{Kinaisha tarehe{user['ban_status.banned_on']}}'
-         
+                salio+=f'{sd1.text.split(".dd#.")[0]}:{Kinaisha tarehe{user['ban_status.banned_on']}}\n\n'
+    if a=1:
+        await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
+    else:
+        await message.reply_text(salio)
+@Client.on_message(filters.private & filters.command('editpost'))
+async def new_editor(client: Client, message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        return
+    strid = str(uuid.uuid4())
+    args = message.text.split(' ', 1)
+    user_id = message.from_user.id
+    if len(args) < 2:
+        await message.reply_text("Tafadhali fuata maelekezo", quote=True)
+        return
+    text = f'{args[1].lower()}.dd#.{user_id}'
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
