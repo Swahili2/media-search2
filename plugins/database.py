@@ -38,7 +38,7 @@ class Database:
             user_id=user_id,
             file_id = file_id,
             db_name = db_name,
-            ban_status=duct(
+            ban_status=dict(
                 ban_duration=tme,
                 banned_on=datetime.date.today().isoformat(),
             )
