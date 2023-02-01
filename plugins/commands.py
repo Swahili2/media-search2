@@ -785,7 +785,7 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
-                salio+=f'{sd1.text.split(".dd#.")[0]}:{Kinaisha tarehe{user["ban_status.banned_on"]}\n\n'
+                salio+=f'{sd1.text.split(".dd#.")[0]}:Kinaisha tarehe{user["ban_status.banned_on"]}\n\n'
     if a==1:
         await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
     else:
