@@ -781,11 +781,11 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
             sd= await db.get_db_status(user['db_name'])
             g2 = user['file_id']
             sd = sd[g2].split('#@')[0]
-            salio+=f'{sd}:Kinaisha tarehe{user['ban_status.banned_on']}\n\n'
+            salio+=f'{sd}:Kinaisha tarehe{user["ban_status.banned_on"]}\n\n'
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
-                salio+=f'{sd1.text.split(".dd#.")[0]}:{Kinaisha tarehe{user['ban_status.banned_on']}}\n\n'
+                salio+=f'{sd1.text.split(".dd#.")[0]}:{Kinaisha tarehe{user["ban_status.banned_on"]}}\n\n'
     if a=1:
         await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
     else:
