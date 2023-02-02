@@ -8,7 +8,7 @@ from utils import get_filter_results,is_user_exist
 @Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
     await handle_user_status(client,message)
-    await handle_admin_status(client,message)
+    #await handle_admin_status(client,message)
     group_status= await is_user_exist(message.chat.id)
     if group_status:
         for user in group_status:
