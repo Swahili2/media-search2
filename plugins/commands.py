@@ -13,7 +13,7 @@ from plugins.helper_funcs import (
 import os
 import logging
 logger = logging.getLogger(__name__)
-
+    
 @Client.on_message(filters.command('total') & filters.owner)
 async def total(bot, message):
     """Show total files in database"""
