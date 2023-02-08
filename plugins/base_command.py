@@ -1,5 +1,6 @@
 from info import filters
 import uuid
+import time
 from utils import get_file_details,get_filter_results,is_user_exist
 from pyrogram  import Client
 from plugins.database import db
@@ -345,11 +346,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "startup":
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
+            b=time.time()
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(query.message.id)+1)
                     if mkv.text!=None:
                         a=True
+                    if (time.time()-b)>60:
+                        return
                 except:
                     a=False
             #mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media',chat_id = query.from_user.id,reply_markup=ForceReply())
