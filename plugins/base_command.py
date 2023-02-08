@@ -347,9 +347,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
             b=time.time()
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text=f"tafadhali tuma ujumbe ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(query.message.id)+1)
+                    mkv = await client.get_messages("me",(mkv1.id)+1)
                     if mkv.text!=None:
                         a=True
                     if (time.time()-b)>60:
