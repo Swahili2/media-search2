@@ -347,7 +347,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             a=False
             while a==False:
                 try:
-                    mkv = await app.get_messages("me",(query.message.id)+1)
+                    mkv = await client.get_messages("me",(query.message.id)+1)
                     a=True
                 except:
                     a=False
