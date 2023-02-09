@@ -290,22 +290,38 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             ab = await db.get_db_status(query.from_user.id)
             try:
-                mkv1 = await client.ask(text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv2 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv22=int(mkv2.text)
-                mkv3 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv33=int(mkv3.text)
-                mkv4 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv44 = int(mkv4.text)
-                mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv55 = int(mkv5.text)
-                mkv6 = await client.ask(text=f'Namba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
-                
+                mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
+                mkv1 = funask(3,text=1)
+                mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv22 = funask(1,mkv2)
+                mkv22=int(mkv22.text)
+                mkv3 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv33 = funask(1,mkv3)
+                mkv33=int(mkv33.text)
+                mkv4 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv44 = funask(1,mkv4)
+                mkv44 = int(mkv44.text)
+                mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv55 = funask(1,mkv5)
+                mkv55 = int(mkv55.text)
+                mkv66 = await client.send_message(chat_id = query.from_user.id(,text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv6 = funask(3,mkv66)
+                if mkv1.text==None and mkv6.text ==None: 
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                    return
+                await mkv1.delete()
                 await mkv2.delete()
                 await mkv3.delete()
                 await mkv4.delete()
                 await mkv5.delete()
                 await mkv6.delete()
+                await mkv11.delete()
+                await mkv22.delete()
+                await mkv33.delete()
+                await mkv44.delete()
+                await mkv55.delete()
+                await mkv66.delete()
+            
             except:
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi kuandika tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushii",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 return
@@ -320,22 +336,37 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi1=query.data.split(" ")[1]
             ab = await db.get_db_status(query.from_user.id)
             try:
-                mkv1 = await client.ask(text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv2 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv22=int(mkv2.text)
-                mkv3 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv33=int(mkv3.text)
-                mkv4 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv44 = int(mkv4.text)
-                mkv5 = await client.ask(text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',chat_id = query.from_user.id,reply_markup=ForceReply())
-                mkv55 = int(mkv5.text)
-                mkv6 = await client.ask(text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
-                
+                mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
+                mkv1 = funask(3,text=1)
+                mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv22 = funask(1,mkv2)
+                mkv22=int(mkv22.text)
+                mkv3 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv33 = funask(1,mkv3)
+                mkv33=int(mkv33.text)
+                mkv4 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv44 = funask(1,mkv4)
+                mkv44 = int(mkv44.text)
+                mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv55 = funask(1,mkv5)
+                mkv55 = int(mkv55.text)
+                mkv66 = await client.send_message(chat_id = query.from_user.id(,text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv6 = funask(3,mkv66)
+                if mkv1.text==None and mkv6.text ==None: 
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                    return
+                await mkv1.delete()
                 await mkv2.delete()
                 await mkv3.delete()
                 await mkv4.delete()
                 await mkv5.delete()
                 await mkv6.delete()
+                await mkv11.delete()
+                await mkv22.delete()
+                await mkv33.delete() 
+                await mkv44.delete()
+                await mkv55.delete()
+                await mkv66.delete()
             except:
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 return
@@ -353,14 +384,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     mkv = await client.get_messages("me",(mkv1.id)+1)
                     if mkv.text!=None:
                         a=True
-                    elif mkv!=None:
-                        await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
-                        return
+                    
                     if (time.time()-b)>600:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
                 except:
                     a=False
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                return
             ghi=f'descp {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
@@ -376,14 +408,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     mkv = await client.get_messages("me",(mkv1.id)+1)
                     if mkv.text!=None:
                         a=True
-                    elif mkv!=None:
-                        await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
-                        return
+                    
                     if (time.time()-b)>200:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
                 except:
                     a=False 
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                return
             try:
                  int(mkv.text.split(" ")[0])
                  mkv.text.split(" ")[2]
@@ -406,14 +439,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     mkv = await client.get_messages("me",(mkv1.id)+1)
                     if mkv.text!=None:
                         a=True
-                    elif mkv!=None:
-                        await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
-                        return
+                    
                     if (time.time()-b)>100:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
                 except:
                     a=False 
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                return
             ghi=f'db_name {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
@@ -641,6 +675,20 @@ def replymkup1(msg3,msg1,msg2):
     else:
         msg3=msg3.split("#@")[0]
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1} {msg2}")]
+def funask(tme,mkv1):
+    a=False
+    b=time.time()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(tme*60):
+                mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika {tme} iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+    return mkv
 def replymkup3(ab,typ,nmb):
     ab3=[]
     for i in range(0,nmb):
