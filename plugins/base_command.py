@@ -304,7 +304,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
                 mkv55 = funask(1,mkv5)
                 mkv55 = int(mkv55.text)
-                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hiki',reply_markup=ForceReply())   
                 mkv6 = funask(3,mkv66)
                 if mkv1.text==None and mkv6.text ==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
@@ -350,7 +350,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
                 mkv55 = funask(1,mkv5)
                 mkv55 = int(mkv55.text)
-                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hiki',chat_id = query.from_user.id,reply_markup=ForceReply())   
+                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hikii',reply_markup=ForceReply())   
                 mkv6 = funask(3,mkv66)
                 if mkv1.text==None and mkv6.text ==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
