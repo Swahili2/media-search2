@@ -347,17 +347,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text=f"tafadhali tuma ujumbe ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media tafadhali tuma ndani ya dakika 10 bila hvyo utaanza upya',reply_markup=ForceReply())
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
                     if mkv.text!=None:
                         a=True
-                    if (time.time()-b)>60:
+                    if (time.time()-b)>600:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]])
                         return
                 except:
                     a=False
-            #mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media',chat_id = query.from_user.id,reply_markup=ForceReply())
             ghi=f'descp {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
@@ -365,7 +365,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
         elif query.data == "xba":
             await query.answer('Mandao pendwa ndio bora')
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255',reply_markup=ForceReply())
+            a=False
+            b=time.time()
+            while a==False:
+                try:
+                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    if mkv.text!=None:
+                        a=True
+                    if (time.time()-b)>200:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]])
+                        return
+                except:
+                    a=False 
             try:
                  int(mkv.text.split(" ")[0])
                  mkv.text.split(" ")[2]
@@ -380,7 +392,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
         elif query.data == "dbname":
             await query.answer('jina zuri huonesha uzuri')
-            mkv = await client.ask(text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ',chat_id = query.from_user.id,reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ',reply_markup=ForceReply())
+            a=False
+            b=time.time()
+            while a==False:
+                try:
+                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    if mkv.text!=None:
+                        a=True
+                    if (time.time()-b)>100:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]])
+                        return
+                except:
+                    a=False 
             ghi=f'db_name {mkv.text}'
             ab = await db.get_db_status(query.from_user.id)
             await db.update_db(query.from_user.id,ghi,ab)
