@@ -675,7 +675,7 @@ def replymkup1(msg3,msg1,msg2):
     else:
         msg3=msg3.split("#@")[0]
         return [InlineKeyboardButton(f"{msg3}", callback_data=f"wik {msg1} {msg2}")]
-def funask(tme,mkv1):
+async def funask(tme,mkv1):
     a=False
     b=time.time()
     while a==False:
