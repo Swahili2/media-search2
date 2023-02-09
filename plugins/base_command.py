@@ -291,7 +291,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ab = await db.get_db_status(query.from_user.id)
             try:
                 mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
-                mkv1 = funask(3,text=1)
+                mkv1 = funask(3,mkv11)
                 mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
                 mkv22 = funask(1,mkv2)
                 mkv22=int(mkv22.text)
@@ -337,7 +337,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ab = await db.get_db_status(query.from_user.id)
             try:
                 mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
-                mkv1 = funask(3,text=1)
+                mkv1 = funask(3,mkv1)
                 mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
                 mkv22 = funask(1,mkv2)
                 mkv22=int(mkv22.text)
