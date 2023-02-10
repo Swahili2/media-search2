@@ -335,6 +335,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             ghi1=query.data.split(" ")[1]
             ab = await db.get_db_status(query.from_user.id)
+            mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
+            mkv1 = funask(3,mkv1)
             try:
                 mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
                 mkv1 = funask(3,mkv1)
