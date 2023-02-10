@@ -296,7 +296,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv1 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv1 = await client.get_messages("me",(mkv11.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(3*60):
@@ -308,7 +308,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv22 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv22 = await client.get_messages("me",(mkv2.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(60):
@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv33 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv33 = await client.get_messages("me",(mkv3.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(60):
@@ -334,7 +334,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv44 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv44 = await client.get_messages("me",(mkv4.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(60):
@@ -347,7 +347,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv55 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv55 = await client.get_messages("me",(mkv5.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(60):
@@ -360,7 +360,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a,b = funask()
                 while a==False:
                     try:
-                        mkv6 = await client.get_messages("me",(mkv1.id)+1)
+                        mkv6 = await client.get_messages("me",(mkv66.id)+1)
                         if mkv.text!=None:
                             a=True
                         if (time.time()-b)>(3*60):
