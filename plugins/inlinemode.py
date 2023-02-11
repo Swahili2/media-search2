@@ -132,11 +132,11 @@ async def give_filter(client: Client, query):
             elif fileid and file_status != 'normal':
                 try:
                     result = InlineQueryResultCachedDocument(
-                        title = keyword.upper(),
                         document_file_id = fileid,
+                        title = keyword.upper(),
+                        description = descp,
                         caption = reply_text or "",
                         parse_mode = 'html',
-                        description = descp,
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     )
                 except:
@@ -153,11 +153,11 @@ async def give_filter(client: Client, query):
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     
                     result = InlineQueryResultCachedDocument(
-                        title = keyword.upper(),
                         document_file_id = fileid,
+                        title = keyword.upper(),
+                        description = descp,
                         caption = reply_text or "",
                         parse_mode = 'html',
-                        description = descp,
                         reply_markup=reply_markup
                     )
                 except:
