@@ -368,6 +368,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             return
                     except:
                         a=False
+                If mkv1.text==None and mkv6.text ==None: 
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                    return
                 await mkv1.delete()
                 await mkv2.delete()
                 await mkv3.delete()
