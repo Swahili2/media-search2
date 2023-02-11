@@ -304,6 +304,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             return
                     except:
                         a=False
+                a=False
+                if mkv1.text==None: 
+                    await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
+                    return
                 mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
                 a,b = funask()
                 while a==False:
@@ -368,7 +372,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             return
                     except:
                         a=False
-                If mkv1.text==None and mkv6.text ==None: 
+                if mkv6.text ==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                     return
                 await mkv1.delete()
@@ -377,12 +381,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await mkv4.delete()
                 await mkv5.delete()
                 await mkv6.delete()
-                await mkv111.delete()
+                await mkv11.delete()
                 await mkv222.delete()
                 await mkv333.delete() 
                 await mkv444.delete()
                 await mkv555.delete()
-                await mkv666.delete()
+                await mkv66.delete()
             except:
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 return
