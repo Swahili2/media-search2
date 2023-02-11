@@ -99,7 +99,7 @@ async def give_filter(client: Client, query):
             elif msg_type == 'Photo' and file_status != 'normal':
                 try:
                     result = InlineQueryResultPhoto(
-                        photo_url = fileid,
+                        photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
                         parse_mode = 'html',
@@ -120,7 +120,7 @@ async def give_filter(client: Client, query):
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     
                     result = InlineQueryResultPhoto(
-                        photo_url = fileid,
+                        photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
                         parse_mode = 'html',
