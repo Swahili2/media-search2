@@ -16,7 +16,7 @@ from pyrogram.types import (
 from utils import is_user_exist,get_search_results,Media,is_group_exist
 from info import filters
 BOT = {}
-@Client.on_inline_query()
+@Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(query.from_user.id)
