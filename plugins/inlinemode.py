@@ -133,7 +133,7 @@ async def give_filter(client: Client, query):
                 try:
                     result = InlineQueryResultCachedDocument(
                         title = keyword.upper(),
-                        file_id = fileid,
+                        document_file_id = fileid,
                         caption = reply_text or "",
                         parse_mode = 'html',
                         description = descp,
@@ -154,7 +154,7 @@ async def give_filter(client: Client, query):
                     
                     result = InlineQueryResultCachedDocument(
                         title = keyword.upper(),
-                        file_id = fileid,
+                        document_file_id = fileid,
                         caption = reply_text or "",
                         parse_mode = 'html',
                         description = descp,
