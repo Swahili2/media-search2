@@ -123,7 +123,18 @@ async def new_filtervip(client: Client, message):
             x+=1
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
-    mkv = await client.ask(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
+    mkv1= await client.ask(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
     try:
         ab5,ab6=mkv.text.split(" ",1)
         ab5= int(ab5)
@@ -145,7 +156,18 @@ async def new_filtervip(client: Client, message):
         except:
             await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
             return
-    mkv = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya {ab}kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    mkv1 = await client.ask(text=f'tafadhal naomba utume bei(namba tu) ya {ab}kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
     try:
         ab1=int(mkv.text)
         if ab1==0:
@@ -155,20 +177,75 @@ async def new_filtervip(client: Client, message):
         await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
         return
     mkv = await client.ask(text=f'naomba utume neno l kama utatuma {ab} kwa link au neno h kama n vipande vya {ab} ',chat_id = message.from_user.id)
-    if mkv.text.lower()=='l' :
-        mkv2 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
-        mkvl = await client.ask(text=f'naomba utume link ya kupakua {ab} hii',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+   if mkv.text.lower()=='l' :
+        mkv22 = await client.ask(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mkv2 = await client.get_messages("me",(mkv22.id)+1)
+                if mkv2.text!=None:
+                    a=True
+                if (time.time()-b)>(60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
+        mkv22 = await client.ask(text=f'naomba utume link ya kupakua {ab} hii',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mkvl = await client.get_messages("me",(mkv22.id)+1)
+                if mkvl.text!=None:
+                    a=True
+                if (time.time()-b)>(3*60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
         if not mkvl.text:
             mkvl.text=msg_type
         descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
     elif mkv.text.lower()=='h':
-        mkv1 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+        mkv22 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mk= await client.get_messages("me",(mkv22.id)+1)
+                if mk.text!=None:
+                    a=True
+                if (time.time()-b)>(3*60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
         if mkv1.text:
             dta='start'
             icount = 0
             while dta!='stop':
                 stridm = str(uuid.uuid4())
-                mk=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                mkv22=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                a,b = funask()
+                while a==False:
+                    try:
+                        mk= await client.get_messages("me",(mkv22.id)+1)
+                        if mk.media!=None or mk.text!=None:
+                            a=True
+                        if (time.time()-b)>(10*60):
+                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            return
+                    except:
+                        a=False
                 if mk.media and not (mk.photo):
                     for file_type in ("document", "video", "audio"):
                         media = getattr(mk, file_type, None)
