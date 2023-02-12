@@ -132,26 +132,6 @@ def remove_escapes(text: str) -> str:
         counter += 1
     return res
 
-async def upload_photo(message):
-    msg = await message.reply_text("<code>Please wait..</code>")
-    _T_LIMIT = 5242880
-    if not (bool(message.photo) and bool(message.photo.file_size <= _T_LIMIT)):
-        await msg.edit("<i>Sorry this Photo is not supported..</i>")
-        return False
-    dl_loc = await message.download()
-    try:
-        response = upload_file(dl_loc)
-    except Exception as t_e:
-        await msg.edit_text(t_e)
-        link = False
-    else:
-        link = f'https://telegra.ph{response[0]}'
-        await msg.delete()
-    finally:
-        os.remove(dl_loc)
-        
-    return  link
-
 def make_dict(data_list : List[dict], keywords : List[str]):
     dict_list = []
     for i in range(len(data_list)):
