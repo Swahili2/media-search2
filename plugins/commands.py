@@ -801,7 +801,7 @@ async def ban(c,m):
             f"Error occoured! Traceback given below\n\n",
             quote=True
         )
-@Client.on_message(filters.private & filters.command('kifurushi'))
+@Client.on_message(filters.private & filters.regex('salio'))
 async def get_statuss(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
     if status:
