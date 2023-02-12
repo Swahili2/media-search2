@@ -72,7 +72,7 @@ async def new_filtervip(client: Client, message):
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
-                fileid = await upload_photo(replied)
+                fileid = replied.photo.file_id
                 msg_type = 'Photo'
                 if not fileid:
                     return
@@ -88,7 +88,7 @@ async def new_filtervip(client: Client, message):
 
     elif message.reply_to_message and message.reply_to_message.photo:
         try:
-            fileid = await upload_photo(message.reply_to_message)
+            fileid = message.reply_to_message.photo.file_id
             if not fileid:
                 return
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
@@ -370,7 +370,7 @@ async def new_filter(client: Client, message):
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
-                fileid = await upload_photo(replied)
+                fileid = replied.photo.file_id
                 msg_type = 'Photo'
                 if not fileid:
                     return
@@ -391,7 +391,7 @@ async def new_filter(client: Client, message):
 
     elif message.reply_to_message and message.reply_to_message.photo:
         try:
-            fileid = await upload_photo(message.reply_to_message)
+            fileid = message.reply_to_message.photo.file_id
             if not fileid:
                 return
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
@@ -480,7 +480,18 @@ async def new_filter(client: Client, message):
     else:
         await message.reply('Not Supported..!')
         return
-    mkvg = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+    mkv22 = await client.ask(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkvg = await client.get_messages("me",(mkv22.id)+1)
+            if mkvg.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
     if not mkvg.text:
         mkvg.text=msg_type
     descp = f'x.dd#.{mkvg.text}'
