@@ -628,7 +628,7 @@ async def addconnection(client,message):
             )
         return
 
-    elif chat_type in ["group", "supergroup"]:
+    else:
         group_id = message.chat.id
 
     try:
@@ -707,7 +707,7 @@ async def removegroup(client,message):
             )
         return
 
-    elif chat_type in ["group", "supergroup"]:
+    else:
         group_id = message.chat.id
 
     try:
