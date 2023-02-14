@@ -634,8 +634,8 @@ async def addconnection(client,message):
     try:
         st = await client.get_chat_member(group_id, userid)
         if (
-            st.status != "administrator"
-            or st.status != "creator"
+            st.status != "ADMINISTRATOR"
+            or st.status != "OWNER"
         ):
             await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
             return
@@ -712,8 +712,8 @@ async def removegroup(client,message):
     try:
         st = await client.get_chat_member(group_id, userid)
         if (
-            st.status != "administrator"
-            or st.status != "creator"
+            st.status != "ADMINISTRATOR"
+            or st.status != " OWNER"
         ):
             await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
             return
