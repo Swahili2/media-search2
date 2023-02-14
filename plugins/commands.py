@@ -727,7 +727,7 @@ async def removegroup(client,message):
         return
     try:
         st = await client.get_chat_member(group_id, "me")
-        if st.status == ""ADMINISTRATOR":
+        if st.status == "ADMINISTRATOR":
             group_details= await is_user_exist(group_id)
             for file in group_details:
                 user_id2=file.group_id
