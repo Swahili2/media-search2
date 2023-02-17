@@ -60,9 +60,9 @@ async def give_filter(client: Client, query):
                                               max_results=10,
                                               offset=offset)
     results = []
-    await client.send_message(chat_id=query.from_user.id,text=f"{documents}")
-        
+    
     for document in documents:
+        await client.send_message(chat_id=query.from_user.id,text=f"{documents}")
         
         id3 = document.id
         reply_text = document.reply
