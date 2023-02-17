@@ -1,4 +1,4 @@
-from pyrogram import Client
+forms pyrogram import Client
 import uuid
 import io
 import time
@@ -746,7 +746,7 @@ async def removegroup(client,message):
                     f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
                     quote=True
                 )
-            elif not group_details:
+            elif not (group_details):
                 ttli = await client.get_users(user_id2)
                 await message.reply_text(
                     f"Samahani admin **{ttli.first_name}** hili group halipo  kwenye database zetu tuma /niunge kuliunga!",
