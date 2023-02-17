@@ -736,7 +736,7 @@ async def removegroup(client,message):
         st = await client.get_chat_member(group_id, "me")
         st.status=(f"{st.status}".split(".")[1])
         if st.status == "ADMINISTRATOR":
-            group_details =False
+            
             group_details= await is_user_exist(group_id)
             for file in group_details:
                 user_id2=file.group_id
@@ -746,7 +746,7 @@ async def removegroup(client,message):
                     f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
                     quote=True
                 )
-            elif not groupdetails:
+            elif not group_details:
                 ttli = await client.get_users(user_id2)
                 await message.reply_text(
                     f"Samahani admin **{ttli.first_name}** hili group halipo  kwenye database zetu tuma /niunge kuliunga!",
