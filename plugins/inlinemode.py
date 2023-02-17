@@ -28,7 +28,7 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
-    if not userdetails:
+    if userdetails:
         if a =='no':
             result=[]
             title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
