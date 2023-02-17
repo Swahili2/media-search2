@@ -1,4 +1,4 @@
-forms pyrogram import Client
+from pyrogram import Client
 import uuid
 import io
 import time
@@ -659,8 +659,7 @@ async def addconnection(client,message):
             if not group_details :
                 await add_user(group_id,userid,'group',message.chat.title)
                 aski = await client.get_chat(group_id)
-                #photo = await upload_group(client,aski.photo,message)
-                photo_id =aski.photo.big_file_id if photo else None
+                photo_id =aski.photo.big_file_id
                 await User.collection.update_one({'_id':group_id},{'$set':{'title':aski.title,'link': photo_id ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
