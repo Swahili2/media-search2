@@ -699,27 +699,33 @@ async def addconnection(client,message):
 @Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
 async def removegroup(client,message):
     status= await db.is_admin_exist(message.from_user.id)
+    if nostatus= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
-    chat_type = message.chat.type
-    if chat_type == "PRIVATE":
+    chat_type =f"{ message.chat.type}"
+    
+    if chat_type == "ChatType.PRIVATE":
         await message.reply_text(
                 "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
                 quote=True
             )
         return
 
-    elif chat_type in ["GROUP","SUPERGROUP"]:
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
         group_id = message.chat.id
 
     try:
         st = await client.get_chat_member(group_id, userid)
-        if (
-            st.status != "ADMINISTRATOR"
-            or st.status != " OWNER"
+        st.status=(f"{st.status}".split(".")[1])
+        await message.reply_text(f"{st.status}Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+     
+        if not(
+            st.status == "ADMINISTRATOR"
+            or st.status == "OWNER"
         ):
             await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
             return
@@ -733,6 +739,7 @@ async def removegroup(client,message):
         return
     try:
         st = await client.get_chat_member(group_id, "me")
+        st.status=(f"{st.status}".split(".")[1])
         if st.status == "ADMINISTRATOR":
             group_details= await is_user_exist(group_id)
             for file in group_details:
