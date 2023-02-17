@@ -635,6 +635,7 @@ async def addconnection(client,message):
 
     try:
         st = await client.get_chat_member(group_id, userid)
+        st.status=(f"{st.status}".split(".")[1])
         if (
             st.status != "ADMINISTRATOR"
             or st.status != "OWNER"
@@ -651,6 +652,7 @@ async def addconnection(client,message):
         return
     try:
         st = await client.get_chat_member(group_id, "me")
+        st.status=(f"{st.status}".split(".")[1])
         if st.status == "ADMINISTRATOR":
             group_details= await is_user_exist(group_id)
             for file in group_details:
