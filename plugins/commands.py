@@ -699,7 +699,6 @@ async def addconnection(client,message):
 @Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
 async def removegroup(client,message):
     status= await db.is_admin_exist(message.from_user.id)
-    if nostatus= await db.is_admin_exist(message.from_user.id)
     if not status:
         await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
