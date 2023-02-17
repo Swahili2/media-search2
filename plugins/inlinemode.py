@@ -28,7 +28,7 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
-    if userdetails:
+    if not userdetails:
         if a =='no':
             result=[]
             title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
@@ -60,6 +60,7 @@ async def give_filter(client: Client, query):
                                               max_results=10,
                                               offset=offset)
     results = []
+    
     for document in documents:
         id3 = document['id']
         reply_text = document['reply']
@@ -73,7 +74,7 @@ async def give_filter(client: Client, query):
         acs = document['descp'].split('.dd#.')[0]
         if button == "[]":
             button = None
-        
+        await client.send_message(chat_id=query.from_user.id,text=f"{result}")
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
