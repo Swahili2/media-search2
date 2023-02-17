@@ -60,8 +60,10 @@ async def give_filter(client: Client, query):
                                               max_results=10,
                                               offset=offset)
     results = []
-    
+    await client.send_message(chat_id=query.from_user.id,text=f"{result}")
+        
     for document in documents:
+        
         id3 = document.id
         reply_text = document.reply
         button = document.btn
@@ -74,7 +76,6 @@ async def give_filter(client: Client, query):
         acs = document.descp.split('.dd#.')[0]
         if button == "[]":
             button = None
-        await client.send_message(chat_id=query.from_user.id,text=f"{result}")
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
