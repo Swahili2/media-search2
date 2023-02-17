@@ -638,8 +638,8 @@ async def addconnection(client,message):
         await message.reply_text(f"{st.status}Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
      
         if (
-            st.status != "ADMINISTRATOR"
-            or st.status != "OWNER"
+            st.status == "ADMINISTRATOR"
+            or st.status == "OWNER"
         ):
             await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
             return
