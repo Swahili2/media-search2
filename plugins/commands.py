@@ -635,8 +635,6 @@ async def addconnection(client,message):
     try:
         st = await client.get_chat_member(group_id, userid)
         st.status=(f"{st.status}".split(".")[1])
-        await message.reply_text(f"{st.status}Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
-     
         if not(
             st.status == "ADMINISTRATOR"
             or st.status == "OWNER"
@@ -720,8 +718,6 @@ async def removegroup(client,message):
     try:
         st = await client.get_chat_member(group_id, userid)
         st.status=(f"{st.status}".split(".")[1])
-        await message.reply_text(f"{st.status}Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
-     
         if not(
             st.status == "ADMINISTRATOR"
             or st.status == "OWNER"
