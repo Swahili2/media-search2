@@ -623,14 +623,14 @@ async def addconnection(client,message):
     chat_type = message.chat.type
     await message.reply_text(f"{chat_type}Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
      
-    if chat_type == "PRIVATE":
+    if chat_type == "ChatType.PRIVATE":
         await message.reply_text(
                 "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
                 quote=True
             )
         return
 
-    elif chat_type in ["GROUP","SUPERGROUP"]:
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
         group_id = message.chat.id
 
     try:
