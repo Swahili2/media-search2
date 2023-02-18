@@ -91,7 +91,7 @@ async def give_filter(client: Client, query):
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
-                            parse_mode = 'html'),
+                            ),
                         description=descp,
                         reply_markup=reply_markup
                     )
