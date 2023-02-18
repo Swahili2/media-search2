@@ -104,7 +104,7 @@ async def give_filter(client: Client, query):
                         photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
-                        parse_mode = 'html',
+                        
                         caption = reply_text,
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     )
@@ -126,7 +126,7 @@ async def give_filter(client: Client, query):
                         photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
-                        parse_mode = 'html',
+                        
                         caption = reply_text or '',
                         reply_markup=reply_markup
                     )
@@ -140,7 +140,7 @@ async def give_filter(client: Client, query):
                         title = keyword.upper(),
                         description = descp,
                         caption = reply_text or "",
-                        parse_mode = 'html',
+                        
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     )
                 except:
@@ -162,7 +162,7 @@ async def give_filter(client: Client, query):
                         title = keyword.upper(),
                         description = descp,
                         caption = reply_text or "",
-                        parse_mode = 'html',
+                        
                         reply_markup=reply_markup
                     )
                 except:
