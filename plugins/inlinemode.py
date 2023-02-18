@@ -77,10 +77,11 @@ async def give_filter(client: Client, query):
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
-            await client.send_message(chat_id=query.from_user.id,text=f"{document.id}")
-        
             if fileid == 'None':
                 try:
+                    await client.send_message(chat_id=query.from_user.id,text=f"{status}")
+        
+                    
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button ==  None:
