@@ -62,8 +62,6 @@ async def give_filter(client: Client, query):
     results = []
     
     for document in documents:
-        await client.send_message(chat_id=query.from_user.id,text=f"{document.id}")
-        
         id3 = document.id
         reply_text = document.reply
         button = document.btn
@@ -79,6 +77,8 @@ async def give_filter(client: Client, query):
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
+            await client.send_message(chat_id=query.from_user.id,text=f"{document.id}")
+        
             if fileid == 'None':
                 try:
                     if button ==  None and status == True:
