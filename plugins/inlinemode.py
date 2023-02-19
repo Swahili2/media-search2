@@ -79,7 +79,7 @@ async def give_filter(client: Client, query):
         if acs == 'x':  
             if fileid == 'None':
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{document.btn}")
+                    
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     
@@ -87,6 +87,7 @@ async def give_filter(client: Client, query):
                         reply_markup=InlineKeyboardMarkup([eval(button),[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
+                    await client.send_message(chat_id=query.from_user.id,text=f"{reply_markup}")
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
