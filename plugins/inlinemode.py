@@ -118,6 +118,8 @@ async def give_filter(client: Client, query):
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
+                    await client.send_message(chat_id=query.from_user.id,text=f"{relpy_markup}")
+                    
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
@@ -130,7 +132,6 @@ async def give_filter(client: Client, query):
                     continue
             elif fileid and file_status != 'normal':
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{status}")
                     result = InlineQueryResultCachedDocument(
                         document_file_id = fileid,
                         title = keyword.upper(),
