@@ -124,7 +124,7 @@ async def give_filter(client: Client, query):
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     
                     result = InlineQueryResultPhoto(
-                        photo_file_id = fileid,
+                        photo_url = fileid,
                         title = keyword.upper(),
                         description = descp,
                         
