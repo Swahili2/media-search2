@@ -1,4 +1,4 @@
-from pyrogram import Client
+forms pyrogram import Client
 import uuid
 import io
 import time
@@ -8,7 +8,7 @@ from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
-    upload_photo
+    upload_photo,
     split_quotes
 )  
 import os
@@ -73,7 +73,7 @@ async def new_filtervip(client: Client, message):
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
-                fileid = replied.photo.file_id
+                fileid = await upload_photo(replied)
                 msg_type = 'Photo'
                 if not fileid:
                     return
@@ -371,7 +371,7 @@ async def new_filter(client: Client, message):
                 reply_text = message.reply_to_message.caption.html
             
             elif replied.photo:
-                fileid = replied.photo.file_id
+                fileid = await upload_photo(replied)
                 msg_type = 'Photo'
                 if not fileid:
                     return
