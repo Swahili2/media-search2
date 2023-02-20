@@ -85,7 +85,7 @@ async def give_filter(client: Client, query):
                         reply_markup= None
                     elif status == True:
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-                    else:
+                    elif button != None and status!= True :
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
@@ -116,7 +116,7 @@ async def give_filter(client: Client, query):
                         reply_markup = None
                     elif status == True:
                         reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-                    else:
+                    elif button != None and status!= True:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
@@ -148,7 +148,7 @@ async def give_filter(client: Client, query):
                         reply_markup= None
                     elif status == True:
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-                    else:
+                    elif button != None and status!= True :
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     result = InlineQueryResultCachedDocument(
                         document_file_id = fileid,
