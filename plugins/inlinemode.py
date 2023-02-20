@@ -123,7 +123,7 @@ async def give_filter(client: Client, query):
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
                     
-                    result = InlineQueryResultCachedPhoto(
+                    result = InlineQueryResultPhoto(
                         photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
