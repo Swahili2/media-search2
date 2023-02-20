@@ -101,8 +101,8 @@ async def give_filter(client: Client, query):
             elif msg_type == 'Photo' and file_status != 'normal':
                 try:
                     await client.send_message(chat_id=query.from_user.id,text=f"{status}")
-                    result = InlineQueryResultCachedPhoto(
-                        photo_file_id = fileid,
+                    result = InlineQueryResultPhoto(
+                        photo_url = fileid,
                         title = keyword.upper(),
                         description = descp,
                         
