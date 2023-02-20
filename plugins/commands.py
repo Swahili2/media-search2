@@ -1,4 +1,4 @@
-forms pyrogram import Client
+from pyrogram import Client
 import uuid
 import io
 import time
