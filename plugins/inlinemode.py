@@ -79,7 +79,6 @@ async def give_filter(client: Client, query):
         if acs == 'x':  
             if fileid == 'None':
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{status}")
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button ==  None:
@@ -88,7 +87,6 @@ async def give_filter(client: Client, query):
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
-                    await client.send_message(chat_id=query.from_user.id,text=f"{reply_markup}")
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
@@ -100,7 +98,6 @@ async def give_filter(client: Client, query):
                     continue
             elif msg_type == 'Photo' and file_status != 'normal':
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{fileid}")
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
@@ -113,16 +110,14 @@ async def give_filter(client: Client, query):
                     continue
             elif msg_type == 'Photo':
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{fileid}")
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button ==  None:
                         reply_markup= None
                     elif status == True:
-                        reply_markup=InlineKeyboardMarkup([eval(button),[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
-                    
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
@@ -148,16 +143,14 @@ async def give_filter(client: Client, query):
                     continue
             elif fileid:
                 try:
-                    await client.send_message(chat_id=query.from_user.id,text=f"{status}")
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button ==  None:
                         reply_markup= None
                     elif status == True:
-                        reply_markup=InlineKeyboardMarkup([eval(button),[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     else:
                         relpy_markup = InlineKeyboardMarkup(eval(button))
-                    
                     result = InlineQueryResultCachedDocument(
                         document_file_id = fileid,
                         title = keyword.upper(),
