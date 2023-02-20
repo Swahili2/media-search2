@@ -39,7 +39,26 @@ def replace_href(text):
         text = re.sub(regex,r"\1<a href='\3'>\2</a>\4",text)
         text = replace_href(text)
     return text
-        
+ 
+async def upload_photo(message):
+    msg = await message.reply_text("<code>Please wait..</code>")
+    _T_LIMIT = 5242880
+    if not (bool(message.photo) and bool(message.photo.file_size <= _T_LIMIT)):
+        await msg.edit("<i>Sorry this Photo is not supported..</i>")
+        return False
+    dl_loc = await message.download()
+    try:
+        response = upload_file(dl_loc)
+    except Exception as t_e:
+        await msg.edit_text(t_e)
+        link = False
+    else:
+        link = f'https://telegra.ph{response[0]}'
+        await msg.delete()
+    finally:
+        os.remove(dl_loc)
+
+    return  link
 def remove_md(text):
     lists = {
         '__' : ['<u>','</u>'],
