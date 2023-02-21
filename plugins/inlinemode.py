@@ -84,7 +84,7 @@ async def give_filter(client: Client, query):
                     elif button ==  None:
                         reply_markup= None
                     elif status== False:
-                        relpy_markup = InlineKeyboardMarkup(eval(button)+[])
+                        relpy_markup = InlineKeyboardMarkup([])
                     elif status == True:
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultArticle(
