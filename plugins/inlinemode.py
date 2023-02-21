@@ -82,7 +82,7 @@ async def give_filter(client: Client, query):
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button != None and status!= True :
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
+                        relpy_markup = InlineKeyboardMarkup(eval(button)+[])
                     
                     elif button ==  None:
                         reply_markup= None
