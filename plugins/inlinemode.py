@@ -74,6 +74,7 @@ async def give_filter(client: Client, query):
         acs = document.descp.split('.dd#.')[0]
         if button == "[]":
             button = None
+        abc=eval(button)
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
@@ -82,9 +83,9 @@ async def give_filter(client: Client, query):
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif button ==  None:
-                        reply_markup= None
+                        reply_markup = None
                     elif status== False:
-                        relpy_markup = InlineKeyboardMarkup([])
+                        relpy_markup = InlineKeyboardMarkup(abc)
                     elif status == True:
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultArticle(
