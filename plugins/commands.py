@@ -177,7 +177,7 @@ async def new_filtervip(client: Client, message):
     except:
         await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
         return
-    mkv = await client.send_message(text=f'naomba utume neno l kama utatuma {ab} kwa link au neno h kama n vipande vya {ab} ',chat_id = message.from_user.id)
+    mkv1= await client.send_message(text=f'naomba utume neno l kama utatuma {ab} kwa link au neno h kama n vipande vya {ab} ',chat_id = message.from_user.id)
     a,b = funask()
     while a==False:
         try:
