@@ -81,12 +81,13 @@ async def give_filter(client: Client, query):
                 try:
                     if button ==  None and status == True:
                         reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                    elif button != None and status!= True :
+                        relpy_markup = InlineKeyboardMarkup(eval(button))
+                    
                     elif button ==  None:
                         reply_markup= None
                     elif status == True:
                         reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-                    elif button != None and status!= True :
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
@@ -112,12 +113,12 @@ async def give_filter(client: Client, query):
                 try:
                     if button ==  None and status == True:
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                    elif button != None and status!= True :
+                        relpy_markup = InlineKeyboardMarkup(eval(button))
                     elif button ==  None:
                         reply_markup = None
                     elif status == True:
                         reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-                    elif button != None and status!= True:
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
