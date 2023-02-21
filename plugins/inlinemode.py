@@ -80,12 +80,14 @@ async def give_filter(client: Client, query):
         if acs == 'x':  
             if fileid == 'None':
                 try:
-                    if status == True:
-                        reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                    if button ==  None and status == True:
+                        reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                    elif button != None and status== False:
+                        relpy_markup = InlineKeyboardMarkup(eval(button))
                     elif button ==  None:
                         reply_markup = None
-                    else:
-                        reply_markup=InlineKeyboardMarkup(eval(button))
+                    elif status == True:
+                        reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
