@@ -89,7 +89,7 @@ async def give_filter(client: Client, query):
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                             ),
                         description=descp,
-                        relpy_markup = InlineKeyboardMarkup(abc) if status == False else InlineKeyboardMarkup(abc+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup = InlineKeyboardMarkup(eval(button))
                     )
                 except:
                     continue
