@@ -43,8 +43,7 @@ async def give_filter(client: Client, query):
                 is_personal = True,
                 switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
                 switch_pm_parameter = 'start'
-            )
-          
+            )    
     for user in userdetails:
         group_details = await is_user_exist(user.group_id)
         grp_id=user.group_id
