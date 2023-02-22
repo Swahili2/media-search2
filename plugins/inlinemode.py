@@ -84,7 +84,7 @@ async def give_filter(client: Client, query):
             if fileid == 'None':
                 try:
                     if status== False:
-                        relpy_markup = InlineKeyboardMarkup(button)
+                        relpy_markup = InlineKeyboardMarkup(abc+[[]])
                     elif status == True:
                         reply_markup = InlineKeyboardMarkup(abc+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultArticle(
