@@ -186,6 +186,16 @@ async def start_msg_admins(client, message):
                     return
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
+    elif if usr_cmdall1.startswith("/start xsubinps"):
+        try:
+            ident, file_id = cmd.text.split("_-_-_-_")
+            filedetails = await get_file_details(file_id)
+            for files in filedetails:
+                f_caption=files.reply
+                id2 = files.id
+                group_id = files.group_id
+                msg_type =files.type
+                grp = files.grp
     else:
         await message.reply(
             text = text,
