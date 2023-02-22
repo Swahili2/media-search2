@@ -84,9 +84,9 @@ async def give_filter(client: Client, query):
             if fileid == 'None':
                 try:
                     if status== False:
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
+                        relpy_markup = InlineKeyboardMarkup(abc)
                     elif status == True:
-                        reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup = InlineKeyboardMarkup(abc+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultArticle(
                         title=keyword.upper(),
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
@@ -111,9 +111,9 @@ async def give_filter(client: Client, query):
             elif msg_type == 'Photo':
                 try:
                     if status == False:
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
+                        relpy_markup = InlineKeyboardMarkup(abc)
                     elif status == True:
-                        reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup = InlineKeyboardMarkup(abc+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
@@ -139,9 +139,9 @@ async def give_filter(client: Client, query):
             elif fileid:
                 try:
                     if status == True:
-                        reply_markup=InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                        reply_markup=InlineKeyboardMarkup(abc+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     elif status==False :
-                        relpy_markup = InlineKeyboardMarkup(eval(button))
+                        relpy_markup = InlineKeyboardMarkup(abc)
                     result = InlineQueryResultCachedDocument(
                         document_file_id = fileid,
                         title = keyword.upper(),
