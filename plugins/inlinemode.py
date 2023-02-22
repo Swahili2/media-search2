@@ -74,7 +74,7 @@ async def give_filter(client: Client, query):
         acs = document.descp.split('.dd#.')[0]
         if button == "[]":
             button = None
-            abc = []
+            abc = [[]]
         else:
             abc = eval(button)
 
