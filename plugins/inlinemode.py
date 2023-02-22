@@ -72,9 +72,13 @@ async def give_filter(client: Client, query):
         descp = document.descp.split('.dd#.')[1]
         acs = document.descp.split('.dd#.')[0]
         if button =="[]":
-            button =None
-        abc = eval(button)
-
+            reply_markup =None
+        elif status == False:
+            relpy_markup = InlineKeyboardMarkup(eval(button))
+        elif status == True:
+            reply_markup = InlineKeyboardMarkup(eval(button) +[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
+                   
+        abc=eval(button)
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
@@ -86,7 +90,7 @@ async def give_filter(client: Client, query):
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                             ),
                         description=descp,
-                        reply_markup = InlineKeyboardMarkup(eval(button))
+                        reply_markup = reply_markup
                     )
                 except:
                     continue
