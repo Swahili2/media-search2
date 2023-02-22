@@ -146,8 +146,7 @@ async def give_filter(client: Client, query):
             else:
                 continue
 
-            results.append(result)
-        
+            results.append(result) 
     if len(results) != 0:
         switch_pm_text = f"Total {len(results)} Matches"
     else:
