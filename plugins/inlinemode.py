@@ -92,7 +92,7 @@ async def give_filter(client: Client, query):
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                             ),
                         description=descp,
-                        reply_markup=reply_markup
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_ghhh")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_ghjj")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                     )
                 except:
                     continue
