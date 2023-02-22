@@ -71,6 +71,8 @@ async def give_filter(client: Client, query):
         msg_type = document.type
         descp = document.descp.split('.dd#.')[1]
         acs = document.descp.split('.dd#.')[0]
+        if button =="[]":
+            button =None
         abc = eval(button)
 
         if reply_text:
