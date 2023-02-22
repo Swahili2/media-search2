@@ -73,10 +73,10 @@ async def give_filter(client: Client, query):
         acs = document.descp.split('.dd#.')[0]
         if button =="[]":
             reply_markup =None
-        elif status == False:
-            relpy_markup =  InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
-           
         elif status == True:
+            relpy_markup =  InlineKeyboardMarkup(eval(button))
+           
+        elif status == False:
             reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=subinps_-_-_-_e#{id3}")]])
                    
         abc=eval(button)
