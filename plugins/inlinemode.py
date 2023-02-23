@@ -15,37 +15,42 @@ from pyrogram.types import (
 )
 from utils import is_user_exist,get_search_results,Media,is_group_exist
 from info import filters
+BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails= await is_user_exist(query.from_user.id)
+    status= await db.is_admin_exist(query.from_user.id)
+    a='no'
+    nyva=BOT.get("username")
+    if not nyva:
+        botusername=await client.get_me()
+        nyva=botusername.username
+        BOT["username"]=nyva
+    if not status:
+        a='yes'
     if not userdetails:
-        all_user =await is_group_exist('group')
-        result=[]
-        for file in all_user:
-            ban_status = await db.get_ban_status(file.group_id)
-            if ban_status["is_banned"]:
-                ttl=await bot.get_users(file.group_id)
-                title = f"🎁🎁 {file.title} 🎁🎁"
-                text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
-                result.append(InlineQueryResultArticle(
-                        title=title,
-                        input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
-                        thumb_url=file.link
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
-                    ))
-                
-        await query.answer(
-            results = result,
-            is_personal = True,
-            switch_pm_text = f'Samahani {query.from_user.first_name} haupo kwenye Database zetu',
-            switch_pm_parameter = 'start'
-        )
-        return
+        if a =='no':
+            result=[]
+            title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
+            text1= f"!!HAUPO KWENYE DATABASE YANGU!!\nMimi naitwa Muhsin alimaarufu Swahili Robot, Username @bandolako2bot\nMimi ni  Robot ninayerahisisha uuzaji wa movie au series za jumla na rejareja bila ya usumbufu wa admini kila SAA kutuma muv na series kazi yake kubwa ni  kuthibitisha malipo.\nKujua nnavyofanya kazi ,jinsi ya kujiunga,maelekezo ya kutumia huduma hizi jiunge na kikundi chetu @swahilichats au wasiliana @hrm45 atakupa maelezo zaidi Nb Kwa wageni wanaojiunga na kutafta jinsi ya kupata movie na series tafadhali join @swahilichats kupata msaada zaidi\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
+            result.append(InlineQueryResultArticle(
+                    title=title,
+                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
+                    description=f'!!HAUPO KWENYE DATABASE YANGU!!\nKitu chochote utakacho niuliza ntashindwa kukujibu,Ili kupata movie,series,miziki n.k gusa hapa kupata maelekezo ya kujiunga'
+                ))
+            await query.answer(
+                results = result,
+                is_personal = True,
+                switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
+                switch_pm_parameter = 'start'
+            )    
     for user in userdetails:
         group_details = await is_user_exist(user.group_id)
+        grp_id=user.group_id
         for id2 in group_details:
             group_id = id2.group_id
+
+            
     text = query.query
     ban = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
@@ -54,83 +59,119 @@ async def give_filter(client: Client, query):
                                               max_results=10,
                                               offset=offset)
     results = []
+    
     for document in documents:
-        reply_text = document['reply']
-        button = document['btn']
-        alert = document['alert']
-        fileid = document['file']
-        keyword = document['text']
-        msg_type = document['type']
-
-        if button == "[]":
-            button = None
-        
+        id3 = document.id
+        reply_text = document.reply
+        button = document.btn
+        alert = document.alert
+        file_status = document.grp
+        fileid = document.file
+        keyword = document.text.split('.dd#.',1)[0]
+        msg_type = document.type
+        descp = document.descp.split('.dd#.')[1]
+        acs = document.descp.split('.dd#.')[0]
+        if button =="[]":
+            reply_markup =None
+        elif status == False:
+            relpy_markup =  InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Chat Admin',user_id=int(group_id))]]))
+           
+        elif status == True:
+            reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
+                   
+        abc=eval(button)
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
-            
-        if fileid == 'None':
-            try:
-                result = InlineQueryResultArticle(
-                    title=keyword.upper(),
-                    input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
-                        parse_mode = 'html'),
-                    description='Text',
-                    reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
-                )
-            except:
+        if acs == 'x':  
+            if fileid == 'None':
+                try:
+                   
+                    result = InlineQueryResultArticle(
+                        title=keyword.upper(),
+                        input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
+                            ),
+                        description=descp,
+                        reply_markup = reply_markup
+                    )
+                except:
+                    continue
+            elif msg_type == 'Photo' and file_status != 'normal':
+                try:
+                    result = InlineQueryResultPhoto(
+                        photo_url = fileid,
+                        title = keyword.upper(),
+                        description = descp,
+                        
+                        caption = reply_text,
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
+                    )
+                except:
+                    continue
+            elif msg_type == 'Photo':
+                try:
+                    result = InlineQueryResultPhoto(
+                        photo_url = fileid,
+                        title = keyword.upper(),
+                        description = descp,
+                        
+                        caption = reply_text or '',
+                        reply_markup=reply_markup
+                    )
+                except:
+                    continue
+            elif fileid and file_status != 'normal':
+                try:
+                    result = InlineQueryResultCachedDocument(
+                        document_file_id = fileid,
+                        title = keyword.upper(),
+                        description = descp,
+                        caption = reply_text or "",
+                        
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if not status else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
+                    )
+                except:
+                    continue
+            elif fileid:
+                try:
+                    result = InlineQueryResultCachedDocument(
+                        document_file_id = fileid,
+                        title = keyword.upper(),
+                        description = descp,
+                        caption = reply_text or "",
+                        
+                        reply_markup=reply_markup
+                    )
+                except:
+                    continue
+            else:
                 continue
-        elif msg_type == 'Photo':
-            try:
-                result = InlineQueryResultPhoto(
-                    photo_url = fileid,
-                    title = keyword.upper(),
-                    description = 'Photo',
-                    parse_mode = 'html',
-                    caption = reply_text or '',
-                    reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
-                )
-            except:
-                continue
-        elif fileid:
-            try:
-                result = InlineQueryResultCachedDocument(
-                    title = keyword.upper(),
-                    file_id = fileid,
-                    caption = reply_text or "",
-                    parse_mode = 'html',
-                    description = msg_type,
-                    reply_markup= None if button ==  None else InlineKeyboardMarkup(eval(button))
-                )
-            except:
-                continue
-        else:
-            continue
 
-        results.append(result)
-        
+            results.append(result) 
     if len(results) != 0:
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if not ban['is_banned']and len(results) != 0:
-        all_user =await is_group_exist('group')
+    if not ban['is_banned']and len(results) != 0 and group_id !=query.from_user.id:
         result=[]
-        for file in all_user:
-            ban_status = await db.get_ban_status(file.group_id)
-            if ban_status["is_banned"]:
-                title = f"🎁🎁 {file.title} 🎁🎁"
-                text1= f"👨‍👨‍👧‍👧 Group name:**{file.title}**\n\n👨‍👧‍👧 Total_members : **{file.total_m}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={file.group_id})\n\nJiunge sasa uweze kupata muv,sizon zisizotafsiriwa na ambazo hazijatafsiriwa,miziki,vichekesho n.k kupitia swahili robot\nBonyeza 👨‍👧‍👧 join group kujiunga"
-                result.append(InlineQueryResultArticle(
-                        title=title,
-                        input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                        description=f'total members : {file.total_m} \nGusa hapa kujoin group kupata movie series miziki nakadhalika',
-                        thumb_url=file.link
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 join group', url=file.inv_link)]])
-                    ))
+        ttl=await client.get_users(group_id)
+        ttl2 = await client.get_chat(grp_id)
+       
+        title = f"🎁🎁 Mpendwa {query.from_user.first_name} 🎁🎁"
+        st = await client.get_chat_member(grp_id, "me")
+        if (st.status == "administrator"):
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
+        else:
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush kisha aniadd kama admin kwenye group hili ili muweze kuendelee kumtumia robot"
+        result.append(InlineQueryResultArticle(
+                title=title,
+                input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
+                description=f'total members :\nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot',
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 MTAARIFU ADMIN', url=f'tg://user?id={group_id}')]])
+            ))
         await query.answer(
-            results = resultz,
+            results = result,
             is_personal = True,
-            switch_pm_text = 'Admin wako hajalipia kifurushi tafadhali  chagua active admin kwenye list',
+            switch_pm_text = 'Admin wako hajalipia kifurushi',
             switch_pm_parameter = 'start'
         )
         return
@@ -140,6 +181,7 @@ async def give_filter(client: Client, query):
         cache_time = 300,
         next_offset =str(next_offset)
     )
+    return
         
         
 @Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
@@ -161,3 +203,4 @@ async def alert_msg(client: Client, callback):
             await callback.answer(alert,show_alert=True)
         except:
             pass
+    return

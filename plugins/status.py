@@ -12,12 +12,12 @@ async def handle_user_status(bot, cmd):
             await add_user(chat_id,cmd.chat.id,'user',cmd.from_user.first_name)
             await bot.send_message(
                 chat_id= CHANNELS,
-                text=f"{cmd}#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
+                text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
             )
-        elif ab:
+            
+        if ab:
             await User.collection.update_one({'_id':chat_id},{'$set':{'group_id':cmd.chat.id}})
-        else:
-            return
+            
         for uza in ab:
             status = uza.group_id
        
@@ -33,8 +33,11 @@ async def handle_admin_status(bot, cmd):
         async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
             if ban_status["is_banned"]:
-                if (
+                if ban_status["ban_duration"] < (
                         datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
-                ).days > ban_status["ban_duration"]:
+                ).days:
                     await db.remove_ban(user['id'])
-
+        all_users =await db.get_all_acc()
+        async for user in all_users:
+            if user["ban_status.ban_duration"] < (datetime.date.today() - datetime.date.fromisoformat(user["ban_status.banned_on"])).days:
+                await db.delete_acc(user['id'])

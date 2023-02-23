@@ -1,4 +1,3 @@
-
 import re
 import base64
 import logging
@@ -10,7 +9,6 @@ from pymongo.errors import DuplicateKeyError
 from umongo import Instance, Document, fields
 from marshmallow.exceptions import ValidationError
 import os
-import PTN
 import requests
 import json
 from info import DB2, COLLECTION_NAME
@@ -32,6 +30,9 @@ class Media(Document):
     alert = fields.StrField(required=True)
     type = fields.StrField(required=True)
     group_id = fields.IntField(required=True)
+    descp = fields.StrField(required=True)
+    price = fields.IntField(required=True)
+    grp = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME
 
@@ -70,11 +71,11 @@ async def add_user(id, usr,sts,ttl):
         else:
             logger.info("group is saved in database")
 
-async def save_file(text,reply,btn,file,alert,type,id,user_id):
+async def save_file(text,reply,btn,file,alert,type,id,user_id,descp,prc,grp):
     """Save file in database"""
     text = str(text).lower()
     fdata = {'text': text}
-    button = str(btn)
+    button = f'{btn}'
     button = button.replace('pyrogram.types.InlineKeyboardButton', 'InlineKeyboardButton')
     fdata['group_id'] = user_id
     found = await Media.find_one(fdata)
@@ -85,11 +86,14 @@ async def save_file(text,reply,btn,file,alert,type,id,user_id):
             id=id,
             text=text,
             reply=str(reply),
-            btn=str(button),
+            btn=f'{button}',
             file= str(file),
             alert=str(alert),
             type=str(type),
-            group_id =user_id
+            group_id =user_id,
+            descp=descp,
+            price = prc,
+            grp = grp
        )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')
@@ -159,9 +163,22 @@ async def get_filter_results(query,group_id):
 async def is_user_exist(query):
     filter = {'id': query}
     cursor = User.find(filter)
+    
     userdetails = await cursor.to_list(length=1)
     return userdetails
 
+async def is_group_exist(query):
+    filter = {'status': query}
+    cursor = User.find(filter)
+    cursor.sort('$natural', -1)
+    count = await User.count_documents(filter)
+    userdetails = await cursor.to_list(length = int(count))
+    return userdetails
+async def get_file_details(query):
+    filter = {'id': query}
+    cursor = Media.find(filter)
+    filedetails = await cursor.to_list(length=1)
+    return filedetails
 async def get_group_filters(query ,sts, max_results=10,offset=0):
     """For given query return (results, next_offset)"""
 

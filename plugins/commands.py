@@ -1,9 +1,10 @@
 from pyrogram import Client
 import uuid
 import io
+import time
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group,get_file_details
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -11,9 +12,10 @@ from plugins.helper_funcs import (
     split_quotes
 )  
 import os
+import pyromod.listen
 import logging
 logger = logging.getLogger(__name__)
-
+    
 @Client.on_message(filters.command('total') & filters.owner)
 async def total(bot, message):
     """Show total files in database"""
@@ -26,6 +28,282 @@ async def total(bot, message):
         await msg.edit(f'Error: {e}')
 
 
+@Client.on_message(filters.private & filters.command('adddata'))
+async def new_filtervip(client: Client, message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        return
+    strid = str(uuid.uuid4())
+    args = message.text.split(' ', 1)
+    user_id = message.from_user.id
+    if len(args) < 2:
+        await message.reply_text("Use Correct format 😐", quote=True)
+        return
+    
+    extracted = split_quotes(args[1])
+    text = f'{args[1].lower()}.dd#.{user_id}'
+    ab = f'{args[1].lower()}'
+    msg_type = 'Text'
+   
+    if not message.reply_to_message and len(extracted) < 2:
+        await message.reply_text("Add some content to save your filter!", quote=True)
+        return
+
+    if (len(extracted) >= 2) and not message.reply_to_message:
+        reply_text, btn, alert = generate_button(extracted[1], strid)
+        fileid = None
+        if not reply_text:
+            await message.reply_text("You cannot have buttons alone, give some text to go with it!", quote=True)
+            return
+
+    elif message.reply_to_message and message.reply_to_message.reply_markup:
+        reply_text = ""
+        btn = []
+        fileid = None
+        alert = None
+        msg_type = 'Text'
+        try:
+            rm = message.reply_to_message.reply_markup
+            btn = rm.inline_keyboard
+            replied = message.reply_to_message
+            msg = replied.video
+            if msg:
+                fileid = msg.file_id
+                reply_text = message.reply_to_message.caption.html
+            
+            elif replied.photo:
+                fileid = await upload_photo(replied)
+                msg_type = 'Photo'
+                if not fileid:
+                    return
+                reply_text = message.reply_to_message.caption.html
+ 
+            else:
+                await message.reply('Not Supported..!')
+                return
+            alert = None
+        except:
+            pass
+            
+
+    elif message.reply_to_message and message.reply_to_message.photo:
+        try:
+            fileid = message.reply_to_message.photo.file_id
+            if not fileid:
+                return
+            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
+        except:
+            reply_text = ""
+            btn = []
+            alert = None
+        msg_type = 'Photo'
+
+    elif message.reply_to_message and message.reply_to_message.video:
+        try:
+            fileid = message.reply_to_message.video.file_id
+            reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
+        except:
+            reply_text = ""
+            btn = []
+            alert = None
+        msg_type = 'Video'
+
+    else:
+        await message.reply('Not Supported..!')
+        return
+    usr = await db.get_db_status(message.from_user.id)
+    x = 0
+    p=[]
+    usrr=' '
+    ab7=' '
+    for i in range(0,6):
+        i+=1
+        gs=f'g_{i}'
+        if usr[gs] != 'hrm45':
+            x+=1
+            p.append(usr[gs].split('#@')[0])
+            usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
+    mkv1= await client.send_message(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+    try:
+        ab5,ab6=mkv.text.split(" ",1)
+        ab5= int(ab5)
+        ab6 = int(ab6)
+        if ab6>i<ab5 or ab5==ab6 or ab5==0 or ab6==0:
+            await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
+            return
+        ab7='y'
+        ab2 = f'g_{ab5} g_{ab6}'
+    except:
+        pass
+    if ab7!='y':
+        try:
+            ab00 = int(mkv.text)
+            ab2 = f'g_{ab00} hrm44'
+            if i<ab00 and ab00!=0:
+                await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa idadi ya kutuma mwisho ni 6 anza upya')
+                return
+        except:
+            await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa anza upya')
+            return
+    mkv1 = await client.send_message(text=f'tafadhal naomba utume bei(namba tu) ya {ab}kama ni bure tuma neno free mfano 500. (Kumbuka Hamna bei 0)',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+    try:
+        ab1=int(mkv.text)
+        if ab1==0:
+            await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa, tafadhali anza upya kwa usahihi')
+            return
+    except:
+        await mkv.reply(text='tuma ujumbe sahihi kama ulivyo elekezwa ,tafadhali anza upya kwa usahihi')
+        return
+    mkv1= await client.send_message(text=f'naomba utume neno l kama utatuma {ab} kwa link au neno h kama n vipande vya {ab} ',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkv = await client.get_messages("me",(mkv1.id)+1)
+            if mkv.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+    if mkv.text.lower()=='l' :
+        mkv22 = await client.send_message(text=f'naomba untumie maelezo kidogo kwa hich ulichotuma mfano kama in movie unaeza andika "imetafsiriwa movie DJ murphy',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mkv2 = await client.get_messages("me",(mkv22.id)+1)
+                if mkv2.text!=None:
+                    a=True
+                if (time.time()-b)>(60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
+        mkv22 = await client.send_message(text=f'naomba utume link ya kupakua {ab} hii',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mkvl = await client.get_messages("me",(mkv22.id)+1)
+                if mkvl.text!=None:
+                    a=True
+                if (time.time()-b)>(3*60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
+        if not mkvl.text:
+            mkvl.text=msg_type
+        descp = f'x.dd#.{mkv2.text}.dd#.{mkvl.text}.dd#.s'
+    elif mkv.text.lower()=='h':
+        mkv22 = await client.send_message(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+        a,b = funask()
+        while a==False:
+            try:
+                mk= await client.get_messages("me",(mkv22.id)+1)
+                if mk.text!=None:
+                    a=True
+                if (time.time()-b)>(3*60):
+                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    return
+            except:
+                a=False
+        if mkv1.text:
+            dta='start'
+            icount = 0
+            while dta!='stop':
+                stridm = str(uuid.uuid4())
+                mkv22=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                a,b = funask()
+                while a==False:
+                    try:
+                        mk= await client.get_messages("me",(mkv22.id)+1)
+                        if mk.media!=None or mk.text!=None:
+                            a=True
+                        if (time.time()-b)>(10*60):
+                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            return
+                    except:
+                        a=False
+                if mk.media and not (mk.photo):
+                    for file_type in ("document", "video", "audio"):
+                        media = getattr(mk, file_type, None)
+                        if media is not None:
+                            media.file_type = file_type
+                            media.caption = mk.caption
+                            break
+                    media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
+                    media.file_name = f'p.dd#.h5'
+                    await save_file(f'+{icount}.{strid}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,500,'normal')
+                elif mk.text.lower()=='stop':
+                    dta = 'stop'
+                    await mk.reply(f'all file sent to database with id  {fileid}')
+                    break
+                else:
+                    await mk.reply('tafadhali tuma ulichoambiwa')
+                icount+=1
+        descp = f'x.dd#.{mkv1.text}.dd#.data.dd#.m'
+    try:
+        if fileid:
+            if msg_type == 'Photo':
+                await message.reply_photo(
+                    photo = fileid,
+                    caption = reply_text,
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+            else:
+                await message.reply_cached_media(
+                    file_id = fileid,
+                    caption = reply_text,
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+        else:
+            await message.reply(
+                text = reply_text,
+                disable_web_page_preview = True,
+                reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+            )
+    except Exception as a:
+        try:
+            await message.reply(text = f"<b>❌ Error</b>\n\n{str(a)}\n\n<i>Join @CodeXBotzSupport for Support</i>")
+        except:
+            pass
+        return
+
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,ab1,ab2)
+    text = text.split('.dd#.',1)[0]
+    reply_markup = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(text = 'Share filter', switch_inline_query = text),
+                InlineKeyboardButton(text = 'Try Here', switch_inline_query_current_chat = text)
+            ]
+        ]
+    )
+    await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
+
 @Client.on_message(filters.command('logger') & filters.owner)
 async def log_file(bot, message):
     """Send log file"""
@@ -34,20 +312,21 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(filters.command('add'))
+@Client.on_message(filters.private & filters.command('add'))
 async def new_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     strid = str(uuid.uuid4())
-    args = message.text.html.split(None, 1)
+    args = message.text.split(' ', 1)
     user_id = message.from_user.id
     if len(args) < 2:
         await message.reply_text("Use Correct format 😐", quote=True)
         return
     
     extracted = split_quotes(args[1])
-    text = extracted[0].lower()
+    text = f'{args[1].lower()}.dd#.{user_id}'
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
@@ -113,7 +392,7 @@ async def new_filter(client: Client, message):
 
     elif message.reply_to_message and message.reply_to_message.photo:
         try:
-            fileid = await upload_photo(message.reply_to_message)
+            fileid =await upload_photo(message.reply_to_message)
             if not fileid:
                 return
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
@@ -202,7 +481,21 @@ async def new_filter(client: Client, message):
     else:
         await message.reply('Not Supported..!')
         return
-    
+    mkv22 = await client.send_message(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
+    a,b = funask()
+    while a==False:
+        try:
+            mkvg = await client.get_messages("me",(mkv22.id)+1)
+            if mkvg.text!=None:
+                a=True
+            if (time.time()-b)>(60):
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                return
+        except:
+            a=False
+    if not mkvg.text:
+        mkvg.text=msg_type
+    descp = f'x.dd#.{mkvg.text}'
     try:
         if fileid:
             if msg_type == 'Photo':
@@ -230,7 +523,8 @@ async def new_filter(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id)
+    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,599,'normal')
+    text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
             [
@@ -241,10 +535,11 @@ async def new_filter(client: Client, message):
     )
     await message.reply_text(f"<code>{text}</code> Added", quote = True, reply_markup = reply_markup)
 
-@Client.on_message(filters.command('delete'))
+@Client.on_message(filters.private & filters.command('delete'))
 async def del_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     try:
         cmd, text = message.text.split(" ", 1)
@@ -256,23 +551,24 @@ async def del_filter(client: Client, message):
             quote=True
         )
         return
-
+    text=f'{text}.dd#.{message.from_user.id}'
     query = text.lower()
     filter={'text': query}
     filter['group_id'] = message.from_user.id
-    found = Media.find(filter)
-    if found:
+    found =await Media.count_documents(filter)
+    if int(found) >=1:
         await Media.collection.delete_one(filter)
         await message.reply_text(
-            f"<code>{text}</code>  deleted.",
+            f"<code>{text.split('.dd#.')[0]}</code>  deleted successful.",
             quote=True
         )
     else:
         await message.reply_text("Couldn't find that filter!", quote=True)
-@Client.on_message(filters.command('filters'))
+@Client.on_message(filters.private & filters.command('filters'))
 async def get_all(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     text = ''
     texts = await get_filter_results(text,message.from_user.id)
@@ -281,7 +577,7 @@ async def get_all(client: Client, message):
         filterlist = f"<b>Bot have total {count} filters</b>\n\n"
 
         for text in texts:
-            keywords = f" ○  <code>{text.text}</code>\n"
+            keywords = f" ○  <code>{text.text.split('.dd#')[0]}</code>\n"
             filterlist += keywords
 
         if len(filterlist) > 4096:
@@ -320,27 +616,29 @@ async def delallconfirm(Client, message):
 async def addconnection(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
-    chat_type = message.chat.type
-    if chat_type == "private":
+    chat_type =f"{ message.chat.type}"
+    
+    if chat_type == "ChatType.PRIVATE":
         await message.reply_text(
                 "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
                 quote=True
             )
         return
 
-    elif chat_type in ["group", "supergroup"]:
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
         group_id = message.chat.id
 
     try:
         st = await client.get_chat_member(group_id, userid)
-        if (
-            st.status != "administrator"
-            and st.status != "creator"
-            and str(userid) not in ADMINS
+        st.status=(f"{st.status}".split(".")[1])
+        if not(
+            st.status == "ADMINISTRATOR"
+            or st.status == "OWNER"
         ):
             await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
             return
@@ -354,18 +652,18 @@ async def addconnection(client,message):
         return
     try:
         st = await client.get_chat_member(group_id, "me")
-        if st.status == "administrator":
+        st.status=(f"{st.status}".split(".")[1])
+        if st.status == "ADMINISTRATOR":
             group_details= await is_user_exist(group_id)
             for file in group_details:
                 user_id2=file.group_id
             if not group_details :
                 await add_user(group_id,userid,'group',message.chat.title)
                 aski = await client.get_chat(group_id)
-                photo = await upload_group(client,aski.photo,message)
-                photo_id =aski.photo.big_file_id if photo else None
-                await User.collection.update_one({'_id':group_id},{'$set':{'title':aski.title,'link': photo ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
+                photo_id =aski.photo.big_file_id
+                await User.collection.update_one({'_id':group_id},{'$set':{'title':aski.title,'link': photo_id ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
                 await message.reply_text(
-                    f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k !",
+                    f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
                     quote=True,
                     parse_mode="md"
                 )
@@ -377,10 +675,87 @@ async def addconnection(client,message):
                     )
                     return
            
-            else:
+            elif userid !=user_id2:
                 ttli = await client.get_users(user_id2)
                 await message.reply_text(
                     f"Samahan hili group tayar limeshaunganishwa na admin **{ttli.first_name}** Msimaiz wangu kanikataza ku add wasimaz wawili kwenye group moja kama mnahitaj mabadiliko mcheki @hrm45!",
+                    quote=True
+                )
+            else:
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani admin **{ttli.first_name}** hili group tayar umeshaliunga kulitoa  tuma command /ondoa !",
+                    quote=True
+                )
+        else:
+            await message.reply_text("Ni add admin kwenye group lako kisha jaribu tena", quote=True)
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
+        return
+
+@Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
+async def removegroup(client,message):
+    status= await db.is_admin_exist(message.from_user.id)
+    if not status:
+        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        return
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"Samahan wewe ni anonymous(bila kujulikana) admin tafadhali nenda kweny group lako edit **admin permission** remain anonymouse kisha disable jaribu tena kutuma /niunge.Kisha ka enable tena")
+    chat_type =f"{ message.chat.type}"
+    
+    if chat_type == "ChatType.PRIVATE":
+        await message.reply_text(
+                "Samahan add hii bot kama admin kwenye group lako kisha tuma command hii <b>/niunge </b>kwenye group lako",
+                quote=True
+            )
+        return
+
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
+        group_id = message.chat.id
+
+    try:
+        st = await client.get_chat_member(group_id, userid)
+        st.status=(f"{st.status}".split(".")[1])
+        if not(
+            st.status == "ADMINISTRATOR"
+            or st.status == "OWNER"
+        ):
+            await message.reply_text("lazima uwe  admin kwenye group hili!", quote=True)
+            return
+    except Exception as e:
+        logger.exception(e)
+        await message.reply_text(
+            "Invalid Group ID!\n\nIf correct, Make sure I'm present in your group!!",
+            quote=True,
+        )
+
+        return
+    try:
+        st = await client.get_chat_member(group_id, "me")
+        st.status=(f"{st.status}".split(".")[1])
+        if st.status == "ADMINISTRATOR":
+            
+            group_details= await is_user_exist(group_id)
+            for file in group_details:
+                user_id2=file.group_id
+            if group_details and userid==user_id2:
+                await User.collection.delete_one({'_id':group_id})
+                await message.reply_text(
+                    f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
+                    quote=True
+                )
+            elif not (group_details):
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani admin **{ttli.first_name}** hili group halipo  kwenye database zetu tuma /niunge kuliunga!",
+                    quote=True
+                )
+            elif userid !=user_id2:
+                ttli = await client.get_users(user_id2)
+                await message.reply_text(
+                    f"Samahani hili group limeungwa na admin   admin **{ttli.first_name}** hili group yeye mwenyewe ndio unaweza kulitoa!",
                     quote=True
                 )
         else:
@@ -395,7 +770,7 @@ async def ban(c,m):
         await m.reply_text(
             f"Use this command to add access to any user from the bot.\n\n"
             f"Usage:\n\n"
-            f"`/add_admin admin_id duration_in days ofa_given`\n\n"
+            f"`/add_admin admin_id duration_in days  ofa_given`\n\n"
             f"Eg: `/add_admin 1234567 28 Umepata ofa ya Siku 3 zaidi.`\n"
             f"This will add user with id `1234567` for `28` days for the reason `ofa siku 3 zaidi`.",
             quote=True
@@ -406,20 +781,22 @@ async def ban(c,m):
         user_id = int(m.command[1])
         ban_duration = int(m.command[2])
         ban_reason = ' '.join(m.command[3:])
-        ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason}."
+        ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} ."
         try:
             await c.send_message(
                 user_id,
-                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___siku{ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __{ban_reason}__**\n\n"
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
         except:
-            traceback.print_exc()
+            
             ban_log_text += f"\n\nNmeshindwa kumtaarifu tafadhali jaribu tena! \n\n`{traceback.format_exc()}`"
         adminexist=await db.is_admin_exist(user_id)
         if not adminexist :
+            strid = str(uuid.uuid4())
             await db.add_admin(user_id)
+            await db.add_acc(strid,user_id,"all",user_id,9999)
         await db.ban_user(user_id, ban_duration, ban_reason)
         print(ban_log_text)
         await m.reply_text(
@@ -427,54 +804,55 @@ async def ban(c,m):
             quote=True
         )
     except:
-        traceback.print_exc()
         await m.reply_text(
-            f"Error occoured! Traceback given below\n\n`{traceback.format_exc()}`",
+            f"Error occoured! Traceback given below\n\n",
             quote=True
         )
-@Client.on_message(filters.private & filters.command("admin"))
-async def get_status(bot,message):
+@Client.on_message(filters.private & filters.regex('salio'))
+async def get_statuss(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
-    if not status:
+    if status:
         return
-    filters = await get_filter_results('',message.from_user.id)
-    filters_no = 0
-    text = 0
-    photo = 0
-    video = 0
-    audio = 0
-    document = 0
-    animation = 0
-    sticker = 0
-    voice = 0 
-    videonote = 0 
-    
-    for filter in filters:
-        type = filter['type']
-        if type == 'Text':
-            text += 1 
-        elif type == 'Photo':
-            photo += 1 
-        elif type == 'Video':
-            video += 1 
-        elif type == 'Audio':
-            audio += 1 
-        elif type == 'Document':
-            document += 1
-        elif type == 'Animation':
-            animation += 1
-        elif type == 'Sticker':
-            sticker += 1 
-        elif type == 'Voice':
-            voice += 1
-        elif type == 'Video Note':
-            videonote += 1 
+        async for user in await db.get_user(message.from_user.id):
+            salio =user['ban_status']
+            salio = salio['ban_duration']
+        filters = await get_filter_results('',message.from_user.id)
+        filters_no = 0
+        text = 0
+        photo = 0
+        video = 0
+        audio = 0
+        document = 0
+        animation = 0
+        sticker = 0
+        voice = 0 
+        videonote = 0 
+        for filter in filters:
+            type = filter['type']
+            if type == 'Text':
+                text += 1 
+            elif type == 'Photo':
+                photo += 1 
+            elif type == 'Video':
+                video += 1 
+            elif type == 'Audio':
+                audio += 1 
+            elif type == 'Document':
+                document += 1
+            elif type == 'Animation':
+                animation += 1
+            elif type == 'Sticker':
+                sticker += 1 
+            elif type == 'Voice':
+                voice += 1
+            elif type == 'Video Note':
+                videonote += 1 
 
-        filters_no += 1
+            filters_no += 1
     
-    user_collection = await User.count_documents({'group_id': message.from_user.id})
+        user_collection = await User.count_documents({'group_id': message.from_user.id})
     
-    stats_text = f"""<b>Statistics</b>
+        stats_text = f"""<b>Statistics</b>
     
 Total groups: {user_collection}
 Total filters: {filters_no}
@@ -486,9 +864,29 @@ Document filters: {document}
 Animation filters: {animation}
 Sticker filters: {sticker}
 Voice filters: {voice}
-Video Note filters: {videonote}"""
-    await message.reply_text(stats_text)
-    
+Video Note filters: {videonote}
+
+Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako wafurahie huduma za Swahili robot """
+        await message.reply_text(stats_text)
+    users=await db.get_acc(message.from_user.id)
+    salio='Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\n'
+    a=1
+    async for user in users:
+        a=2
+        if user['file_id'].startwith('g_'):
+            sd= await db.get_db_status(user['db_name'])
+            g2 = user['file_id']
+            sd = sd[g2].split('#@')[0]
+            salio+=f'{sd}:Kinaisha tarehe{user["ban_status.banned_on"]}\n\n'
+        else:
+            sd = await get_file_details(user['file_id'])
+            for sd1 in sd:
+                salio+=f'{sd1.text.split(".dd#.")[0]}:Kinaisha tarehe{user["ban_status.banned_on"]}\n\n'
+    if a==1:
+        await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
+    else:
+        await message.reply_text(salio)
+
 @Client.on_callback_query(filters.regex("^delall$") & filters.owner)
 async def delall(client: Client, query):
     await del_all(query.message)
@@ -500,3 +898,7 @@ async def delcancel(client: Client, query):
         reply_markup = None
     )
     return
+def funask():
+    a=False
+    b=time.time()
+    return a,b
