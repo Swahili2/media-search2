@@ -72,14 +72,8 @@ async def give_filter(client: Client, query):
         descp = document.descp.split('.dd#.')[1]
         acs = document.descp.split('.dd#.')[0]
         if button =="[]":
-            reply_markup =None
-        else:
-            relpy_markup =  InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Chat Admin',user_id=int(group_id))]])
-           
-        #elif status == False:
-            #reply_markup = InlineKeyboardMarkup(eval(button)+[[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=psbinps_-_-_-_{id3}")]])
-                   
-        abc=eval(button)
+            button =None
+        
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
@@ -91,7 +85,7 @@ async def give_filter(client: Client, query):
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                             ),
                         description=descp,
-                        reply_markup = reply_markup
+                        reply_markup = InlineKeyboardMarkup(eval(button))
                     )
                 except:
                     continue
@@ -115,7 +109,7 @@ async def give_filter(client: Client, query):
                         description = descp,
                         
                         caption = reply_text or '',
-                        reply_markup=reply_markup
+                        reply_markup=InlineKeyboardMarkup(eval(button))
                     )
                 except:
                     continue
@@ -139,7 +133,7 @@ async def give_filter(client: Client, query):
                         description = descp,
                         caption = reply_text or "",
                         
-                        reply_markup=reply_markup
+                        reply_markup=InlineKeyboardMarkup(eval(button))
                     )
                 except:
                     continue
