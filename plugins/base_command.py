@@ -186,7 +186,7 @@ async def start_msg_admins(client, message):
                     return
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-    elif if usr_cmdall1.startswith("/start xsubinps"):
+    elif usr_cmdall1.startswith("/start xsubinps"):
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
@@ -196,6 +196,8 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+    elif usr_cmdall1.startswith("/start psubinps"):
+        await. client.send_message(text="Samahani kwa usumbufu tumia /delete <ujumbe wa kufuta> kisha utume sms upya tena Au Utume sms husika tena kwa kutumia jina lilelile  utajifuta wnyewe automatically kisha kupachika sms mpya uliotuma kuna changamoto mcheki @hrm45 akusaidie",chat_id=query.from_user.id)
     else:
         await message.reply(
             text = text,
