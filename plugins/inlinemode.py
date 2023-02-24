@@ -72,8 +72,9 @@ async def give_filter(client: Client, query):
         descp = document.descp.split('.dd#.')[1]
         acs = document.descp.split('.dd#.')[0]
         if button =="[]":
-            button = ''
-        
+            reply_markup = None
+        else:
+            reply_markup = InlineKeyboardMarkup(eval(button))
         if reply_text:
             reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
         if acs == 'x':  
@@ -85,7 +86,7 @@ async def give_filter(client: Client, query):
                         input_message_content=InputTextMessageContent(message_text = reply_text, disable_web_page_preview = True,
                             ),
                         description=descp,
-                        reply_markup = InlineKeyboardMarkup(eval(button))
+                        reply_markup = reply_markup
                     )
                 except:
                     continue
@@ -109,7 +110,7 @@ async def give_filter(client: Client, query):
                         description = descp,
                         
                         caption = reply_text or '',
-                        reply_markup=InlineKeyboardMarkup(eval(button))
+                        reply_markup=reply_markup
                     )
                 except:
                     continue
@@ -133,7 +134,7 @@ async def give_filter(client: Client, query):
                         description = descp,
                         caption = reply_text or "",
                         
-                        reply_markup=InlineKeyboardMarkup(eval(button))
+                        reply_markup=reply_markup
                     )
                 except:
                     continue
