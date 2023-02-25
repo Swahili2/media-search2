@@ -213,14 +213,14 @@ async def start_msg_admins(client, message):
                             chat_id=cmd.from_user.id,
                             photo=files.file,
                             caption=f_caption,
-                            reply_markup=None
+                            reply_markup=reply_markup
                         )
                     else:
                         await client.send_cached_media(
                                 chat_id=cmd.from_user.id,
                                 file_id=files.file,
                                 caption=f_caption,
-                                reply_markup=None
+                                reply_markup=reply_markup
                         ) 
         except:
             pass
