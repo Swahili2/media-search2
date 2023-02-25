@@ -196,6 +196,26 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+            grp1,grp2=grp.split(" ")
+            if filedetails:
+                if filedetails:  
+                    
+                    link = files.descp.split('.dd#.')[2]
+                    f_caption =f'{f_caption}\n**💥Kama huwezi kufungua link zetu tafadhali bonyeza [INBOX](tg://user?id={int(group_id)})**\nNikupe maelekezo\n🌟 @Bandolako2bot'
+                    if msg_type =="Photo":
+                        await client.send_photo(
+                            chat_id=cmd.from_user.id,
+                            photo=files.file,
+                            caption=f_caption,
+                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                        )
+                    else:
+                        await client.send_cached_media(
+                                chat_id=cmd.from_user.id,
+                                file_id=files.file,
+                                caption=f_caption,
+                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                        ) 
         except:
             pass
     elif usr_cmdall1.startswith("/start psubinps"):
@@ -267,7 +287,7 @@ async def md_helper(client, query):
         text = MARKDOWN_HELP,
         reply_markup = InlineKeyboardMarkup(markdown_keyboard),
         disable_web_page_preview = True,
-        parse_mode = 'html'
+        
     )
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
