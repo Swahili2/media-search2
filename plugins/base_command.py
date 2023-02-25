@@ -202,7 +202,9 @@ async def start_msg_admins(client, message):
                     
                     link = files.descp.split('.dd#.')[2]
                     if link == 'data':
+                        reply_markup=None
                     else:
+                        reply_markup=None
                     f_caption =f'{f_caption}\n\n**chagua kitu cha kuedit kwa kubonyeza button husika \n@Bandolako2bot'
                     if msg_type =="Photo":
                         await client.send_photo(
