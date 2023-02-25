@@ -201,20 +201,22 @@ async def start_msg_admins(client, message):
                 if filedetails:  
                     
                     link = files.descp.split('.dd#.')[2]
-                    f_caption =f'{f_caption}\n**💥Kama huwezi kufungua link zetu tafadhali bonyeza [INBOX](tg://user?id={int(group_id)})**\nNikupe maelekezo\n🌟 @Bandolako2bot'
+                    if link == 'data':
+                    else:
+                    f_caption =f'{f_caption}\n\n**chagua kitu cha kuedit kwa kubonyeza button husika \n@Bandolako2bot'
                     if msg_type =="Photo":
                         await client.send_photo(
                             chat_id=cmd.from_user.id,
                             photo=files.file,
                             caption=f_caption,
-                            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                            reply_markup=None
                         )
                     else:
                         await client.send_cached_media(
                                 chat_id=cmd.from_user.id,
                                 file_id=files.file,
                                 caption=f_caption,
-                                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔗 DOWNLOAD",url= link)]])
+                                reply_markup=None
                         ) 
         except:
             pass
