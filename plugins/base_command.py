@@ -1,7 +1,7 @@
 from info import filters
 import uuid
 import time
-from utils import get_file_details,get_filter_results,is_user_exist
+from utils import get_file_details,get_filter_results,is_user_exist,Media
 from pyrogram  import Client
 from plugins.database import db
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery,ForceReply
@@ -444,17 +444,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     if mkv.text!=None:
                         a=True
                     
-                    if (time.time()-b)>600:
-                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    if (time.time()-b)>100:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
                 except:
                     a=False
             if mkv.text==None:
                 await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
                 return
-            ghi=f'descp {mkv.text}'
-            ab = await db.get_db_status(query.from_user.id)
-            await db.update_db(query.from_user.id,ghi,ab)
+            ghi=f'{query.from_user.id}.dd#.{mkv.text}'
+            await Media.collection.update_one({'_id':query.data.split(" ",1)[1]},{'$set':{'text':ghi})
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 
         elif query.data == "startup":
