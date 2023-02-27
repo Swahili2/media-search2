@@ -202,10 +202,10 @@ async def start_msg_admins(client, message):
                     
                     link = files.descp.split('.dd#.')[2]
                     if link == 'data':
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = f"xtext {id2}")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha video/files', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = f"xtext {id2}")],[InlineKeyboardButton('Rekebisha caption', callback_data = f"xcaption {id2}")],[InlineKeyboardButton('Rekebisha video/files', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
             
                     else:
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = f"xtext {id2}")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha link', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = f"xtext {id2}")],[InlineKeyboardButton('Rekebisha caption', callback_data = f"xcaption {id2}")],[InlineKeyboardButton('Rekebisha link', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
             
                     f_caption =f'{f_caption}\n\n**chagua kitu cha kuedit kwa kubonyeza button husika \n@Bandolako2bot'
                     if msg_type =="Photo":
@@ -455,7 +455,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi=f'{mkv.text.lower()}.dd#.{query.from_user.id}'
             await Media.collection.update_one({'_id':query.data.split(" ",1)[1]},{'$set':{'text':ghi}})
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
-                
+        elif query.data.startswith("xcaption"):
+            await query.answer('wait please')
+            a=False
+            b=time.time()
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+            while a==False:
+                try:
+                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    if mkv.text!=None:
+                        a=True
+                    
+                    if (time.time()-b)>100:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        return
+                except:
+                    a=False
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                return
+            
+            await Media.collection.update_one({'_id':query.data.split(" ",1)[1]},{'$set':{'reply':mkv.text}})
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        
         elif query.data == "startup":
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
