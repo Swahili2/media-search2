@@ -202,10 +202,10 @@ async def start_msg_admins(client, message):
                     
                     link = files.descp.split('.dd#.')[2]
                     if link == 'data':
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha video/files', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = "xtext")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha video/files', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
             
                     else:
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha link', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha text', callback_data = "xtext")],[InlineKeyboardButton('Rekebisha caption', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha link', callback_data = "startup")],[InlineKeyboardButton('Rekebisha kundi', callback_data = "xba")],[InlineKeyboardButton('Rekebisha Maelezo ya media', callback_data = "xba")]])
             
                     f_caption =f'{f_caption}\n\n**chagua kitu cha kuedit kwa kubonyeza button husika \n@Bandolako2bot'
                     if msg_type =="Photo":
@@ -433,7 +433,30 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
             await mkv1.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
-        
+        elif query.data == "xtext":
+            await query.answer('wait please')
+            a=False
+            b=time.time()
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+            while a==False:
+                try:
+                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    if mkv.text!=None:
+                        a=True
+                    
+                    if (time.time()-b)>600:
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        return
+                except:
+                    a=False
+            if mkv.text==None:
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                return
+            ghi=f'descp {mkv.text}'
+            ab = await db.get_db_status(query.from_user.id)
+            await db.update_db(query.from_user.id,ghi,ab)
+            await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                
         elif query.data == "startup":
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
