@@ -68,7 +68,7 @@ async def group2(client, message):
         )
 Client.on_message(filters.command('example') & filters.private)
 async def start_msgg_admins(client, message):
-    await client.ask(message.from_user.id,"hellow")
+    await message.chat.ask("hellow")
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
     if await db.is_admin_exist(message.from_user.id):
