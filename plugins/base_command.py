@@ -480,7 +480,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
         elif query.data.startswith("xfile"):
             await query.answer('wait please')
-            filedetails = await get_file_details(query.data.split(" ")[1])
+            filedetails = await get_file_details(query.data.split(" ",1)[1])
             for files in filedetails:
                 descp=files.descp
             descp=descp.split(".dd#.")
