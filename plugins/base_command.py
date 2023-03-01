@@ -481,8 +481,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data.startswith("xfile"):
             
             filedetails = await get_file_details(query.data.split(" ",1)[1])
+            await query.answer(f'{query.data.split(" ",1)[1]}')
             for files in filedetails:
-                await query.answer('wait please')
+                
                 descp=files.descp
             descp=descp.split(".dd#.")
             if descp[2]!="data":
