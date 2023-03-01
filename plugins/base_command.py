@@ -1,5 +1,4 @@
 from info import filters
-import pyromod
 import uuid
 import time
 from utils import get_file_details,get_filter_results,is_user_exist,Media
@@ -66,9 +65,7 @@ async def group2(client, message):
     await client.send_message(chat_id= message.from_user.id,text="chagua huduma unayotaka kufanya marekebisho",
             reply_markup =InlineKeyboardMarkup([[InlineKeyboardButton('Rekebisha Makundi', callback_data = "kundii")],[InlineKeyboardButton('Rekebisha Jina la Kikundi', callback_data = "dbname")],[InlineKeyboardButton('Rekebisha Startup sms', callback_data = "startup")],[InlineKeyboardButton('Rekebisha Mawasiliano', callback_data = "xba")]])
         )
-Client.on_message(filters.command('example') & filters.private)
-async def start_msgg_admins(client, message):
-    await message.chat.ask("hellow")
+
 @Client.on_message(filters.command('start') & filters.private)
 async def start_msg_admins(client, message):
     if await db.is_admin_exist(message.from_user.id):
