@@ -507,7 +507,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 descp=descp[0]+".dd#."+descp[1]+".dd#."+mkv.text+".dd#."+descp[3]
                 await Media.collection.update_one({'_id':query.data.split(" ",1)[1]},{'$set':{'descp':descp}})
                 await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
-        elif query.data.startswith("xfile"): 
+        elif query.data.startswith("xdescp"): 
             filedetails = await get_file_details(query.data.split(" ",1)[1])
             await query.answer(f'{query.data.split(" ",1)[1]}')
             for files in filedetails:
