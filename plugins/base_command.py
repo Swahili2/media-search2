@@ -505,7 +505,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if mkv.text==None:
                     await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
                     return
-                descp[2]=mkv.text
+                descp=descp[0]+descp[1]+mkv.text+descp[3]
                 await Media.collection.update_one({'_id':query.data.split(" ",1)[1]},{'$set':{'descp':descp}})
                 await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                                   
