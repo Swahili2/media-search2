@@ -483,7 +483,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             filedetails = await get_file_details(query.data.split(" ")[1])
             for files in filedetails:
                 descp=files.descp
-            descp=descp.split(".dd#.")#.")
+            descp=descp.split(".dd#.")
             if descp[2]!="data":
                 a=False
                 b=time.time()
