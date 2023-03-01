@@ -12,7 +12,6 @@ from plugins.helper_funcs import (
     split_quotes
 )  
 import os
-import pyromod.listen
 import logging
 logger = logging.getLogger(__name__)
     
