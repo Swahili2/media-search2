@@ -4,7 +4,7 @@ import io
 import time
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,upload_group,get_file_details
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -657,10 +657,7 @@ async def addconnection(client,message):
             for file in group_details:
                 user_id2=file.group_id
             if not group_details :
-                await add_user(group_id,userid,'group',message.chat.title)
-                aski = await client.get_chat(group_id)
-                photo_id =aski.photo.big_file_id
-                await User.collection.update_one({'_id':group_id},{'$set':{'title':aski.title,'link': photo_id ,'inv_link':aski.invite_link,'total_m':aski.members_count,'photo_id':photo_id}})
+                await add_user(group_id,userid,'group')
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
                     quote=True,
