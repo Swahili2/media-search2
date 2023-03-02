@@ -9,7 +9,7 @@ async def handle_user_status(bot, cmd):
         if not (await is_user_exist(chat_id)):
             if not ab:
                 return
-            await add_user(chat_id,cmd.chat.id,'user',cmd.from_user.first_name)
+            await add_user(chat_id,cmd.chat.id,'user')
             await bot.send_message(
                 chat_id= CHANNELS,
                 text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
@@ -27,8 +27,6 @@ async def handle_user_status(bot, cmd):
     else:
         return
 async def handle_admin_status(bot, cmd):
-        aski = await bot.get_chat(cmd.chat.id)
-        await User.collection.update_one({'_id':cmd.chat.id},{'$set':{'title':aski.title,'total_m':aski.members_count}})
         all_user =await db.get_all_users()
         async for user in all_user:
             ban_status = await db.get_ban_status(user['id'])
