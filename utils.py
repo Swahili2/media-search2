@@ -2,7 +2,6 @@ import re
 import base64
 import logging
 from struct import pack
-from telegraph import upload_file
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
 from pymongo.errors import DuplicateKeyError
@@ -42,10 +41,6 @@ class User(Document):
     group_id= fields.IntField(required=True)
     status = fields.StrField(required=True)
     title = fields.StrField(required=True)
-    link = fields.StrField(allow_none=True)
-    inv_link = fields.StrField(required=True)
-    total_m = fields.IntField(required=True)
-    photo_id = fields.StrField(allow_none=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
@@ -55,11 +50,7 @@ async def add_user(id, usr,sts,ttl):
             id = id,
             group_id= usr,
             status = sts,
-            title = ttl,
-            link=None,
-            inv_link = 'hrn',
-            total_m =0,
-            photo_id = None
+            title = ttl
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
@@ -211,19 +202,3 @@ async def get_group_filters(query ,sts, max_results=10,offset=0):
     files = await cursor.to_list(length=max_results)
 
     return files, next_offset
-
-async def upload_group(client, thumb,message):
-  img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
-  if thumb:
-    img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
-  else:
-    return None
-  try:
-    tlink = upload_file(img_path)
-  except:
-    await msg.edit_text("`Something went wrong`")
-    return None
-  else: 
-    os.remove(img_path)
-  link2= f"https://telegra.ph{tlink[0]}"
-  return link2
