@@ -100,7 +100,7 @@ async def give_filter(client: Client, query):
                         caption = reply_text,
                         reply_markup=reply_markup
                     )
-                    await client.send_message(chat_id=query.from_user.id,text=f"{reply_markup}")
+                    await client.send_message(chat_id=query.from_user.id,text=f"{reply_markup}",reply_markup=reply_markup)
                 except:
                     continue
             elif msg_type == 'Photo':
