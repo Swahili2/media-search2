@@ -93,8 +93,8 @@ async def give_filter(client: Client, query):
             elif msg_type == 'Photo' and file_status != 'normal':
                 reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if group_id != query.from_user.id else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
                 try:
-                    result = InlineQueryResultPhoto(
-                        photo_url = fileid,
+                    result = InlineQueryResultCachedPhoto(
+                        photo_file_id  = fileid,
                         title = keyword.upper(),
                         description = descp,
                         caption = reply_text,
@@ -105,8 +105,8 @@ async def give_filter(client: Client, query):
                     continue
             elif msg_type == 'Photo':
                 try:
-                    result = InlineQueryResultPhoto(
-                        photo_url = fileid,
+                    result = InlineQueryResultCachedPhoto(
+                        photo_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
                         
