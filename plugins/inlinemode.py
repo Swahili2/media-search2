@@ -91,13 +91,14 @@ async def give_filter(client: Client, query):
                 except:
                     continue
             elif msg_type == 'Photo' and file_status != 'normal':
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if group_id != query.from_user.id else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
                 try:
                     result = InlineQueryResultPhoto(
                         photo_url = fileid,
                         title = keyword.upper(),
                         description = descp,
                         caption = reply_text,
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if group_id != query.from_user.id else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
+                        reply_markup=reply_markup
                     )
                     await client.send_message(chat_id=query.from_user.id,text=f"{reply_markup}")
                 except:
