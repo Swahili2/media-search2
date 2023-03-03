@@ -40,17 +40,15 @@ class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
     status = fields.StrField(required=True)
-    title = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def add_user(id, usr,sts,ttl):
+async def add_user(id, usr,sts):
     try:
         data = User(
             id = id,
             group_id= usr,
-            status = sts,
-            title = ttl
+            status = sts
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
