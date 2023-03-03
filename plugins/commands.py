@@ -88,7 +88,7 @@ async def new_filtervip(client: Client, message):
 
     elif message.reply_to_message and message.reply_to_message.photo:
         try:
-            fileid = message.reply_to_message.photo.file_id
+            fileid = await upload_photo(message.reply_to_message)
             if not fileid:
                 return
             reply_text, btn, alert = generate_button(message.reply_to_message.caption.html, strid)
