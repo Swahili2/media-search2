@@ -234,7 +234,7 @@ async def new_filtervip(client: Client, message):
             icount = 0
             while dta!='stop':
                 stridm = str(uuid.uuid4())
-                mkv22=await client.ask(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                mkv22=await client.send_message(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
                 a,b = funask()
                 while a==False:
                     try:
