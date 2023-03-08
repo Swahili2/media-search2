@@ -17,7 +17,8 @@ async def handle_user_status(bot, cmd):
             
         if ab:
             await User.collection.update_one({'_id':chat_id},{'$set':{'group_id':cmd.chat.id}})
-            
+        else:
+            return
         for uza in ab:
             status = uza.group_id
        
