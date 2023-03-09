@@ -19,31 +19,15 @@ BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails = await is_user_exist(query.from_user.id)
-    status= await db.is_admin_exist(query.from_user.id)
-    a='no'
     nyva=BOT.get("username")
     if not nyva:
         botusername=await client.get_me()
         nyva=botusername.username
         BOT["username"]=nyva
-    if not status:
-        a='yes'
     if userdetails:
-        if a =='no':
-            result=[]
-            title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
-            text1= f"!!HAUPO KWENYE DATABASE YANGU!!\nMimi naitwa Muhsin alimaarufu Swahili Robot, Username @bandolako2bot\nMimi ni  Robot ninayerahisisha uuzaji wa movie au series za jumla na rejareja bila ya usumbufu wa admini kila SAA kutuma muv na series kazi yake kubwa ni  kuthibitisha malipo.\nKujua nnavyofanya kazi ,jinsi ya kujiunga,maelekezo ya kutumia huduma hizi jiunge na kikundi chetu @swahilichats au wasiliana @hrm45 atakupa maelezo zaidi Nb Kwa wageni wanaojiunga na kutafta jinsi ya kupata movie na series tafadhali join @swahilichats kupata msaada zaidi\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
-            result.append(InlineQueryResultArticle(
-                    title=title,
-                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                    description=f'!!HAUPO KWENYE DATABASE YANGU!!\nKitu chochote utakacho niuliza ntashindwa kukujibu,Ili kupata movie,series,miziki n.k gusa hapa kupata maelekezo ya kujiunga'
-                ))
-            await query.answer(
-                results = result,
-                is_personal = True,
-                switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
-                switch_pm_parameter = 'start'
-            )    
+        a=5
+    else:
+        
     for user in userdetails:
         group_details = await is_user_exist(user.group_id)
         grp_id=user.group_id
