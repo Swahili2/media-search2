@@ -13,8 +13,8 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exist,get_search_results,Media,is_group_exist
-from info import filters
+from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user
+from info import filters,OWNER_ID
 BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
@@ -25,16 +25,23 @@ async def give_filter(client: Client, query):
         nyva=botusername.username
         BOT["username"]=nyva
     if userdetails:
-        a=5
+        for user in userdetails:
+            group_details = await is_user_exist(user.group_id)
+            grp_id=user.group_id
+            for id2 in group_details:
+                group_id = id2.group_id
     else:
-        
-    for user in userdetails:
-        group_details = await is_user_exist(user.group_id)
-        grp_id=user.group_id
+        group_details = await is_user_exist(OWNER_ID)
+        group_id=OWNER_ID
         for id2 in group_details:
-            group_id = id2.group_id
-
-            
+            grp_id = id2.group_id
+        chat_id = grp_id
+        await add_user(query.from_user.id,chat_id,'user')
+        await bot.send_message(
+            chat_id= CHANNELS,
+            text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
+        )
+        
     text = query.query
     ban = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
