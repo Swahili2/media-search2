@@ -14,7 +14,7 @@ from pyrogram.types import (
     InlineQueryResultCachedDocument
 )
 from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user
-from info import filters,OWNER_ID
+from info import filters,OWNER_ID,CHANNELS
 BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
@@ -37,9 +37,9 @@ async def give_filter(client: Client, query):
             grp_id = id2.group_id
         chat_id = grp_id
         await add_user(query.from_user.id,chat_id,'user')
-        await bot.send_message(
+        await client.send_message(
             chat_id= CHANNELS,
-            text=f"#NEW_USER: \n\nNew User [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) started on {cmd.chat.title}!!"
+            text=f"#NEW_USER: \n\nNew User [{query.from_user.first_name}](tg://user?id={query.from_user.id}) started!!"
         )
         
     text = query.query
