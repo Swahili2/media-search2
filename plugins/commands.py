@@ -661,7 +661,6 @@ async def addconnection(client,message):
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
                     quote=True,
-                    parse_mode="md"
                 )
                 if chat_type in ["group", "supergroup","private"]:
                     await client.send_message(
