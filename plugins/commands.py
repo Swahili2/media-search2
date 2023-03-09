@@ -31,7 +31,7 @@ async def total(bot, message):
 async def new_filtervip(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani hauruhusiw kutumia command hii Tafadhali  mchek @hrm45 akupe maelekezo")
         return
     strid = str(uuid.uuid4())
     args = message.text.split(' ', 1)
@@ -315,7 +315,7 @@ async def log_file(bot, message):
 async def new_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     strid = str(uuid.uuid4())
     args = message.text.split(' ', 1)
@@ -538,7 +538,7 @@ async def new_filter(client: Client, message):
 async def del_filter(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     try:
         cmd, text = message.text.split(" ", 1)
@@ -567,7 +567,7 @@ async def del_filter(client: Client, message):
 async def get_all(client: Client, message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     text = ''
     texts = await get_filter_results(text,message.from_user.id)
@@ -615,7 +615,7 @@ async def delallconfirm(Client, message):
 async def addconnection(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -693,7 +693,7 @@ async def addconnection(client,message):
 async def removegroup(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
-        await message.reply_text("Samahani wewe sio admin tafadhali mchek @hrm45 akupe maelekezo")
+        await message.reply_text("Samahani huruhusiwi kutumia command  hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     userid = message.from_user.id if message.from_user else None
     if not userid:
