@@ -18,7 +18,7 @@ from info import filters
 BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
-    userdetails= await is_user_exist(query.from_user.id)
+    userdetails = await is_user_exist(query.from_user.id)
     status= await db.is_admin_exist(query.from_user.id)
     a='no'
     nyva=BOT.get("username")
@@ -28,7 +28,7 @@ async def give_filter(client: Client, query):
         BOT["username"]=nyva
     if not status:
         a='yes'
-    if not userdetails:
+    if userdetails:
         if a =='no':
             result=[]
             title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
