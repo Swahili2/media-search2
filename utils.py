@@ -148,7 +148,18 @@ async def get_filter_results(query,group_id):
     cursor.sort('$natural', -1)
     files = await cursor.to_list(length=int(total_results))
     return files
+async def is_subscribed(bot, query):
+    try:
+        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+    except UserNotParticipant:
+        pass
+    except Exception as e:
+        logger.exception(e)
+    else:
+        if not user.status == 'kicked':
+            return True
 
+    return False
 async def is_user_exist(query):
     filter = {'id': query}
     cursor = User.find(filter)
