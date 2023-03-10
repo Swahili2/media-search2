@@ -718,7 +718,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
-                    if mkv !=None:
+                    if mkv.text!=None or mkv.media!=None:
                         a=True
                     
                     if (time.time()-b)>180:
