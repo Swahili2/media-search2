@@ -807,7 +807,7 @@ async def ban(c,m):
 async def get_statuss(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
     if status:
-        return
+        
         async for user in await db.get_user(message.from_user.id):
             salio =user['ban_status']
             salio = salio['ban_duration']
