@@ -868,7 +868,7 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
     a=1
     async for user in users:
         a=2
-        if user['file_id'].startwith('g_'):
+        if user['file_id'].startswith('g_'):
             sd= await db.get_db_status(user['db_name'])
             g2 = user['file_id']
             sd = sd[g2].split('#@')[0]
