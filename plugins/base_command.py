@@ -815,7 +815,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= 30
             strid = str(uuid.uuid4())
             if tme == "m":
-                await db.add_acc(strid,msg1,fileid,query.from_user.id,999)
+                await db.add_acc(strid,msg1,fileid,query.from_user.id,99)
             else:
                 await db.add_acc(strid,msg1,msg2,query.from_user.id,tme1)
             await query.message.delete()
