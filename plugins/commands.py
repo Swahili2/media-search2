@@ -5,7 +5,7 @@ import datetime
 import time
 from plugins.database import db
 from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details,is_group_exist
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -267,18 +267,40 @@ async def new_filtervip(client: Client, message):
         descp = f'x.dd#.{mkv1.text}.dd#.data.dd#.m'
     try:
         if fileid:
+            data1=await is_group_exist(message.from_user.id)
             if msg_type == 'Photo':
                 await message.reply_photo(
                     photo = fileid,
                     caption = reply_text,
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
+                for data2 in data1:
+                    try:
+                        await client.send_photo(
+                            chat_id=int(data2.id),
+                            photo = fileid,
+                            caption = reply_text,
+                            reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                        )
+                    except:
+                        pass
+                        
             else:
                 await message.reply_cached_media(
                     file_id = fileid,
                     caption = reply_text,
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
+                for data2 in data1:
+                    try:
+                        await client.send_cached_media(
+                            chat_id=int(data2.id),
+                            file_id = fileid,
+                            caption = reply_text,
+                            reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                        )
+                    except:
+                        pass
         else:
             await message.reply(
                 text = reply_text,
