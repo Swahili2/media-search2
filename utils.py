@@ -168,7 +168,8 @@ async def is_user_exist(query):
     return userdetails
 
 async def is_group_exist(query):
-    filter = {'status': query}
+    filter = {'status':'group'}
+    filter['group_id']= query
     cursor = User.find(filter)
     cursor.sort('$natural', -1)
     count = await User.count_documents(filter)
@@ -179,35 +180,3 @@ async def get_file_details(query):
     cursor = Media.find(filter)
     filedetails = await cursor.to_list(length=1)
     return filedetails
-async def get_group_filters(query ,sts, max_results=10,offset=0):
-    """For given query return (results, next_offset)"""
-
-    query = query.strip()
-    if not query:
-        raw_pattern = '.'
-    elif ' ' not in query:
-        raw_pattern = r'\b' + query + r'.*'
-    else:
-        raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
-    try:
-        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
-    except:
-        return []
-
-    filter = {'title': regex}
-    filter['status'] = sts
-    total_results = await User.count_documents(filter)
-    next_offset = offset + max_results
-
-    if next_offset > total_results:
-        next_offset = ''
-
-    cursor = User.find(filter)
-    # Sort by recent
-    cursor.sort('$natural', -1)
-    # Slice files according to offset and max results
-    cursor.skip(offset).limit(max_results)
-    # Get list of files
-    files = await cursor.to_list(length=max_results)
-
-    return files, next_offset
