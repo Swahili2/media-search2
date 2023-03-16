@@ -141,7 +141,7 @@ async def get_filter_results(query,group_id):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
-    filter = {'text': regex}
+    filter = {{$concat:["$text","$descp"]}: regex}
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
