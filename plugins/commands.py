@@ -15,7 +15,7 @@ from plugins.helper_funcs import (
 import os
 import logging
 logger = logging.getLogger(__name__)
-    
+BOT ={}
 @Client.on_message(filters.command('total') & filters.owner)
 async def total(bot, message):
     """Show total files in database"""
@@ -40,7 +40,11 @@ async def new_filtervip(client: Client, message):
     if len(args) < 2:
         await message.reply_text("Use Correct format 😐", quote=True)
         return
-    
+    nyva=BOT.get("username")
+    if not nyva:
+        botusername=await client.get_me()
+        nyva=botusername.username
+        BOT["username"]=nyva
     extracted = split_quotes(args[1])
     text = f'{args[1].lower()}.dd#.{user_id}'
     ab = f'{args[1].lower()}'
