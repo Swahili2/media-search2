@@ -284,7 +284,7 @@ async def new_filtervip(client: Client, message):
                             chat_id=int(data2.id),
                             photo = fileid,
                             caption = reply_text,
-                            reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButtton(text='📥 Download   ',url=f"https://t.me/{nyva}?start=subinps_-_-_-_{strid}")]])
                         )
                     except:
                         pass
@@ -301,7 +301,7 @@ async def new_filtervip(client: Client, message):
                             chat_id=int(data2.id),
                             file_id = fileid,
                             caption = reply_text,
-                            reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                            reply_markup = InlineKeyboardMarkup([[InlineKeyboardButtton(text='📥 Download',url=f"https://t.me/{nyva}?start=subinps_-_-_-_{strid}")]])
                         )
                     except:
                         pass
