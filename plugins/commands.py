@@ -715,7 +715,7 @@ async def addconnection(client,message):
         await message.reply_text('Kuna tatizo tafadhali jaribu badae!!!.', quote=True)
         return
 
-@Client.on_message((filters.private | filters.group) & filters.command("ondoa"))
+@Client.on_message((filters.private | filters.group | filters.channel) & filters.command("ondoa"))
 async def removegroup(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
