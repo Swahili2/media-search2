@@ -655,7 +655,7 @@ async def addconnection(client,message):
             )
         return
 
-    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP","ChatType.CHANNEL"]:
         group_id = message.chat.id
 
     try:
