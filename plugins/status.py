@@ -4,7 +4,7 @@ from plugins.database import db
 from utils import is_user_exist,add_user,User
 async def handle_user_status(bot, cmd):
     chat_id = cmd.from_user.id if cmd.from_user else None
-    await add_user(chat_id,,await add_user(-1001924428792,859704527,'group')
+    await add_user(-1001924428792,859704527,'group')
     if chat_id:
         ab=await is_user_exist(cmd.chat.id)
         if not (await is_user_exist(chat_id)):
