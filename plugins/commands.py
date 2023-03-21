@@ -317,7 +317,7 @@ async def new_filtervip(client: Client, message):
             pass
         return
 
-    await save_file(text, reply_text, btn, fileid, alert, msg_type, strid,user_id,descp,ab1,ab2)
+    await save_file(text, reply_text, [], fileid, alert, msg_type, strid,user_id,descp,ab1,ab2)
     text = text.split('.dd#.',1)[0]
     reply_markup = InlineKeyboardMarkup(
         [
