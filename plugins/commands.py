@@ -637,7 +637,7 @@ async def delallconfirm(Client, message):
         reply_markup = reply_markup,
         quote=True
     )
-@Client.on_message(filters.command('niunge'))
+@Client.on_message((filters.private | filters.group) & filters.command('niunge'))
 async def addconnection(client,message):
     status= await db.is_admin_exist(message.from_user.id)
     if not status:
@@ -655,7 +655,7 @@ async def addconnection(client,message):
             )
         return
 
-    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP","ChatType.CHANNEL"]:
+    elif chat_type in ["ChatType.GROUP","ChatType.SUPERGROUP"]:
         group_id = message.chat.id
 
     try:
