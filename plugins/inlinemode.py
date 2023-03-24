@@ -1,6 +1,6 @@
 from pyrogram import Client
 import re
-import ast
+import ast 
 from plugins.database import db
 from pyrogram.types import (
     InlineQuery,
@@ -13,44 +13,35 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exist,get_search_results,Media,is_group_exist
-from info import filters
+from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user
+from info import filters,OWNER_ID,CHANNELS
 BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
-    userdetails= await is_user_exist(query.from_user.id)
-    status= await db.is_admin_exist(query.from_user.id)
-    a='no'
+    userdetails = await is_user_exist(query.from_user.id)
     nyva=BOT.get("username")
     if not nyva:
         botusername=await client.get_me()
         nyva=botusername.username
         BOT["username"]=nyva
-    if not status:
-        a='yes'
-    if not userdetails:
-        if a =='no':
-            result=[]
-            title = f"🎁🎁 Mpendwa :{query.from_user.first_name} 🎁🎁"
-            text1= f"!!HAUPO KWENYE DATABASE YANGU!!\nMimi naitwa Muhsin alimaarufu Swahili Robot, Username @bandolako2bot\nMimi ni  Robot ninayerahisisha uuzaji wa movie au series za jumla na rejareja bila ya usumbufu wa admini kila SAA kutuma muv na series kazi yake kubwa ni  kuthibitisha malipo.\nKujua nnavyofanya kazi ,jinsi ya kujiunga,maelekezo ya kutumia huduma hizi jiunge na kikundi chetu @swahilichats au wasiliana @hrm45 atakupa maelezo zaidi Nb Kwa wageni wanaojiunga na kutafta jinsi ya kupata movie na series tafadhali join @swahilichats kupata msaada zaidi\n\nBonyeza 👨‍👧‍👧 join group kujiunga"
-            result.append(InlineQueryResultArticle(
-                    title=title,
-                    input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                    description=f'!!HAUPO KWENYE DATABASE YANGU!!\nKitu chochote utakacho niuliza ntashindwa kukujibu,Ili kupata movie,series,miziki n.k gusa hapa kupata maelekezo ya kujiunga'
-                ))
-            await query.answer(
-                results = result,
-                is_personal = True,
-                switch_pm_text = f'Mpendwa {query.from_user.first_name} haupo kwenye Database',
-                switch_pm_parameter = 'start'
-            )    
-    for user in userdetails:
-        group_details = await is_user_exist(user.group_id)
-        grp_id=user.group_id
+    if userdetails:
+        for user in userdetails:
+            group_details = await is_user_exist(user.group_id)
+            grp_id=user.group_id
+            for id2 in group_details:
+                group_id = id2.group_id
+    else:
+        group_details = await is_user_exist(OWNER_ID)
+        group_id=OWNER_ID
         for id2 in group_details:
-            group_id = id2.group_id
-
-            
+            grp_id = id2.group_id
+        chat_id = grp_id
+        await add_user(query.from_user.id,chat_id,'user')
+        await client.send_message(
+            chat_id= CHANNELS,
+            text=f"#NEW_USER: \n\nNew User [{query.from_user.first_name}](tg://user?id={query.from_user.id}) started!!"
+        )
+        
     text = query.query
     ban = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
@@ -96,8 +87,7 @@ async def give_filter(client: Client, query):
                         photo_url = fileid,
                         title = keyword.upper(),
                         description = descp,
-                        
-                        caption = reply_text,
+                        caption = reply_text+'\nBonyeza **DOWNLOAD** kuipakua',
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if group_id != query.from_user.id else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
                     )
                 except:
@@ -105,10 +95,9 @@ async def give_filter(client: Client, query):
             elif msg_type == 'Photo':
                 try:
                     result = InlineQueryResultPhoto(
-                        photo_url = fileid,
+                        photo_url= fileid,
                         title = keyword.upper(),
                         description = descp,
-                        
                         caption = reply_text or '',
                         reply_markup=reply_markup
                     )
@@ -120,7 +109,7 @@ async def give_filter(client: Client, query):
                         document_file_id = fileid,
                         title = keyword.upper(),
                         description = descp,
-                        caption = reply_text or "",
+                        caption = reply_text+'\nBonyeza **DOWNLOAD** kuipakua' or "",
                         
                         reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")]])if group_id != query.from_user.id else InlineKeyboardMarkup([[InlineKeyboardButton('📤 Download', url=f"https://t.me/{nyva}?start=subinps_-_-_-_{id3}")],[InlineKeyboardButton(' Edit', url=f"https://t.me/{nyva}?start=xsubinps_-_-_-_{id3}")]])
                     )

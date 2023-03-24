@@ -2,7 +2,6 @@ import re
 import base64
 import logging
 from struct import pack
-from telegraph import upload_file
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
 from pymongo.errors import DuplicateKeyError
@@ -41,25 +40,15 @@ class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
     status = fields.StrField(required=True)
-    title = fields.StrField(required=True)
-    link = fields.StrField(allow_none=True)
-    inv_link = fields.StrField(required=True)
-    total_m = fields.IntField(required=True)
-    photo_id = fields.StrField(allow_none=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
-async def add_user(id, usr,sts,ttl):
+async def add_user(id, usr,sts):
     try:
         data = User(
             id = id,
             group_id= usr,
-            status = sts,
-            title = ttl,
-            link=None,
-            inv_link = 'hrn',
-            total_m =0,
-            photo_id = None
+            status = sts
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
@@ -152,14 +141,25 @@ async def get_filter_results(query,group_id):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
-    filter = {'text': regex}
+    filter = {"text": regex}
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
     cursor.sort('$natural', -1)
     files = await cursor.to_list(length=int(total_results))
     return files
+async def is_subscribed(bot, query):
+    try:
+        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+    except UserNotParticipant:
+        pass
+    except Exception as e:
+        logger.exception(e)
+    else:
+        if not user.status == 'kicked':
+            return True
 
+    return False
 async def is_user_exist(query):
     filter = {'id': query}
     cursor = User.find(filter)
@@ -168,7 +168,8 @@ async def is_user_exist(query):
     return userdetails
 
 async def is_group_exist(query):
-    filter = {'status': query}
+    filter = {'status':'group'}
+    filter['group_id']= query
     cursor = User.find(filter)
     cursor.sort('$natural', -1)
     count = await User.count_documents(filter)
@@ -179,51 +180,3 @@ async def get_file_details(query):
     cursor = Media.find(filter)
     filedetails = await cursor.to_list(length=1)
     return filedetails
-async def get_group_filters(query ,sts, max_results=10,offset=0):
-    """For given query return (results, next_offset)"""
-
-    query = query.strip()
-    if not query:
-        raw_pattern = '.'
-    elif ' ' not in query:
-        raw_pattern = r'\b' + query + r'.*'
-    else:
-        raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
-    try:
-        regex = re.compile(raw_pattern, flags=re.IGNORECASE)
-    except:
-        return []
-
-    filter = {'title': regex}
-    filter['status'] = sts
-    total_results = await User.count_documents(filter)
-    next_offset = offset + max_results
-
-    if next_offset > total_results:
-        next_offset = ''
-
-    cursor = User.find(filter)
-    # Sort by recent
-    cursor.sort('$natural', -1)
-    # Slice files according to offset and max results
-    cursor.skip(offset).limit(max_results)
-    # Get list of files
-    files = await cursor.to_list(length=max_results)
-
-    return files, next_offset
-
-async def upload_group(client, thumb,message):
-  img_path = (f"./DOWNLOADS/{message.from_user.id}.jpg")
-  if thumb:
-    img_path = await client.download_media(message=thumb.big_file_id, file_name=img_path)
-  else:
-    return None
-  try:
-    tlink = upload_file(img_path)
-  except:
-    await msg.edit_text("`Something went wrong`")
-    return None
-  else: 
-    os.remove(img_path)
-  link2= f"https://telegra.ph{tlink[0]}"
-  return link2

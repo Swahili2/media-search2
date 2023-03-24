@@ -1,6 +1,5 @@
 import logging
 import logging.config
-import pyromod
 # Get logging configurations
 logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.ERROR)
