@@ -21,7 +21,6 @@ async def group(client, message):
         btn = []
         searchi = message.text
         files = await get_filter_results(searchi,user_id3)
-        searchi = f'{message.chat.id} {message.text}'
         if files:
             await message.reply_text(f"<b>Bonyeza kitufe <b>(🔍 Majibu ya Database : {len(files)})</b> Kisha chagua unachokipenda kwa kushusha chini\n\n💥Kwa urahisi zaidi kutafta chochote anza na aina kama ni  movie, series ,(audio ,video) kwa music , vichekesho kisha acha nafasi tuma jina la  kitu unachotaka mfano video jeje au audio jeje au movie extraction au series soz­</b>", reply_markup=get_reply_makup(searchi,len(files)))
         else:
