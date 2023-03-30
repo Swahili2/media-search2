@@ -41,7 +41,12 @@ async def give_filter(client: Client, query):
             chat_id= CHANNELS,
             text=f"#NEW_USER: \n\nNew User [{query.from_user.first_name}](tg://user?id={query.from_user.id}) started!!"
         )
-        
+    try:
+        asd = int(query.query.split(' ',1)[1])
+        if len(asd)>=7:
+            g_id = asd
+    except:
+        pass
     text = query.query
     ban = await db.get_ban_status(group_id) 
     offset = int(query.offset or 0)
