@@ -25,28 +25,6 @@ async def give_filter(client: Client, query):
         nyva=botusername.username
         BOT["username"]=nyva
     text = query.query.strip()
-    query.query =' movie '
-    try:
-        asd = int(text.split(' ',1)[0])
-        text = text.split(' ',1)[1]
-        if len(asd)>=7:
-            g_id = asd
-        chat_id = query.from_user.id if query.from_user.id else None
-        if chat_id !=None and len(asd)>=7:
-            ab=await is_user_exist(g_id)
-            if not (await is_user_exist(chat_id)):
-                if not ab:
-                    return
-                await add_user(chat_id,g_id,'user')
-                await client.send_message(
-                    chat_id= CHANNELS,
-                    text=f"#NEW_USER: \n\nNew User [{query.from_user.first_name}](tg://user?id={query.from_user.id})!!"
-                )   
-            else:
-                await User.collection.update_one({'_id':chat_id},{'$set':{'group_id':g_id}})
-        
-    except:
-        pass
     if userdetails:
         for user in userdetails:
             group_details = await is_user_exist(user.group_id)
