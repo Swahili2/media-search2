@@ -25,6 +25,7 @@ async def give_filter(client: Client, query):
         nyva=botusername.username
         BOT["username"]=nyva
     text = query.query.strip()
+    query.query =' movie '
     try:
         asd = int(text.split(' ',1)[0])
         text = text.split(' ',1)[1]
