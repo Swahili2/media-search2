@@ -19,7 +19,7 @@ async def group(client, message):
         return
     if 2 < len(message.text) < 50:    
         btn = []
-        searchi = {message.text}
+        searchi = message.text
         files = await get_filter_results(searchi,user_id3)
         searchi = f'{message.chat.id} {message.text}'
         if files:
