@@ -124,7 +124,7 @@ async def start_msg_admins(client, message):
             chat_id=message.from_user.id,
             text="**Tafadhali ili kumtumia robot huyu join channel yetu ya updates zake!**",
             reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode="markdown"
+            
             )
         return
     if usr_cmdall1.startswith("/start subinps"):
