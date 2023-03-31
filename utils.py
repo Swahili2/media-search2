@@ -113,6 +113,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
     elif query.startswith('dj'):
         try:
             ab,query=query.split('#',1)
+            query=query.strip()
         except:
             ab=query.strip()
             query =''
@@ -161,6 +162,30 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
 
 async def get_filter_results(query,group_id):
     query = query.strip()
+    query = query.lower()
+    ab='empty'
+    if query.startswith('movie'):
+        ab='movie'
+        query=query.replace('movie','')
+        query = query.strip()
+        raw_pattern1 = r'\b' + ab + r'.*'
+    elif query.startswith('series'):
+        query=query.replace('series','')
+        ab='series'
+        query = query.strip()
+        raw_pattern1 = r'\b' + ab + r'.*'
+    elif query.startswith('dj'):
+        try:
+            ab,query=query.split('#',1)
+            query=query.strip()
+        except:
+            ab=query.strip()
+            query =''
+        if ' ' not in ab:
+            raw_pattern1 = r'\b' + ab + r'.*'
+        else:
+            raw_pattern1 = ab.replace(' ', r'.*[\s\.\+\-_]')
+    
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
@@ -171,6 +196,13 @@ async def get_filter_results(query,group_id):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
+    if ab!='empty':
+        try:
+            regex1 = re.compile(raw_pattern1, flags=re.IGNORECASE)
+        except Exception as e:
+            print(e)
+        else:
+            filter['descp']= regex1
     filter = {"text": regex}
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
