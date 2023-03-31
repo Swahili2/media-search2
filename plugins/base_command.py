@@ -118,8 +118,8 @@ async def start_msg_admins(client, message):
             ]
         ]
 
-        if message.command[1] != "subscribe":
-            btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{message.command[1]}")])
+        
+        btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{message.command[1]}")])
         await client.send_message(
             chat_id=message.from_user.id,
             text="**Tafadhali ili kumtumia robot huyu join channel yetu ya updates zake!**",
