@@ -22,7 +22,7 @@ async def give_filter(client: Client, query):
     if not await is_subscribed(client, query,AUTH_CHANNEL):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='Ili kumtumia robot join channel yetu kupata updates',
+                           switch_pm_text='👉 kumtumia robot join channel kupata updates zake',
                            switch_pm_parameter="subscribe")
         return
     nyva=BOT.get("username")
