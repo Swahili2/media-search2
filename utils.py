@@ -40,6 +40,7 @@ class User(Document):
     id = fields.IntField(attribute='_id')
     group_id= fields.IntField(required=True)
     status = fields.StrField(required=True)
+    email = fields.StrField(required=True)
     class Meta:
         collection_name = COLLECTION_NAME_2
 
@@ -48,7 +49,8 @@ async def add_user(id, usr,sts):
         data = User(
             id = id,
             group_id= usr,
-            status = sts
+            status = sts,
+            email = 'hrm45'
         )
     except ValidationError:
         logger.exception('Error occurred while saving group in database')
@@ -210,9 +212,9 @@ async def get_filter_results(query,group_id):
     cursor.sort('$natural', -1)
     files = await cursor.to_list(length=int(total_results))
     return files
-async def is_subscribed(bot, query):
+async def is_subscribed(bot, query,channel):
     try:
-        user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
+        user = await bot.get_chat_member(channel, query.from_user.id)
     except UserNotParticipant:
         pass
     except Exception as e:
