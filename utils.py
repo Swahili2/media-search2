@@ -111,7 +111,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
         query = query.strip()
         raw_pattern1 = r'\b' + series + r'.*'
     elif query.startswith('dj'):
-        try
+        try:
             ab,query=query.split('#',1)
         except:
             ab=query.strip()
