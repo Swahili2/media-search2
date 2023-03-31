@@ -1,4 +1,4 @@
-from info import filters
+from info import filters,AUTH_CHANNEL
 import uuid
 import time
 from utils import get_file_details,get_filter_results,is_user_exist,Media
@@ -104,6 +104,29 @@ async def start_msg_admins(client, message):
         )
     usr_cmdall1 = message.text
     cmd=message
+    if not await is_subscribed(client, message,AUTH_CHANNEL ):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+            [
+                InlineKeyboardButton(
+                    "🤖 Join Updates Channel", url=invite_link.invite_link
+                )
+            ]
+        ]
+
+        if message.command[1] != "subscribe":
+            btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{message.command[1]}")])
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**Tafadhali ili kumtumia robot huyu join channel yetu ya updates zake!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode="markdown"
+            )
+        return
     if usr_cmdall1.startswith("/start subinps"):
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
