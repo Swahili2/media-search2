@@ -47,6 +47,7 @@ async def new_filtervip(client: Client, message):
         BOT["username"]=nyva
     extracted = split_quotes(args[1])
     text = f'{args[1].lower()}.dd#.{user_id}'
+    text = text.strip()
     ab = f'{args[1].lower()}'
     msg_type = 'Text'
    
@@ -352,6 +353,7 @@ async def new_filter(client: Client, message):
     
     extracted = split_quotes(args[1])
     text = f'{args[1].lower()}.dd#.{user_id}'
+    text = text.strip()
     msg_type = 'Text'
    
     if not message.reply_to_message and len(extracted) < 2:
