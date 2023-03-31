@@ -196,6 +196,7 @@ async def get_filter_results(query,group_id):
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
+    filter = {"text": regex}
     if ab!='empty':
         try:
             regex1 = re.compile(raw_pattern1, flags=re.IGNORECASE)
@@ -203,7 +204,6 @@ async def get_filter_results(query,group_id):
             print(e)
         else:
             filter['descp']= regex1
-    filter = {"text": regex}
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
