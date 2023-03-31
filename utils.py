@@ -98,19 +98,49 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
     
     query = query.strip()
+    query = query.lower()
+    ab='empty'
+    if query.startswith('movie'):
+        ab='movie'
+        query=query.replace('movie','')
+        query = query.strip()
+        raw_pattern1 = r'\b' + movie + r'.*'
+    elif query.startswith('series'):
+        query=query.replace('series','')
+        ab='series'
+        query = query.strip()
+        raw_pattern1 = r'\b' + series + r'.*'
+    elif query.startswith('dj'):
+        try
+            ab,query=query.split('#',1)
+        except:
+            ab=query.strip()
+            query =''
+        if ' ' not in ab:
+            raw_pattern1 = r'\b' + ab + r'.*'
+        else:
+            raw_pattern1 = ab.replace(' ', r'.*[\s\.\+\-_]')
+    
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
         raw_pattern = r'\b' + query + r'.*'
     else:
         raw_pattern = query.replace(' ', r'.*[\s\.\+\-_]')
-
+    
     try:
         regex = re.compile(raw_pattern, flags=re.IGNORECASE)
     except:
         return []
     else:
         filter = {'text': regex}
+    if ab=='empty':
+        try:
+            regex1 = re.compile(raw_pattern1, flags=re.IGNORECASE)
+        except Exception as e:
+            print(e)
+        else:
+            filter['descp']= regex1
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     next_offset = offset + max_results
