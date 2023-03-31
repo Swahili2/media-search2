@@ -13,7 +13,7 @@ from pyrogram.types import (
     InlineQueryResultCachedPhoto,
     InlineQueryResultCachedDocument
 )
-from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user
+from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user,is_subscribed
 from info import filters,OWNER_ID,CHANNELS,AUTH_CHANNEL
 BOT = {}
 @Client.on_inline_query(filters.inline)
