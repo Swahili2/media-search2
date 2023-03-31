@@ -19,7 +19,7 @@ BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails = await is_user_exist(query.from_user.id)
-    if not await is_subscribed(bot, query,AUTH_CHANNEL):
+    if not await is_subscribed(client, query,AUTH_CHANNEL):
         await query.answer(results=[],
                            cache_time=0,
                            switch_pm_text='Ili kumtumia robot join channel yetu kupata updates',
