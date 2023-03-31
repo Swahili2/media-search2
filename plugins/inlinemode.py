@@ -14,11 +14,17 @@ from pyrogram.types import (
     InlineQueryResultCachedDocument
 )
 from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user
-from info import filters,OWNER_ID,CHANNELS
+from info import filters,OWNER_ID,CHANNELS,AUTH_CHANNEL
 BOT = {}
 @Client.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails = await is_user_exist(query.from_user.id)
+    if not await is_subscribed(bot, query,AUTH_CHANNEL):
+        await query.answer(results=[],
+                           cache_time=0,
+                           switch_pm_text='Ili kumtumia robot join channel yetu kupata updates',
+                           switch_pm_parameter="subscribe")
+        return
     nyva=BOT.get("username")
     if not nyva:
         botusername=await client.get_me()
