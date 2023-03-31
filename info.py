@@ -15,6 +15,7 @@ BOT_TOKEN ='2138045217:AAEcyEaMnPiVUftD3y3-FQb-mk1ktc4t1Dw'
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 CHANNELS = -1001609087881
+AUTH_CHANNEL = -1001726632341
 # MongoDB information
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_file')
 client = AsyncIOMotorClient('mongodb+srv://swahilihit:swahilihit@cluster0.3nfk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
