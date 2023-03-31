@@ -104,12 +104,12 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
         ab='movie'
         query=query.replace('movie','')
         query = query.strip()
-        raw_pattern1 = r'\b' + movie + r'.*'
+        raw_pattern1 = r'\b' + ab + r'.*'
     elif query.startswith('series'):
         query=query.replace('series','')
         ab='series'
         query = query.strip()
-        raw_pattern1 = r'\b' + series + r'.*'
+        raw_pattern1 = r'\b' + ab + r'.*'
     elif query.startswith('dj'):
         try:
             ab,query=query.split('#',1)
@@ -134,7 +134,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
         return []
     else:
         filter = {'text': regex}
-    if ab=='empty':
+    if ab!='empty':
         try:
             regex1 = re.compile(raw_pattern1, flags=re.IGNORECASE)
         except Exception as e:
