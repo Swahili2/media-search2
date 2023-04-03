@@ -173,18 +173,18 @@ async def give_filter(client: Client, query):
             description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi',
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
         )
-        try:
-            await query.answer(results=results,
-                is_personal = True,
-                cache_time=300,
-                next_offset=str(next_offset))
-        except Exception as e:
-            logging.exception(str(e))
-            await query.answer(results=[], is_personal=True,
-                cache_time=cache_time,
-                switch_pm_text=str(e)[:63],
-                switch_pm_parameter="error")
-        return
+    try:
+        await query.answer(results=results,
+            is_personal = True,
+            cache_time=300,
+            next_offset=str(next_offset))
+    except Exception as e:
+        logging.exception(str(e))
+        await query.answer(results=[], is_personal=True,
+            cache_time=cache_time,
+            switch_pm_text=str(e)[:63],
+            switch_pm_parameter="error")
+    return
         
         
 @Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
