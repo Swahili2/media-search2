@@ -165,13 +165,26 @@ async def give_filter(client: Client, query):
             switch_pm_parameter = 'start'
         )
         return
-    await query.answer(
-        results = results,
-        is_personal = True,
-        cache_time = 300,
-        next_offset =str(next_offset)
-    )
-    return
+    if next_offset == '':
+        title =f"Mpendwa {query.from_user.first_name}"
+        results.append(InlineQueryResultArticle(
+            title=title,
+            input_message_content=InputTextMessageContent(message_text = f"Mpendwa [{query. from_user.first_name}](tg://user?id={query.from_user.id})\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe hapo chini kutuma kisha ukurasa unaofuata bonyeza start kisha ntumie jina LA muv au series au nyimbo unayotafta", disable_web_page_preview = True),
+            description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi',
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
+        )
+        try:
+            await query.answer(results=results,
+                is_personal = True,
+                cache_time=300,
+                next_offset=str(next_offset))
+        except Exception as e:
+            logging.exception(str(e))
+            await query.answer(results=[], is_personal=True,
+                cache_time=cache_time,
+                switch_pm_text=str(e)[:63],
+                switch_pm_parameter="error")
+        return
         
         
 @Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
