@@ -457,7 +457,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('wait please')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
@@ -479,7 +479,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('wait please')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
@@ -507,7 +507,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if descp[2]!="data":
                 a=False
                 b=time.time()
-                mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+                mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
                 while a==False:
                     try:
                         mkv = await client.get_messages("me",(mkv1.id)+1)
@@ -534,7 +534,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             descp=descp.split(".dd#.")
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
@@ -732,7 +732,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             p1,p2,p3 =details['phone_no'].split(" ",2)
             mda = details['muda']
             dbname = details['db_name']
-            mkv1 =await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako')
+            mkv1 =await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma picha ya screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako')
             a,b =funask()
             while a==False:
                 try:
