@@ -577,7 +577,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 
         elif query.data == "xba":
-            await query.answer('Mandao pendwa ndio bora')
+            await query.answer('Mtandao pendwa ndio bora')
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255',reply_markup=ForceReply())
             a=False
             b=time.time()
@@ -698,12 +698,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             p1,p2,p3 =details["phone_no"].split(" ",2)
             mda = details["muda"]
             if tme == "m":
-                await query.edit_message_text(
+                await client.send_message(chat_id=query.from_user.id,
                         text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p3} \nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data=f"malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                     )
             else:
-                await query.edit_message_text(
+                await client.send_message(chat_id = query.from_user.id,
                         text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p3} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data=f"malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                     )
