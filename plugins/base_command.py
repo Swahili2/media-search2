@@ -352,7 +352,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ghi1=query.data.split(" ")[1]
             ab = await db.get_db_status(query.from_user.id)
             try:
-                mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo',reply_markup=ForceReply())
+                mkv11 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba untumie jina LA kifurushi Mfano kifurushi cha vyote Mfano2 Kifurushi cha singo')
                 a,b = funask()
                 while a==False:
                     try:
@@ -368,7 +368,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if mkv1.text==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                     return
-                mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 while a==False:
                     try:
@@ -381,7 +381,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     except:
                         a=False
                 mkv22=int(mkv222.text)
-                mkv3 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv3 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 2 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 while a==False:
                     try:
@@ -394,7 +394,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     except:
                         a=False
                 mkv33=int(mkv333.text)
-                mkv4 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv4 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 3 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 while a==False:
                     try:
@@ -407,7 +407,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     except:
                         a=False
                 mkv44 = int(mkv444.text)
-                mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0',reply_markup=ForceReply())
+                mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 while a==False:
                     try:
@@ -420,7 +420,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     except:
                         a=False
                 mkv55 = int(mkv555.text)
-                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hikii',reply_markup=ForceReply())   
+                mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hikii')   
                 a,b = funask()
                 while a==False:
                     try:
@@ -556,7 +556,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('uzuri wa kitu ni muonekano')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media tafadhali tuma ndani ya dakika 10 bila hvyo utaanza upya',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media tafadhali tuma ndani ya dakika 10 bila hvyo utaanza upya')
             while a==False:
                 try:
                     mkv = await client.get_messages("me",(mkv1.id)+1)
@@ -578,7 +578,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
         elif query.data == "xba":
             await query.answer('Mtandao pendwa ndio bora')
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255')
             a=False
             b=time.time()
             while a==False:
@@ -609,7 +609,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             
         elif query.data == "dbname":
             await query.answer('jina zuri huonesha uzuri')
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ',reply_markup=ForceReply())
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ')
             a=False
             b=time.time()
             while a==False:
