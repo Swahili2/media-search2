@@ -203,7 +203,7 @@ async def start_msg_admins(client, message):
                             ]
                         )
                     )
-                    
+                    return
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif usr_cmdall1.startswith("/start xsubinps"):
