@@ -734,7 +734,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             dbname = details['db_name']
             mkv1 =await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma picha ya screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako')
             a,b =funask()
-            id1=(mkv.id)+1
+            id1=(mkv1.id)+1
             while a==False:
                 try:
                     mkv = await client.get_messages("me",id1)
