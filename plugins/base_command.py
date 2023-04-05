@@ -409,27 +409,35 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 mkv44 = int(mkv444.text)
                 mkv5 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa mwezi mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
+                id1=mkv5.id+1
                 while a==False:
                     try:
-                        mkv555 = await client.get_messages("me",(mkv5.id)+1)
+                        mkv555 = await client.get_messages("me",id1)
                         if mkv555.text!=None:
                             a=True
                         if (time.time()-b)>(60):
                             await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                             return
+                        if mkv555.from_user.id != query.from_user.id :
+                            a=False
+                            id1=id1+1
                     except:
                         a=False
                 mkv55 = int(mkv555.text)
                 mkv66 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba maelezo kidogo ya kifurushi hikii')   
                 a,b = funask()
+                id1=mkv66.id+1
                 while a==False:
                     try:
-                        mkv6 = await client.get_messages("me",(mkv66.id)+1)
+                        mkv6 = await client.get_messages("me",id1)
                         if mkv6.text!=None:
                             a=True
                         if (time.time()-b)>(3*60):
                             await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                             return
+                        if mkv6.from_user.id != query.from_user.id :
+                            a=False
+                            id1=id1+1
                     except:
                         a=False
                 if mkv6.text ==None: 
@@ -458,15 +466,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             a=False
             b=time.time()
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            id1=mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>100:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False
             if mkv.text==None:
@@ -480,15 +492,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             a=False
             b=time.time()
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            id1=mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>100:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False
             if mkv.text==None:
@@ -508,15 +524,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a=False
                 b=time.time()
                 mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+                id1=mkv1.id+1
                 while a==False:
                     try:
-                        mkv = await client.get_messages("me",(mkv1.id)+1)
+                        mkv = await client.get_messages("me",id1)
                         if mkv.text!=None:
                             a=True
                     
                         if (time.time()-b)>100:
                             mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                             return
+                        if mkv.from_user.id != query.from_user.id :
+                            a=False
+                            id1=id1+1
                     except:
                         a=False
                 
@@ -535,15 +555,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             a=False
             b=time.time()
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            id1=mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>100:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False
             if mkv.text==None:
@@ -557,15 +581,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             a=False
             b=time.time()
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma maelezo kidogo kuhusu huduma/biashara unayo Fanya .Haya maelezo yataonekana endapo Mteja wako atakapo anza kumtumia robot huyu,\nKumbuka pia ukituma ujumbe wa zamani unafutwa kama ulishwahi tuma\n\nkwa maelezo zaidi mxheki @hrm45 akuelekeze zaidi\n\nukitaka kuadd jina andika {mention}.Mfano Mpendwa {mention}\n Karibu Swahili media tafadhali tuma ndani ya dakika 10 bila hvyo utaanza upya')
+            id1=mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>600:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False
             if mkv.text==None:
@@ -581,15 +609,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255')
             a=False
             b=time.time()
+            id1=mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>200:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False 
             if mkv.text==None:
@@ -612,15 +644,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali tuma jina la kikundi chako Mfano Swahili media group au Baoflix movies n.k ')
             a=False
             b=time.time()
+            id1= mkv1.id+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None:
                         a=True
                     
                     if (time.time()-b)>100:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                         return
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False 
             if mkv.text==None:
