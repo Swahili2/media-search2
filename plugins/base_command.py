@@ -734,17 +734,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
             dbname = details['db_name']
             mkv1 =await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma picha ya screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako')
             a,b =funask()
+            id1=(mkv.id)+1
             while a==False:
                 try:
-                    mkv = await client.get_messages("me",(mkv1.id)+1)
+                    mkv = await client.get_messages("me",id1)
                     if mkv.text!=None or mkv.media!=None:
                         a=True
                     
                     if (time.time()-b)>180:
                         mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi mwanzo' , callback_data = f'tanzania {fileid}')]]))
                         return
+
+                    if mkv.from_user.id != query.from_user.id :
+                        a=False
+                        id1=id1+1
                 except:
                     a=False
+
             if mkv.photo:
                 await query.message.delete()
                 await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\ntumepokea screenshot ngoja tuihakiki tutakupa majibu tukimaliza')
