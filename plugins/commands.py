@@ -538,14 +538,18 @@ async def new_filter(client: Client, message):
         return
     mkv22 = await client.send_message(text='naomba untumie maelezo kidogo mfano imetafsiriwa singo',chat_id = message.from_user.id)
     a,b = funask()
+    id1 = mkv22.id+1
     while a==False:
         try:
-            mkvg = await client.get_messages("me",(mkv22.id)+1)
+            mkvg = await client.get_messages("me",id1)
             if mkvg.text!=None:
                 a=True
             if (time.time()-b)>(60):
                 await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 return
+            if mkvg.from_user.id != query.from_user.id :
+                a=False
+                id1=id1+1
         except:
             a=False
     if not mkvg.text:
@@ -859,11 +863,10 @@ async def ban(c,m):
             f"Error occoured! Traceback given below\n\n",
             quote=True
         )
-@Client.on_message(filters.private & filters.regex('salio'))
+@Client.on_message(filters.private & filters.command('salio'))
 async def get_statuss(bot,message):
     status= await db.is_admin_exist(message.from_user.id)
     if status:
-        
         async for user in await db.get_user(message.from_user.id):
             salio =user['ban_status']
             salio = salio['ban_duration']
