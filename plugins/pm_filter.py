@@ -32,11 +32,12 @@ async def group(client, message):
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.private)
 async def groupprv(client, message):
     if "@gmail.com" in message.text.lower():
-        return 
+        await message.reply_text('ready added') 
     else:
         return 
     if " " in message.text.strip():
         return
+    
     await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
 def get_reply_makup(query,totol):
     buttons = [
