@@ -32,11 +32,11 @@ async def group(client, message):
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.private)
 async def groupprv(client, message):
     if "@gmail.com" in message.text.lower():
+        return 
     else:
         return 
-    
-    cmd=message.text
-    cmd.text.split('@gmail.com')
+    if " " in message.text.strip():
+        rerurn
 def get_reply_makup(query,totol):
     buttons = [
         [
