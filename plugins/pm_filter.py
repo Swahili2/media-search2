@@ -29,7 +29,14 @@ async def group(client, message):
             return
         if not btn:
             return
-
+@Client.on_message(filters.text & filters.group & filters.incoming & filters.private)
+async def groupprv(client, message):
+    if "@gmail.com" in message.text.lower():
+    else:
+        return 
+    
+    cmd=message.text
+    cmd.text.split('@gmail.com')
 def get_reply_makup(query,totol):
     buttons = [
         [
