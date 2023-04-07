@@ -36,7 +36,7 @@ async def groupprv(client, message):
     else:
         return 
     if " " in message.text.strip():
-        rerurn
+        return
 def get_reply_makup(query,totol):
     buttons = [
         [
