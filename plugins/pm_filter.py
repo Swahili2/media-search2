@@ -3,7 +3,7 @@ import re
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 from info import filters
 from plugins.status import handle_user_status,handle_admin_status
-from utils import get_filter_results,is_user_exist
+from utils import get_filter_results,is_user_exist,User
     
 @Client.on_message(filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -37,6 +37,7 @@ async def groupprv(client, message):
         return 
     if " " in message.text.strip():
         return
+    await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
 def get_reply_makup(query,totol):
     buttons = [
         [
