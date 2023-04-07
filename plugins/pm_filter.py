@@ -35,7 +35,7 @@ async def groupprv(client, message):
         await message.reply_text('Subir kidogo email yako tutaiwezesha hivi punde')
         await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
     else:
-        await message.reply_text('Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi 2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
+        await message.reply_text('Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
         rerurn
 def get_reply_makup(query,totol):
     buttons = [
