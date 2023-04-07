@@ -29,7 +29,7 @@ async def group(client, message):
             return
         if not btn:
             return
-@Client.on_message(filters.text & filters.group & filters.incoming & filters.private)
+@Client.on_message(filters.text & filters.incoming)
 async def groupprv(client, message):
     if "@gmail.com" in message.text.lower():
         await message.reply_text('ready added') 
