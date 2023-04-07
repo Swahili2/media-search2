@@ -30,15 +30,13 @@ async def group(client, message):
         if not btn:
             return
 @Client.on_message(filters.text & filters.incoming)
-async def groupprv(client, message):
-    if "@gmail.com" in message.text.lower():
-        await message.reply_text('ready added') 
+async def groupprv(client, message): 
+    if " " not in message.text.strip() and if "@gmail.com" in message.text.lower():
+        await message.reply_text('Subir kidogo email yako tutaiwezesha hivi punde')
+        await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
     else:
-        return 
-    if " " in message.text.strip():
-        return
-    
-    await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
+        await message.reply_text('Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi 2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
+        rerurn
 def get_reply_makup(query,totol):
     buttons = [
         [
