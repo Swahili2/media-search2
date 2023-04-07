@@ -31,7 +31,7 @@ async def group(client, message):
             return
 @Client.on_message(filters.text & filters.incoming)
 async def groupprv(client, message): 
-    if " " not in message.text.strip() and if "@gmail.com" in message.text.lower():
+    if " " not in message.text.strip() and "@gmail.com" in message.text.lower():
         await message.reply_text('Subir kidogo email yako tutaiwezesha hivi punde')
         await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
     else:
