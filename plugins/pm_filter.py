@@ -50,7 +50,7 @@ async def groupprv(client, message):
                     await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip.lower()}})
                     if await db.is_email_exist(message.from_user.id):
                         await message.reply_text(f'Tafadhali subir kidogo tutakupa taarifa tutakaipo iwezesha')
-                        await message.reply_text(chat_id=grp,f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
+                        await client.send_message(chat_id=grp,text=f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
             except:
                 await message.reply_text('Tumeihifadhi kikamilifu ukitaka kubadisha tuma tena email hiyo mpya')
                 await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip.lower()}})
