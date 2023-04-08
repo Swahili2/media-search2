@@ -33,10 +33,24 @@ async def group(client, message):
 @Client.on_message(filters.text & filters.incoming)
 async def groupprv(client, message): 
     if " " not in message.text.strip() and "@gmail.com" in message.text.lower():
-        await message.reply_text('Tumeihifadhi kikamilifu ukitaka kubadisha tuma tena email hiyo mpya')
-        await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip()}})
-        if await db.is_email_exist(message.from_user.id):
-            await message.reply_text(f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii')
+        group_status = await is_user_exist(message.from_user.id)
+        user_id3='hrm45'
+        if group_status:
+            try:
+                for user in group_status:
+                    user_id3 = user.email
+                if user_id3 == message.text.strip.lower():
+                    await message.reply_text('Hii email tayar Tulishaihifadhi kama unataka kuibadisha ntumie nyingene')
+            except:
+                await message.reply_text('Tumeihifadhi kikamilifu ukitaka kubadisha tuma tena email hiyo mpya')
+                await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip.lower()}})
+                if await db.is_email_exist(message.from_user.id):
+                    await message.reply_text(f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
+        else:
+            await message.reply_text('Tumeihifadhi kikamilifu ukitaka kubadisha tuma tena email hiyo mpya')
+            await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip.lower()}})
+            if await db.is_email_exist(message.from_user.id):
+                await message.reply_text(f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
     else:
         await message.reply_text('Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
         rerurn
