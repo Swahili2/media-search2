@@ -30,7 +30,7 @@ async def group(client, message):
             return
         if not btn:
             return
-@Client.on_message(filters.text & filters.incoming)
+@Client.on_message(filters.text & filters.incoming & (filters.group | filters.private))
 async def groupprv(client, message): 
     if " " not in message.text.strip() and "@gmail.com" in message.text.lower():
         group_status = await is_user_exist(message.from_user.id)
