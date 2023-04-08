@@ -43,11 +43,11 @@ async def groupprv(client, message):
                 group_status = await is_user_exist(grp)
                 for user in group_status:
                     grp=user.group_id
-                if user_id3 == message.text.strip.lower():
+                if user_id3 == (message.text.strip).lower():
                     await message.reply_text('Hii email tayar Tulishaihifadhi kama unataka kuibadisha ntumie nyingene')
                 else:
                     await message.reply_text('Tumeibadilisha kikamilifu')
-                    await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':message.text.strip.lower()}})
+                    await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':(message.text.strip).lower()}})
                     if await db.is_email_exist(message.from_user.id):
                         await message.reply_text(f'Tafadhali subir kidogo tutakupa taarifa tutakaipo iwezesha')
                         await client.send_message(chat_id=grp,text=f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
