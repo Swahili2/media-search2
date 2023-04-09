@@ -35,7 +35,7 @@ async def group(client, message):
             return
 @Client.on_message(filters.command('weka') & filters.incoming & (filters.group | filters.private))
 async def groupprv(client, message): 
-    if " " not in message.text.strip() and "@gmail.com" in message.text.lower():
+    if " " not in message.command[1:].strip() and "@gmail.com" in message.text.lower():
         group_status = await is_user_exist(message.from_user.id)
         user_id3='hrm45'
         text=message.text.strip()
@@ -63,7 +63,7 @@ async def groupprv(client, message):
         else:
             return
     else:
-        await message.reply_text('Ujumbe huu inabidi utume kwenye kikund \nAu\nkama n email Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
+        await message.reply_text('Tafadhal tuma neno /weka <email yako>   Mfano /weka hramamohamed@gmail.com \nZingatia\n1.usiruke nafasi kwenye email yako  \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email na \weka command ')
         return
 def get_reply_makup(query,totol):
     buttons = [
