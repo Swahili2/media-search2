@@ -825,7 +825,7 @@ async def ban(c,m):
         await m.reply_text(
             f"Use this command to add access to any user from the bot.\n\n"
             f"Usage:\n\n"
-            f"`/add_admin admin_id duration_in days  ofa_given`\n\n"
+            f"`/add_admin admin_id duration_in days link`\n\n"
             f"Eg: `/add_admin 1234567 28 Umepata ofa ya Siku 3 zaidi.`\n"
             f"This will add user with id `1234567` for `28` days for the reason `ofa siku 3 zaidi`.",
             quote=True
@@ -835,12 +835,13 @@ async def ban(c,m):
     try:
         user_id = int(m.command[1])
         ban_duration = int(m.command[2])
-        ban_reason = ' '.join(m.command[3:])
+        link = m.command[3]
+        ban_reason = 'Kwa ajili ya kumtumia swahili robot kuuzia movie na series '
         ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} ."
         try:
             await c.send_message(
                 user_id,
-                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁Kwa ajili ya ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
@@ -852,7 +853,7 @@ async def ban(c,m):
             strid = str(uuid.uuid4())
             await db.add_admin(user_id)
             await db.add_acc(strid,user_id,"all",user_id,9999)
-        await db.ban_user(user_id, ban_duration, ban_reason)
+        await db.ban_user(user_id, ban_duration, ban_reason,link)
         print(ban_log_text)
         await m.reply_text(
             ban_log_text,
