@@ -35,10 +35,10 @@ async def group(client, message):
             return
 @Client.on_message(filters.command('weka') & filters.incoming & (filters.group | filters.private))
 async def groupprv(client, message): 
-    if " " not in message.command[1:].strip() and "@gmail.com" in message.text.lower():
+    text=message.command[1:]
+    if " " not in text.strip() and "@gmail.com" in text.lower():
         group_status = await is_user_exist(message.from_user.id)
         user_id3='hrm45'
-        text=message.text.strip()
         if group_status:
             try:
                 for user in group_status:
