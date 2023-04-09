@@ -63,7 +63,7 @@ async def groupprv(client, message):
         else:
             return
     else:
-        await message.reply_text('Tafadhal tuma neno /weka <email yako>   Mfano /weka hramamohamed@gmail.com \nZingatia\n1.usiruke nafasi kwenye email yako  \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email na \weka command ')
+        await message.reply_text('Tafadhal tuma neno /weka email yako   Mfano /weka hramamohamed@gmail.com \nZingatia\n1.usiruke nafasi kwenye email yako  \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email na \weka command ')
         return
 def get_reply_makup(query,totol):
     buttons = [
