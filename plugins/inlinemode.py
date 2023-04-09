@@ -50,6 +50,7 @@ async def give_filter(client: Client, query):
         )
     
     ban = await db.get_ban_status(group_id) 
+    db_sts =await db.get_db_status(group_id)
     offset = int(query.offset or 0)
     documents, next_offset = await get_search_results(text,
                                               group_id = group_id,
@@ -171,7 +172,7 @@ async def give_filter(client: Client, query):
             title=title,
             input_message_content=InputTextMessageContent(message_text = f"Mpendwa [{query. from_user.first_name}](tg://user?id={query.from_user.id})\nKama movie yako haipo ntumie Mara moja jina lake kisha subir ntakujibu nkishaiadd kwenye database bonyeza kitufe hapo chini kutuma kisha ukurasa unaofuata bonyeza start kisha ntumie jina LA muv au series au nyimbo unayotafta", disable_web_page_preview = True),
             description=f'Hapa ndiyo mwisho wa  matokeo yetu kutoka kwenye database\nBonyeza hapa kama haipo kupata maelezo zaidi',
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url="https://t.me/Swahili_msaadabot")]]))
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('Bonyeza hapa kutuma', url=f"{db_sts['ms_link']}")]]))
         )
     try:
         await query.answer(results=results,
