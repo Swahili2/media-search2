@@ -892,10 +892,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             elif tme== "mwz1":
                 tme1= 30
             strid = str(uuid.uuid4())
-            #if tme == "m":
-                #await db.add_acc(strid,msg1,fileid,query.from_user.id,99)
-            #else:
-            await db.add_acc(strid,msg1,msg2,query.from_user.id,2)
+            if tme == "m":
+                await db.add_acc(strid,msg1,fileid,query.from_user.id,2)
+            else:
+                await db.add_acc(strid,msg1,msg2,query.from_user.id,2)
             await query.message.delete()
             ttl = await client.get_users(int(msg1))
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
@@ -916,9 +916,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     if tme == 'm':
                         await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} muwezeshee email yake {email} "
                             )
+                        await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tumefanikiwa kuiwezesha email yako endelea kufurahia huduma zetu:"
+                        )
                     else:
                         await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} muwezeshee email yake {email}"
                             )
+                        await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tumefanikiwa kuiwezesha email yako endelea kufurahia huduma zetu:"
+                        )
             except:
                 await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tafadhali tunaomba ututumie email yako ili tukuwezeshe kutumia gdrive yetu:"
                     )
