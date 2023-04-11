@@ -138,9 +138,9 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 return
-            if mkv.from_user.id != query.from_user.id :
+            if mkv.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -175,9 +175,9 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 return
-            if mkv.from_user.id != query.from_user.id :
+            if mkv.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -199,7 +199,7 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 return
             if mkv.from_user.id != query.from_user.id :
                 a=False
@@ -216,9 +216,9 @@ async def new_filtervip(client: Client, message):
                 if mkv2.text!=None:
                     a=True
                 if (time.time()-b)>(60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                     return
-                if mkv2.from_user.id != query.from_user.id :
+                if mkv2.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -232,9 +232,9 @@ async def new_filtervip(client: Client, message):
                 if mkvl.text!=None:
                     a=True
                 if (time.time()-b)>(3*60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                     return
-                if mkvl.from_user.id != query.from_user.id :
+                if mkvl.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -252,9 +252,9 @@ async def new_filtervip(client: Client, message):
                 if mk.text!=None:
                     a=True
                 if (time.time()-b)>(3*60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                     return
-                if mk.from_user.id != query.from_user.id :
+                if mk.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -273,9 +273,9 @@ async def new_filtervip(client: Client, message):
                         if mk.media!=None or mk.text!=None:
                             a=True
                         if (time.time()-b)>(10*60):
-                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                             return
-                        if mk.from_user.id != query.from_user.id :
+                        if mk.from_user.id != message.from_user.id :
                             a=False
                             id1=id1+1
                     except:
@@ -545,9 +545,9 @@ async def new_filter(client: Client, message):
             if mkvg.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 return
-            if mkvg.from_user.id != query.from_user.id :
+            if mkvg.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
