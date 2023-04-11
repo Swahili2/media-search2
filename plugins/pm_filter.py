@@ -33,38 +33,7 @@ async def group(client, message):
             return
         if not btn:
             return
-@Client.on_message(filters.command('weka') & filters.incoming & (filters.group | filters.private))
-async def groupprv(client, message): 
-    text=str(message.command[1:])
-    if " " not in text.strip() and "@gmail.com" in text.lower():
-        group_status = await is_user_exist(message.from_user.id)
-        user_id3='hrm45'
-        if group_status:
-            try:
-                for user in group_status:
-                    user_id3 = user.email
-                    grp=user.group_id
-                group_status = await is_user_exist(grp)
-                for user in group_status:
-                    grp=user.group_id
-                if user_id3 == text.lower():
-                    await message.reply_text('Hii email tayar Tulishaihifadhi kama unataka kuibadisha ntumie nyingene')
-                else:
-                    await message.reply_text('Tumeibadilisha kikamilifu')
-                    await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':text.lower()}})
-                    if await db.is_email_exist(message.from_user.id):
-                        await message.reply_text(f'Tafadhali subir kidogo tutakupa taarifa tutakaipo iwezesha')
-                        await client.send_message(chat_id=grp,text=f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
-            except:
-                await message.reply_text('Tumeihifadhi kikamilifu ukitaka kubadisha tuma tena email hiyo mpya')
-                await User.collection.update_one({'_id':message.from_user.id},{'$set':{'email':text.lower()}})
-                if await db.is_email_exist(message.from_user.id):
-                    await message.reply_text(f'Tafadhal iwezeshe email hii{message.text.strip()}.kisha ondoa uwezo kwenye email hii{user_id3}')
-        else:
-            return
-    else:
-        await message.reply_text('Tafadhal tuma neno /weka email yako  \n Mfano \n/weka mohamed@gmail.com \n\nZingatia\n1.usiruke nafasi kwenye email yako  \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email na \weka command ')
-        return
+
 def get_reply_makup(query,totol):
     buttons = [
         [
