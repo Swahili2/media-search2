@@ -481,7 +481,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('wait please')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️'\n Tafadhali ntumie jina jipya la movie/series  hii)
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️'\n Tafadhali ntumie jina jipya la movie/series  hii')
             id1=mkv1.id+1
             while a==False:
                 try:
