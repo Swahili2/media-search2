@@ -941,7 +941,7 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
         await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
     else:
         await message.reply_text(salio)
-@Client.on_message(filters.command('weka') & filters.incoming & (filters.group | filters.private))
+@Client.on_message(filters.command('weka'))
 async def groupprv(client, message): 
     text=str(message.command[1:])
     if " " not in text.strip() and "@gmail.com" in text.lower():
