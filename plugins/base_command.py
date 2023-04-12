@@ -372,6 +372,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if mkv1.text==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                     return
+                mkv7 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki moja mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
+                a,b = funask()
+                id1=mkv7.id+1
+                while a==False:
+                    try:
+                        mkv777 = await client.get_messages("me",id1)
+                        if mkv777.text!=None:
+                            a=True
+                        if (time.time()-b)>(60):
+                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            return
+                        if mkv777.from_user.id != query.from_user.id :
+                            a=False
+                            id1=id1+1
+                    except:
+                        a=False
+                mkv77 = int(mkv777.text)
                 mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 id1 = mkv2.id + 1
@@ -464,17 +481,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await mkv3.delete()
                 await mkv4.delete()
                 await mkv5.delete()
+                await mkv7.delete()
                 await mkv6.delete()
                 await mkv11.delete()
                 await mkv222.delete()
                 await mkv333.delete() 
                 await mkv444.delete()
                 await mkv555.delete()
+                await mkv777.delete()
                 await mkv66.delete()
             except:
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 return
-            ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
+            ghi=f"{ghi1} {mkv1.text}#@{mkv77},{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
             await mkv1.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
         elif query.data.startswith("xtext"):
@@ -684,7 +703,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 
         elif query.data == "kenya":
-            await query.answer()
+            await query.answer('Tunaifanyia kaz huduma hii msijali')
             
         elif query.data.startswith("tanzania"):
             await query.answer()
@@ -722,7 +741,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data1= details[msg2]
             data2= data1.split("#@")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split('#@')[0]}\n {data1.split('#@')[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii",
-                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(',')[0]}",f"{fileid}.{msg2}.{data2.split(',')[0]}.wk1"),replymkup2(f"week 2 tsh {data2.split(',')[1]}",f"{fileid}.{msg2}.{data2.split(',')[1]}.wk2"),replymkup2(f"week 3 tsh {data2.split(',')[2]}",f"{fileid}.{msg2}.{data2.split(',')[2]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(',')[3]}",f"{fileid}.{msg2}.{data2.split(',')[3]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"Siku 1 tsh {data2.split(',')[0]}",f"{fileid}.{msg2}.{data2.split(',')[0]}.wk0"),replymkup2(f"week 1 tsh {data2.split(',')[1]}",f"{fileid}.{msg2}.{data2.split(',')[1]}.wk1"),replymkup2(f"week 2 tsh {data2.split(',')[2]}",f"{fileid}.{msg2}.{data2.split(',')[2]}.wk2"),replymkup2(f"week 3 tsh {data2.split(',')[3]}",f"{fileid}.{msg2}.{data2.split(',')[3]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(',')[4]}",f"{fileid}.{msg2}.{data2.split(',')[4]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
                 )
         elif query.data.startswith("wiik2"):
             await query.answer()
@@ -736,7 +755,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 grp = files.grp
             details = await db.get_db_status(group_id)
             data1 = details[msg2]
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -767,8 +788,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
-         
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -847,7 +869,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -883,7 +907,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
                 grp = files.grp
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= 1
+            elif tme=="wk1":
                 tme1= 7
             elif tme=="wk2":
                 tme1= 14
