@@ -1,7 +1,7 @@
 from info import filters,AUTH_CHANNEL
 import uuid
 import time
-from utils import get_file_details,get_filter_results,is_user_exist,Media,is_subscribed
+from utils import get_file_details,get_filter_results,is_user_exist,Media,is_subscribed,is_group_exist
 from pyrogram  import Client
 from plugins.database import db
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery,ForceReply
@@ -136,7 +136,7 @@ async def start_msg_admins(client, message):
                 grp = files.grp
             grp1,grp2=grp.split(" ") 
             ban_status = await db.get_ban_status(group_id)   
-            if await is_user_exit(message.from_user.id):
+            if await is_user_exist(message.from_user.id):
                 a="hi"
             else:
                 ghi=await is_group_exist(group_id)
