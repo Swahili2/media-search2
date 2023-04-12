@@ -147,7 +147,7 @@ async def start_msg_admins(client, message):
                     try:
                         g = await client.create_chat_invite_link(int(i.id))
                         ii+=1
-                        group_d=group_d+f'{ii}:[GROUP {ii}]({g})\n\n'
+                        group_d=group_d+f'{ii}:[GROUP {ii}]({g.invite_link})\n\n'
                     except:
                         print('x')
                         #await client.send_message(chat_id=int(group_id),f'hakikisha group zako zote kama umenruhusu kutengeneza invite link{ii}')        
