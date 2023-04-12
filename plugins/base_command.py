@@ -148,7 +148,7 @@ async def start_msg_admins(client, message):
                         ii+=1
                         group_d+=f'{ii}:[GROUP {ii}](g)\n'
                     except:
-                        await client.send_message(f'hakikisha group zako zote kama umenruhusu ktengeneza invite link',chat_id=(int(group_id))        
+                        await client.send_message(f'hakikisha group zako zote kama umenruhusu ktengeneza invite link',chat_id=(int(group_id)))        
                 await client.send_message(chat_id=message.from_user.id,text=f'Tafadhali Haupo kwenye database join kikundi kimoja wapo ili kupata huduma hii kisha tuma neno **hi** tujue kuwa wewe sio robot\n{group_d}')
                 
             if ban_status["is_banned"] == False and group_id != cmd.from_user.id :
