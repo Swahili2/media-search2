@@ -138,6 +138,7 @@ async def start_msg_admins(client, message):
             ban_status = await db.get_ban_status(group_id)   
             if await is_user_exist(message.from_user.id):
                 a="hi"
+                
             else:
                 ghi=await is_group_exist(group_id)
                 ii =0
