@@ -961,6 +961,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
+    msg1 =int(msg1)
     if msg1 == 0:
         return []
     else:
