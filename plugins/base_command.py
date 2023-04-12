@@ -136,7 +136,7 @@ async def start_msg_admins(client, message):
                 grp = files.grp
             grp1,grp2=grp.split(" ") 
             ban_status = await db.get_ban_status(group_id)   
-            if not await is_user_exist(message.from_user.id):
+            if await is_user_exist(message.from_user.id):
                 a="hi"
                 
             else:
@@ -147,7 +147,7 @@ async def start_msg_admins(client, message):
                     try:
                         g = await client.create_chat_invite_link(int(i.id))
                         ii+=1
-                        group_d=group_d+f'{ii}:[GROUP {ii}]({g.invite_link})\n\n'
+                        group_d=group_d+f'{ii}:**[GROUP {ii}]({g.invite_link})**\n\n'
                     except:
                         print('x')
                         #await client.send_message(chat_id=int(group_id),f'hakikisha group zako zote kama umenruhusu kutengeneza invite link{ii}')        
