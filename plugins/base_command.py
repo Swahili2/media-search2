@@ -137,8 +137,9 @@ async def start_msg_admins(client, message):
             grp1,grp2=grp.split(" ") 
             ban_status = await db.get_ban_status(group_id)   
             if await is_user_exist(message.from_user.id):
-                a="hi"
-                
+                for jk in await is_user_exist(message.from_user.id):
+                    for jk1 in await is_user_exist(jk.group_id)
+                        jk2=jk1.group_id
             else:
                 ghi=await is_group_exist(group_id)
                 ii =0
@@ -152,6 +153,21 @@ async def start_msg_admins(client, message):
                         print('x')
                         #await client.send_message(chat_id=int(group_id),f'hakikisha group zako zote kama umenruhusu kutengeneza invite link{ii}')        
                 await client.send_message(chat_id=cmd.from_user.id,text=f'Tafadhali Haupo kwenye database join kikundi kimoja wapo ili kupata huduma hii kisha tuma neno **hi** tujue kuwa wewe sio robot\n{group_d}')
+                return 
+            if jk2!=group_id:
+                ghi=await is_group_exist(group_id)
+                ii =0
+                group_d='\nGroups bonyez group kuchagua unalopenda\n'
+                for i in ghi:
+                    try:
+                        g = await client.create_chat_invite_link(int(i.id))
+                        ii+=1
+                        group_d=group_d+f'{ii}:**[GROUP {ii}]({g.invite_link})**\n\n'
+                    except:
+                        print('x')
+                        #await client.send_message(chat_id=int(group_id),f'hakikisha group zako zote kama umenruhusu kutengeneza invite link{ii}')      
+                group_d=group_d + "Tafadhali nakumbusha kuwa makin usije ukachanganya vikundi maana mm huwa na badilika kutokana na mazingira ukihama kwingine na m nahamia huko naacha kila kitu nachukua movie za admin mwingine kwenye kikundi kipya kumbuka ukifanya malipo tulia sehemu moja s kila sehemu unataka utafte movie"
+                await client.send_message(chat_id=cmd.from_user.id,text=f'Tafadhali Movie hii niya admin mwingne Tafadhali tuma neno hi kwenye kikundi mojawapo ili tukupatie movie na series zake \n Tunafanya hivi ili tusichanganye movie za admin mmoja na mwingine\n{group_d}')
                 
             if ban_status["is_banned"] == False and group_id != cmd.from_user.id :
                 await client.send_message(
