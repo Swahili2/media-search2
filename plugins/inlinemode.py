@@ -37,7 +37,12 @@ async def give_filter(client: Client, query):
             grp_id=user.group_id
             for id2 in group_details:
                 group_id = id2.group_id
-    
+    else:
+        await query.answer(results=[],
+            cache_time=0,
+            switch_pm_text='👉 Tafadhali bonyeza hapa kupata muongozo',
+            switch_pm_parameter="start")
+        return
     ban = await db.get_ban_status(group_id) 
     db_sts =await db.get_db_status(group_id)
     offset = int(query.offset or 0)
