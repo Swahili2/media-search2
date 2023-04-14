@@ -801,6 +801,7 @@ async def removegroup(client,message):
                 user_id2=file.group_id
             if group_details and userid==user_id2:
                 await User.collection.delete_one({'_id':group_id})
+                await User.collection.deleteMany({'group_id':group_id})
                 await message.reply_text(
                     f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
                     quote=True
