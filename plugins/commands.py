@@ -716,7 +716,11 @@ async def addconnection(client,message):
             group_details= await is_user_exist(group_id)
             for file in group_details:
                 user_id2=file.group_id
+            
             if not group_details :
+                if await is_group_exist(message.from_user.id):
+                    await message.reply_text("Samahani tunaruhusu kikundi kimoja tu kumunga muhsin kuepuka usumbufu kwa wateja")
+                    return
                 await add_user(group_id,userid,'group')
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
