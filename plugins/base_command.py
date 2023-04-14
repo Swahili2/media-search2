@@ -662,7 +662,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "xba":
             await query.answer('Mtandao pendwa ndio bora')
             mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni Mfano Halopesa au Lipa_kwa_mpesa(kumbuka sehemu ya nafasi weka_ acha nafasi link ya maelekezo jinsi ya kulipia acha nafas jina ulilosajiria namba hiimfano\n 062466xxxx halopesa https://t.me/swahiliupdates/33 hassan ramadhani\nMfano\n345546 Lipa_kwa_mpesa https://t.me/swahiliupdates/33 baoflix company \nkumbuka namba ianze na 0 sio +255 au kama ni lipa namba uiandike kiusahihi',disable_web_page_preview = True)
-            a=False
+            a=False 
             b=time.time()
             id1=mkv1.id+1
             while a==False:
