@@ -37,17 +37,6 @@ async def give_filter(client: Client, query):
             grp_id=user.group_id
             for id2 in group_details:
                 group_id = id2.group_id
-    else:
-        group_details = await is_user_exist(OWNER_ID)
-        group_id=OWNER_ID
-        for id2 in group_details:
-            grp_id = id2.group_id
-        chat_id = grp_id
-        await add_user(query.from_user.id,chat_id,'user')
-        await client.send_message(
-            chat_id= CHANNELS,
-            text=f"#NEW_USER: \n\nNew User [{query.from_user.first_name}](tg://user?id={query.from_user.id}) started!!"
-        )
     
     ban = await db.get_ban_status(group_id) 
     db_sts =await db.get_db_status(group_id)
