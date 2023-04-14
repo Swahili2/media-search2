@@ -36,7 +36,7 @@ ABOUT_MESSAGE = f"""💥💥💥💥💥💥💥💥💥💥💥
          MWONGOZO MFUPI
 
 Bot hii imetngenezwa na
-<b>○ Imetengenezwa na: <a 
+<b>○ Imetengenezwa na: <a href='tg://user?id={OWNER_ID}'>HASSAN RANADHANI</a>
 
 Ilikuweza kutumia huyu robot kwenye group lako bonyeza maneno Hassan Ramadhan hapo juu kisha tuma jina lako.
 
@@ -48,7 +48,7 @@ gharama hizi ni kwa ajili ya kulipia utumiaji Wa robot telegram
 Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya hapo utatuma command /niunge kwenye group lako iliaweze kufanya kazi kwa data utakazo MPA.
 
 
-Kwa msaada zaidi : <a href='https://t.me/+NlxxLyYIY1hiMWFk'>BONYEZA HAPA </a></b>
+Kwa msaada zaidi : <a href='tg://user?id={OWNER_ID}'>BONYEZA HAPA </a></b>
 """
 
 MARKDOWN_HELP = """<b><u>Markdown Formatting</u></b>
