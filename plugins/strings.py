@@ -20,12 +20,16 @@ Jinsi ya kujiunga na maelezo zaidi bonyeza about batan
 HELP_MESSAGE = f"""<b><u>Main Commands</u></b>
 ○ <b>/add</b> <i>[jina wakilishi la data husika] [message or reply to message]</i>
     <i>ongeza data za kawaida (ambazo hazina download button) kwenye database Mfano /add msaada</i>
+    
 ○ <b>/adddata</b>[jina wakilishi la data husika] [message or reply to message]</i>
     <i><i>ongeza data za biashara(movie,Series n.k )(ambazo zina download button) kwenye database Mfano /adddata soz</i>
+    
 ○ <b>/delete</b> <i>[neno la data uliyotaka kufuta]</i>
     <i>kufuta data kutoka kwenye database Mfano /delete soz</i>
+    
 ○ <b>/edit_admin</b>
     <i>Ni kwa ajili ya setting kama kuweka vifurushi,mawasiliano n.k</i>
+    
 ○ <b>/filters</b>
     <i>kuangalia data zote ulizotuma kwenye database</i>
     
