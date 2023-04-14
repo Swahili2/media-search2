@@ -937,9 +937,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 tme1= 30
             strid = str(uuid.uuid4())
             if tme == "m":
-                await db.add_acc(strid,msg1,fileid,query.from_user.id,2)
+                await db.add_acc(strid,msg1,fileid,query.from_user.id,30)
             else:
-                await db.add_acc(strid,msg1,msg2,query.from_user.id,2)
+                await db.add_acc(strid,msg1,msg2,query.from_user.id,tme1)
             await query.message.delete()
             ttl = await client.get_users(int(msg1))
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
