@@ -719,7 +719,7 @@ async def addconnection(client,message):
             
             if not group_details :
                 if await is_group_exist(message.from_user.id):
-                    await message.reply_text("Samahani tunaruhusu kikundi kimoja tu kumunga muhsin kuepuka usumbufu kwa wateja")
+                    await message.reply_text("Samahani tunaruhusu kikundi kimoja tu kumunga muhsin kuepuka usumbufu kwa wateja tuma /ondoa kikund cha mwanzo kisha tuma /niunge  kwenye kikundi hiki **\nkumbuka kuondoa group tunaondoa hadi waliojiunga kwenye database yetu kupitia kikundi hiko** ")
                     return
                 await add_user(group_id,userid,'group')
                 await message.reply_text(
