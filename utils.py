@@ -153,7 +153,7 @@ async def get_search_results(query, group_id, max_results=10, offset=0):
 
     cursor = Media.find(filter)
     # Sort by recent
-    cursor.sort('$natural', -1)
+    cursor.sort('text', 1)
     # Slice files according to offset and max results
     cursor.skip(offset).limit(max_results)
     # Get list of files
@@ -209,7 +209,7 @@ async def get_filter_results(query,group_id):
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
-    cursor.sort('$natural', -1)
+    cursor.sort('text', 1)
     files = await cursor.to_list(length=int(total_results))
     return files
 async def is_subscribed(bot, query,channel):
