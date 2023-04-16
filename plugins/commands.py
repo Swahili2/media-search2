@@ -1,7 +1,7 @@
 from pyrogram import Client
 import uuid
 import io
-import datetime,timedelta
+from datetime import datetime,timedelta
 import time
 from plugins.database import db
 from info import filters
