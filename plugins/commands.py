@@ -248,13 +248,13 @@ async def new_filtervip(client: Client, message):
         id1=mkv22.id+1
         while a==False:
             try:
-                mk= await client.get_messages("me",id1)
-                if mk.text!=None:
+                mkv1= await client.get_messages("me",id1)
+                if mkv1.text!=None:
                     a=True
                 if (time.time()-b)>(3*60):
                     await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine")
                     return
-                if mk.from_user.id != message.from_user.id :
+                if mkv1.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
