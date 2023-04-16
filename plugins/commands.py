@@ -1,7 +1,7 @@
 from pyrogram import Client
 import uuid
 import io
-import datetime
+import datetime,timedelta
 import time
 from plugins.database import db
 from info import filters
@@ -875,7 +875,7 @@ async def get_statuss(bot,message):
     if status:
         async for user in await db.get_user(message.from_user.id):
             salio =user['ban_status']
-            salio = salio['ban_duration']
+            salio = datetime.fromisoformat(salio['banned_on'])+timedelta(days=salio['ban_duration'])
         filters = await get_filter_results('',message.from_user.id)
         filters_no = 0
         text = 0
