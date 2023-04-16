@@ -227,6 +227,7 @@ async def start_msg_admins(client, message):
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif usr_cmdall1.startswith("/start xsubinps"):
+        
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
@@ -236,6 +237,9 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+            if message.from_user.id !=group_id:
+                await client.send_message(chat_id=message.from_user.id,text='Tafadhali bonyeza download kuipakua kweny posta ulikobonyeza button ya edit huna ruksa ya kuedit movie au series hii ')
+                return 
             grp1,grp2=grp.split(" ")
             if filedetails:
                 if filedetails:  
