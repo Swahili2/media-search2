@@ -40,7 +40,7 @@ async def handle_admin_status(bot, cmd):
                     await db.remove_ban(user['id'])
         all_users =await db.get_all_acc()
         async for user in all_users:
-            if user["ban_status"]["ban_duration"] < (datetiime.now() - datetime.fromisoformat(user["ban_status"]["banned_on"])).days:
+            if user["ban_status"]["ban_duration"] < (datetime.now() - datetime.fromisoformat(user["ban_status"]["banned_on"])).days:
                 if user['file_id'].startswith(g_):
                     abc=await db.get_db_status(user['db_name'])
                     abc=f"{abc[user['file_id']].split('#@')[0]} kimeisha"
