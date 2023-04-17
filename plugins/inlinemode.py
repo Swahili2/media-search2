@@ -150,7 +150,7 @@ async def give_filter(client: Client, query):
         result.append(InlineQueryResultArticle(
                 title=title,
                 input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                description=f'total members :\nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot'
+                description=f'Gusa hapa kupata melezo zaid na maelekezo '
                 
             ))
         await query.answer(
