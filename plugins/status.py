@@ -43,8 +43,8 @@ async def handle_admin_status(bot, cmd):
                 if user['file_id'].startswith(g_):
                     abc=await db.get_db_status(user['db_name'])
                     abc=f"{abc[user['file_id']].split('#@')[0]} kimeisha"
-            else:
-                for file in await get_file_details(user['file_id']):
-                    abc=f"{file.text.split('.dd#.')[0]} mda wake wa kuipakua umeisha"
-                await bot.send_message(chat_id=int(user['user_id']),text=f"{abc} tafadhali jiunge kuendelea kupata huduma zetu kwa bei nafuu")
-                await db.delete_acc(user['id'])
+                else:
+                    for file in await get_file_details(user['file_id']):
+                        abc=f"{file.text.split('.dd#.')[0]} mda wake wa kuipakua umeisha"
+                    await bot.send_message(chat_id=int(user['user_id']),text=f"{abc} tafadhali jiunge kuendelea kupata huduma zetu kwa bei nafuu")
+                    await db.delete_acc(user['id'])
