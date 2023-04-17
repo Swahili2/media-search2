@@ -937,7 +937,7 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
             sd= await db.get_db_status(user['db_name'])
             g2 = user['file_id']
             sd = sd[g2].split('#@')[0]
-            salio+=f'{sd}:Umebakiza siku :{int(user["ban_status"]["ban_duration"])-(datetime.date.today()-datetime.date.fromisoformat(user["ban_status"]["banned_on"])).days}\n\n'
+            salio+=f"{sd}:Kitaisha tarehe :{datetime.fromisoformat(user['ban_status']['banned_on'])+timedelta(days=user['ban_status']['ban_duration'])}\n\n"
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
