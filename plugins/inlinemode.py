@@ -144,14 +144,14 @@ async def give_filter(client: Client, query):
         title = f"🎁🎁 Mpendwa {query.from_user.first_name} 🎁🎁"
         st = await client.get_chat_member(grp_id, "me")
         if (st.status == "administrator"):
-            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza jina la admin kisha mkumbushe alipie kifurush ili muweze kuendelee kumtumia robot"
         else:
-            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza MTAARIFU ADMIN kisha mkumbushe alipie kifurush kisha aniadd kama admin kwenye group hili ili muweze kuendelee kumtumia robot"
+            text1= f"Kifurush cha group kimeisha\n Yaan ada ya admin anayotakiwa kulipia ili kuendelea kumtumia Swahili robot kwenye group \n 👨‍👨‍👧‍👧 Group name:**{ttl2.title}**\n\n🙍🙍‍♀ Admin name:[{ttl.first_name.upper()}](tg://user?id={group_id})Bonyeza jina la  ADMIN kisha mkumbushe alipie kifurush kisha aniadd kama admin kwenye group hili ili muweze kuendelee kumtumia robot"
         result.append(InlineQueryResultArticle(
                 title=title,
                 input_message_content=InputTextMessageContent(message_text = text1, disable_web_page_preview = True),
-                description=f'total members :\nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot',
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('👨‍👧‍👧 MTAARIFU ADMIN', url=f'tg://user?id={group_id}')]])
+                description=f'total members :\nGusa hapa kujoin g kupata movie series miziki nakadhalika kupitia Swahili robot'
+                
             ))
         await query.answer(
             results = result,
