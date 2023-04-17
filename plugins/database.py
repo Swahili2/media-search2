@@ -1,5 +1,4 @@
 from datetime import datetime
-import datetime
 import time
 from info import DB2
 
@@ -13,7 +12,7 @@ class Database:
     def new_user(self, id):
         return dict(
             id=id,
-            join_date=datetime.datetime.now().isoformat(),
+            join_date=datetime.now().isoformat(),
             db_status=dict(
                 db_name = "SWAHILI GROUP MEDIA",
                 descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei ",
@@ -30,7 +29,7 @@ class Database:
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
-                banned_on=datetime.datetime.now().isoformat(),
+                banned_on=datetime.now().isoformat(),
                 ban_reason=''
             )
         )
@@ -42,7 +41,7 @@ class Database:
             db_name = db_name,
             ban_status=dict(
                 ban_duration=tme,
-                banned_on=datetime.datetime.now().isoformat(),
+                banned_on=datetime.now().isoformat(),
             )
         )
     async def add_acc(self, id,user_id,file_id,db_name,tme):
@@ -99,7 +98,7 @@ class Database:
         ban_status = dict(
             is_banned=False,
             ban_duration= 0,
-            banned_on=datetime.datetime.now().isoformat(),
+            banned_on=datetime.now().isoformat(),
             ban_reason=''
         )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
