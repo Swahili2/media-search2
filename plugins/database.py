@@ -107,7 +107,7 @@ class Database:
         ban_status = dict(
             is_banned=True,
             ban_duration=ban_duration,
-            banned_on=datetime.now().strftime("%m/%d/%Y  %H:%M:%S"),
+            banned_on=datetime.now().isoformat(),
             ban_reason=ban_reason
         )
         await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status,'db_status.ms_link':link}})
@@ -149,7 +149,7 @@ class Database:
         default = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.datetime.now().isoformat(),
+            banned_on=datetime.now().isoformat(),
             ban_reason=''
         )
         user = await self.col.find_one({'id': int(id)})
