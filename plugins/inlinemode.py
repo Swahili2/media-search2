@@ -136,7 +136,7 @@ async def give_filter(client: Client, query):
         switch_pm_text = f"Total {len(results)} Matches"
     else:
         switch_pm_text = "No matches"
-    if not ban['is_banned']and len(results) != 0 and group_id !=query.from_user.id:
+    if not ban['is_banned'] and group_id !=query.from_user.id:
         result=[]
         ttl=await client.get_users(group_id)
         ttl2 = await client.get_chat(grp_id)
