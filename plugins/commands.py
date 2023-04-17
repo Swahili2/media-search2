@@ -3,7 +3,6 @@ import uuid
 import io
 from datetime import datetime,timedelta
 import time
-import datetime
 from plugins.database import db
 from info import filters
 from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details,is_group_exist,User
@@ -130,7 +129,7 @@ async def new_filtervip(client: Client, message):
             x+=1
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
-    mkv1= await client.send_message(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
+    mkv1= await client.send_message(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr} \n\n Movie au video au picha za wakubwa haziruhusiwi kutumwa kwenye bot yetu ukijulikana utakuwa banned',chat_id = message.from_user.id)
     a,b = funask()
     id1=mkv1.id + 1
     while a==False:
@@ -942,7 +941,7 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
-                salio+=f'{sd1.text.split(".dd#.")[0]}:Umebakiza siku :{int(user["ban_status"]["ban_duration"])-(datetime.date.today()-datetime.date.fromisoformat(user["ban_status"]["banned_on"])).days}\n\n'
+                salio+=f"{sd1.text.split('.dd#.')[0]}:Kitaisha tarehe :{datetime.fromisoformat(user['ban_status']['banned_on'])+timedelta(days=user['ban_status']['ban_duration'])}\n\n"
     if a==1:
         await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
     else:
