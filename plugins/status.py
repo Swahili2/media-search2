@@ -35,6 +35,7 @@ async def handle_admin_status(bot, cmd):
                 if ban_status["ban_duration"] < (
                         datetime.date.today() - datetime.date.fromisoformat(ban_status["banned_on"])
                 ).days:
+                    await bot.send_message(chat_id=int(user['id']),text=f"Samahan admin kifurushi ulicho lipia kumtumia swahili robot kimeisha tafadhali lipia ili wateja wako waendelee kupata huduma zetu")
                     await db.remove_ban(user['id'])
         all_users =await db.get_all_acc()
         async for user in all_users:
