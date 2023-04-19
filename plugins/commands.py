@@ -638,8 +638,9 @@ async def del_filter(client: Client, message):
     found =await Media.count_documents(filter)
     if int(found) >=1:
         for dt in details:
-            for ad in await get_file_details(dt.id):
-               
+            for ad in await get_file_details(dt.text):
+               await Media.collection.delete_one({'text':ad.text})
+        await Media.collection.delete_one(filter)
         await message.reply_text(
             f"<code>{text.split('.dd#.')[0]}</code>  deleted successful.",
             quote=True
