@@ -4,7 +4,7 @@ import io
 from datetime import datetime,timedelta
 import time
 from plugins.database import db
-from info import filters
+from info import filters,CHANNELS
 from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details,is_group_exist,User
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
@@ -288,7 +288,7 @@ async def new_filtervip(client: Client, message):
                             media.caption = mk.caption
                             break
                     await client .send_cached_media(
-                        chat_id = 1956847728,
+                        chat_id = CHANNELS,
                         file_id = media.file_id,
                         caption = media.caption,
                         
@@ -314,9 +314,9 @@ async def new_filtervip(client: Client, message):
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
                 await client.send_photo(
-                    chat_id = 1956847728,
+                    chat_id = CHANNELS,
                     photo = fileid,
-                    caption = reply_text,
+                    caption = f'{reply_text}\n{message.from_user.mention}',
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
                 
@@ -338,9 +338,9 @@ async def new_filtervip(client: Client, message):
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
                 await client.send_cached_media(
-                    chat_id = 1956847728,
+                    chat_id = CHANNELS,
                     file_id = fileid,
-                    caption = reply_text,
+                    caption = f'{reply_text}{message.from_user.mention}',
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
                 for data2 in data1:
