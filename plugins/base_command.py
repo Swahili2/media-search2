@@ -794,6 +794,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data2 = data1.split("#@")[0]
             p1,p2,p3,p4=details["phone_no"].split(" ",3)
             mda = details["muda"]
+            await query.message.delete()
             if tme == "m":
                 await client.send_message(chat_id=query.from_user.id,
                         text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p4}\n\n**[BONYEZA HAPA kujua jinsi ya kufanya malipo ]({p3})**\n\nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',disable_web_page_preview = True,
