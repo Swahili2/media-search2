@@ -1,4 +1,5 @@
-import datetime
+from datetime import datetime
+import time
 from info import DB2
 
 class Database:
@@ -11,11 +12,11 @@ class Database:
     def new_user(self, id):
         return dict(
             id=id,
-            join_date=datetime.date.today().isoformat(),
+            join_date=datetime.now().isoformat(),
             db_status=dict(
                 db_name = "SWAHILI GROUP MEDIA",
                 descp = "Tunahusika na uuzaji wa muvi na sizon kal zilizotafsiriwa kwa bei ",
-                phone_no = "0 hrm45 halopesa",
+                phone_no = "0 halopesa https://t.me/swahiliupdates hrm45",
                 ms_link= "link",
                 muda = "kuipakua mda wowote bila kikomo...",
                 g_1=  "hrm45",
@@ -28,7 +29,7 @@ class Database:
             ban_status=dict(
                 is_banned=False,
                 ban_duration=0,
-                banned_on=datetime.date.max.isoformat(),
+                banned_on=datetime.now().isoformat(),
                 ban_reason=''
             )
         )
@@ -40,7 +41,7 @@ class Database:
             db_name = db_name,
             ban_status=dict(
                 ban_duration=tme,
-                banned_on=datetime.date.today().isoformat(),
+                banned_on=datetime.now().isoformat(),
             )
         )
     async def add_acc(self, id,user_id,file_id,db_name,tme):
@@ -97,19 +98,19 @@ class Database:
         ban_status = dict(
             is_banned=False,
             ban_duration= 0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.now().isoformat(),
             ban_reason=''
         )
         await self.col.update_one({'id': id}, {'$set': {'ban_status': ban_status}})
 
-    async def ban_user(self, user_id, ban_duration, ban_reason):
+    async def ban_user(self, user_id, ban_duration, ban_reason,link):
         ban_status = dict(
             is_banned=True,
             ban_duration=ban_duration,
-            banned_on=datetime.date.today().isoformat(),
+            banned_on=datetime.now().isoformat(),
             ban_reason=ban_reason
         )
-        await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status}})
+        await self.col.update_one({'id': user_id}, {'$set': {'ban_status': ban_status,'db_status.ms_link':link}})
     async def get_db_status(self, id):
         default =dict(
                 db_name = "SWAHILI GROUP MEDIA",
@@ -148,7 +149,7 @@ class Database:
         default = dict(
             is_banned=False,
             ban_duration=0,
-            banned_on=datetime.date.max.isoformat(),
+            banned_on=datetime.now().isoformat(),
             ban_reason=''
         )
         user = await self.col.find_one({'id': int(id)})

@@ -1,11 +1,11 @@
 from pyrogram import Client
 import uuid
 import io
-import datetime
+from datetime import datetime,timedelta
 import time
 from plugins.database import db
-from info import filters
-from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details,is_group_exist
+from info import filters,CHANNELS
+from utils import save_file,add_user,Media,User,is_user_exist,get_filter_results,get_file_details,is_group_exist,User
 from pyrogram.types import CallbackQuery,InlineKeyboardMarkup,InlineKeyboardButton
 from plugins.helper_funcs import (
     generate_button,
@@ -129,7 +129,7 @@ async def new_filtervip(client: Client, message):
             x+=1
             p.append(usr[gs].split('#@')[0])
             usrr=f'{usrr}\n{x}:{usr[gs].split("#@")[0]}'
-    mkv1= await client.send_message(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr}',chat_id = message.from_user.id)
+    mkv1= await client.send_message(text=f'CHAGUA KIFURUSHI WAKILISHI YA KITU UNACHOTAKA KUHIFADHI \n (kwa kutuma namba ya kifurush husika kama itamilikiwa na zaid ya kifurushi kimoja tuna namba kifurushi kisha acha nafasi namba ya kifurushi kingine mfano 1 3 NOTE Media ina weza kumilikiwa na kifurushi 1 au viwili Tu sio zaidi)\n\n{usrr} \n\n Movie au video au picha za wakubwa haziruhusiwi kutumwa kwenye bot yetu ukijulikana utakuwa banned',chat_id = message.from_user.id)
     a,b = funask()
     id1=mkv1.id + 1
     while a==False:
@@ -138,9 +138,9 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                 return
-            if mkv.from_user.id != query.from_user.id :
+            if mkv.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -175,9 +175,9 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                 return
-            if mkv.from_user.id != query.from_user.id :
+            if mkv.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -199,9 +199,9 @@ async def new_filtervip(client: Client, message):
             if mkv.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                 return
-            if mkv.from_user.id != query.from_user.id :
+            if mkv.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -216,9 +216,9 @@ async def new_filtervip(client: Client, message):
                 if mkv2.text!=None:
                     a=True
                 if (time.time()-b)>(60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                     return
-                if mkv2.from_user.id != query.from_user.id :
+                if mkv2.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -232,9 +232,9 @@ async def new_filtervip(client: Client, message):
                 if mkvl.text!=None:
                     a=True
                 if (time.time()-b)>(3*60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine")
                     return
-                if mkvl.from_user.id != query.from_user.id :
+                if mkvl.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -248,13 +248,13 @@ async def new_filtervip(client: Client, message):
         id1=mkv22.id+1
         while a==False:
             try:
-                mk= await client.get_messages("me",id1)
-                if mk.text!=None:
+                mkv1= await client.get_messages("me",id1)
+                if mkv1.text!=None:
                     a=True
                 if (time.time()-b)>(3*60):
-                    await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                    await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 3 iliniweze kuhudumia na wengine")
                     return
-                if mk.from_user.id != query.from_user.id :
+                if mkv1.from_user.id != message.from_user.id :
                     a=False
                     id1=id1+1
             except:
@@ -273,9 +273,9 @@ async def new_filtervip(client: Client, message):
                         if mk.media!=None or mk.text!=None:
                             a=True
                         if (time.time()-b)>(10*60):
-                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 10 iliniweze kuhudumia na wengine")
                             return
-                        if mk.from_user.id != query.from_user.id :
+                        if mk.from_user.id != message.from_user.id :
                             a=False
                             id1=id1+1
                     except:
@@ -287,6 +287,12 @@ async def new_filtervip(client: Client, message):
                             media.file_type = file_type
                             media.caption = mk.caption
                             break
+                    await client .send_cached_media(
+                        chat_id = CHANNELS,
+                        file_id = media.file_id,
+                        caption = media.caption,
+                        
+                    )
                     media.caption = f'{media.caption}\n🌟 @Bandolako2bot 'if media.caption else '🌟 @Bandolako2bot'
                     media.file_name = f'p.dd#.h5'
                     await save_file(f'+{icount}.{strid}', media.caption, [], media.file_id, None, media.file_type, stridm,user_id,media.file_name,500,'normal')
@@ -307,6 +313,13 @@ async def new_filtervip(client: Client, message):
                     caption = reply_text,
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
+                await client.send_photo(
+                    chat_id = CHANNELS,
+                    photo = fileid,
+                    caption = f'{reply_text}\n{message.from_user.mention}',
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+                
                 for data2 in data1:
                     try:
                         await client.send_photo(
@@ -319,8 +332,15 @@ async def new_filtervip(client: Client, message):
                         await message.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")                    
             else:
                 await message.reply_cached_media(
+                    
                     file_id = fileid,
                     caption = reply_text,
+                    reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
+                )
+                await client.send_cached_media(
+                    chat_id = CHANNELS,
+                    file_id = fileid,
+                    caption = f'{reply_text}{message.from_user.mention}',
                     reply_markup = InlineKeyboardMarkup(btn) if len(btn) != 0 else None
                 )
                 for data2 in data1:
@@ -545,9 +565,9 @@ async def new_filter(client: Client, message):
             if mkvg.text!=None:
                 a=True
             if (time.time()-b)>(60):
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                await client.send_message(chat_id = message.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                 return
-            if mkvg.from_user.id != query.from_user.id :
+            if mkvg.from_user.id != message.from_user.id :
                 a=False
                 id1=id1+1
         except:
@@ -601,7 +621,7 @@ async def del_filter(client: Client, message):
         await message.reply_text("Samahani hauruhusiw kutumia command hii tafadhali mchek @hrm45 akupe maelekezo")
         return
     try:
-        cmd, text = message.text.split(" ", 1)
+        cmd, text1 = message.text.split(" ", 1)
     except:
         await message.reply_text(
             "<i>Mention the filtername which you wanna delete!</i>\n\n"
@@ -610,12 +630,16 @@ async def del_filter(client: Client, message):
             quote=True
         )
         return
-    text=f'{text}.dd#.{message.from_user.id}'
+    text=f'{text1}.dd#.{message.from_user.id}'
     query = text.lower()
     filter={'text': query}
+    details = await  get_filter_results('text1',message.from_user.id)
     filter['group_id'] = message.from_user.id
     found =await Media.count_documents(filter)
     if int(found) >=1:
+        for dt in details:
+            for ad in await get_file_details(dt.id):
+               await Media.collection.delete_one({'text':ad.text})
         await Media.collection.delete_one(filter)
         await message.reply_text(
             f"<code>{text.split('.dd#.')[0]}</code>  deleted successful.",
@@ -716,7 +740,11 @@ async def addconnection(client,message):
             group_details= await is_user_exist(group_id)
             for file in group_details:
                 user_id2=file.group_id
+            
             if not group_details :
+                if await is_group_exist(message.from_user.id):
+                    await message.reply_text("Samahani tunaruhusu kikundi kimoja tu kumunga muhsin kuepuka usumbufu kwa wateja tuma /ondoa kikund cha mwanzo kisha tuma /niunge  kwenye kikundi hiki **\nkumbuka kuondoa group tunaondoa hadi waliojiunga kwenye database yetu kupitia kikundi hiko** ")
+                    return
                 await add_user(group_id,userid,'group')
                 await message.reply_text(
                     f"Tumeliunganisha kikamilifu Sasa unaweza kuendelea kuongezea muv/series posters audio video n.k ukiwa private kwa kureply ujumbe wako kisha /add kisha jina LA text,movie,series n.k kama ndio unaanza uadmin tafadhali tuna neno /edit_admin ukiwa private kisha fuata maelekezo!",
@@ -797,6 +825,7 @@ async def removegroup(client,message):
                 user_id2=file.group_id
             if group_details and userid==user_id2:
                 await User.collection.delete_one({'_id':group_id})
+                await User.collection.deleteMany({'group_id':group_id})
                 await message.reply_text(
                     f"tumeliondoa kikamilifu kuliunga tena tuma command /niunge",
                     quote=True
@@ -825,7 +854,7 @@ async def ban(c,m):
         await m.reply_text(
             f"Use this command to add access to any user from the bot.\n\n"
             f"Usage:\n\n"
-            f"`/add_admin admin_id duration_in days  ofa_given`\n\n"
+            f"`/add_admin admin_id duration_in days link`\n\n"
             f"Eg: `/add_admin 1234567 28 Umepata ofa ya Siku 3 zaidi.`\n"
             f"This will add user with id `1234567` for `28` days for the reason `ofa siku 3 zaidi`.",
             quote=True
@@ -835,12 +864,13 @@ async def ban(c,m):
     try:
         user_id = int(m.command[1])
         ban_duration = int(m.command[2])
-        ban_reason = ' '.join(m.command[3:])
+        link = m.command[3]
+        ban_reason = 'Kwa ajili ya kumtumia swahili robot kuuzia movie na series '
         ban_log_text = f"Adding user {user_id} for {ban_duration} days for the reason {ban_reason} ."
         try:
             await c.send_message(
                 user_id,
-                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁ofa ___ ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
+                f"Asante kwa uaminifu wako kwetu \n\n **🧰🧰 KIFURUSHI CHAKO 🧰🧰** \n\n🗓🗓**siku___ siku  {ban_duration}(+ofa)**\n\n🎁🎁Kwa ajili ya ** __  {ban_reason}__**\n\n Umeungwa kikamilifu"
                 f"**Message from the admin**"
             )
             ban_log_text += '\n\nUser notified successfully!'
@@ -852,7 +882,7 @@ async def ban(c,m):
             strid = str(uuid.uuid4())
             await db.add_admin(user_id)
             await db.add_acc(strid,user_id,"all",user_id,9999)
-        await db.ban_user(user_id, ban_duration, ban_reason)
+        await db.ban_user(user_id, ban_duration, ban_reason,link)
         print(ban_log_text)
         await m.reply_text(
             ban_log_text,
@@ -869,7 +899,7 @@ async def get_statuss(bot,message):
     if status:
         async for user in await db.get_user(message.from_user.id):
             salio =user['ban_status']
-            salio = salio['ban_duration']
+            salio = datetime.fromisoformat(salio['banned_on'])+timedelta(days=salio['ban_duration'])
         filters = await get_filter_results('',message.from_user.id)
         filters_no = 0
         text = 0
@@ -931,11 +961,11 @@ Salio lako:Litaisha tarehe {salio} ::Kumbuka kufanya malipo mapema wateja wako w
             sd= await db.get_db_status(user['db_name'])
             g2 = user['file_id']
             sd = sd[g2].split('#@')[0]
-            salio+=f'{sd}:Umebakiza siku :{int(user["ban_status"]["ban_duration"])-(datetime.date.today()-datetime.date.fromisoformat(user["ban_status"]["banned_on"])).days}\n\n'
+            salio+=f"{sd}:Kitaisha tarehe :{datetime.fromisoformat(user['ban_status']['banned_on'])+timedelta(days=user['ban_status']['ban_duration'])}\n\n"
         else:
             sd = await get_file_details(user['file_id'])
             for sd1 in sd:
-                salio+=f'{sd1.text.split(".dd#.")[0]}:Umebakiza siku :{int(user["ban_status"]["ban_duration"])-(datetime.date.today()-datetime.date.fromisoformat(user["ban_status"]["banned_on"])).days}\n\n'
+                salio+=f"{sd1.text.split('.dd#.')[0]}:Kitaisha tarehe :{datetime.fromisoformat(user['ban_status']['banned_on'])+timedelta(days=user['ban_status']['ban_duration'])}\n\n"
     if a==1:
         await message.reply_text('Vifurushi Vyako ulivyojiunga kupata huduma za movies,series, tamthilia n.k : \n\nHamna kifurushi ulichojiunga nacho,Tafadhali kuwa huru kununua kifurushi vyetu kwa bei rahisi')
     else:

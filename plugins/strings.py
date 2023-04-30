@@ -10,7 +10,7 @@ if CUSTOM_START_MESSAGE:
 else:
     START_MESSAGE = """<b>Hello {mention}</b>,
 Mimi ni robot wa kuhifadhi media,text n.k,
-unaweza kuvipata kwa kutuma neno kwenye group au ukiwa inline mode na nkuletea unachotaka hapo  hapo shart kiwe kwenye database ya admin husika,
+unaweza kuvipata kwa kutuma neno lolote kwenye group ambalo mimi nipo au kisha ntakupa movie/series ukiwa inline mode au kwenye kikundi na nkuletea unachotaka hapo shart kiwe kwenye database ya admin husika,
 
 bonyeza help kuweza kujua jinsi ya kuongeza data<b>(ni kwa admins waliopo kwenye database yetu tu ndiyo wataiona hii help button)</b> 
 
@@ -18,16 +18,22 @@ Jinsi ya kujiunga na maelezo zaidi bonyeza about batan
 """
 
 HELP_MESSAGE = f"""<b><u>Main Commands</u></b>
-○ <b>/add</b> <i>[neno la kutaftia data husika] [message or reply to message]</i>
-    <i>ongeza data kwenye database Mfano /add soz</i>
+○ <b>/add</b> <i>[jina wakilishi la data husika] [message or reply to message]</i>
+    <i>ongeza data za kawaida (ambazo hazina download button) kwenye database Mfano /add msaada</i>
+    
+○ <b>/adddata</b>[jina wakilishi la data husika] [message or reply to message]</i>
+    <i><i>ongeza data za biashara(movie,Series n.k )(ambazo zina download button) kwenye database Mfano /adddata soz</i>
     
 ○ <b>/delete</b> <i>[neno la data uliyotaka kufuta]</i>
     <i>kufuta data kutoka kwenye database Mfano /delete soz</i>
     
+○ <b>/edit_admin</b>
+    <i>Ni kwa ajili ya setting kama kuweka vifurushi,mawasiliano n.k</i>
+    
 ○ <b>/filters</b>
     <i>kuangalia data zote ulizotuma kwenye database</i>
     
-○ <b>/admin</b>
+○ <b>/salio</b>
     <i>kuangalua maendeleo yako kwenye huduma zetu</i>
    """ 
 ABOUT_MESSAGE = f"""💥💥💥💥💥💥💥💥💥💥💥
@@ -36,17 +42,17 @@ ABOUT_MESSAGE = f"""💥💥💥💥💥💥💥💥💥💥💥
 Bot hii imetngenezwa na
 <b>○ Imetengenezwa na: <a href='tg://user?id={OWNER_ID}'>HASSAN RANADHANI</a>
 
-Ilikuweza kutumia huyu robot kwenye group lako bonyeza maneno Hassan Ramadhan haipo juu kisha tuma jina lako.
+Ilikuweza kutumia huyu robot kwenye group lako bonyeza maneno Hassan Ramadhan hapo juu kisha tuma jina lako.
 
     🌸🌸Gharama🌸🌸
 wiki ya kwanza ni ofa  ili kujifunza jinsi ya kumtumia lakini baada ya hapo ni sh 1000 kila wiki.
 gharama hizi ni kwa ajili ya kulipia utumiaji Wa robot telegram
 
     🤷‍♂🤷‍♂Jinsi ya kumuunga
-Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya hapo utatuma command /niunge kwenye magrup yako iliaweze kufanya kazi kwa data utakazo MPA.
+Ukishaongezwa kwenye list ya admin wetu utaarifiwa kisha baada ya hapo utatuma command /niunge kwenye group lako iliaweze kufanya kazi kwa data utakazo MPA.
 
 
-Kwa msaada zaidi : <a href='https://t.me/+NlxxLyYIY1hiMWFk'>BONYEZA HAPA </a></b>
+Kwa msaada zaidi : <a href='tg://user?id={OWNER_ID}'>BONYEZA HAPA </a></b>
 """
 
 MARKDOWN_HELP = """<b><u>Markdown Formatting</u></b>

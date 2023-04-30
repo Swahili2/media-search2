@@ -1,7 +1,7 @@
 from info import filters,AUTH_CHANNEL
 import uuid
 import time
-from utils import get_file_details,get_filter_results,is_user_exist,Media,is_subscribed
+from utils import get_file_details,get_filter_results,is_user_exist,Media,is_subscribed,is_group_exist
 from pyrogram  import Client
 from plugins.database import db
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery,ForceReply
@@ -123,6 +123,7 @@ async def start_msg_admins(client, message):
             reply_markup=InlineKeyboardMarkup(btn),
             )
         return
+    
     if usr_cmdall1.startswith("/start subinps"):
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
@@ -134,11 +135,30 @@ async def start_msg_admins(client, message):
                 msg_type =files.type
                 grp = files.grp
             grp1,grp2=grp.split(" ") 
-            ban_status = await db.get_ban_status(group_id)    
+            ban_status = await db.get_ban_status(group_id)   
+            if await is_user_exist(message.from_user.id):
+                for jk in await is_user_exist(message.from_user.id):
+                    for jk1 in await is_user_exist(jk.group_id):
+                        jk2=jk1.group_id
+            else:
+                ghi=await is_group_exist(group_id)
+                ii =0
+                group_d='\nGroups bonyez group kuchagua unalopenda\n'
+                for i in ghi:
+                    try:
+                        g = await client.create_chat_invite_link(int(i.id))
+                        ii+=1
+                        group_d=group_d+f'{ii}:**[GROUP {ii}]({g.invite_link})**\n\n'
+                    except:
+                        print('x')
+                        #await client.send_message(chat_id=int(group_id),f'hakikisha group zako zote kama umenruhusu kutengeneza invite link{ii}')        
+                await client.send_message(chat_id=cmd.from_user.id,text=f'Tafadhali Haupo kwenye database join kikundi kimoja wapo ili kupata huduma hii kisha tuma neno **hi** tujue kuwa wewe sio robot\n{group_d}')
+                return 
+              
             if ban_status["is_banned"] == False and group_id != cmd.from_user.id :
                 await client.send_message(
                         chat_id=cmd.from_user.id,
-                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu Kifurushi cha admin alicho lipia kumtumia robot huyu kimeisha mtaarifu alipie bonyeza maneno ya blue \n\n[ADMIN](tg://user?id={group_id})\n\nIli muweze kuendelea kumutumia robot huyu")
+                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu Kifurushi cha admin alicho lipia kumtumia robot huyu kimeisha mtaarifu alipie ***\n\n[BONYEZA HAPA KUMTAARIFU](tg://user?id={group_id})\n\n***Ili muweze kuendelea kumutumia robot huyu")
                 return
             if not (await db.is_acc_exist(cmd.from_user.id,grp1,group_id) or await db.is_acc_exist(cmd.from_user.id,id2,group_id) or await db.is_acc_exist(cmd.from_user.id,grp2,group_id)) and group_id != cmd.from_user.id :
                 await client.send_message(
@@ -171,7 +191,7 @@ async def start_msg_admins(client, message):
                         return
                     elif strg.lower() == 's':
                         link = files.descp.split('.dd#.')[2]
-                        f_caption =f'{f_caption}\n**💥Kama huwezi kufungua link zetu tafadhali bonyeza [INBOX](tg://user?id={int(group_id)})**\nNikupe maelekezo\n🌟 @Bandolako2bot'
+                        f_caption =f'{f_caption}\n💥Kama huwezi kufungua link zetu \ntuma **email yako**\nMfano**mohamed@gmail.com **\nkumbuka tuma kwa herufi ndogo \n\n**[BONYEZA HAPA](tg://user?id={int(group_id)})**\nNikupe maelekezo\n🌟 @Bandolako2bot'
                         if msg_type =="Photo":
                             await client.send_photo(
                                 chat_id=cmd.from_user.id,
@@ -207,6 +227,7 @@ async def start_msg_admins(client, message):
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif usr_cmdall1.startswith("/start xsubinps"):
+        
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
@@ -216,6 +237,9 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+            if message.from_user.id !=group_id:
+                await client.send_message(chat_id=message.from_user.id,text='Tafadhali bonyeza download kuipakua kweny posta ulikobonyeza button ya edit huna ruksa ya kuedit movie au series hii ')
+                return 
             grp1,grp2=grp.split(" ")
             if filedetails:
                 if filedetails:  
@@ -372,6 +396,23 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 if mkv1.text==None: 
                     await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                     return
+                mkv7 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa siku moja mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
+                a,b = funask()
+                id1=mkv7.id+1
+                while a==False:
+                    try:
+                        mkv777 = await client.get_messages("me",id1)
+                        if mkv777.text!=None:
+                            a=True
+                        if (time.time()-b)>(60):
+                            await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            return
+                        if mkv777.from_user.id != query.from_user.id :
+                            a=False
+                            id1=id1+1
+                    except:
+                        a=False
+                mkv77 = int(mkv777.text)
                 mkv2 = await client.send_message(chat_id = query.from_user.id,text=f'Naomba bei ya mteja atakayopata huduma hii kwa muda wa wiki 1 mfano 500 \nNote Tuma namba tu:::Kama huduma hii haipo tuma 0')
                 a,b = funask()
                 id1 = mkv2.id + 1
@@ -464,24 +505,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await mkv3.delete()
                 await mkv4.delete()
                 await mkv5.delete()
+                await mkv7.delete()
                 await mkv6.delete()
                 await mkv11.delete()
                 await mkv222.delete()
                 await mkv333.delete() 
                 await mkv444.delete()
                 await mkv555.delete()
+                await mkv777.delete()
                 await mkv66.delete()
             except:
                 await client.send_message(chat_id = query.from_user.id,text=f"umetuma ujumbe ambao s sahihi,Kama hujaelewa jinsi tafadhal mcheki msimamiz @hrm45 akusaidie bonyeza rudi nyuma uanze upya kutengeneza kifurushi",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
                 return
-            ghi=f"{ghi1} {mkv1.text}#@{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
+            ghi=f"{ghi1} {mkv1.text}#@{mkv77},{mkv22},{mkv33},{mkv44},{mkv55}#@{mkv6.text}"
             await db.update_db(query.from_user.id,ghi,ab)
             await mkv1.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'kundii')]]))
         elif query.data.startswith("xtext"):
             await query.answer('wait please')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ \n Tafadhali ntumie jina jipya la movie/series  hii')
             id1=mkv1.id+1
             while a==False:
                 try:
@@ -490,7 +533,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         a=True
                     
                     if (time.time()-b)>100:
-                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                         return
                     if mkv.from_user.id != query.from_user.id :
                         a=False
@@ -507,7 +550,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer('wait please')
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali ntumie caption mpya ya movie au series  hii ')
             id1=mkv1.id+1
             while a==False:
                 try:
@@ -516,7 +559,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         a=True
                     
                     if (time.time()-b)>100:
-                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                         return
                     if mkv.from_user.id != query.from_user.id :
                         a=False
@@ -539,7 +582,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if descp[2]!="data":
                 a=False
                 b=time.time()
-                mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+                mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nNtumie link mpya ya series/movie hii')
                 id1=mkv1.id+1
                 while a==False:
                     try:
@@ -548,7 +591,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             a=True
                     
                         if (time.time()-b)>100:
-                            mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                            mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                             return
                         if mkv.from_user.id != query.from_user.id :
                             a=False
@@ -570,7 +613,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             descp=descp.split(".dd#.")
             a=False
             b=time.time()
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️')
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nNtumie maelezo mapya kuhusiana na movie hii Mfano Imetafsiriwa na dj Murphy Series ')
             id1=mkv1.id+1
             while a==False:
                 try:
@@ -579,7 +622,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         a=True
                     
                     if (time.time()-b)>100:
-                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
+                        mkv2 = await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali anza upya jitahidi kutuma ujumbe ndani ya dakika 1 iliniweze kuhudumia na wengine")
                         return
                     if mkv.from_user.id != query.from_user.id :
                         a=False
@@ -622,8 +665,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
         elif query.data == "xba":
             await query.answer('Mtandao pendwa ndio bora')
-            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni acha nafasi jin ulilosajiria namba hiimfano 062466xxxx halopesa hassan ramadhani/nkumbuka namba ianze na 0 sio +255')
-            a=False
+            mkv1 = await client.send_message(chat_id = query.from_user.id,text='⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️\nTafadhali Tuma namba kisha acha nafasi kampuni Mfano Halopesa au Lipa_kwa_mpesa(kumbuka sehemu ya nafasi weka_ acha nafasi link ya maelekezo jinsi ya kulipia acha nafas jina ulilosajiria namba hiimfano\n 062466xxxx halopesa https://t.me/swahiliupda hassan ramadhani\nMfano\n345546 Lipa_kwa_mpesa https://t.me/swahiliupda baoflix company \nkumbuka namba ianze na 0 sio +255 au kama ni lipa namba uiandike kiusahihi',disable_web_page_preview = True)
+            a=False 
             b=time.time()
             id1=mkv1.id+1
             while a==False:
@@ -641,7 +684,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except:
                     a=False 
             if mkv.text==None:
-                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine")
+                await client.send_message(chat_id = query.from_user.id,text=f" Tafadhali tuna maneno sio picha wala kingine anza upya kubonyez btn")
                 return
             try:
                  int(mkv.text.split(" ")[0])
@@ -684,7 +727,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await mkv.reply_text(text=f"data updated successful ",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text = f'rudi nyuma' , callback_data = 'zkb')]]))
                 
         elif query.data == "kenya":
-            await query.answer()
+            await query.answer('Tunaifanyia kaz huduma hii msijali')
             
         elif query.data.startswith("tanzania"):
             await query.answer()
@@ -701,13 +744,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_photo(
                             chat_id=query.from_user.id,
                             photo= id3,
-                            caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details["db_name"].upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details["db_name"].upper()} __**',
+                            caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details["db_name"].upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n\nbonyeza **lipia hii tu** kuilipia movie/Series hii tu\n\n **__KARIBUN SANA {db_details["db_name"].upper()} __**',
                             reply_markup=InlineKeyboardMarkup([replymkup1(db_details["g_1"],fileid,'g_1'),replymkup1(db_details["g_2"],fileid,'g_2'),replymkup1(db_details["g_3"],fileid,'g_3'),replymkup1(db_details["g_4"],fileid,'g_4'),replymkup1(db_details["g_5"],fileid,'g_5'),replymkup1(db_details["g_6"],fileid,'g_6'),[InlineKeyboardButton("Lipia hii __ tu", callback_data=f"wiik2 {fileid}.g_1.500.m")]]) )
             else:
                 await client.send_cached_media(
                                     chat_id=query.from_user.id,
                                     file_id=id3,
-                                    caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details["db_name"].upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n **__KARIBUN SANA {db_details["db_name"].upper()} __**',
+                                    caption =f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n** VIFURUSHI VYA {db_details["db_name"].upper()} ** \nTafadhali chagua kifurush kupata maelezo zaidi na jinsi ya kufanya malipo kwa kubonyeza button zilizopo chini\n\nbonyeza **lipi hii tu** kulipia movie/series hii tu \n\n**__KARIBUN SANA {db_details["db_name"].upper()} __**',
                                     reply_markup=InlineKeyboardMarkup([replymkup1(db_details["g_1"],fileid,'g_1'),replymkup1(db_details["g_2"],fileid,'g_2'),replymkup1(db_details["g_3"],fileid,'g_3'),replymkup1(db_details["g_4"],fileid,'g_4'),replymkup1(db_details["g_5"],fileid,'g_5'),replymkup1(db_details["g_6"],fileid,'g_6'),[InlineKeyboardButton("Lipia hii __ tu", callback_data=f"wiik2 {fileid}.g_1.500.m")]]) )
            
         elif query.data.startswith("wik"):
@@ -722,7 +765,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             data1= details[msg2]
             data2= data1.split("#@")[1]
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{data1.split('#@')[0]}\n {data1.split('#@')[2]}\n Tafadhali bonyeza kitufe hapo chini kuweza kulipia muda utakao weza kupata huduma hii",
-                    reply_markup=InlineKeyboardMarkup([replymkup2(f"week 1 tsh {data2.split(',')[0]}",f"{fileid}.{msg2}.{data2.split(',')[0]}.wk1"),replymkup2(f"week 2 tsh {data2.split(',')[1]}",f"{fileid}.{msg2}.{data2.split(',')[1]}.wk2"),replymkup2(f"week 3 tsh {data2.split(',')[2]}",f"{fileid}.{msg2}.{data2.split(',')[2]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(',')[3]}",f"{fileid}.{msg2}.{data2.split(',')[3]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
+                    reply_markup=InlineKeyboardMarkup([replymkup2(f"Siku 1 tsh {data2.split(',')[0]}",f"{fileid}.{msg2}.{data2.split(',')[0]}.wk0"),replymkup2(f"week 1 tsh {data2.split(',')[1]}",f"{fileid}.{msg2}.{data2.split(',')[1]}.wk1"),replymkup2(f"week 2 tsh {data2.split(',')[2]}",f"{fileid}.{msg2}.{data2.split(',')[2]}.wk2"),replymkup2(f"week 3 tsh {data2.split(',')[3]}",f"{fileid}.{msg2}.{data2.split(',')[3]}.wk3"),replymkup2(f"mwezi 1 tsh {data2.split(',')[4]}",f"{fileid}.{msg2}.{data2.split(',')[4]}.mwz1"),[InlineKeyboardButton("rudi mwanzo", callback_data=f"tanzania {fileid}")]])
                 )
         elif query.data.startswith("wiik2"):
             await query.answer()
@@ -736,7 +779,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 grp = files.grp
             details = await db.get_db_status(group_id)
             data1 = details[msg2]
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -747,16 +792,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 tme1=tme
             data2 = data1.split("#@")[0]
-            p1,p2,p3 =details["phone_no"].split(" ",2)
+            p1,p2,p3,p4=details["phone_no"].split(" ",3)
             mda = details["muda"]
+            await query.message.delete()
             if tme == "m":
                 await client.send_message(chat_id=query.from_user.id,
-                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p3} \nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
+                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p4}\n\n**[BONYEZA HAPA kujua jinsi ya kufanya malipo ]({p3})**\n\nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',disable_web_page_preview = True,
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data=f"malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                     )
             else:
                 await client.send_message(chat_id = query.from_user.id,
-                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p3} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
+                        text = f'🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{details["db_name"].upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p4} \n\n**[BONYEZA HAPA kujua jinsi ya kufanya malipo ]({p3})**\n\nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',disable_web_page_preview = True,
                         reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data=f"malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                     )
         elif query.data.startswith("malipo"):
@@ -767,8 +813,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
-         
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -781,7 +828,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             details = await db.get_db_status(group_id)
             data1 = details[msg2]
             data2 = data1.split("#@")[0]
-            p1,p2,p3 =details['phone_no'].split(" ",2)
+            p1,p2,p3,p4=details['phone_no'].split(" ",3)
             mda = details['muda']
             dbname = details['db_name']
             mkv1 =await client.send_message(chat_id = query.from_user.id,text='🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\nTuma picha ya screenshot ya malipo yako kisha subir kidogo wasimamiz wangu wahakiki muamala wako')
@@ -823,12 +870,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 
                 if tme == "m":
                      await client.send_message(chat_id = query.from_user.id,
-                            text = f'NMELAZIMIKA KUKURUDISHA HAPA \n(tafadhali Fanya kwa usahihi kama unavyo ambiwa kama huwez omba msaada usaidiwe)🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p3}\nJina : {p2} \nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
+                            text = f'NMELAZIMIKA KUKURUDISHA HAPA \n(tafadhali Fanya kwa usahihi kama unavyo ambiwa kama huwez omba msaada usaidiwe)🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc2} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p4}\n\n**[BONYEZA HAPA kujua jinsi ya kufanya malipo ]({p3})**\n\nKumbuka unalipia tsh {prc2} kwa ajili ya kununua {name} {mda} \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',disable_web_page_preview = True,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data=f"malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                         )
                 else:
                     await client.send_message(chat_id = query.from_user.id,
-                            text = f'NMELAZIMIKA KUKURUDISHA HAPA \n(tafadhali Fanya kwa usahihi kama unavyo ambiwa kama huwez omba msaada usaidiwe)🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p3}\nJina : {p3} \nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',
+                            text = f'NMELAZIMIKA KUKURUDISHA HAPA \n(tafadhali Fanya kwa usahihi kama unavyo ambiwa kama huwez omba msaada usaidiwe)🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿\n{dbname.upper} PAYMENT SECTION \nTafadhali lipia\n Tsh {prc1} kwenda \nNo : {p1}\nKampuni : {p2}\nJina : {p4} \n\n**[BONYEZA HAPA kujua jinsi ya kufanya malipo ]({p3})**\n\nKumbuka unalipia tsh {prc1} kupata huduma ya {data2} kwa muda wa {tme1} bila kuzuiwa kutopata huduma hii \n\nUkishafanya  malipo bonyeza button nmeshafanya malipo kisha tuma screenshot ya malipo/muamala',disable_web_page_preview = True,
                             reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("nmeshafanya malipo", callback_data="malipo {query.data.split(' ')[1]}"),InlineKeyboardButton("rudi mwanzo ", callback_data=f"tanzania {fileid}")]]),
                        )
             
@@ -847,7 +894,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 group_id = files.group_id
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= "Siku 1"
+            elif tme=="wk1":
                 tme1= "wiki 1"
             elif tme=="wk2":
                 tme1= "wiki 2"
@@ -883,7 +932,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 prc2 = files.price
                 name = files.text.split('.dd#.',1)[0]
                 grp = files.grp
-            if tme=="wk1":
+            if tme=="wk0":
+                tme1= 1
+            elif tme=="wk1":
                 tme1= 7
             elif tme=="wk2":
                 tme1= 14
@@ -892,10 +943,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             elif tme== "mwz1":
                 tme1= 30
             strid = str(uuid.uuid4())
-            #if tme == "m":
-                #await db.add_acc(strid,msg1,fileid,query.from_user.id,99)
-            #else:
-            await db.add_acc(strid,msg1,msg2,query.from_user.id,2)
+            if tme == "m":
+                await db.add_acc(strid,msg1,fileid,query.from_user.id,30)
+            else:
+                await db.add_acc(strid,msg1,msg2,query.from_user.id,tme1)
             await query.message.delete()
             ttl = await client.get_users(int(msg1))
             await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} amesharuhusiwa kupata huduma ya kifurush alicho chagua Asante kwa mda wako"
@@ -904,25 +955,29 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id = int(group_id2),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} Tumepokea muamala wako,\nAsante kwa kutunga mkono\n\nEndelea kufurahia huduma zetu"
                     )
             except:
-                await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} \n Group lilotumika ketengenezea media hii...siruhusiw kutuma ujumbe tafadhali mwambie [ADMIN](tg://user?id={query.from_user.id}) (**bonyeza ADMIN Kwenda private **) Aniadd kama admin au akuelekeze group jipya,mwambie aniadd admin\nEndelea kuomba movie kupitia group hilo"
+                await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} \n Group lilotumika kutengenezea media hii...siruhusiw kutuma ujumbe tafadhali mwambie [ADMIN](tg://user?id={query.from_user.id}) (**bonyeza ADMIN Kwenda private **) Aniadd kama admin au akuelekeze group jipya,mwambie aniadd admin\nEndelea kuomba movie kupitia group hilo"
                     )
             try:
                 for fls in dtails:
                     email = fls.email
                 if email=='hrm45':
-                    await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tafadhali tunaomba ututumie email yako ili tukuwezeshe kutumia gdrive yetu:"
+                    await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tafadhali tunaomba ututumie email yako ili tukuwezeshe kutumia gdrive yetu:Tuma neno \n\weka email yako \nMfano\n\weka mohamed@gmail.com "
                         )
                 elif '@gmail.com' in email:
                     if tme == 'm':
                         await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} muwezeshee email yake {email} "
                             )
+                        await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tumefanikiwa kuiwezesha email yako endelea kufurahia huduma zetu:"
+                        )
                     else:
                         await client.send_message(chat_id = query.from_user.id,text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 mteja {ttl.mention} muwezeshee email yake {email}"
                             )
+                        await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tumefanikiwa kuiwezesha email yako endelea kufurahia huduma zetu:"
+                        )
             except:
                 await client.send_message(chat_id = (int(msg1)),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿 Tafadhali tunaomba ututumie email yako ili tukuwezeshe kutumia gdrive yetu:"
                     )
-            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Mpendwa {ttl.mention}\nSamahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\n kujua salio na vifurushi vyako vyote tuma neno /salio ukiwa private yaani kwenye bot."
+            await client.send_message(chat_id = int(msg1),text=f"🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿🇹🇿Mpendwa {ttl.mention}\nSamahani kwa kukuchelewesha kukuruhusu mapema ila tutajitahidi kuboresha huduma zetu,Kwa sasa unaweza kupata huduma uliyoomba\n\nNENDA KWENYE TANGAZO LA MOVIE ULIYO LIPIA BONYEZA DOWNLOAD KISHA BONYEZA START MOVIE ITAKUJA DIRECT AU KAMA NI LINK BONYEZA BUTTON HUSIKA\n\n kujua salio na vifurushi vyako vyote tuma neno /salio ukiwa private yaani kwenye bot."
                     )
         
         elif query.data.startswith("zkb"):
@@ -931,6 +986,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
 def replymkup2(msg2,msg4):
     msg1 = msg2.split('tsh ')[1]
+    msg1 =int(msg1)
     if msg1 == 0:
         return []
     else:
@@ -938,6 +994,8 @@ def replymkup2(msg2,msg4):
 
 def replymkup1(msg3,msg1,msg2):
     if msg3=="hrm45":
+        return []
+    elif msg3.split("#@")[1]=="0,0,0,0,0":
         return []
     else:
         msg3=msg3.split("#@")[0]

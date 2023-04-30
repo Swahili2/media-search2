@@ -16,6 +16,8 @@ async def group(client, message):
             user_id3 = user.group_id
     else:
         return
+    gd=await db.get_db_status(int(user_id3))
+    user_id4 = gd['ms_link']
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
     if 2 < len(message.text) < 50:    
@@ -25,18 +27,18 @@ async def group(client, message):
         if files:
             await message.reply_text(f"<b>Bonyeza kitufe <b>(🔍 Majibu ya Database : {len(files)})</b> Kisha chagua unachokipenda kwa kushusha chini\n\n💥Kwa urahisi zaidi kutafta chochote anza na aina kama ni  movie, series ,(audio ,video) kwa music , vichekesho kisha acha nafasi tuma jina la  kitu unachotaka mfano video jeje au audio jeje au movie extraction au series soz­</b>", reply_markup=get_reply_makup(searchi,len(files)))
         elif searchi.startswith('movie') or searchi.startswith('series') or searchi.startswith('dj'):
-            await message.reply_text(text=f'Samahani **{searchi}** uliyotafta haipo kwenye database zetu.\n\nTafadhali bonyeza Button kisha ukurasa unaofuata ntumie jina la movie au series ntakupa jibu kwa haraka iwezekanavyo ili nii tafte',reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text='ADMIN',user_id=int(user_id3))]]))
+            await message.reply_text(text=f'Samahani **{searchi}** uliyotafta haipo kwenye database zetu.\n\nTafadhali bonyeza Button kisha ukurasa unaofuata ntumie jina la movie au series ntakupa jibu kwa haraka iwezekanavyo ili nii tafte',reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text='ADMIN',url=f'{user_id4}')]]))
             return
         else:
             return
         if not btn:
             return
-@Client.on_message(filters.text & filters.incoming & (filters.group | filters.private))
+@Client.on_message(filters.regex('@gmail.com') & filters.incoming)
 async def groupprv(client, message): 
-    if " " not in message.text.strip() and "@gmail.com" in message.text.lower():
+    text=message.text
+    if " " not in text.strip() and "@gmail.com" in text.lower():
         group_status = await is_user_exist(message.from_user.id)
         user_id3='hrm45'
-        text=message.text.strip()
         if group_status:
             try:
                 for user in group_status:
@@ -61,7 +63,7 @@ async def groupprv(client, message):
         else:
             return
     else:
-        await message.reply_text('Tafadhal tuma email sahihi \nZingatia\n1.usiruke nafasi \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email')
+        await message.reply_text('Tafadhal ujumbe huu uliontumia sjauelewa Tafadhali kama n email:ntumie email tu bila neno jingine \nMfano  mohamed@gmail.com \n\nZingatia\n1.usiruke nafasi kwenye email yako  \n2.hakisha n gmail (hrmr5@gmail.com)\n3.hakikisha huongez neno lingine zaid ya email \n\nKwa salio lako tuma neno Salio \nZingatia lianze na herufi kubwa S na hizo nyingine ndogo\n\n Maelekezo mengine mchek hrm45')
         return
 def get_reply_makup(query,totol):
     buttons = [
