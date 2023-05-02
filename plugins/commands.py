@@ -62,7 +62,7 @@ async def new_filtervip(client: Client, message):
             await message.reply_text("huwez kutuma buttons peke yake , ongezea maneno kidogo", quote=True)
             return
         else:
-            await message.reply_text("Tafadhali reply tangazo au posta ya movie yako kwa /adddata jina la movie au series")
+            await message.reply_text("Tafadhali reply tangazo au posta ya movie yako kwa /adddata jina la movie au series\nMfano /adddata soz")
             return
 
     elif message.reply_to_message and message.reply_to_message.reply_markup:
@@ -418,7 +418,7 @@ async def new_filter(client: Client, message):
             await message.reply_text("huwez kutuma buttons peke yake , ongezea maneno kidogo", quote=True)
             return
         else:
-            await message.reply_text("Tafadhali reply tangazo kwa /add jina la tangazo")
+            await message.reply_text("Tafadhali reply tangazo kwa /add jina la tangazo\n/add msaada")
             return
 
     elif message.reply_to_message and message.reply_to_message.reply_markup:
