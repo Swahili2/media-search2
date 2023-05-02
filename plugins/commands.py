@@ -59,7 +59,10 @@ async def new_filtervip(client: Client, message):
         reply_text, btn, alert = generate_button(extracted[1], strid)
         fileid = None
         if not reply_text:
-            await message.reply_text("You cannot have buttons alone, give some text to go with it!", quote=True)
+            await message.reply_text("huwez kutuma buttons peke yake , ongezea maneno kidogo", quote=True)
+            return
+        else:
+            await message.reply_text("Tafadhali reply tangazo au posta ya movie yako kwa /adddata jina la movie au series")
             return
 
     elif message.reply_to_message and message.reply_to_message.reply_markup:
@@ -264,7 +267,7 @@ async def new_filtervip(client: Client, message):
             icount = 0
             while dta!='stop':
                 stridm = str(uuid.uuid4())
-                mkv22=await client.send_message(text = " send media or document or audio else send stop", chat_id = message.from_user.id)
+                mkv22=await client.send_message(text = " Tuma video au document au audio au neno stop kama ushamaliza kutuma ili njumuishe kwenye tangazo hili", chat_id = message.from_user.id)
                 a,b = funask()
                 id1 = mkv22.id+1
                 while a==False:
@@ -412,7 +415,10 @@ async def new_filter(client: Client, message):
         reply_text, btn, alert = generate_button(extracted[1], strid)
         fileid = None
         if not reply_text:
-            await message.reply_text("You cannot have buttons alone, give some text to go with it!", quote=True)
+            await message.reply_text("huwez kutuma buttons peke yake , ongezea maneno kidogo", quote=True)
+            return
+        else:
+            await message.reply_text("Tafadhali reply tangazo kwa /add jina la tangazo")
             return
 
     elif message.reply_to_message and message.reply_to_message.reply_markup:
