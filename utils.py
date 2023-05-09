@@ -209,7 +209,7 @@ async def get_filter_results(query,group_id):
     filter['group_id'] = group_id
     total_results = await Media.count_documents(filter)
     cursor = Media.find(filter)
-    cursor.sort('text', 1)
+    cursor.sort('$natural', -1)
     files = await cursor.to_list(length=int(total_results))
     return files
 async def is_subscribed(bot, query,channel):
