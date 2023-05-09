@@ -134,6 +134,12 @@ async def start_msg_admins(client, message):
                 group_id = files.group_id
                 msg_type =files.type
                 grp = files.grp
+            if not filedetails:
+                await client.send_message(
+                    chat_id=cmd.from_user.id,
+                    text=f"Samahani **{cmd.from_user.first_name}** hii movie uliochagua imefutwa kwenye database yng tafadhali ",     
+                )
+                return
             grp1,grp2=grp.split(" ") 
             ban_status = await db.get_ban_status(group_id)   
             if await is_user_exist(message.from_user.id):
@@ -209,21 +215,7 @@ async def start_msg_admins(client, message):
                             )
                                 
                         return
-                     
-                else:
-                    await client.send_message(
-                        chat_id=cmd.from_user.id,
-                        text=f"Samahani **{cmd.from_user.first_name}** nmeshindwa kukuruhusu kendelea kwa sababu muv au sizon uliochagua ni za kulipia\n Tafadhal chagua nchi uliopo kuweza kulipia kifurushi",
-                        reply_markup=InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton("🇹🇿 TANZANIA", callback_data = "tanzania"),
-                                    InlineKeyboardButton("🇰🇪 KENYA",callback_data ="kenya" )
-                                ]
-                            ]
-                        )
-                    )
-                    return
+                    
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif usr_cmdall1.startswith("/start xsubinps"):
