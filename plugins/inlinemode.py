@@ -1,4 +1,4 @@
-from pyrogram import Client
+from botii import Bot1
 import re
 import ast 
 from plugins.database import db
@@ -16,7 +16,7 @@ from pyrogram.types import (
 from utils import is_user_exist,get_search_results,Media,is_group_exist,add_user,is_subscribed
 from info import filters,OWNER_ID,CHANNELS,AUTH_CHANNEL
 BOT = {}
-@Client.on_inline_query(filters.inline)
+@Bot1.on_inline_query(filters.inline)
 async def give_filter(client: Client, query):
     userdetails = await is_user_exist(query.from_user.id)
     if not await is_subscribed(client, query,AUTH_CHANNEL):
@@ -182,7 +182,7 @@ async def give_filter(client: Client, query):
     return
         
         
-@Client.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
+@Bot1.on_callback_query(filters.regex(r"^(alertmessage):(\d):(.*)"))
 async def alert_msg(client: Client, callback):
     regex = r"^(alertmessage):(\d):(.*)"
     matches = re.match(regex, callback.data)
